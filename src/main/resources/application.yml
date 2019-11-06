@@ -1,0 +1,73 @@
+server:
+    port: 43008
+spring:
+    thymeleaf:
+      prefix: classpath:/templates/
+      suffix: .html
+      mode: HTML5
+      encoding: UTF-8
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://127.0.0.1:3306/similar_recruitment?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://127.0.0.1:3306/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://120.78.75.246:42004/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        
+        #url: jdbc:mysql://192.168.0.213:3306/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://192.168.0.220:3306/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://192.168.0.221:3306/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://192.168.0.167:3306/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        
+        #url: jdbc:mysql://47.112.25.185:3306/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        
+        #url: jdbc:mysql://47.112.212.35:42000/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42001/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42002/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42003/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42004/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42005/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42006/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42007/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42008/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.112.212.35:42009/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        
+        #url: jdbc:mysql://47.106.147.174:42010/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.106.147.174:42011/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.106.147.174:42000/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        
+        #url: jdbc:mysql://47.106.147.174:42000/gzdjxx_mysql?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.106.147.174:42000/hy_mysql?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://47.106.147.174:42000/cjdj_mysql?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+     
+        #url: jdbc:mysql://120.78.75.246:40011/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://120.78.75.246:40003/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://120.78.75.246:32789/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://120.78.75.246:32773/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://120.78.75.246:32781/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        #url: jdbc:mysql://120.78.75.246:42003/hbsxt?useUnicode=true&characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+        
+        
+        
+        
+        username: root
+        password: root
+
+#mybatis:
+  #map-underscore-to-camel-case: true
+  #typeAliasesPackage: swtech.pageDesignControl.entity
+  #mapperLocations: classpath:mappers/*.xml
+
+mybatis-plus:
+  mapper-locations: classpath:mappers/*.xml
+  typeAliasesPackage: swtech.pageDesignControl.entity
+  global-config:
+    db-config:
+      db-type: mysql
+      id-type: auto
+      #table-prefix: hotel_
+  
+logging:
+  level: 
+    swtech.pageDesignControl.mapper: debug
+
+
