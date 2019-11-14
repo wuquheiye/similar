@@ -1,16 +1,15 @@
 package swtech.pageDesignControl.controller;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import org.springframework.web.multipart.MultipartFile;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
-import swtech.pageDesignControl.entity.User;
 import swtech.pageDesignControl.service.IUserService;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
+
 
 
 /**
@@ -37,6 +36,17 @@ public class UserController  {
         return iUserService.selectJobWanted(id);
     }
 
-
+    @RequestMapping(value={"/uploadImgFile"})
+    @ResponseBody
+    public JSONObject uploadImgFile(@RequestParam("uploadImgFile") MultipartFile uploadImgFile) {
+        try{
+//            return  map2Json(uploadImgFile);
+            return  new JSONObject();
+        }catch(Exception e){
+            e.printStackTrace();
+            log.error("上传-文件-失败");
+            return null;
+        }
+    }
 
 }
