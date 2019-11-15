@@ -9,12 +9,10 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
-import swtech.pageDesignControl.entity.Users;
-import swtech.pageDesignControl.mapper.RolesPermissionsMapper;
-import swtech.pageDesignControl.mapper.UserRoleMapper;
+import swtech.pageDesignControl.mapper.PermissionMapper;
+import swtech.pageDesignControl.mapper.RoleMapper;
 import swtech.pageDesignControl.mapper.UsersMapper;
 
-import javax.annotation.Resource;
 import java.util.*;
 
 /**
@@ -25,10 +23,10 @@ public class CustomRealm extends AuthorizingRealm{
     private UsersMapper userMapper;
 
     @Autowired
-    private UserRoleMapper userRoleMapper;
+    private RoleMapper roleMapper;
 
     @Autowired
-    private RolesPermissionsMapper rolesPermissionsMapper;
+    private PermissionMapper permissionMapper;
 
     // 认证
     @Override
@@ -43,7 +41,7 @@ public class CustomRealm extends AuthorizingRealm{
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, password, "costomRealm");
         return authenticationInfo;
     }
-    
+
     // 授权
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
@@ -64,7 +62,7 @@ public class CustomRealm extends AuthorizingRealm{
      * @return
      */
     private String getPasswordByUsername(String username) {
-        String password = userMapper.findUserByUsername(username);
+        String password = userMapper.findPasswordByUsername(username);
         if(password == null){
             return null;
         }
@@ -77,11 +75,11 @@ public class CustomRealm extends AuthorizingRealm{
      * @return
      */
     private Set<String> getRolesByUsername(String username) {
-        List<String> list = userRoleMapper.getRolesByUsername(username);
+        List<String> list = roleMapper.getRoleByUsername(username);
         Set<String> sets = new HashSet<>(list);
         return sets;
     }
-    
+
     /**
      * 获取用户权限信息
      * @return
@@ -90,7 +88,7 @@ public class CustomRealm extends AuthorizingRealm{
         List<String> permissions = new ArrayList<>();
         List<String> roleList = new ArrayList<>(rolenameList);
         for(String role : roleList){
-            List<String> persimmion = rolesPermissionsMapper.getPermissionbyRoleName(role);
+            List<String> persimmion = permissionMapper.getPermissionbyRoleName(role);
             if(persimmion!=null){
                 permissions.addAll(persimmion);
             }

@@ -1,7 +1,7 @@
 package swtech.pageDesignControl.mapper;
 
 import org.springframework.stereotype.Repository;
-import swtech.pageDesignControl.entity.UserRole;
+import swtech.pageDesignControl.entity.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -14,7 +14,8 @@ import java.util.List;
  * @author jobob
  * @since 2019-11-15
  */
-@Repository("userRoleMapper")
-public interface UserRoleMapper {
-    List<String> getRolesByUsername(String username);
+@Repository("permissionMapper")
+public interface PermissionMapper{
+    List<String> getPermissionbyRoleName(String roleName);
 }
+

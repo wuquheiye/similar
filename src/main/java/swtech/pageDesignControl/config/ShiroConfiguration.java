@@ -30,10 +30,9 @@ public class ShiroConfiguration {
     /**
      * ShiroFilterFactoryBean 处理拦截资源文件问题。
      * 注意：单独一个ShiroFilterFactoryBean配置是会报错的，因为在初始化ShiroFilterFactoryBean的时候需要注入：SecurityManager
-     *
+     * <p>
      * Filter Chain定义说明 1、一个URL可以配置多个Filter，使用逗号分隔 2、当设置多个过滤器时，全部验证通过，才视为通过
      * 3、部分过滤器可指定参数，如perms，roles
-     *
      */
     @Bean
     public ShiroFilterFactoryBean shiroFilter(org.apache.shiro.mgt.SecurityManager securityManager) {
@@ -63,20 +62,21 @@ public class ShiroConfiguration {
         securityManager.setRealm(customRealm);
         return securityManager;
     }
-    
+
     //Shiro生命周期处理器
     @Bean
     public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
-        return  new LifecycleBeanPostProcessor();
+        return new LifecycleBeanPostProcessor();
     }
 
     /**
      * 开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
      * 配置以下两个bean(DefaultAdvisorAutoProxyCreator(可选)和AuthorizationAttributeSourceAdvisor)即可实现此功能
+     *
      * @return
      */
     @Bean
-    @DependsOn({ "lifecycleBeanPostProcessor" })
+    @DependsOn({"lifecycleBeanPostProcessor"})
     public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator() {
         DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
         advisorAutoProxyCreator.setProxyTargetClass(true);

@@ -1,6 +1,6 @@
 package swtech.pageDesignControl.service;
 
-import swtech.pageDesignControl.entity.RolesPermissions;
+import swtech.pageDesignControl.entity.Permission;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author jobob
  * @since 2019-11-15
  */
-public interface IRolesPermissionsService extends IService<RolesPermissions> {
+public interface IPermissionService extends IService<Permission> {
 
 }

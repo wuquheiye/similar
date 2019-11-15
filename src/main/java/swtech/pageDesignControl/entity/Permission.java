@@ -15,35 +15,25 @@ import lombok.experimental.Accessors;
  * @since 2019-11-15
  */
 @Data
-public class Users {
+public class Permission {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * id
      */
-    @TableId(value = "uid", type = IdType.AUTO)
-    private Integer uid;
+    @TableId(value = "pid", type = IdType.AUTO)
+    private Integer pid;
 
     /**
-     * 用户名
+     * 权限名
      */
-    private String uusername;
+    private String pname;
 
     /**
-     * 密码
+     * 权限类型
      */
-    private String upassword;
-
-    /**
-     * 邀请码
-     */
-    private String uinvitationCode;
-
-    /**
-     * 部门id
-     */
-    private Integer did;
+    private String ptype;
 
 
 }

@@ -9,7 +9,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import swtech.pageDesignControl.entity.User;
 import swtech.pageDesignControl.entity.Users;
 
 /**
@@ -21,7 +20,7 @@ public class UsersController {
     @PostMapping("/login")
     public String login(Users user) {
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUusername(), user.getUpassword());
         try {
             subject.login(token);
             return "登录成功";
@@ -31,14 +30,33 @@ public class UsersController {
     }
 
     @RequiresRoles("user")
-    @GetMapping("/testRoles")
+    @GetMapping("/u")
     public String testRoles(){
+        return  "testRole success";
+    }
+
+    @RequiresRoles("manage")
+    @GetMapping("/m")
+    public String testRoles1(){
         return  "testRole success";
     }
 
     @RequiresPermissions("user:add")
     @GetMapping("/a")
     public String testPermissions(){
+        return  "testPermissions success";
+    }
+
+
+    @RequiresPermissions("user:add1")
+    @GetMapping("/b")
+    public String testPermissions1(){
+        return  "testPermissions success";
+    }
+
+
+    @GetMapping("/c")
+    public String testPermissions2(){
         return  "testPermissions success";
     }
 }

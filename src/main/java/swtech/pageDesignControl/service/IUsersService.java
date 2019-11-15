@@ -1,6 +1,6 @@
 package swtech.pageDesignControl.service;
 
-import swtech.pageDesignControl.entity.UserRole;
+import swtech.pageDesignControl.entity.Users;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author jobob
  * @since 2019-11-15
  */
-public interface IUserRoleService extends IService<UserRole> {
+public interface IUsersService extends IService<Users> {
 
 }
