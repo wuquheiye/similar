@@ -1,7 +1,7 @@
 package swtech.pageDesignControl.mapper;
 
 import org.springframework.stereotype.Repository;
-import swtech.pageDesignControl.entity.User;
+import swtech.pageDesignControl.entity.UserRole;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import java.util.List;
@@ -11,15 +11,10 @@ import java.util.List;
  *  Mapper 接口
  * </p>
  *
- * @author 袁君选
- * @since 2019-10-24
+ * @author jobob
+ * @since 2019-11-15
  */
-public interface UserMapper extends BaseMapper<User> {
-
-    //通过id获取简历信息
-    User selectJobWanted(Integer id);
-
-
-
-
+@Repository("userRoleMapper")
+public interface UserRoleMapper {
+    List<String> getRolesByUsername(String username);
 }

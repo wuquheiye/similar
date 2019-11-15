@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+	<!-- 日志输出的格式 -->
+	<property name="log.pattern" value="[%d{yyyy-MM-dd HH:mm:ss.SSS}][%thread][%-5level] %logger{55} - %msg%n"></property>
+	<!-- 默认日志输出级别 -->
+	<property name="log.level" value="info"></property>
+	<!-- 控制台输出的日志级别 -->
+	<property name="log.console.level" value="DEBUG"></property>
+	<!-- 日志文件输出的路径 -->
+    <!-- <property name="log.path" value="${catalina.base}/logs"></property> -->
+    <!-- <property name="log.path" value="e:/logs"></property> -->
+    <property name="log.path" value="/root/jar/pageDesign-control/logs"></property>
+
+	<!-- console  -->    
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>${log.console.level}</level>
+        </filter>
+    </appender>
+
+	<!-- info  -->
+    <appender name="info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.path}/pageDesign-control-info.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/pageDesign-control-info.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+	<!-- error  -->
+    <appender name="error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <File>${log.path}/pageDesign-control-error.log</File>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/pageDesign-control-error.log.%d{yyyy-MM-dd}.gz</fileNamePattern>
+            <maxHistory>10</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- <pattern>[%d{HH:mm:ss.SSS}][%p][%c{40}][%t] %m%n</pattern> -->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="swtech.pageDesignControl.mapper" additivity="false" level="DEBUG" >
+        <appender-ref ref="info" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="error"/>
+    </logger>
+
+	<!-- <logger name="org.apache.ibatis" level="DEBUG">
+		<appender-ref ref="info" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="error"/>
+	</logger> -->
+	
+	<!-- <logger name="com.baomidou.mybatisplus" level="DEBUG">
+		<appender-ref ref="info" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="error"/>
+	</logger> -->
+
+	<!-- 以下包以DEBUG级别输出 -->
+    <!-- <logger name="com.kero.dao" level="DEBUG"/> -->
+   <!--  <logger name="org.apache.ibatis" level="DEBUG"/> -->
+    <!-- <logger name="com.baomidou.mybatisplus" level="DEBUG"/> -->
+
+    <root level="INFO">
+    	<appender-ref ref="info" />
+        <appender-ref ref="console"/>
+        <appender-ref ref="error"/>
+    </root>
+
+</configuration>
