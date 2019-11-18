@@ -226,8 +226,8 @@
     })
     
     function commitflow() {
-        let ftype = ftype.LEAVE.code;
-        let uid = 1;
+        let ftype = ftype.OVERTIME.code;
+        let uid = 1;// window.sessionStorage.getItem("user");
         let fapplyTime = $("#defuletTime").text();
         let fleaveType = $("#fleaveType").val();
         let fstartTime = $("#date-start").val();
@@ -241,6 +241,7 @@
             "fendTime" :　fendTime,
             "fapplyReason":fapplyReason
         }
+
 
     }
 

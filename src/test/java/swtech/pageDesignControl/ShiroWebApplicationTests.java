@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.entity.Department;
+import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.DepartmentMapper;
 import swtech.pageDesignControl.mapper.PermissionMapper;
 import swtech.pageDesignControl.mapper.RoleMapper;
 import swtech.pageDesignControl.mapper.UsersMapper;
+import swtech.pageDesignControl.service.IUsersService;
 
 import javax.annotation.Resource;
 
@@ -28,8 +30,11 @@ public class ShiroWebApplicationTests {
     @Resource
     private DepartmentMapper departmentMapper;
 
+    @Resource
+    private IUsersService iUsersService;
+
     @Test
-	public void contextLoads() {
+	public void Test() {
         System.out.println(usersMapper.findPasswordByUsername("admin"));
         System.out.println(roleMapper.getRoleByUsername("admin"));
         System.out.println(permissionMapper.getPermissionbyRoleName("manage"));
@@ -40,4 +45,23 @@ public class ShiroWebApplicationTests {
 
 	}
 
+    @Test
+    public void Users() {
+        Users users = new Users();
+        users.setUusername("张三");
+        users.setUpassword("123456");
+        users.setUinvitationCode("123");
+        users.setDid(1);
+        usersMapper.insert(users);
+    }
+
+    @Test
+    public void Users1() {
+        Users users = new Users();
+        users.setUusername("张三");
+        users.setUpassword("123456");
+        users.setUinvitationCode("1231");
+        users.setDid(1);
+        iUsersService.insert(users);
+    }
 }

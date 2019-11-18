@@ -1,30 +1,39 @@
 //李鸿智start
 /**
- * 登录注册点击事件
+ * 注册点击事件
  */
-function login() {
-    alert($('#uusername').val() + $('#upassword').val());
+function regist() {
     $.ajax({
-        url: '/dologin',
-        type: 'Get',
+        url: '/doregist',
+        type: 'Post',
         contentType: 'application/json',
         dataType: 'json',
-        data: {
-            uusername : $("#uusername").val(),
-            upassword : $("#upassword").val()
-        },
+        data: JSON.stringify({
+            "uusername" : $("#registUusername").val(),
+            "upassword" : $("#registUpassword").val(),
+            "uinvitationCode" : $("#registDid option:selected").val(),
+            "did" : $("#registUinvitationCode").val()
+        }),
         success: function (result) {
-            alert(result);
-            // if (!result.success) {
-            //     showAlertDlg('保存失败！' + result.message);
-            //     return;
-            // }
-            // layer.msg('保存成功！', {
-            //     icon : 1,
-            //     time : 1000
-            // }, function() {
-            //     window.location.href = '/mes/ratedVolPowerFreq/list';
-            // });
+            alert(result.result);
+        }
+    });
+}
+/**
+ * 登录点击事件
+ */
+function login() {
+    $.ajax({
+        url: '/dologin',
+        type: 'Post',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: JSON.stringify({
+            "uusername" : $("#loginUusername").val(),
+            "upassword" : $("#loginUpassword").val()
+        }),
+        success: function (result) {
+            alert(result.result);
         }
     });
 }
