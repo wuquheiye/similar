@@ -129,7 +129,7 @@
             <version>1.2.58</version>
         </dependency>
 
-        <!--thymeleaf 模板-->
+        <!--static 模板-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>

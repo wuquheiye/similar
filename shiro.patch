@@ -1,0 +1,1239 @@
+Index: target/classes/mappers/RoleMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/mappers/RoleMapper.xml	(date 1573811187021)
++++ target/classes/mappers/RoleMapper.xml	(date 1573811187021)
+@@ -0,0 +1,10 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
++<mapper namespace="swtech.pageDesignControl.mapper.RoleMapper">
++    <select id="getRoleByUsername" resultType="java.lang.String" parameterType="java.lang.String">
++        SELECT rrole_name from role r
++        join user_role ur on ur.rid = r.rid
++        join users u on ur.uid = u.uid
++        where u.uusername =  #{username}
++    </select>
++</mapper>
+Index: target/classes/mappers/UsersMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/mappers/UsersMapper.xml	(revision c32c631ee7d33783a25e728b7cb9a1c38a4b08cc)
++++ target/classes/mappers/UsersMapper.xml	(date 1573811187069)
+@@ -1,7 +1,7 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="swtech.pageDesignControl.mapper.UsersMapper">
+-    <select id="findUserByUsername" resultType="java.lang.String" parameterType="java.lang.String" >
+-        SELECT password from users where username = #{username}
++    <select id="findPasswordByUsername" resultType="java.lang.String" parameterType="java.lang.String">
++        SELECT upassword from users where uusername = #{username}
+     </select>
+ </mapper>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision c32c631ee7d33783a25e728b7cb9a1c38a4b08cc)
++++ .idea/workspace.xml	(date 1573811945576)
+@@ -2,79 +2,49 @@
+ <project version="4">
+   <component name="ChangeListManager">
+     <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="shiro">
+-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/RolesPermissions.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/UserRole.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RolesPermissionsMapper.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserRoleMapper.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRolesPermissionsService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUserRoleService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/RolesPermissionsMapper.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/UserRoleMapper.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/swtech-service-pageDesign-control.kotlin_module" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/file/test.xlsx" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/generatorConfig.properties" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/logback-spring.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/mappers/RolesPermissionsMapper.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/mappers/UserMapper.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/mappers/UserRoleMapper.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/mappers/UsersMapper.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/sqlMapGeneractor.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/RunApplication.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/configs/MybatisPlusConfig.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/exception/EnumNotFindException.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/exception/GlobalException.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/exception/ServiceException.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/CodeGenerator$1.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/CodeGenerator$2.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/CodeGenerator.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/EnumUtil.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/ExcelUtil.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/GetMessageCode.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/HttpClientUtils.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/JsonUtil.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/MyX509TrustManager.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/QRCode.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/UploadUtil.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/CodeMsg.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/ExcelParam.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/ReturnMsg.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UserController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Member.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/RolesPermissions.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/User.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/UserRole.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Users.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/BaseEnum.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/MaritalStatus.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/PoliticsStatus$OverseasExperience.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/PoliticsStatus.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Sex.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RolesPermissionsMapper.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UserMapper.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UserRoleMapper.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UsersMapper.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/realm/CustomRealm.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IRolesPermissionsService.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IUserRoleService.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IUserService.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/UserServiceImpl.class" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/User.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserMapper.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Permission.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Role.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/RoleMapper.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/mappers/RoleMapper.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Permission.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Role.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RoleMapper.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IPermissionService.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IRoleService.class" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IUsersService.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/RolesPermissions.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/UserRole.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RolesPermissionsMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserRoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRolesPermissionsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IPermissionService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUserRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRoleService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/RolesPermissionsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PermissionMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UserRoleMapper.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/mappers/RolesPermissionsMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PermissionMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/mappers/UserRoleMapper.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/mappers/UsersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/UsersMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/RolesPermissions.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/UserRole.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Users.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RolesPermissionsMapper.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UserRoleMapper.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UsersMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UsersMapper.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/realm/CustomRealm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/realm/CustomRealm.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IRolesPermissionsService.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IUserRoleService.class" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" afterDir="false" />
+     </list>
+     <ignored path="$PROJECT_DIR$/out/" />
+     <ignored path="$PROJECT_DIR$/target/" />
+@@ -88,7 +58,32 @@
+     <option name="isMigrated" value="true" />
+   </component>
+   <component name="FileEditorManager">
+-    <leaf />
++    <leaf>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="263">
++              <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
++              <folding>
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="58">
++              <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
++              <folding>
++                <element signature="imports" expanded="true" />
++              </folding>
++            </state>
++          </provider>
++        </entry>
++      </file>
++    </leaf>
+   </component>
+   <component name="FileTemplateManagerImpl">
+     <option name="RECENT_TEMPLATES">
+@@ -113,16 +108,11 @@
+       <list>
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/User.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapperTest.java" />
+         <option value="$PROJECT_DIR$/src/main/java/text/text.java" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/test/text.java" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserMapper.java" />
+         <option value="$PROJECT_DIR$/pom.xml" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" />
+         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/userRole.java" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/RolesPermissions.java" />
+@@ -130,9 +120,21 @@
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserRoleMapper.java" />
+         <option value="$PROJECT_DIR$/src/main/resources/mappers/UserRoleMapper.xml" />
+         <option value="$PROJECT_DIR$/src/main/resources/mappers/RolesPermissionsMapper.xml" />
+-        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RolesPermissionsMapper.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Role.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/RoleServiceImpl.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Permission.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" />
++        <option value="$PROJECT_DIR$/src/main/resources/mappers/PermissionMapper.xml" />
++        <option value="$PROJECT_DIR$/src/main/resources/mappers/RoleMapper.xml" />
++        <option value="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" />
++        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" />
+         <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" />
++        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" />
+       </list>
+     </option>
+   </component>
+@@ -161,9 +163,9 @@
+       <select />
+     </treeState>
+   </component>
+-  <component name="ProjectFrameBounds" extendedState="6">
+-    <option name="x" value="313" />
+-    <option name="y" value="59" />
++  <component name="ProjectFrameBounds">
++    <option name="x" value="391" />
++    <option name="y" value="66" />
+     <option name="width" value="1305" />
+     <option name="height" value="869" />
+   </component>
+@@ -313,8 +315,8 @@
+     <recent_temporary>
+       <list>
+         <item itemvalue="JUnit.ShiroWebApplicationTests" />
+-        <item itemvalue="Application.CodeGenerator" />
+         <item itemvalue="JUnit.ShiroWebApplicationTests.contextLoads" />
++        <item itemvalue="Application.CodeGenerator" />
+         <item itemvalue="TestNG.text.aa" />
+         <item itemvalue="Application.text" />
+       </list>
+@@ -331,49 +333,57 @@
+       <option name="presentableId" value="Default" />
+       <updated>1573785966624</updated>
+       <workItem from="1573785967747" duration="641000" />
+-      <workItem from="1573786610893" duration="11489000" />
++      <workItem from="1573786610893" duration="16228000" />
++    </task>
++    <task id="LOCAL-00001" summary="shiro">
++      <created>1573802281754</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1573802281754</updated>
+     </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TestHistory">
+-    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.15 at 14h 18m 27s.xml">
+-      <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 48m 32s.xml">
++      <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.15 at 14h 19m 40s.xml">
++    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.15 at 17h 19m 50s.xml">
+       <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 20m 37s.xml">
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 17h 21m 25s.xml">
+       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.15 at 14h 20m 59s.xml">
++    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.15 at 17h 23m 12s.xml">
+       <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 21m 45s.xml">
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 17h 29m 45s.xml">
+       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 23m 08s.xml">
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 17h 37m 03s.xml">
+       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 25m 25s.xml">
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 17h 42m 16s.xml">
+       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 26m 00s.xml">
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 17h 47m 01s.xml">
+       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 47m 59s.xml">
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 17h 51m 05s.xml">
+       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 48m 32s.xml">
++    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 17h 51m 33s.xml">
+       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+     </history-entry>
+   </component>
+   <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="12130000" />
++    <option name="totallyTimeSpent" value="16869000" />
+   </component>
+   <component name="ToolWindowManager">
+-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
++    <frame x="391" y="66" width="1305" height="869" extended-state="0" />
+     <layout>
+-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25373134" />
++      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.5759036" />
+       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+       <window_info id="Designer" order="2" />
+       <window_info id="Image Layers" order="3" />
+@@ -384,7 +394,7 @@
+       <window_info anchor="bottom" id="Messages" order="0" weight="0.3275488" />
+       <window_info anchor="bottom" id="Message" order="1" />
+       <window_info anchor="bottom" id="Find" order="2" weight="0.329718" />
+-      <window_info anchor="bottom" id="Run" order="3" weight="0.37310195" />
++      <window_info anchor="bottom" id="Run" order="3" weight="0.46746203" />
+       <window_info anchor="bottom" id="Debug" order="4" weight="0.318872" />
+       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+@@ -395,7 +405,7 @@
+       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5004016" side_tool="true" weight="0.3292517" />
+       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329718" />
+       <window_info anchor="bottom" id="Database Changes" order="13" />
+-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49959838" visible="true" weight="0.2624729" />
++      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.49959838" visible="true" weight="0.26122448" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+@@ -408,7 +418,7 @@
+       <window_info anchor="right" id="Bean Validation" order="9" />
+     </layout>
+     <layout-to-restore>
+-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25373134" />
++      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.5759036" />
+       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+       <window_info id="Designer" order="2" />
+       <window_info id="Image Layers" order="3" />
+@@ -419,7 +429,7 @@
+       <window_info anchor="bottom" id="Messages" order="0" weight="0.3275488" />
+       <window_info anchor="bottom" id="Message" order="1" />
+       <window_info anchor="bottom" id="Find" order="2" weight="0.329718" />
+-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.37310195" />
++      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.58639455" />
+       <window_info anchor="bottom" id="Debug" order="4" weight="0.318872" />
+       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+@@ -427,10 +437,10 @@
+       <window_info anchor="bottom" id="Spring" order="8" weight="0.329718" />
+       <window_info anchor="bottom" id="Terminal" order="9" weight="0.329718" />
+       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
++      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5004016" side_tool="true" weight="0.3292517" />
+       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329718" />
+       <window_info anchor="bottom" id="Database Changes" order="13" />
+-      <window_info anchor="bottom" id="Version Control" order="14" weight="0.329718" />
++      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49959838" weight="0.2624729" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+@@ -446,6 +456,16 @@
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="1" />
+   </component>
++  <component name="Vcs.Log.History.Properties">
++    <option name="COLUMN_ORDER">
++      <list>
++        <option value="0" />
++        <option value="2" />
++        <option value="3" />
++        <option value="1" />
++      </list>
++    </option>
++  </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="shiro" />
+     <option name="LAST_COMMIT_MESSAGE" value="shiro" />
+@@ -455,7 +475,7 @@
+       <breakpoints>
+         <line-breakpoint enabled="true" type="java-line">
+           <url>file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java</url>
+-          <line>23</line>
++          <line>22</line>
+           <properties />
+           <option name="timeStamp" value="2" />
+         </line-breakpoint>
+@@ -467,272 +487,273 @@
+     <option name="FILTER_TARGETS" value="false" />
+   </component>
+   <component name="editorHistoryManager">
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/mgt/AuthenticatingSecurityManager.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/RunApplication.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="224">
+-          <caret line="105" selection-start-line="105" selection-end-line="105" />
++        <state relative-caret-position="175">
++          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/mgt/DefaultSecurityManager.java">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="199">
+-          <caret line="273" selection-start-line="273" selection-end-line="273" />
++        <state relative-caret-position="25">
++          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="15" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/UsernamePasswordToken.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/User.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="199">
+-          <caret line="109" column="11" selection-start-line="109" selection-start-column="11" selection-end-line="109" selection-end-column="11" />
++        <state relative-caret-position="196">
++          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/AbstractAuthenticator.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/UserRole.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="99">
+-          <caret line="204" selection-start-line="204" selection-end-line="204" />
++        <state relative-caret-position="200">
++          <caret line="8" selection-start-line="8" selection-end-line="9" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/RolesPermissions.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-956">
+-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
++        <state relative-caret-position="475">
++          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="29" />
+           <folding>
+             <element signature="imports" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/text/text.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/RolesPermissionsController.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="300">
+-          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
++        <state relative-caret-position="342">
++          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../jdk/jdk1.8/src.zip!/java/util/ArrayList.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UserRoleController.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="170">
+-          <caret line="1256" selection-start-line="1256" selection-end-line="1256" />
++        <state relative-caret-position="366">
++          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/test/text.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/RolesPermissionsServiceImpl.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="300">
+-          <caret line="12" column="13" lean-forward="true" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-            <element signature="e#368#369#0" expanded="true" />
+-            <element signature="e#443#444#0" expanded="true" />
+-          </folding>
++        <state relative-caret-position="325">
++          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/test/a.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UserRoleServiceImpl.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state>
+-          <caret column="14" selection-start-column="14" selection-end-column="14" />
++        <state relative-caret-position="325">
++          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/com/baomidou/mybatis-plus-core/3.1.2/mybatis-plus-core-3.1.2.jar!/com/baomidou/mybatisplus/core/mapper/BaseMapper.class">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/pam/ModularRealmAuthenticator.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="298">
+-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
++        <state relative-caret-position="-1751">
++          <caret line="191" column="6" lean-forward="true" selection-start-line="191" selection-start-column="6" selection-end-line="191" selection-end-column="6" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/pom.xml">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/realm/AuthenticatingRealm.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="206">
+-          <caret line="105" column="34" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="34" />
++        <state relative-caret-position="-2134">
++          <caret line="585" selection-start-line="585" selection-end-line="585" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-aop/5.1.8.RELEASE/spring-aop-5.1.8.RELEASE-sources.jar!/org/springframework/aop/framework/CglibAopProxy.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="400">
+-          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
++        <state relative-caret-position="374">
++          <caret line="700" selection-start-line="700" selection-end-line="700" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-web/5.1.8.RELEASE/spring-web-5.1.8.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="300">
+-          <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
++        <state relative-caret-position="249">
++          <caret line="200" selection-start-line="200" selection-end-line="200" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UserController.java">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="250">
+-          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
++        <state relative-caret-position="224">
++          <caret line="900" selection-start-line="900" selection-end-line="900" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/sqlMapGeneractor.xml">
+-      <provider selected="true" editor-type-id="text-editor" />
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="341">
++          <caret line="950" selection-start-line="950" selection-end-line="950" />
++        </state>
++      </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/logback-spring.xml">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-1331" />
++        <state relative-caret-position="499">
++          <caret line="1022" selection-start-line="1022" selection-end-line="1022" />
++        </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/generatorConfig.properties">
+-      <provider selected="true" editor-type-id="text-editor" />
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/tomcat/embed/tomcat-embed-core/9.0.21/tomcat-embed-core-9.0.21-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="224">
++          <caret line="233" selection-start-line="233" selection-end-line="233" />
++        </state>
++      </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/RunApplication.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Member.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="175">
+-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
++        <state relative-caret-position="150">
++          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UserServiceImpl.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRolesPermissionsService.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="322">
+-          <caret line="31" selection-start-line="29" selection-end-line="31" />
++        <state relative-caret-position="325">
++          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUserRoleService.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="75">
+-          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
++        <state relative-caret-position="325">
++          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="25">
+-          <caret line="1" column="10" selection-start-line="1" selection-start-column="10" selection-end-line="1" selection-end-column="15" />
++        <state relative-caret-position="75">
++          <caret line="3" column="9" lean-forward="true" selection-start-line="3" selection-start-column="9" selection-end-line="3" selection-end-column="9" />
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="250">
+-          <caret line="52" column="32" lean-forward="true" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
++        <state relative-caret-position="200">
++          <caret line="50" column="21" lean-forward="true" selection-start-line="50" selection-start-column="21" selection-end-line="50" selection-end-column="21" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserRoleMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="350">
+-          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="5" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
++        <state relative-caret-position="300">
++          <caret line="14" selection-start-line="14" selection-end-line="14" selection-end-column="29" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/User.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RolesPermissionsMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="196">
+-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
++        <state relative-caret-position="300">
++          <caret line="14" selection-start-line="14" selection-end-line="18" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserMapper.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="275">
+-          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
++        <state relative-caret-position="500">
++          <caret line="30" column="28" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="28" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UserRoleMapper.xml">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="175">
+-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
++          <caret line="7" lean-forward="true" selection-end-line="7" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UserRoleMapper.xml">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/RolesPermissionsMapper.xml">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="75">
+-          <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="13" />
++        <state relative-caret-position="175">
++          <caret line="7" lean-forward="true" selection-end-line="7" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/UserRole.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Role.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="200">
+-          <caret line="8" selection-start-line="8" selection-end-line="9" />
++        <state relative-caret-position="318">
++          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+           <folding>
+             <element signature="imports" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/RolesPermissions.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/PermissionController.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="475">
+-          <caret line="19" column="29" lean-forward="true" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="29" />
++        <state relative-caret-position="342">
++          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+           <folding>
+             <element signature="imports" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/RolesPermissionsMapper.xml">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/RoleController.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="100">
+-          <caret line="4" column="74" selection-start-line="4" selection-start-column="74" selection-end-line="4" selection-end-column="74" />
++        <state relative-caret-position="366">
++          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserRoleMapper.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UserController.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="325">
+-          <caret line="17" column="31" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="31" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/RolesPermissionsController.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="342">
+-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
++        <state relative-caret-position="197">
++          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+           <folding>
+             <element signature="imports" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UserRoleController.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="366">
+-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
++        <state relative-caret-position="325">
++          <caret line="17" column="50" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/RolesPermissionsServiceImpl.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/RoleServiceImpl.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="325">
+           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UserRoleServiceImpl.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/PermissionServiceImpl.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="325">
+           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRolesPermissionsService.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IPermissionService.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="300">
+           <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUserRoleService.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRoleService.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="300">
+           <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+@@ -746,110 +767,115 @@
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="594">
+-          <caret line="30" column="81" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="81" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
++        <state relative-caret-position="375">
++          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Permission.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="375">
+-          <caret line="15" column="27" lean-forward="true" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="27" />
++        <state relative-caret-position="233">
++          <caret line="25" column="21" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="21" />
+           <folding>
+             <element signature="imports" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RolesPermissionsMapper.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UserServiceImpl.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="350">
+-          <caret line="18" column="49" selection-start-line="18" selection-start-column="49" selection-end-line="18" selection-end-column="49" />
++        <state relative-caret-position="400">
++          <caret line="31" selection-start-line="29" selection-end-line="31" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/authc/pam/ModularRealmAuthenticator.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-1751">
+-          <caret line="191" column="6" lean-forward="true" selection-start-line="191" selection-start-column="6" selection-end-line="191" selection-end-column="6" />
++        <state relative-caret-position="350">
++          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/shiro/shiro-core/1.4.0/shiro-core-1.4.0-sources.jar!/org/apache/shiro/realm/AuthenticatingRealm.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UserMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-2134">
+-          <caret line="585" selection-start-line="585" selection-end-line="585" />
++        <state relative-caret-position="275">
++          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/PermissionMapper.xml">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="377">
+-          <caret line="97" column="58" selection-start-line="97" selection-start-column="58" selection-end-line="97" selection-end-column="58" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-            <element signature="e#3283#3291#0" expanded="true" />
+-          </folding>
++        <state relative-caret-position="75">
++          <caret line="3" column="32" lean-forward="true" selection-start-line="3" selection-start-column="32" selection-end-line="3" selection-end-column="32" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-aop/5.1.8.RELEASE/spring-aop-5.1.8.RELEASE-sources.jar!/org/springframework/aop/framework/CglibAopProxy.java">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/RoleMapper.xml">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="374">
+-          <caret line="700" selection-start-line="700" selection-end-line="700" />
++        <state relative-caret-position="75">
++          <caret line="3" column="21" lean-forward="true" selection-start-line="3" selection-start-column="21" selection-end-line="3" selection-end-column="21" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-web/5.1.8.RELEASE/spring-web-5.1.8.RELEASE-sources.jar!/org/springframework/web/method/support/InvocableHandlerMethod.java">
++    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="249">
+-          <caret line="200" selection-start-line="200" selection-end-line="200" />
++        <state relative-caret-position="100">
++          <caret line="4" column="56" lean-forward="true" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/mvc/method/annotation/RequestMappingHandlerAdapter.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="224">
+-          <caret line="900" selection-start-line="900" selection-end-line="900" />
++        <state relative-caret-position="375">
++          <caret line="15" column="41" lean-forward="true" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/DispatcherServlet.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="341">
+-          <caret line="950" selection-start-line="950" selection-end-line="950" />
++        <state relative-caret-position="350">
++          <caret line="18" column="43" selection-start-line="18" selection-start-column="43" selection-end-line="18" selection-end-column="43" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-webmvc/5.1.8.RELEASE/spring-webmvc-5.1.8.RELEASE-sources.jar!/org/springframework/web/servlet/FrameworkServlet.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="499">
+-          <caret line="1022" selection-start-line="1022" selection-end-line="1022" />
++        <state relative-caret-position="247">
++          <caret line="90" column="71" selection-start-line="90" selection-start-column="71" selection-end-line="90" selection-end-column="71" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/apache/tomcat/embed/tomcat-embed-core/9.0.21/tomcat-embed-core-9.0.21-sources.jar!/org/apache/catalina/core/ApplicationFilterChain.java">
++    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="224">
+-          <caret line="233" selection-start-line="233" selection-end-line="233" />
++        <state relative-caret-position="-162">
++          <caret line="13" column="39" lean-forward="true" selection-start-line="13" selection-start-column="39" selection-end-line="13" selection-end-column="39" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
+         </state>
+       </provider>
+     </entry>
+     <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="87">
+-          <caret line="25" selection-start-line="25" selection-end-line="25" />
++        <state relative-caret-position="263">
++          <caret line="62" lean-forward="true" selection-start-line="62" selection-end-line="62" />
++          <folding>
++            <element signature="imports" expanded="true" />
++          </folding>
++        </state>
++      </provider>
++    </entry>
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java">
++      <provider selected="true" editor-type-id="text-editor">
++        <state relative-caret-position="58">
++          <caret line="49" column="55" selection-start-line="49" selection-start-column="55" selection-end-line="49" selection-end-column="55" />
+           <folding>
+             <element signature="imports" expanded="true" />
+-            <element signature="e#1212#1213#0" expanded="true" />
+-            <element signature="e#1254#1255#0" expanded="true" />
+-            <element signature="e#1351#1352#0" expanded="true" />
+-            <element signature="e#1400#1401#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+diff --git target/classes/swtech/pageDesignControl/controller/UsersController.class target/classes/swtech/pageDesignControl/controller/UsersController.class
+index 0ffb5aa32eb498012adce7f298a22ee7018b3568..861d5c803de2c8fba8bd6979b2063a5a19a768eb
+GIT binary patch
+literal 2369
+zc$}S8T~`}L7=DHX7Sgm-jJBXfN?QpnWlKvx1gs+cur<(_09w78Y{q0uvK#lKsK3DD
+zl{a2^<zGNATD3=ifd8ZVFVtr?Ysev>i#aDV@65c<^S<+b%>MT0&%Xkg$440)!&@1=
+zjb#JxWUzu;dbpiI3U`j+F5Vr)Jp=bM7{YslC=6oNz?y*v0s~97V+S_{Qu*mkf%J-7
+zRRY5W+fi#_v!c9pS!r-*q~Kbzu_--Uuj9>hP`7=7s|9~MP*&Y+$(p*Qe7okXxK7}?
+z4by7R4ds~|zViH)&U#Uxzv0$wM_@63FoALcJNUc}UYssGl8>d?kWS4k2cGTJ$Rg;-
+zrGo3#OxcoFU73E}_FPkjLESQ!Icf?^2Da<m{>)M>EfAItNhvUu(6oTzhm}Xl3Iry5
+zt;J_%xjpO41@4yO<z^3ZP4haksfyC~w_UHguJs8#S`MVOwJKXtkfS^m4ZP39GJ^ug
+zS5;7Vt3~M%8_+d@(NaiPn`+bcZ9<kE#|@(UM!C`E{gw{aCmKRiTjsW^m=)WpnzEy7
+z7F|D})mA&I{f}iMWMl`-I7vf+@`IAwP$bRe_szuI{#X5?+e%4&8rq)nBPL?z6Z>~p
+zb-CAPh60(6OLKIzDIKOzA2nIP`lzV9rtSOfKwLkBb6r5%8q}4tAgfi)Et!Em+%!J)
+zkIJ0Zsr2ex*83J+F1w*;sXMlApWL37nAI^AxRE#{B^v4Ks4RwY+(0RdGS&rV4pVq6
+zvMe?*lf|YUhVcPwE{m7(p+NSJZ=XH?<(uEX{QCJ<-?5?(*K1ik#7rC!ovaBzv@GQ_
+zB`5X-Y4_yH|9DVnVz(wA#I1TRQFjYW{8vW{jQ6ONl@)p<*$C_gIWjdBbhOX1MH0Lc
+zSz<QAI3e+}73YPIQ@*#&dUy1@ZRV4`fbB;{Beb`x3^oIU(>Tfxi2fN6x`;Twz?I2a
+zaPB|<6ykddeHh_55N(d&MUL6F0&;kXvtYrT;73P;e?Xf1!0SJvZ}k~c4=+4Hn*aW%
+z7+9OR_!A7W4el(YN7GM`*&#NEQyAwbDiv87qaBbhO~xEX@d|gwIZoi!$nredC#Z9h
+zXK8IG_CZTy)Z-J6N$Q@W*Euqd<25o*@cbmiUtFdQoHj6N;EaK@5C+Z>$-4-`fhqov
+zktEOm^v4iB&QrR88Pe(NU5sOs8acAFCo*TcB9n@}nu>1J7s1+eW0>v8I?$JrP){eK
+zp6jB%OzFx#)Y-k%=D$$Scj&HmQD38UJqh)-MASFBsNbNpkc4{a0BW7OUAjeLmLlYv
+K(W%DX1pWqyct5=W
+
+diff --git target/classes/swtech/pageDesignControl/entity/Role.class target/classes/swtech/pageDesignControl/entity/Role.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..450d17da708dd5a37227d86baca42ab66e9aa398
+GIT binary patch
+literal 2248
+zc$|$@ZBrXn6n>WMCYy9AAuY5)wA5k^Bx$PBY6+l}mo`WM!;7}+j7zeUY)y7!c2kGH
+z;t!B7e9#$9XLQEVFLlP>;Lq@*wLW(@BoLwl1LvN5&U4N^_c`aXfBf^)F92rnc?2=!
+z!jQ2h#D^iQN4VyN*bu%=p=}B6qYw%aM37UlE!G_&c2(@D_*kf)gz!j0)G->SUfnYq
+zj%i!Fxn&8`nuNh6+j3mpa`*IV(@^05ND=}Kvn1it`V;-Bo~i0qIg_(oqii&?65@rX
+z<(f5P&veZFs<CKUwyV2L>qtni7wuYRU$<*!$!=z92mACm^=i|}=p9^UM`v8F#9Yc#
+zaj*p0J*aa@ohv+7+98_J^5X8!ri5^#VONa}y~Yf&6D4oE4bv(U7o0OK(_P@T5>tB&
+zTe3@p4y~J(vC*vU8x5}@5o{Mpl1{3)ZyRN|V)AA;*PX9jqgct*^|G;SIA+-*c`i@R
+z7^K5J$P`$FIIL{A1;O4(VyZ8HngDbwzI+PSt=Va(8BO%bBCZk58*areZRri>aoJg>
+zc21=pNu13rB7??PO}*;$05<oZ7)3Wb^_a6^pJuY{V!v#+Vl*VEf|N;bNWz}U*Dw0!
+zZUsYaXV)^g?druZ^LpK*mxJxir&`pl6;Tw`itbeW4zXQ1p1D=X<yTk~^<cwrnpKxw
+z@ehogOs%@Me@WW6?PjBBteT>OVbPge;x-yy#|;fv5!Wz*>k=l<(^L%$ct^t&rZv1R
+zv?Nj*-p2<LuJrPIziC!Wf+6qF1dE*4@ED&8@fjPGn&=cf&nr!7SVfAx?B$wQ)$4V`
+z;vLidx_HLaJ~-QhKW^%O;&Gk-Nn(8U0gT}iE`w9S-2g`UN20hN<37gq6<Wp}8ecW=
+z8m@6i4(SWiM_wr>xyx{sxGK}nAbszpdV@0P8HaI`Qu6_L6AAI}MlgFO_y-Jp*AqO}
+zH<-=n6CCIbzScK5jax*C;90H%0zIAl5d;0}9`zCJXrcK8WkgPin<zK8@m9Z-f%B#m
+zoOV)9cqut_?Ua9U4RNg`r@w_FA0>Z-{0)@AQSw*F`P6g^inpZ_+(=Q(%IV*6Aud11
+z@FBExTy7zBj8JEll#s!=A~3<{h#g`uuEc}KAo<7}jNYOj`ZaWluJDs}#~Yk&+@(#_
+zx{P;e3$U{bc#oQl2fWxlY6|ikrCDl0WEnkya7g_d7eknPfzc4=`KwAVaMf4C9WrJ}
+zhAiG<n~ZxrQn0587LNXhUZqp1!usxX>AmaG%a`1qpg##0U%}aEc21u6NF0x5E2L13
+zCJzxxw-Ekf-lI+yj=0?RsDfC!#`_aC<7aJ`5g;{-xKF>rVwR{4@I!r@lnKIa;0jhe
+z!UQ>MkYCaulN?DR8~ixGB&fR|5QY&b$A)8!eA+}9&s*)hl>*Nc^(B5r<k2%+h-obh
+giVL@JF*fAuDwkN4qJ`n!=XCNRCpypRfrondFOS8hGynhq
+
+diff --git target/classes/swtech/pageDesignControl/entity/Permission.class target/classes/swtech/pageDesignControl/entity/Permission.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..9e3bf0b5c5eb8a053f80800582ce9e93d200c5cc
+GIT binary patch
+literal 2658
+zc$|$^ZF3V<6n-|@-E7k>gg^_yDrj46o1_7)3Qb#uQZ(3?*f#|c*(PhUnC!;v2INQZ
+z2mAr@r5|uc%Z$!A`UPkFO(H&bcaw%RIxX$J=jA!)p7Wf$clhg{Uw#8H3oDLcYz#ob
+zrdYPbvK_-tocm{D`CI^Q3h9<uz7Xo|7`}`{$A*SGV*g4kcQqIqb~TiQR*u1xkZ{eW
+zWz=@erfWI&cHx=?>4t=%CC7F>!}fNJTFX=r{74d_4XZ5S<jOtczLBdLb|qJ^J+opq
+z^Ab`UE!(r|=8olByEXHQZ9AUfF|8{hyHaxMxn0AlTV<z}t3TYO$8FSFZqDf7a$5%D
+z3T5U}?u&yZ$lk*Sx6F~k3*{}M87*Jg-dbmphHcato$M-i(`#CGMV!zGQmgZpZF!4q
+zZE|Xdp-WDg*5fOdZLYQIyJpibN+fYgB+4LN)I+1}RV`PP=RWYvQZ?5wD&{rQwJJ6V
+z^qNjBXOa@{VXkO4>y|4x=Fw`!^ooMV;mN7KOlkrU)PCwENT+%q5jNn4*+wS&BojR)
+zR!y(!l#51_DLsyw@owjY;mN}Xh$tTt9$|jlGHPxQc76ArS@QBzw|Hlqmst*7WZChm
+zW|PSTQRDvQ8SqVk91qMvA%meK&_Y*GK-(2)Lz|va`exN=_*3Aw;9q5}WZ281PKs5-
+ztp<bSR0}MlxKUVLW}TGPrs=k79)}myptes`+xa!m33y-?n@+1)GOt@=+Q$#3I3s%1
+z@h0BV@d`$DjA2~I1jZ#yAN?-qxQ@#@vY63vNk}<d&~Z^LAK_yOr+Wu;wPn@Hg3qo}
+zCfUV;j;~P>OO@qk&ifrL1fuAPqBNyr9T#{TddI}hjYh+?$wju`T{vV4tH}4@+xOu=
+z@pzr@(=Z<r8D}wq(~xk6S_CQnkwxmSQcrS!jh1sRjpt29y+Mrx``8J8A0&q4bDgA?
+z<1TSmrk_Ik(T7cORej?LOmo!(0Mf{amrQVeDEKEtp7aEt?HkN7^$Cvl2A}I2e6eq^
+z+#5XJH~4M5LzD=f;~o*{>GaQt^ly43K!njk3Rs>MIVCCyD(~XGekr3zO(_P`Njc`H
+ze7}E6`KT!;x>HX0DfxK>DWyx?2k3f~p8f%fyqEq1%J)#Bd+FbytY)V7q53L?*jk3m
+zoSgj=gDLqLPCSO5P09Pv+K7QUB_mcfr3j4r49UkBN+~I|3lyJ=WyGqbVgjUvpjb+4
+zgXBFH6g|}0?V!+3XOGB7p8jEchk4o}?9;*mZBgP&SfnKL)4z@nC@EOQhy0gk&Kkdh
+zE0khra%@*AX;@;$H1wGEH;%<{?KwtbSmv)LJ;#|q9OxF?gwByrS-d>qj4rbxF#$y|
+zx%WRKQaX(&EI)rRqIrKre6oUzEzJ<F(zTt)&&vz`AVw4UD#xHD(vK0#?ql%of=|CJ
+z94R^UXks{lD?X?AE~VpAeAj4ysuzO;!wRF=Kmj-CS5U+!lp=_8U-79P<7c$$Q@zMX
+zXw9cukof@W3mRmSDM_S^|KWK-_<<e~hG8geLmMN%Yzkp&m+b)AYbBUvu6G`VJ1kYS
+yHTx^{n@=&6JhqSHg2H_yk|zRrfLk&d$Z;W`<g$-by>CeO(>L3BLyA7?(|-XqEaQp*
+
+diff --git target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class
+index f0e40acd16f760a6019f040c9fe7c932a6d92ec8..a1f22bfe35f5dc0e7aacbf6cc1dbf1775ac2caf4
+GIT binary patch
+literal 3439
+zc$~FXZC4XV6n-{Db`8PUsGw+z)>ab|SPN=xK`Vr!l>{gOtS_~lY=&fYvzzYDqWG)Y
+zFY&aT(;v`p{X;#yv%7>qLdDkR!@S(w``qWg%*_7r*KfZAxQ?v^E@M$eF@czzO9{lW
+zD2F8t%W_`P@U5IzHI(JNreZyTK`d(6(C}~o-{Fyl#~Pk!cq$dXSMe-?A&K%aevqpl
+zRj>p`Bz`4<3-X@}FjQ0%7?qn*EUDlsHWl>Gn6@eIDCo;%Hx$GRPL(T26-}Ej`Hc#9
+z*I30ONxJA5%-UeCDff{uF6ySI;Cj(}DY#MBo2<s?xo6hwf@2HUv2??+H_e(}uA8n?
+z2-d#Kgz4DR3I+_{6Ha55GpnIsB9lEF#+5pHVNajT)y8&YntwOLbF02B%m&{uJ(I$i
+zwQWZPoG6s>qT|+duj!h0ZPR59{?c(@$S4GVC3MzS)#o@1V(?^S3#KKwtKexSFlS9>
+z)VUt~r8jCqFLT3pO|e~KHZgRkv)yW;OZ_FUgvkma7nmU&cRO;H^7i8>xN<aq3WmI%
+zpt5%Viptr|Kv<|V)1K#>vWF-uCDxR^^PFul-4~{%lR!G(-#gpQ-Tt|;Uv(zjT8zAx
+zg(NZEExAL0Crez^o$3mc6(Sl`xJ;%;QhVp3N60c(sZ60T-x3dbrQ2-8GB>%gZCG69
+zV8!voit8BM^BgL~&0g-KL>3RVBh+D5-7;x8>kEhEueJ-+vO+>GMUV%ZkvUDhV@GyP
+zX}8OLwl^NRD!yO1$)g^XdEVr9)mxT*b8L%QK2`oQIjTFZ`8rUU6;#`bFL>GUU4utH
+z6}<k>=V|xE=qAx3=q7R3XW#CdsILAWpovgGM~ad#+<h%h$bP4GI%;nB->FG_f=?BU
+z9sN3_GQRuyPojo8-F>>{)J%J#E*e%6CZ0=?X;=BHNc2LAj_cR2O+^Ar3WoR2JiRh6
+zc=bN>>cP#?9|F?5!feM@(MZCEqadamau}obk!@on(Zo-^n7{QHCy_%w2^Zc!1b+B=
+zRq){b9ib!yd<84-yUQrDcYluQPTjj{mn+Y?A?VHbxF{cda<WG~lN<7N<f14`y6##E
+z&Sbi8bE!2b-S~z~aiAyNuG_m81g{3d!F?|UeXcZpVtA_)GNe7-Ey;F^6r3k73x_^p
+z>CAywOcK?|Bsw*hdSoFyT;W%SR6j-PLBZFUTjQc&F^}3Vo_U<zz$N-ryA1hLp~zE9
+z;}zQJG%GY88+!xg7h1${mB#)+cp4cRlc55#7^7K{9Zg!&c#h^6&50ev9=$<dG52#D
+zArbsD0uAQ_l%Y^FLeXe9jtN53BX8FN?9VWXz5x4An&UJt?;uXt$4dEJ3;p@D+Jcr(
+zA8#R%PY<+^+`%CIePU@mol2kl6(98B;dnZ|w>*_T9WL|ZEu6_qf_(wO2@KG9m8fLt
+zV>gFWMCcsR86^@|iN++RaGO4$@8bqaxETa77E+3WkgF-uphDpuY26G$&){?1A|GEw
+zsS71vl4M$@Q6Uo?h<XY$QAVH9+$S@?gCPoQxH#6r*-|dw!nuyzrUM!?<n}gE|BCi^
+z19}%j+jfqVK?u~#RP-DL96R9m4%vo&Cux>d)^;#Le$Vgu3Oiw;qZ70Ue?Qh;%tly?
+zQCFmPaDlKsEau`ZeAGezL_l+ufXYN|t)o3sZR#ok&PDB!rvIdq0`2FYK=FvUg0G2G
+z*edH$(#YW`IlLIO%BB24hmQ#MF*$tFk*id@l&N+pRf4`pmWPxpMjau?Z`#raz~4io
+BttJ2f
+
+diff --git target/classes/swtech/pageDesignControl/realm/CustomRealm.class target/classes/swtech/pageDesignControl/realm/CustomRealm.class
+index 6c2a2fe61e05b154a7c626a420b1ce007e5b6e3a..4e90b3133afa4e91f3ee875d84d5a269470c72f8
+GIT binary patch
+literal 4054
+zc$}42S#ujj7d>rB9!DAyFNus;4GE6oNEs7$CnOk?IQg(;6DJNf1Q<(WYhr0e%#27J
+z_I>B$TiJ?dUZIM@Wl}})1XaB7e<-%oEorP+c4Ajq(>>jHIrsFvx5vNy`TY+7?#35!
+z+=_DvJcXw<JQK$)Fg46|ARk8zg#;|j%f$uxC~C0dNZ_1&oR^QqZCoxTP=+ICZUPlN
+ztHFz-2fl_Nj$KlE7yJaOcrJkpxF{b>Qu<N?&*KHT@uG&8G`uVjulklZZdNLmCy*WU
+zF9cS;XjIGv>k-Sh7n~8-2|TxCl$D5ahSGjb{E$HERMiRWvNdh{_FTytb{sb_1KV|c
+zf&0f?Z^7^@p6x8mduG|X;ChS3oMk$`F>mGr*IP2oP{A0k2JQvhvkEjDr$eiODRWIs
+zr$TA!c5*1&zE7JC3kR=hVRDTQ?X(}Z9XmK85J~Tw7Ko0x1xsMZnC)1(YI)A`PMeHa
+zpnJ^Co26;fv*mkzF&Y$Y|EkbE%Pf_Rk*XiK<x_G_m%Rmd)Cx#M(ITsP#mh-&-W8Zh
+zD>BWBnJ-#~U$i~fFe#Teu9QCQE?Ul^eVY@Ors=iEY&9XFZ^5BJhs+{}hb##>Z$4)l
+zCDU0jrUH5Ta=&8wJ`<q8eRG`v@7&1UlwGbcvDO2A-Be)a7kOZcbe0km=h(%(RZ$73
+z;T0ysxD^!L!lWtlFJR^hBtw#2&%V?IVRjvk{p#F#D<2q>3?pw>%+iQkDsh2I8?k)J
+zXt6CxuC!VZIIuO30x?+_zDz^KaW$|@#*`IsC$XCL-0$^6+SWulxDo29^)+ZZd1Zz#
+zRT^2o`$`mtTMzyS)pspe!DRjPA6_~W=1G6LRes-kxzkMpvc&yn?cEz|H?a~e*?zz@
+zXxbR#irn$7fJE(Cv$H`A+oo8$W>EF$`Mzs=-oQ$)WFkDKxu$6P(rci%h7#ui^Hj?!
+zaiTI01avt_3u7wG4*4pl8eY}#n!t(lCU9*Idwj~RdU@-(E&X;j^{oR^Tt^!FG`z0k
+z4ZO+ywI+0&z)1mPi$%_~&by%}>Eta9Z|ismZ|e959@TLQQ!JycrL>NB@t%(N<)aU`
+zY4||Lhd8NY5AM+Lk&b`jV}Y(!R!*3Hk<3W{|6(bxZVY>#xl|`y$G`C(vaaL5_@9pd
+zONjm0tKkzJpW<U3pW$<Xfz4kC0()EHstGkBBC&PJ^%+>(ti$Fgu>H!kXOXQgoMfXk
+zc|8;D=I;O|qs;C`*Am#7ZZ75t)zz3s52RaHue#ExFy6tLt#nHsR1Hws^p=`&vG8j)
+zC!0HFcS{A*VTWJuJOcZ-@L|N3Id40K^_t$s=il-z!xXGHzGee^uF-w!?Jd<DPV=QD
+zqq4&TPNti68wXE)t!Vl=>tdije`eWm9Q87|)eouGrY8f+sZiR@LSeX6x(e7?+{TaA
+zTlv)-L7S{q2;9!Mc8<F_w#kxhS!30$S(76h6rTfpGdK#4v4LfXZ<NaZx)Au?oZ(Zi
+z2_TCD9HUejBm}AaC0An{`}eP)P2fjF#s@OXh~~0CBPPDSjMz*j+ugnlZ77<GeyyNO
+z>o?Fo2qsRzorJiPAd`f&n^rUG-vVW|?orO}#6hBn<0jn2-8O0^aSvw^>O^oa?jx@I
+zDVc!y14#`J@DD=@uD~H2mI3g?N-aEyBeWp#|Hx4y86^IWRs7p>1KDN7hoYB}m|2EC
+z6idZY(eH3wDwh2Y+f%XCNN#~9^@;2tG2M+`qUs}_y+o8HA{ot*nvXD=K^(<HDw_T<
+znm!EUVcP6P3L~6FxzdS8aEweGr%p1I8V#jJDOC^bs5&@aEA_w@IYv14419|n46d^c
+z;~8}(nN{rF)CVml=x+z@b<vx|+gDQ!@%AW`ynfK3IB!!-cR>7(E=hA8!(9pkFQR&K
+zyv9*FND@OAF?18dW%SID;GMbbDva&QU5@4_m<W>!!az+kgpdp&Brt|?`q{}}PEppN
+zr?xi{?n$DWpiL@xkMYNAvIbEc<S5T?_A++ypp)Zr+`o+8Ty_Q53&^ZpK}ztt%F5Xd
+zDo2K5jOfNxYy~&9VW>UT{uA^}s(l4Fx8dwpfBo7BvXS#q6=pxS@%cD;n<3M)tfD6f
+z?@981j-)-!pq{~5m@51eM0J?NoaSmfC2z!;dQHrRl+0q9;j@7;o)JY!7mxoeXAwRl
+zikzq-M{3rrO{h$inxmoSM5s9tYL3>csT+|$k<#$E`kNX2jk0x0r$b6-Y3d0zd-89K
+CvmuuN
+
+diff --git target/classes/swtech/pageDesignControl/entity/Users.class target/classes/swtech/pageDesignControl/entity/Users.class
+index d9a6c5ea95143712411346aa643009d91e4d399d..96f0e8b3a801062e6dc33476cf0f97ed0e1588da
+GIT binary patch
+literal 3596
+zc$|$^YjYE26n?hZ&2G|d8v-o^QILx?O+vgY2}KL#QfvWxQ}D(%S(}A)H)J=(dS}LQ
+z9Q~r7obd<9mpY@PmKk*%^aIZL2lxT{GekV+-OZ)xs_iuAJ(uU4_uR6Z-~ayMX8@1m
+zdK~wm9D@pz$?HrOnN*lqDlW(Ayuzf)&?V+<CJvJtldEi~t8n8;psc~;v%zFp!!-?W
+zXjswkriQmz_qK|6BqUt3ZW+~iv+i1sJvT8fK{_L$@3>>To?(0QMzvuo@c$$Uk%m>4
+zuyyjXv25h4hP{}dusw6ptQRGurW>|rEt&I{Yb{jGG23=L!=tdSgxqAwS;{XM&XQGj
+z8u_J_1+uucYQxPNEnI%qAis$+#Zs2}VhOUhQllfgDffx;ETPF;9-EszCn45oP<gho
+zL=lo5DbILy%U&!ppk}!4HK$HB4Kyr!+43VDcgo}vDRZsSBbIG>M@bw`&r@jMHZW<~
+z=Gn&5f>{?y^94?c8fj2FNe+~<SFx!2gOlzx&n#8)HDl2nH(hIyuCTqjQ_Y*yGH)e6
+zM~S+WQFPJt=J?vd;dE$|bq2J{+O`hXDomi-wIxN=uJZV*aZ#Zg+&MHHawQj?m@>VJ
+zQ$BCh=~9m}r5oIJc?=G3OoKfItRoROED^Vvh<UYPRNby<=N2xTC9jyiNUQ0rA7o&n
+zb#c6kS(l)3zxRtBjR}>{_xtL0x&wi+tqC9<`w&3dnr%VwuJi|+7j^0VT*@7}2)=K|
+zGfG#cjG9;x`eKXkp;j{N6I?y96~nCr8#tVvpyJL?PfVSl>WPomO}A0?XtVsv;+-|b
+zJF`t}%t-b#&^*VV5P8fvje5yEY4Nhg#S$Lk_Ubr<yp9L4S4SEnIx<YMOmf&O;lQT$
+zS;st1=y(E8>KJG4DLk#?Fp~n4A{$=7ixReXFVC@tRW0*G{iKGe*ijwt;yots(_Urw
+zv<e^f#b)UwCP`dhJSn5uJybq1Qd)<Br>RBVn?xX^Rx@pCQZ8(vH>iR%i(UBU%Kj^!
+zI;+yd8i-;icHw?Vcz~oH?4}QOo#cHaC+XZzngcE=A2M+e!z9r_1U3_#+2Ewf&^bUp
+zG(4gYlf<V)r!sOA(l-M3h`5%OTkt4R-3Q<?dJWMtp2xMp`8)J{-Q~P9)R`t6;vDIA
+z-W}?EIMiA0cHSTATnKemx}DRZ&c)E0qutJjLY<Fblu+zkptFb3Bbo2f6W;D29}##n
+z=g<2n$COA&knjwi4GS6BY)D>_R>-snITjvL-fYNBXUL2Qc`Q7nve}T?&X8FV@_2YJ
+zqnizx>+EGtgrp~rA5ywSXCImFWJbP(BClqCf%*lM$ZF;m)T!*q8Z;pi6FZwFQjl}M
+zp*JPp#+Dn<b18WZ@g}0Tpk$dwQwn3Ew~@SozLb)Rc7XJPnq{h`R0e4QNKI)SpuR#Z
+z%QT*fF(@8@VySossK3ygWvZuo8Kegw;+i0Nl}d|j=+Os$$*msU!AYDV`yhVBY0~x3
+z_vu?qkS;>w_zGu;lj-v*o+GMY3Lj&VxG1W)LeeREa@AqtEO8n>qiE-di{W!xhV#V5
+zu|`Y$JaN7FiJo!O#Oau!o5zq;wZG7>V)ibERLs%8Cf&sjpN;)L+Z^mk8m!DOmta>8
+zQ$4&13Qu(PKUPI)wLzicPqkO&v{)5-7x|9?=}&@dWcnmgJR*;Zh1iuSR%jixMCJz6
+z+!_Whjfypp*^rV0i^fahoAiPrOiIh7G);Yls4zuarfAdDUr>cfZJAVI+7&+DX+O=N
+zt_VKD1zaS%f)DW$aXmDU>v&m=cONQvMU3|-4f0hn-U}4vH8EZf+i^*ZmxuKS;`c})
+z)379onomFe?@@@h+{21NC{0BZBd=EluxN*_jqKJ2V0FE^jSn#dF4_i5+bi5gj?^Zj
+z_10LXR&iS=e?;QKO>9Xf*RYibzlLqeL7(rXBRS;rI`i9ozK{7GKHtyy6!B}=+5P_L
+OeBn;E-X9ABRr&|7&y-~V
+
+diff --git target/classes/swtech/pageDesignControl/service/IRoleService.class target/classes/swtech/pageDesignControl/service/IRoleService.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..e357240f4d7aee1a8ba8492cf1af0d75f840dd81
+GIT binary patch
+literal 331
+zc$}S&O=<!`5QSfx#PMgN2Z^<ay9sU#f-oRtPSDd9la`(?neH+1YFXp}9x6DaA%s9S
+zDX1R`>V5T2pYI<4<`^d!Bp4<bDGYO4dL5gZ6(rl~gC?haNt<HFCZ?H@iV7{2-AY5%
+zvCz?my=wyTTVx-scnVw}tYKQ`*Wob>uaV6Q?RCjd99qCqe5}P0`)K2lp2cyxNEJr8
+zG_~QCbuE6n?)G0Iv+fmz`#+_=sXvYsCchmhJp98#UqPYQ<_)^&;r3GR(7*KL3}X&x
+A^Z)<=
+
+diff --git target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class
+index 2e4706529f496f5b67778bf0e5771e287f9174af..b391990cfc6ef1148ec1e336e5bba6f2e0a7002d
+GIT binary patch
+literal 1575
+zc$}3~+foxj5Iqwv3t<He;swMjDj+%v@d}~=L?5D31o3&23}G-kliHmH^I2M!mOl6a
+zew1a;CftM+@-nl1ru+1nv%UNK&(B`~vUr_FFK%|@7RI`93gcav=)rAFrf~;%9m0EX
+z5BFU-<-+MMWP9)c4?R5c@R%VTM>2dPYBd=$+{s7VR+ct+O;qHfj8sK07;QsS<w26d
+z-&1zfNS|T2uo7#l0=cFlRjkUK*2W5}jE)!{=S^7QQ7u%uvL1>+ZkzBUFG`^!zAj4E
+zgmo@<3wSQJW?O}_OtfigD0ehX9;<0(H=AnvX$w>o5$6uW)Ugc9|I`pq=d9Ao&M~x&
+zjju7ZFPO4q=*ufD-^M{vhO2^Z%#g{OlBlkUP`S7Xw%ZLw7EHHpT-Z>d`5=qATCJ)|
+zi3O`NvJrLmOOzu&*}M^DBI!?j+>A*LcPY-Ff{DYDTvD#rNGqzln_^2a4DG8AW38QG
+zvHqa!1~GMPiE2zF5089VmS}iWO@krJ3rWsOLNwE=uxN}uSluX_Cp@`>k8?Qh;far@
+zpr8-^q(zhir9I60c!oI-&wac=&c^`Gc$oLGfJKMA^f8FD^nwDR$yN_bK3-vw;r@xu
+zCUc!fyef2szbkIal05(w>XDTJjev>iU@)JYD8rZOF1BDpDFU+K_6fcjhO_HRmzPBp
+zkx}LOx;xWk8^g`9{JzfC*)=nM7-ASWLI#8947OEGI*%fv5uW(}?}*`aMOqi{S2)^Q
+zVQf{E=T$PD2l_W$P5R$E=~u{bj#TWS#ky1UmbBn1{mOdj2iS&`8y=8giaKe}(4KNL
+za|olUIfOAchqPXxh||t!@0j=w_BlBoY9@o44b$p35^xbCv@=|y;#5++NmATd_6t%I
+zU(uFn|ACGazM-=Lcn;`tKz9R3XL^3XPk_B%8MM<nL?VZAjk-)zpS`}>X5XDFTu$n)
+UB<s}#?W3n_baK6fQQQFj0)!c^u>b%7
+
+diff --git target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..d9dee0d63ef97ab3189c9980bf3bb635d8625f02
+GIT binary patch
+literal 456
+zc$|$-OG^VW5T4X-w+|odLBzWUMKB&b2o*sTPg^Z5cu(uNP2EjGGTX9$&4WL{A0^IK
+zuuv}sK4vD&_n6PG_YVNLg#8%yVn_rWW=KQyg$_YmGpR;4$46D5fa8;Nt`<t>%4Bj(
+zUYo3c`twzi&Sk0t^#vpYq?vsgD$guJ9|W}huSjRCGoz^V++Y1e@cQq{4V!eww)9hc
+z&^hZItn&_(bLh`&j)0?4X-F6Ntb?B9cx#L$MZCq4&Qj|$8C<RSS|?pv|0V<HMN5@K
+zIYMWHChIG<ixw&`*(q@wP695%l5jecPGxwHfv>x>hWKDvtTyCkI96Go^fZ~{lv)A=
+lG@yQ>DPRklJViW30$N;RMg!W6&Z_G|k86)f+l-w6yWi53hbjO7
+
+diff --git target/classes/swtech/pageDesignControl/mapper/RoleMapper.class target/classes/swtech/pageDesignControl/mapper/RoleMapper.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..34908187978dc995440d7471fe20fe45439656d5
+GIT binary patch
+literal 432
+zc$|$-O-lnY5S`R+KelSyqjwK}fVp@ODneB}wJ5vjJ+0$5HJdESY|H*N5B>mulsH?V
+z3SJC6W+uFO@6E^O+dBZ9!>|qgHVgy|Go-{BysjPtdaH62aCkIXs+E#P*-WP7warGy
+z-(MwZBPTl0NWfr<v~bT4%JUYX4+1*nR-~Ki%ql89_ZR;Vy!=bKVv{&^rJv)SHmuXH
+zlTKAppg*hG0uGYWlFso-2R$=5w$_m%?JS2moj9M#P}Ev4b;h;xuQG5_bW{~66D(ZN
+z<b1_O(Mp+;Jz~H05O5OKg!6?gRED=0_@WzUi5W8AFl6$JJoq`_ezwFpwFC%gK>b8h
+hzz#Hdig=0yw79ex4d^hsn=XbP*B&qJGWG)Oe*qaeeDDAO
+
+diff --git target/classes/swtech/pageDesignControl/service/IPermissionService.class target/classes/swtech/pageDesignControl/service/IPermissionService.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..eff1c6f73df99b3e34269d25394f96d8977c28cc
+GIT binary patch
+literal 349
+zc$}S2NooQ?6n*8?YBuh?g@0jo9kNjbp&>$_pt}5YO1i7028XL<kptvV!EO^G7_!NS
+zKfvcrAD?gU03Pv>V3=T(U@S1ob!lXXjs;@2lLtwaG$p+hJ60jhl&z_dw$@u4sXiAn
+zXuq$bCq4x>URy(+-9am+b^dicW&Rjgz0zKmyky@9EUXF6R>UUgaHb8rTKg89KBofX
+z+(xH(rK`robbb4N6V6&&0`os<e;oXR3QX=ZHAMdiH4qT!G~Gp89rUiVkHK{(7qS^}
+A%K!iX
+
+diff --git target/classes/swtech/pageDesignControl/service/IUsersService.class target/classes/swtech/pageDesignControl/service/IUsersService.class
+new file mode 100644
+index 0000000000000000000000000000000000000000..7a0adfa00a5582485900c92f52a6018722d2e9dc
+GIT binary patch
+literal 334
+zc$}S2!D_-l5Pch~(RdL*#5vSkN-r&f5a=QJ0h{d*SCZY3-K6?!9{K_OsA7_qQUos!
+z%)Ei&y*Kac`}_%Djd_S^h*^k8V3z9KNZ-^fP$dW1N-Ctu=`B03@^PYUNtv{zezy&k
+zr%Zb7s-khkN6*G-YshikYQ?lof0n1jeRx)Ts$|Zu>^g%NYkX}BV&k<x(XOMo_&FAc
+zQrpyuH@fKjm)qg+E3@jK5m?<6`}6(J5?EY^5O};J#Y8|L=z4^{0z3?JjLCrE1qS|V
+AcK`qY
+
+diff --git target/classes/swtech/pageDesignControl/mapper/UsersMapper.class target/classes/swtech/pageDesignControl/mapper/UsersMapper.class
+index e40d41b0ec73e6e02a20dde643b3a84e8ef56057..a27994c842ff519aba4d5b319bb2f5f4dac1c56a
+GIT binary patch
+literal 360
+zc${UA&rSj{5XPs-vIzd+Wa0}LjfuT*^Q00_5Di4{Wf_*jZl~#VA^U0`d;lNHI7^J0
+z*kn5SrkUUO_2cvH9RP-Kn!<4kCkoD%)-9e5^NzyezJ6g0&XlO&;&Qw;TcZo(ay^T|
+zy8QO)|46}Lf^kK{2(lM3u!3&&gXztv3K>4yLd2lK^Tc?M;if?;IG<K7+7e$a+j)U^
+z&QUbck`v7Jm_n}EH%7~bE*UqP#RDnU9`zJGv5gdJ$&qYLQQ@~aj|>TbcM-Fd_9n*>
+zvd!HCxfrO><vxS{lSk71e(q_$#w>OeC}=@*R9nFTv_&VP5(OP;ElBrw7Y?QO<*_H#
+HXE^!-oOEac
+

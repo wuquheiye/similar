@@ -6,22 +6,26 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import swtech.pageDesignControl.entity.User;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import swtech.pageDesignControl.entity.Users;
 
 /**
  * Created by Administrator on 2018/6/24 0024.
  */
-@RestController
+@Controller
 public class UsersController {
+    @RequestMapping("/interface/index")
+    public String page3(){
+        return "use/index";
+    }
 
     @PostMapping("/login")
+    @ResponseBody
     public String login(Users user) {
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(user.getUsername(), user.getPassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(user.getUusername(), user.getUpassword());
         try {
             subject.login(token);
             return "登录成功";
@@ -30,16 +34,40 @@ public class UsersController {
         }
     }
 
-    @RequiresRoles("user")
-    @GetMapping("/testRoles")
-    public String testRoles(){
-        return  "testRole success";
-    }
-
-    @RequiresPermissions("user:add")
-    @GetMapping("/a")
-    public String testPermissions(){
-        return  "testPermissions success";
-    }
+//    @RequiresRoles("user")
+//    @GetMapping("/u")
+//    @ResponseBody
+//    public String testRoles(){
+//        return  "testRole success";
+//    }
+//
+//    @RequiresRoles("manage")
+//    @GetMapping("/m")
+//    @ResponseBody
+//    public String testRoles1(){
+//        return  "testRole success";
+//    }
+//
+//    @RequiresPermissions("user:add")
+//    @GetMapping("/a")
+//    @ResponseBody
+//    public String testPermissions(){
+//        return  "testPermissions success";
+//    }
+//
+//
+//    @RequiresPermissions("user:add1")
+//    @GetMapping("/b")
+//    @ResponseBody
+//    public String testPermissions1(){
+//        return  "testPermissions success";
+//    }
+//
+//
+//    @GetMapping("/c")
+//    @ResponseBody
+//    public String testPermissions2(){
+//        return  "testPermissions success";
+//    }
 }
 

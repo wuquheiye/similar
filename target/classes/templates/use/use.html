@@ -1,0 +1,282 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" th:href="@{/bootstrop/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/use/css/index.css}">
+<!--    <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">-->
+<!--    <link rel="stylesheet" href="./css/index.css">-->
+    <!--jq-->
+    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!--bootstrap 样式-->
+    <script type="text/javascript" charset="utf-8" th:src="@{/bootstrop/js/bootstrap.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/myjs/common.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/publicBottom/js/publicBottom.js}"></script>
+<!--    <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.js"></script>-->
+<!--    <script type="text/javascript" charset="utf-8" src="../myjs/common.js"></script>-->
+<!--    <script type="text/javascript" charset="utf-8" src="../publicBottom/js/publicBottom.js"></script>-->
+    <script src="https://at.alicdn.com/t/font_1502544_ns2o3n265dc.js"></script>
+</head><!-- 在头部引入bootstrap的css包与js包 -->
+<body>
+<!-- 内容start -->
+<div class="centerContain">
+    <div class="publicBottomInformation center hidden">
+        <div class="container">
+            <div class="row" style="background: #dbdbdb">
+                <div class="col-xs-12" style="text-align: center;background: white" >
+                    <ul class="list-group row" >
+                        <li class="list-group-item col-xs-3" style="border: 0px">
+                            <div style="position: relative">
+                                <img src="./image/流程管理.png" height="50px" width="50px">
+                                <span class="badge" style="position: absolute;top: 39px;margin-left: -15px;">40</span>
+                            </div>
+
+                            <div class="row" style="padding-top: 10px">
+                                系统消息
+                            </div>
+                        </li>
+                        <li class="list-group-item col-xs-3" style="border: 0px">
+                            <div style="position: relative">
+                                <img src="./image/流程管理.png" height="50px" width="50px">
+                                <span class="badge" style="position: absolute;top: 39px;margin-left: -15px;">99</span>
+                            </div>
+                            <div class="row" style="padding-top: 10px">
+                                代办流程
+                            </div></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="publicBottomApply center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h3><b> 应用</b></h3>
+                </div>
+                <div class="col-xs-6">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" aria-label="..." placeholder="搜索">
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+        </div>
+        <div  class="container">
+            <div class="row" >
+                <div class="col-xs-12">
+                    常用应用
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-xs-12" style="text-align: center;">
+                    <ul class="list-group row" >
+                        <li class="list-group-item col-xs-3" style="border: 0px">
+                            <a href="../flow/flowPath.html">
+                                <img src="./image/流程管理.png" height="50px" width="50px">
+                                <div class="row" style="padding-top: 10px">
+                                    流程管理
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item col-xs-3" style="border: 0px" >
+                            <a href="projectManagement.html">
+                                <img src="./image/项目管理.png" height="50px" width="50px">
+                                <div class="row" style="padding-top: 10px">
+                                    项目管理
+                                </div>
+                            </a>
+                        </li>
+                        <li class="list-group-item col-xs-3" style="border: 0px">
+                            <a href="../daily/daily.html">
+                                <img src="./image/日报.png" height="50px" width="50px">
+                                <div class="row" style="padding-top: 10px">
+                                    日报
+                                </div>
+                            </a>
+                        </li>
+
+                        <li class="list-group-item col-xs-3" style="border: 0px">
+                            <a href="../checkingin/checkingin.html">
+                                <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
+                                    <use xlink:href="#icon-ic_kaoqinbiao"></use>
+                                </svg>
+                                <div class="row" style="padding-top: 10px">
+                                    考勤
+                                </div> </a></li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="container" style="background: #dbdbdb;height: 10px"></div>
+    </div>
+    <div class="publicBottomOrganization center hidden">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6">
+                    <h3><b> 应用</b></h3>
+                </div>
+                <div class="col-xs-6">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" aria-label="..." placeholder="搜索">
+                    </div><!-- /input-group -->
+                </div>
+            </div>
+        </div>
+        <div class="organizationHeader">
+            <ul class="nav nav-tabs">
+                <li class="organizationHeaderLi text-center active" id="organizationHeaderOrganization"><a
+                        href="#">组织</a></li>
+                <li class="organizationHeaderLi text-center" id="organizationHeaderDepart"><a href="#">同部门</a></li>
+                <li class="organizationHeaderLi text-center" id="organizationHeaderPuisne"><a href="#">下属</a></li>
+                <li class="organizationHeaderLi text-center" id="organizationHeaderGroup"><a href="#">群组</a></li>
+            </ul>
+        </div>
+        <div class="organizationContain">
+            <div class="organizationCenter organizationHeaderOrganization">
+                <ul>
+                    <li class="">
+                        <div class="organizationHeaderOrganizationClick" id="">
+                            <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                            利捷航空总公司
+                        </div>
+                        <ul class="organizationHeaderOrganizationUl">
+                            <li class="">
+                                <div class="organizationHeaderOrganizationClick" id="">
+                                    <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                                    财务部
+                                </div>
+                                <ul class="organizationHeaderOrganizationUl">
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        王伟
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        王芳
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        张艳
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="organizationHeaderOrganizationUl">
+                            <li class="">
+                                <div class="organizationHeaderOrganizationClick" id="">
+                                    <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                                    人事部
+                                </div>
+                                <ul class="organizationHeaderOrganizationUl">
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        张艳
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        王芳
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        王芳
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="organizationCenter hidden organizationHeaderDepart">
+                <div class="organizationHeaderDepartContainer clickToPersondetail">
+                    <div class="organizationHeaderDepartTop">张伟 [经理]</div>
+                    <div class="organizationHeaderDepartBottom">项目部</div>
+                </div>
+                <div class="organizationHeaderDepartContainer clickToPersondetail">
+                    <div class="organizationHeaderDepartTop">李娟 [主管]</div>
+                    <div class="organizationHeaderDepartBottom">项目部</div>
+                </div>
+                <div class="organizationHeaderDepartContainer clickToPersondetail">
+                    <div class="organizationHeaderDepartTop">张杰 [员工]</div>
+                    <div class="organizationHeaderDepartBottom">项目部</div>
+                </div>
+                <div class="organizationHeaderDepartContainer clickToPersondetail">
+                    <div class="organizationHeaderDepartTop">张杰 [员工]</div>
+                    <div class="organizationHeaderDepartBottom">项目部</div>
+                </div>
+                <div class="organizationHeaderDepartContainer clickToPersondetail">
+                    <div class="organizationHeaderDepartTop">张丽 [员工]</div>
+                    <div class="organizationHeaderDepartBottom">项目部</div>
+                </div>
+            </div>
+            <div class="organizationCenter hidden organizationHeaderPuisne">
+                <div class="organizationHeaderPuisneContainer clickToPersondetail">
+                    <div class="organizationHeaderPuisneTop">张伟 [经理]</div>
+                    <div class="organizationHeaderPuisneBottom">项目部</div>
+                </div>
+                <div class="organizationHeaderPuisneContainer clickToPersondetail">
+                    <div class="organizationHeaderPuisneTop">李娟 [主管]</div>
+                    <div class="organizationHeaderPuisneBottom">项目部</div>
+                </div>
+            </div>
+            <div class="organizationCenter hidden organizationHeaderGroup">
+                <div class="organizationHeaderGroupContainer clickToGroupDetail">
+                    <div class="organizationHeaderGroupTop">项目领导组</div>
+                    <div class="organizationHeaderGroupBottom">[4人]</div>
+                </div>
+                <div class="organizationHeaderGroupContainer clickToGroupDetail">
+                    <div class="organizationHeaderGroupTop">实施项目组</div>
+                    <div class="organizationHeaderGroupBottom">[9人]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+    <div class="publicBottomNew center hidden">
+        <caption>基本的表格布局4</caption>
+    </div>
+    <div class="publicBottomMy center hidden">
+        <caption>基本的表格布局5</caption>
+    </div>
+    -->
+</div>
+<!-- 内容end -->
+
+<div class="publicBottom">
+    <nav class="navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="../publicBottom/images/publicBottomInformationBlack.png" class="publicBottomImages center-block" id="publicBottomInformation"/><div class="text-center">消息</div></div>
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="../publicBottom/images/publicBottomApplyRed.png" class="publicBottomImages center-block" id="publicBottomApply"/><div class="text-center">应用</div></div>
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="../publicBottom/images/publicBottomOrganizationBlack.png" class="publicBottomImages center-block" id="publicBottomOrganization"/><div class="text-center">组织</div></div>
+                <!--
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="./images/publicBottomNewBlack.png" class="publicBottomImages center-block" id="publicBottomNew"/><div class="text-center">新建</div></div>
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="./images/publicBottomMyBlack.png" class="publicBottomImages center-block" id="publicBottomMy"/><div class="text-center">我</div></div>
+                -->
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- bootstrap底部导航条end-->
+</body>
+
+</html>
