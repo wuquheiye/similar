@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="shiro">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/swtech-service-pageDesign-control.kotlin_module" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -222,8 +218,16 @@
       <workItem from="1573785967747" duration="641000" />
       <workItem from="1573786610893" duration="11489000" />
       <workItem from="1573811712848" duration="643000" />
-      <workItem from="1574037096711" duration="5133000" />
+      <workItem from="1574037096711" duration="5434000" />
     </task>
+    <task id="LOCAL-00001" summary="业务流程">
+      <created>1574042540130</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1574042540130</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -274,7 +278,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="shiro" />
-    <option name="LAST_COMMIT_MESSAGE" value="shiro" />
+    <MESSAGE value="业务流程" />
+    <option name="LAST_COMMIT_MESSAGE" value="业务流程" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
