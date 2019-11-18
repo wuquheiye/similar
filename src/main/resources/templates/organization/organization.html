@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
+	<link rel="stylesheet" href="./css/organization.css">
+    <!--jq-->
+    <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <!--bootstrap 样式-->
+    <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../myjs/common.js"></script>
+    </head><!-- 在头部引入bootstrap的css包与js包 -->
+    <body>
+		<div class="container containerTop">
+			<div class="row">
+				<div class="col-xs-3">
+					<a href="javascript:history.back(-1)"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>取消</a>
+				</div>
+				<div class="col-xs-6 text-center">
+					所有人
+				</div>
+				<div class="col-xs-3 text-center" onclick="clean()">
+					清空
+				</div>
+			</div>
+			<div class="row" id="getname">
+			<button type="button" class="btn btn-primary">已选中的人员</button>
+			</div>
+		</div>
+		<!-- 内容start -->
+		<div class="centerContain">
+			<div class="publicBottomInformation center">
+				<div class="organizationContain">
+					<div class="organizationCenter organizationHeaderOrganization">
+						<ul>
+							<li class="">
+								<div class="organizationHeaderOrganizationClick" id="" >
+									<span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+									利捷航空总公司
+								</div>
+								<ul class="organizationHeaderOrganizationUl">
+									<li class="">
+										<div class="organizationHeaderOrganizationClick" id="" >
+											<span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+											财务部
+										</div>
+										<ul class="organizationHeaderOrganizationUl">
+											<li class="organizationHeaderOrganizationLi">
+												<input type="checkbox" name ="" class="getallname" id="1" value="王伟" checked="uncheck"> 
+												王伟
+											</li>
+											<li class="organizationHeaderOrganizationLi">
+												<input type="checkbox" name ="" class="getallname" id="2" value="王芳" checked="uncheck"> 
+												王芳
+											</li>
+											<li class="organizationHeaderOrganizationLi">
+												<input type="checkbox" name ="" class="getallname" id="3" value="张艳" checked="uncheck"> 
+												张艳
+											</li>
+										</ul>
+									</li>
+								</ul>
+								<ul class="organizationHeaderOrganizationUl">
+									<li class="">
+										<div class="organizationHeaderOrganizationClick" id="" >
+											<span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+											人事部
+										</div>
+										<ul class="organizationHeaderOrganizationUl">
+											<li class="organizationHeaderOrganizationLi">
+												<input type="checkbox" name ="" class="getallname" id="4" value="张艳1" checked="uncheck"> 
+												张艳1
+											</li>
+											<li class="organizationHeaderOrganizationLi">
+												<input type="checkbox" name ="" class="getallname" id="5" value="王芳1" checked="uncheck"> 
+												王芳1
+											</li>
+											<li class="organizationHeaderOrganizationLi">
+												<input type="checkbox" name ="" class="getallname" id="6" value="王芳2" checked="uncheck"> 
+												王芳2
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 内容end -->
+		<div class="container navbar-fixed-bottom">
+			<div class="row">
+				<button type="button" class="btn btn-primary col-xs-12 navbar-fixed-bottom-button" onclick="affirm()">确认</button>
+			</div>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,144 @@
+/* 公共start */
+/* 隐藏*/
+.hidden{
+	display: none;
+}
+ol, ul {
+	list-style: none;
+}
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input, button, textarea,select{
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+    border: none;
+    vertical-align: baseline;
+}
+/* 公共end */
+/* 组织start */
+/* 组织顶部导航容器*/
+.organizationHeader .organizationHeaderLi{
+	width: 25%;
+}
+/* 组织群组*/
+.organizationHeaderGroup .organizationHeaderGroupContainer{
+	border:1px solid #ccc;
+	border-style: none none solid none;
+	height: 60px;
+}
+.organizationHeaderGroup .organizationHeaderGroupTop{
+	margin-top: 15px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 100px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.organizationHeaderGroup .organizationHeaderGroupBottom{
+	margin-top: 5px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 100px;
+	font-size: 14px;
+}
+/* 组织下属*/
+.organizationHeaderPuisne .organizationHeaderPuisneContainer{
+	border:1px solid #F5F5F5;
+	border-style: none none solid none;
+	height: 60px;
+}
+.organizationHeaderPuisne .organizationHeaderPuisneTop{
+	margin-top: 15px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 100px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.organizationHeaderPuisne .organizationHeaderPuisneBottom{
+	margin-top: 5px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 100px;
+	font-size: 14px;
+}
+/* 组织部门*/
+.organizationHeaderDepart .organizationHeaderDepartContainer{
+	border:1px solid #F5F5F5;
+	border-style: none none solid none;
+	height: 60px;
+}
+.organizationHeaderDepart .organizationHeaderDepartTop{
+	margin-top: 15px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 100px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.organizationHeaderDepart .organizationHeaderDepartBottom{
+	margin-top: 5px;
+	height: 20px;
+	line-height: 20px;
+	padding-left: 100px;
+	font-size: 14px;
+}
+/* 组织组织树*/
+.organizationHeaderOrganization .organizationHeaderOrganizationClick, .organizationHeaderOrganizationLi{
+	height: 60px;
+	font-size: 16px;
+	border:1px solid #F5F5F5;
+	border-style: none none solid none;
+}
+.organizationHeaderOrganization .organizationHeaderOrganizationSpan{
+	padding-right: 10px; 
+}
+.organizationHeaderOrganization .organizationHeaderOrganizationClick{
+	/*background-color: #337ab7;*/
+	padding-left: 20px;
+	line-height: 60px;
+}
+.organizationHeaderOrganization .organizationHeaderOrganizationInput{
+	border-radius: 6px;
+	margin-right: 10px; 
+}
+.organizationHeaderOrganization .organizationHeaderOrganizationLi{
+	padding-left: 80px; 
+}
+.organizationHeaderOrganization .organizationHeaderOrganizationUl .organizationHeaderOrganizationClick{
+	padding-left: 40px; 
+}
+.organizationHeaderOrganization .organizationHeaderOrganizationUl{
+	display: none;
+}
+/* 组织end */
+
+
+/* 公共底部start */
+/* 底部五张图片容器 */
+.publicBottom .publicBottomColXs5{
+    width: 25%;
+    height: 100%
+}
+/* 底部五张图片宽度 */
+.publicBottom .publicBottomImages{
+    width: 30px;
+}
+/* 底部宽度 */
+.container{
+    width: 100%;
+}
+/* 公共底部end */
+
+
