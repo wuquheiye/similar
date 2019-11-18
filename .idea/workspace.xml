@@ -2,59 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Permission.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Role.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Users.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IPermissionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IPermissionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRoleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IRoleService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/approval.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/feature.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/projectManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/publicBottom.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/updatProject.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/updateManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/approval.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/css/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/css/index.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/feature.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/projectManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/publicBottom.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/updatProject.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/updateManagement.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/use.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Permission.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Permission.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Role.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Users.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Users.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RoleMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UsersMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UsersMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/realm/CustomRealm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IPermissionService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IRoleService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IUsersService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/CodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/CodeGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Project.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Project.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -71,38 +21,7 @@
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="325">
-              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -543,7 +462,7 @@
       <workItem from="1573786610893" duration="16305000" />
       <workItem from="1573812048859" duration="229000" />
       <workItem from="1574036668402" duration="5540000" />
-      <workItem from="1574042325170" duration="10748000" />
+      <workItem from="1574042325170" duration="11027000" />
     </task>
     <task id="LOCAL-00001" summary="shiro">
       <created>1573802281754</created>
@@ -580,16 +499,17 @@
       <option name="project" value="LOCAL" />
       <updated>1574042228266</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="静态文件">
+      <created>1574059830069</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1574059830069</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.18 at 14h 29m 19s.xml">
-      <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ShiroWebApplicationTests - 2019.11.18 at 14h 35m 47s.xml">
-      <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.18 at 14h 36m 24s.xml">
       <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
@@ -614,13 +534,18 @@
     <history-entry file="ShiroWebApplicationTests - 2019.11.18 at 14h 48m 21s.xml">
       <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="ShiroWebApplicationTests - 2019.11.18 at 14h 48m 47s.xml">
+      <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ShiroWebApplicationTests - 2019.11.18 at 14h 49m 09s.xml">
+      <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="33463000" />
+    <option name="totallyTimeSpent" value="33742000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -633,7 +558,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.24728851" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.2624729" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.4197397" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.4197397" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.318872" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -641,10 +566,10 @@
       <window_info anchor="bottom" id="Spring" order="8" weight="0.329718" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.329718" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010661" side_tool="true" weight="0.324295" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5010661" side_tool="true" visible="true" weight="0.324295" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329718" />
       <window_info anchor="bottom" id="Database Changes" order="13" />
-      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.4989339" weight="0.324295" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="14" sideWeight="0.4989339" visible="true" weight="0.324295" />
       <window_info anchor="bottom" id="Problems" order="15" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1105,10 +1030,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        <state relative-caret-position="132">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1119,13 +1047,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="325">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
         </state>
       </provider>
     </entry>
