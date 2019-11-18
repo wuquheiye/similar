@@ -16,20 +16,20 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Role {
+public class Department {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * id
      */
-    @TableId(value = "rid", type = IdType.AUTO)
-    private Integer rid;
+    @TableId(value = "did", type = IdType.AUTO)
+    private Integer did;
 
     /**
-     * 角色名
+     * 部门名称
      */
-    private String rroleName;
+    private String dname;
 
 
 }

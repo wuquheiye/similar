@@ -1,17 +1,17 @@
 package swtech.pageDesignControl.mapper;
 
-import org.springframework.stereotype.Repository;
+import swtech.pageDesignControl.entity.Users;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * Mapper 接口
+ *  Mapper 接口
  * </p>
  *
  * @author jobob
- * @since 2019-11-15
+ * @since 2019-11-18
  */
-@Repository("usersDao")
-public interface UsersMapper {
+public interface UsersMapper extends BaseMapper<Users> {
     // 通过用户名获取密码
     String findPasswordByUsername(String username);
 }
