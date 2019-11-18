@@ -17,45 +17,35 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Project  {
+public class UpdateProject  {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 项目表主键
+     * 项目进度主键
      */
-    @TableId(value = "pid", type = IdType.AUTO)
+    @TableId(value = "up_id", type = IdType.AUTO)
+    private Integer upId;
+
+    /**
+     * 绑定项目id
+     */
     private Integer pid;
 
     /**
-     * 关联用户id
+     * 项目进度
      */
-    private Integer uid;
+    private Integer upProgress;
 
     /**
-     * 项目名
+     * 项目描述
      */
-    private String pname;
+    private String upDescribe;
 
     /**
-     * 项目创建时间
+     * 更新时间
      */
-    private LocalDateTime pstartTime;
-
-    /**
-     * 项目结束时间
-     */
-    private LocalDateTime pendTime;
-
-    /**
-     * 项目团队
-     */
-    private String pteam;
-
-    /**
-     * 关联进度更新id 备用
-     */
-    private Integer upId;
+    private LocalDateTime upTime;
 
 
 }

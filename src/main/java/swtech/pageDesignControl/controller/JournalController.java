@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
 
-
 /**
  * <p>
  *  前端控制器
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-11-18
  */
 @RestController
-@RequestMapping("/pageDesignControl/project")
-public class ProjectController {
+@RequestMapping("/journal")
+public class JournalController{
 
 }

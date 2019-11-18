@@ -1,8 +1,8 @@
 package swtech.pageDesignControl.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+
 import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -17,45 +17,40 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Project  {
+public class Journal  {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * 项目表主键
+     * 日志表主键
      */
-    @TableId(value = "pid", type = IdType.AUTO)
-    private Integer pid;
+    @TableId(value = "jid", type = IdType.AUTO)
+    private Integer jid;
 
     /**
-     * 关联用户id
+     * 绑定用户id
      */
     private Integer uid;
 
     /**
-     * 项目名
+     * 今日任务
      */
-    private String pname;
+    private String jnowTask;
 
     /**
-     * 项目创建时间
+     * 明日任务
      */
-    private LocalDateTime pstartTime;
+    private String jtomorrowTask;
 
     /**
-     * 项目结束时间
+     * 未完成任务
      */
-    private LocalDateTime pendTime;
+    private String jundoneTask;
 
     /**
-     * 项目团队
+     * 项目所属
      */
-    private String pteam;
-
-    /**
-     * 关联进度更新id 备用
-     */
-    private Integer upId;
+    private Integer pid;
 
 
 }

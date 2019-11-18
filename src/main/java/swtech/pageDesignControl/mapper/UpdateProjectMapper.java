@@ -1,6 +1,6 @@
 package swtech.pageDesignControl.mapper;
 
-import swtech.pageDesignControl.entity.Project;
+import swtech.pageDesignControl.entity.UpdateProject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author jobob
  * @since 2019-11-18
  */
-public interface ProjectMapper extends BaseMapper<Project> {
+public interface UpdateProjectMapper extends BaseMapper<UpdateProject> {
 
 }

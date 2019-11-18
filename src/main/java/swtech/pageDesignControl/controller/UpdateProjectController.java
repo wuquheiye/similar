@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2019-11-18
  */
 @RestController
-@RequestMapping("/pageDesignControl/project")
-public class ProjectController {
+@RequestMapping("/pageDesignControl/update-project")
+public class UpdateProjectController  {
 
 }

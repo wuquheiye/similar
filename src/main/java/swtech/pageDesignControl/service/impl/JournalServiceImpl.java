@@ -1,8 +1,8 @@
 package swtech.pageDesignControl.service.impl;
 
-import swtech.pageDesignControl.entity.Project;
-import swtech.pageDesignControl.mapper.ProjectMapper;
-import swtech.pageDesignControl.service.IProjectService;
+import swtech.pageDesignControl.entity.Journal;
+import swtech.pageDesignControl.mapper.JournalMapper;
+import swtech.pageDesignControl.service.IJournalService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-11-18
  */
 @Service
-public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> implements IProjectService {
+public class JournalServiceImpl extends ServiceImpl<JournalMapper, Journal> implements IJournalService {
 
 }

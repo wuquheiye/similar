@@ -1,6 +1,6 @@
 package swtech.pageDesignControl.service;
 
-import swtech.pageDesignControl.entity.Project;
+import swtech.pageDesignControl.entity.Journal;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author 袁君选
  * @since 2019-11-18
  */
-public interface IProjectService extends IService<Project> {
+public interface IJournalService extends IService<Journal> {
 
 }
