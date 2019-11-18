@@ -17,6 +17,10 @@
     <!--日期控件-->
     <script type="text/javascript" src="../use/js/moment-with-locales.min.js"></script>
     <script type="text/javascript" src="../use/js/bootstrap-material-datetimepicker.js"></script>
+
+    <!--    全局配置文件-->
+    <script type="text/javascript" src="../myjs/httpData.config.js"></script>
+
 </head>
 <body>
     <div class="container-fluid">
@@ -218,14 +222,26 @@
     $(function () {
         $("#defuletTime").text(getCurrentDate().split(" ")[0]);
         //获取选择时间
-
-        $("#duration").text("");
+        // $("#duration").text("");
     })
     
     function commitflow() {
-        let ftype = $("#ftype").val();
+        let ftype = ftype.LEAVE.code;
+        let uid = 1;
         let fapplyTime = $("#defuletTime").text();
-        let fleaveType =
+        let fleaveType = $("#fleaveType").val();
+        let fstartTime = $("#date-start").val();
+        let fendTime = $("#date-end").val();
+        let fapplyReason = $("#fapplyReason").val();
+        let leaveflow={
+            "ftype" : ftype,
+            "uid" :uid,
+            "fapplyTime" : fapplyTime,
+            "fstartTime":fstartTime,
+            "fendTime" :　fendTime,
+            "fapplyReason":fapplyReason
+        }
+
     }
 
     function duration(){

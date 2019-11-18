@@ -9,7 +9,8 @@ var fstatus={
 }
 // 申请类型
 var ftype ={
-    lea
+    LEAVE :{code:1,desc:"请假申请"},
+    OVERTIME : {code:2,desc:"加班申请"}
 }
 
 //请假类型
