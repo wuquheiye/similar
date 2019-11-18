@@ -18,7 +18,7 @@ import swtech.pageDesignControl.entity.Users;
 public class UsersController {
     @RequestMapping("/interface/index")
     public String page3(){
-        return "use/login";
+        return "use/index";
     }
 
     @PostMapping("/login")

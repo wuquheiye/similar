@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="shiro">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" afterDir="false" />
-    </list>
+    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -113,8 +106,8 @@
     </treeState>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="227" />
-    <option name="y" value="103" />
+    <option name="x" value="491" />
+    <option name="y" value="117" />
     <option name="width" value="1019" />
     <option name="height" value="869" />
   </component>
@@ -243,6 +236,9 @@
     <configuration name="RunApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="swtech-service-pageDesign-control" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="swtech.pageDesignControl.RunApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -265,6 +261,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.CodeGenerator" />
+      <item itemvalue="Application.text" />
+      <item itemvalue="JUnit.ShiroWebApplicationTests" />
+      <item itemvalue="JUnit.ShiroWebApplicationTests.contextLoads" />
+      <item itemvalue="Spring Boot.RunApplication" />
+      <item itemvalue="TestNG.text.aa" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.CodeGenerator" />
@@ -288,7 +292,7 @@
       <workItem from="1573785967747" duration="641000" />
       <workItem from="1573786610893" duration="16305000" />
       <workItem from="1573812048859" duration="229000" />
-      <workItem from="1574036668402" duration="5053000" />
+      <workItem from="1574036668402" duration="5332000" />
     </task>
     <task id="LOCAL-00001" summary="shiro">
       <created>1573802281754</created>
@@ -311,7 +315,14 @@
       <option name="project" value="LOCAL" />
       <updated>1573811974013</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="静态文件">
+      <created>1574042090079</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1574042090079</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -347,12 +358,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22228000" />
+    <option name="totallyTimeSpent" value="22507000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="985" y="147" width="1019" height="869" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.8644421" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14712153" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -360,6 +371,7 @@
       <window_info id="UI Designer" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Problems" />
       <window_info anchor="bottom" id="Messages" order="0" weight="0.3264642" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.2624729" />
@@ -442,7 +454,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="shiro" />
-    <option name="LAST_COMMIT_MESSAGE" value="shiro" />
+    <MESSAGE value="静态文件" />
+    <option name="LAST_COMMIT_MESSAGE" value="静态文件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
