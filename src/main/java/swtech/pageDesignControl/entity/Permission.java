@@ -8,13 +8,14 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author jobob
- * @since 2019-11-15
+ * @since 2019-11-18
  */
 @Data
+@Accessors(chain = true)
 public class Permission {
 
     private static final long serialVersionUID = 1L;
