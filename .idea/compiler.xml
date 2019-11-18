@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="swtech-service-pageDesign-control" />
         <module name="li_jie_bg" />
+        <module name="li_jie" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="li_jie" options="-parameters" />
       <module name="li_jie_bg" options="-parameters" />
       <module name="swtech-service-pageDesign-control" options="-parameters" />
     </option>

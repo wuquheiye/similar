@@ -58,6 +58,12 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1020" />
+    <option name="y" value="64" />
+    <option name="width" value="1305" />
+    <option name="height" value="869" />
+  </component>
   <component name="ProjectId" id="1TeDY36tPDigLZepnXWMMLM7jbF" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
