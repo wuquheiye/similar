@@ -26,10 +26,26 @@ public class FlowController  {
     @Autowired
     private IFlowService iFlowService;
 
+    /**
+     * 根据id查询历史请假记录
+     * @param fid id
+     * @param ftype 申请类型
+     * @return
+     */
     @ResponseBody
-    @RequestMapping("selectLeaveAll")
-    public  ReturnMsg  selectLeaveAll (@RequestParam("fid") Integer fid){
-        return iFlowService.selectLeaveAll(fid);
+    @GetMapping("selectLeaveAll")
+    public  ReturnMsg  selectLeaveAll (@RequestParam("fid") Integer fid,@RequestParam("ftype") Integer ftype){
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            msg = iFlowService.selectLeaveAll(fid,ftype);
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("历史记录获取失败");
+            msg.setMsg(e.getMessage());
+        }
+        return msg;
     }
 
 
@@ -39,16 +55,18 @@ public class FlowController  {
      * @return
      */
     @ResponseBody
-    @RequestMapping("leaveInsert")
+    @PostMapping("leaveInsert")
     public ReturnMsg leaveInsert(@RequestBody Flow leave){
         ReturnMsg msg =new ReturnMsg();
         boolean save = iFlowService.save(leave);
         if(save==true){
            msg.setStatus("200");
            msg.setMsg(save);
+            msg.setStatusMsg("请假申请录入成功");
         }else{
             msg.setStatus("201");
             msg.setMsg(save);
+            msg.setStatusMsg("请假申请录入失败");
         }
         return  msg;
 

@@ -16,7 +16,7 @@ public enum MaritalStatus implements BaseEnum<Integer>{
     public static String getDesc(Integer code) {
         for(MaritalStatus MS: MaritalStatus.values()) {
             if(MS.code.equals(code)) {
-                return MS.getDesc();
+                return MS.getDesc()+","+MS.getCode();
             }
         }
        throw  new ServiceException("MaritalStatus  No matching constant for [" + code + "]");

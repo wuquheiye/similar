@@ -14,6 +14,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IFlowService extends IService<Flow> {
 
-    ReturnMsg  selectLeaveAll(Integer fid);
+    ReturnMsg  selectLeaveAll(Integer fid,Integer ftype);
 
 }
