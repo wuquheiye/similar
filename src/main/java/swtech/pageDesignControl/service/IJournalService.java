@@ -4,6 +4,8 @@ import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Journal;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.io.IOException;
+
 /**
  * <p>
  *  服务类
@@ -13,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-11-18
  */
 public interface IJournalService extends IService<Journal> {
-    ReturnMsg insertJournal(Journal journal);
+    ReturnMsg insertJournal(Journal journal) throws IOException;
 }

@@ -725,13 +725,13 @@
             console.log("转json后获取upProgress"+JSON.parse(event).updateProject.upProgress);
             datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
                 '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                '                            <b style="font-size: 16px;">'+event.project.pname+'</b>\n' +
+                '                            <b style="font-size: 16px;">'+JSON.parse(event).project.pname+'</b>\n' +
                 '                        </div>\n' +
                 '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+event.updateProject.upProgress+'%">'+event.updateProject.upProgress+'%</div>'+
+                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+JSON.parse(event).updateProject.upProgress+'%">'+JSON.parse(event).updateProject.upProgress+'%</div>'+
                 '                        </div>\n' +
                 '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
-                    event.upTime
+                                        JSON.parse(event).updateProject.upTime
                 '                        </div>\n' +
                 '                    </div></a>';
             $("#pushServer").prepend(datashow);
