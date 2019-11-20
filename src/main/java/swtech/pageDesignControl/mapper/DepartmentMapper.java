@@ -11,7 +11,7 @@ import java.util.List;
  * Mapper 接口
  * </p>
  *
- * @author 袁君选
+ * @author 李鸿智
  * @since 2019-11-19
  */
 public interface DepartmentMapper extends BaseMapper<Department> {

@@ -7,4 +7,17 @@
         join permission p on rp.pid = p.pid
         where r.rrole_name =  #{roleName}
     </select>
+
+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Permission"
+            parameterType="swtech.pageDesignControl.entity.Permission">
+        SELECT * FROM permission where 1=1
+        <if test="permission!=null and permission.pname!=''">
+            and pname like concat('%',#{permission.pname},'%')
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="int">
+        SELECT count(*) FROM permission
+    </select>
 </mapper>

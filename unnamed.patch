@@ -1,0 +1,1840 @@
+Index: src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java	(date 1574211565957)
+@@ -1,5 +1,6 @@
+ package swtech.pageDesignControl.mapper;
+ 
++import org.apache.ibatis.annotations.Param;
+ import swtech.pageDesignControl.entity.Permission;
+ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+ 
+@@ -14,5 +15,28 @@
+  * @since 2019-11-18
+  */
+ public interface PermissionMapper extends BaseMapper<Permission> {
++    /**
++     * 根据角色查询权限
++     *
++     * @param roleName
++     * @return
++     */
+     List<String> getPermissionbyRoleName(String roleName);
++
++    /**
++     * 分页查询
++     *
++     * @param permission
++     * @param pageStart
++     * @param pageSize
++     * @return
++     */
++    List<Permission> selectByPageAndCondition(@Param("permission") Permission permission, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
++
++    /**
++     * 查询个数
++     *
++     * @return
++     */
++    int selectCount();
+ }
+Index: target/classes/mappers/RoleMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/mappers/RoleMapper.xml	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ target/classes/mappers/RoleMapper.xml	(date 1574212754259)
+@@ -7,4 +7,17 @@
+         join users u on ur.uid = u.uid
+         where u.uusername =  #{username}
+     </select>
++
++    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Role"
++            parameterType="swtech.pageDesignControl.entity.Role">
++        SELECT * FROM role where 1=1
++        <if test="role!=null and role.rname!=''">
++            and rname like concat('%',#{role.rname},'%')
++        </if>
++        LIMIT #{pageStart},#{pageSize}
++    </select>
++
++    <select id="selectCount" resultType="int">
++        SELECT count(*) FROM role
++    </select>
+ </mapper>
+Index: src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java	(date 1574211401667)
+@@ -1,7 +1,8 @@
+ package swtech.pageDesignControl.mapper;
+ 
+-import swtech.pageDesignControl.entity.Role;
+ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
++import org.apache.ibatis.annotations.Param;
++import swtech.pageDesignControl.entity.Role;
+ 
+ import java.util.List;
+ 
+@@ -14,5 +15,28 @@
+  * @since 2019-11-18
+  */
+ public interface RoleMapper extends BaseMapper<Role> {
++    /**
++     * 通过用户名查询角色
++     *
++     * @param username
++     * @return
++     */
+     List<String> getRoleByUsername(String username);
++
++    /**
++     * 分页查询
++     *
++     * @param role
++     * @param pageStart
++     * @param pageSize
++     * @return
++     */
++    List<Role> selectByPageAndCondition(@Param("role") Role role, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
++
++    /**
++     * 查询个数
++     *
++     * @return
++     */
++    int selectCount();
+ }
+Index: target/classes/static/use/index.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/static/use/index.html	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ target/classes/static/use/index.html	(date 1574212754330)
+@@ -725,13 +725,13 @@
+             console.log("转json后获取upProgress"+JSON.parse(event).updateProject.upProgress);
+             datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
+                 '                        <div class="col-xs-12" style="margin: 5px">\n' +
+-                '                            <b style="font-size: 16px;">'+event.project.pname+'</b>\n' +
++                '                            <b style="font-size: 16px;">'+JSON.parse(event).project.pname+'</b>\n' +
+                 '                        </div>\n' +
+                 '                        <div class="col-xs-12" style="margin: 5px">\n' +
+-                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+event.updateProject.upProgress+'%">'+event.updateProject.upProgress+'%</div>'+
++                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+JSON.parse(event).updateProject.upProgress+'%">'+JSON.parse(event).updateProject.upProgress+'%</div>'+
+                 '                        </div>\n' +
+                 '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
+-                    event.upTime
++                                        JSON.parse(event).updateProject.upTime
+                 '                        </div>\n' +
+                 '                    </div></a>';
+             $("#pushServer").prepend(datashow);
+Index: src/main/resources/mappers/RoleMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/mappers/RoleMapper.xml	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ src/main/resources/mappers/RoleMapper.xml	(date 1574212003101)
+@@ -7,4 +7,17 @@
+         join users u on ur.uid = u.uid
+         where u.uusername =  #{username}
+     </select>
++
++    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Role"
++            parameterType="swtech.pageDesignControl.entity.Role">
++        SELECT * FROM role where 1=1
++        <if test="role!=null and role.rname!=''">
++            and rname like concat('%',#{role.rname},'%')
++        </if>
++        LIMIT #{pageStart},#{pageSize}
++    </select>
++
++    <select id="selectCount" resultType="int">
++        SELECT count(*) FROM role
++    </select>
+ </mapper>
+Index: target/classes/mappers/PermissionMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/mappers/PermissionMapper.xml	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ target/classes/mappers/PermissionMapper.xml	(date 1574212754257)
+@@ -7,4 +7,17 @@
+         join permission p on rp.pid = p.pid
+         where r.rrole_name =  #{roleName}
+     </select>
++
++    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Permission"
++            parameterType="swtech.pageDesignControl.entity.Permission">
++        SELECT * FROM permission where 1=1
++        <if test="permission!=null and permission.pname!=''">
++            and pname like concat('%',#{permission.pname},'%')
++        </if>
++        LIMIT #{pageStart},#{pageSize}
++    </select>
++
++    <select id="selectCount" resultType="int">
++        SELECT count(*) FROM permission
++    </select>
+ </mapper>
+Index: src/main/resources/mappers/PermissionMapper.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/resources/mappers/PermissionMapper.xml	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ src/main/resources/mappers/PermissionMapper.xml	(date 1574211662626)
+@@ -7,4 +7,17 @@
+         join permission p on rp.pid = p.pid
+         where r.rrole_name =  #{roleName}
+     </select>
++
++    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Permission"
++            parameterType="swtech.pageDesignControl.entity.Permission">
++        SELECT * FROM permission where 1=1
++        <if test="permission!=null and permission.pname!=''">
++            and pname like concat('%',#{permission.pname},'%')
++        </if>
++        LIMIT #{pageStart},#{pageSize}
++    </select>
++
++    <select id="selectCount" resultType="int">
++        SELECT count(*) FROM permission
++    </select>
+ </mapper>
+Index: src/test/java/swtech/pageDesignControl/DepartmentTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/test/java/swtech/pageDesignControl/DepartmentTest.java	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ src/test/java/swtech/pageDesignControl/DepartmentTest.java	(date 1574212976751)
+@@ -15,7 +15,7 @@
+ import java.util.List;
+ 
+ @RunWith(SpringRunner.class)
+-@SpringBootTest
++@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+ public class DepartmentTest {
+     @Resource
+     private DepartmentMapper departmentMapper;
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/workspace.xml	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ .idea/workspace.xml	(date 1574213198155)
+@@ -1,199 +1,109 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ChangeListManager">
+-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="url配置">
+-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/JournalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/JournalController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/ProjectController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Flow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Flow.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Project.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Project.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IJournalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IJournalService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IProjectService.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/JournalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/JournalServiceImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/ProjectServiceImpl.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/FlowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/FlowMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/JournalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/JournalMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/ProjectMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UpdateProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UpdateProjectMapper.xml" afterDir="false" />
+-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
++    <list default="true" id="1e2c5ec1-ddd5-4b26-ac0a-f3816f2c183d" name="Default Changelist" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Department.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/DepartmentMapper.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/DepartmentMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/manage/js/manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/manage/js/manage.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/manage/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/manage/manage.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/DepartmentTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/DepartmentMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/DepartmentMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/static/manage/js/manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/manage/js/manage.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/common.js" afterDir="false" />
+-<<<<<<< HEAD
+-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Department.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Department.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/DepartmentMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/DepartmentMapper.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/templates/manage/manage.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/manage/manage.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" beforeDir="false" />
+-=======
+-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/login.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/ShiroWebApplicationTests.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/daily/writeDaily.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/daily/writeDaily.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/flow/leaveCheck.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/flow/leaveCheck.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/index.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/projectManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/projectManagement.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/FlowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/FlowMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/JournalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/JournalMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/ProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/ProjectMapper.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/UpdateProjectMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/UpdateProjectMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Role.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PermissionMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/RoleMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/DepartmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/DepartmentTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/li_jie.kotlin_module" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/mappers/PermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PermissionMapper.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/mappers/RoleMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/RoleMapper.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/leave.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/JournalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/JournalController.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Flow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Flow.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Role.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Role.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Flow/Fstatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Flow/Fstatus.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RoleMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RoleMapper.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IJournalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IJournalService.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/ProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/ProjectServiceImpl.class" afterDir="false" />
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
++      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/JournalServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/JournalServiceImpl.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/templates/daily/writeDaily.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/daily/writeDaily.html" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/li_jie.kotlin_module" beforeDir="false" />
+     </list>
+-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
++    <ignored path="$PROJECT_DIR$/target/" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+-  </component>
+-  <component name="DatabaseView">
+-    <option name="SHOW_INTERMEDIATE" value="true" />
+-    <option name="GROUP_DATA_SOURCES" value="true" />
+-    <option name="GROUP_SCHEMA" value="true" />
+-    <option name="GROUP_CONTENTS" value="false" />
+-    <option name="SORT_POSITIONED" value="false" />
+-    <option name="SHOW_EMPTY_GROUPS" value="false" />
+-    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+-    <option name="HIDDEN_KINDS">
+-      <set />
+-    </option>
+-    <expand />
+-    <select />
+   </component>
+   <component name="DefaultGradleProjectSettings">
+     <option name="isMigrated" value="true" />
+   </component>
+-<<<<<<< HEAD
+   <component name="FileEditorManager">
+-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+-  </component>
+-=======
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+-  <component name="FileTemplateManagerImpl">
+-    <option name="RECENT_TEMPLATES">
+-      <list>
+-        <option value="Arquillian JUnit Test Class" />
+-        <option value="JavaScript File" />
+-        <option value="Class" />
+-      </list>
+-    </option>
+-  </component>
+-<<<<<<< HEAD
+-  <component name="FindInProjectRecents">
+-    <findStrings>
+-      <find>sys</find>
+-      <find>User</find>
+-      <find>失败</find>
+-      <find>id=&quot;&quot;</find>
+-      <find>manageClick</find>
+-      <find>interface</find>
+-      <find>depa</find>
+-      <find>departManageTable</find>
+-      <find>&lt;a href=&quot;#&quot;&gt;</find>
+-      <find>departManage</find>
+-      <find>dname</find>
+-      <find>alert</find>
+-    </findStrings>
+-    <replaceStrings>
+-      <replace>Users</replace>
+-      <replace>异常</replace>
+-      <replace>manage</replace>
+-    </replaceStrings>
++    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
++      <file pinned="false" current-in-tab="true">
++        <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/PermissionTest.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="-100">
++              <caret line="8" selection-start-line="8" selection-end-line="8" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/DepartmentTest.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="125">
++              <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++      <file pinned="false" current-in-tab="false">
++        <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/RoleTest.java">
++          <provider selected="true" editor-type-id="text-editor">
++            <state relative-caret-position="150">
++              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
++            </state>
++          </provider>
++        </entry>
++      </file>
++    </leaf>
+   </component>
+-=======
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-    <option name="UPDATE_TYPE" value="MERGE" />
+   </component>
+   <component name="IdeDocumentHistory">
+     <option name="CHANGED_PATHS">
+       <list>
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/realm/CustomRealm.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/templates/use/login.html" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UserServiceImpl.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java" />
+-        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests.java" />
+-        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests1.java" />
+-        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests2.java" />
+-        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests3.java" />
+-        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests4.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/Date.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/a.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/DateUtil.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Department.java" />
+         <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/DepartmentTest.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/templates/use/403.html" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/ReturnMsgPage.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/DepartmentServiceImpl.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/mappers/DepartmentMapper.xml" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/DepartmentMapper.java" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IDepartmentService.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/static/manage/css/manage.css" />
+-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/DepartmentController.java" />
+-        <option value="$PROJECT_DIR$/src/main/resources/templates/manage/manage.html" />
+-        <option value="$PROJECT_DIR$/src/main/resources/static/manage/js/manage.js" />
++        <option value="$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/PermissionTest.java" />
+       </list>
+     </option>
+   </component>
+-  <component name="MavenImportPreferences">
+-    <option name="generalSettings">
+-      <MavenGeneralSettings>
+-        <option name="alwaysUpdateSnapshots" value="true" />
+-        <option name="mavenHome" value="$APPLICATION_HOME_DIR$/plugins/maven/lib/maven3" />
+-        <option name="userSettingsFile" value="F:\java\apache-maven-3.6.2\apache-maven-3.6.2\conf\settings.xml" />
+-      </MavenGeneralSettings>
+-    </option>
++  <component name="MavenProjectNavigator">
++    <treeState>
++      <expand>
++        <path>
++          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
++          <item name="swtech-service-pageDesign-control" type="9519ce18:MavenProjectsStructure$ProjectNode" />
++        </path>
++        <path>
++          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
++          <item name="swtech-service-pageDesign-control" type="9519ce18:MavenProjectsStructure$ProjectNode" />
++          <item name="Lifecycle" type="58874e2:MavenProjectsStructure$LifecycleNode" />
++        </path>
++      </expand>
++      <select />
++    </treeState>
+   </component>
+-<<<<<<< HEAD
+   <component name="ProjectFrameBounds" extendedState="6">
+-    <option name="x" value="33" />
+-    <option name="y" value="120" />
++    <option name="x" value="434" />
++    <option name="y" value="378" />
+     <option name="width" value="1305" />
+     <option name="height" value="909" />
+   </component>
+-=======
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+-  <component name="ProjectId" id="1TeDY36tPDigLZepnXWMMLM7jbF" />
+   <component name="ProjectLevelVcsManager">
+     <ConfirmationsSetting value="1" id="Add" />
+   </component>
+-<<<<<<< HEAD
+   <component name="ProjectView">
+     <navigator proportions="" version="1">
+       <foldersAlwaysOnTop value="true" />
+@@ -239,25 +149,6 @@
+               <item name="main" type="462c0819:PsiDirectoryNode" />
+               <item name="java" type="462c0819:PsiDirectoryNode" />
+               <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
+-              <item name="common" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
+-              <item name="src" type="462c0819:PsiDirectoryNode" />
+-              <item name="main" type="462c0819:PsiDirectoryNode" />
+-              <item name="java" type="462c0819:PsiDirectoryNode" />
+-              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
+-              <item name="common" type="462c0819:PsiDirectoryNode" />
+-              <item name="vo" type="462c0819:PsiDirectoryNode" />
+-            </path>
+-            <path>
+-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
+-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
+-              <item name="src" type="462c0819:PsiDirectoryNode" />
+-              <item name="main" type="462c0819:PsiDirectoryNode" />
+-              <item name="java" type="462c0819:PsiDirectoryNode" />
+-              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
+               <item name="config" type="462c0819:PsiDirectoryNode" />
+             </path>
+             <path>
+@@ -450,67 +341,8 @@
+       <pane id="PackagesPane" />
+     </panes>
+   </component>
+-=======
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+   <component name="PropertiesComponent">
+-    <property name="RequestMappingsPanelOrder0" value="0" />
+-    <property name="RequestMappingsPanelOrder1" value="1" />
+-    <property name="RequestMappingsPanelWidth0" value="75" />
+-    <property name="RequestMappingsPanelWidth1" value="75" />
+     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-    <property name="WebServerToolWindowFactoryState" value="false" />
+-    <property name="aspect.path.notification.shown" value="true" />
+-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
+-    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
+-    <property name="create.test.in.the.same.root" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates/use" />
+-    <property name="node.js.detected.package.eslint" value="true" />
+-    <property name="node.js.detected.package.tslint" value="true" />
+-    <property name="node.js.path.for.package.eslint" value="project" />
+-    <property name="node.js.path.for.package.tslint" value="project" />
+-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+-    <property name="project.structure.last.edited" value="Modules" />
+-    <property name="project.structure.proportion" value="0.15" />
+-    <property name="project.structure.side.proportion" value="0.2" />
+-    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.importing" />
+-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+-  </component>
+-  <component name="RecentsManager">
+-    <key name="CreateTestDialog.RecentsKey">
+-      <recent name="swtech.pageDesignControl.mapper" />
+-    </key>
+-    <key name="CreateTestDialog.Recents.Supers">
+-      <recent name="" />
+-    </key>
+-    <key name="CopyClassDialog.RECENTS_KEY">
+-<<<<<<< HEAD
+-      <recent name="swtech.pageDesignControl.common.vo" />
+-      <recent name="swtech.pageDesignControl" />
+-=======
+-      <recent name="swtech.pageDesignControl.test" />
+-    </key>
+-    <key name="CreateTestDialog.Recents.Supers">
+-      <recent name="" />
+-    </key>
+-    <key name="CopyClassDialog.RECENTS_KEY">
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+-      <recent name="swtech.pageDesignControl.service.impl" />
+-      <recent name="swtech.pageDesignControl.test" />
+-    </key>
+-    <key name="CopyFile.RECENT_KEYS">
+-      <recent name="F:\java\git\li_jie\src\main\resources\templates\use" />
+-      <recent name="F:\java\git\li_jie\src\test\java\swtech\pageDesignControl" />
+-      <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\static" />
+-      <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\static\use" />
+-      <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\templates\use" />
+-      <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\java\swtech\pageDesignControl\common\websocket" />
+-      <recent name="F:\java\git\li_jie_bg\src\test\java\swtech\pageDesignControl" />
+-<<<<<<< HEAD
+-      <recent name="F:\java\git\li_jie_bg\src\test\java" />
+-=======
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+-    </key>
+   </component>
+   <component name="RunDashboard">
+     <option name="ruleStates">
+@@ -524,15 +356,8 @@
+       </list>
+     </option>
+   </component>
+-<<<<<<< HEAD
+-  <component name="RunManager" selected="Spring Boot.RunApplication (1)">
+-    <configuration name="DepartmentTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-=======
+-  <component name="RunManager" selected="Spring Boot.RunApplication (2)">
+-  <component name="RunManager" selected="Spring Boot.RunApplication (1)">
+-    <configuration name="CodeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+-      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.common.utils.CodeGenerator" />
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
++  <component name="RunManager" selected="JUnit.PermissionTest.insert">
++    <configuration name="DepartmentTest.insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="li_jie" />
+       <extension name="coverage">
+         <pattern>
+@@ -542,28 +367,13 @@
+       </extension>
+       <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
+       <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+-      <option name="TEST_OBJECT" value="class" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="DepartmentTest.selectAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="li_jie" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="swtech.pageDesignControl.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
+-      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+-      <option name="METHOD_NAME" value="selectAll" />
++      <option name="METHOD_NAME" value="insert" />
+       <option name="TEST_OBJECT" value="method" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="DepartmentTest.selectByPageAndCondition" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="PermissionTest.insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="li_jie" />
+       <extension name="coverage">
+         <pattern>
+@@ -572,66 +382,17 @@
+         </pattern>
+       </extension>
+       <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
+-      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+-      <option name="METHOD_NAME" value="selectByPageAndCondition" />
+-      <option name="TEST_OBJECT" value="method" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="DepartmentTest.selectCount" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+-      <module name="li_jie" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="swtech.pageDesignControl.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
+-      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+-      <option name="METHOD_NAME" value="selectCount" />
++      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.PermissionTest" />
++      <option name="METHOD_NAME" value="insert" />
+       <option name="TEST_OBJECT" value="method" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="RunApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+-      <module name="li_jie" />
+-      <extension name="coverage">
+-        <pattern>
+-          <option name="PATTERN" value="swtech.pageDesignControl.*" />
+-          <option name="ENABLED" value="true" />
+-        </pattern>
+-      </extension>
+-      <option name="SPRING_BOOT_MAIN_CLASS" value="swtech.pageDesignControl.RunApplication" />
+-      <method v="2">
+-        <option name="Make" enabled="true" />
+-      </method>
+-    </configuration>
+-    <configuration name="RunApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+-      <module name="swtech-service-pageDesign-control" />
+-      <option name="SPRING_BOOT_MAIN_CLASS" value="swtech.pageDesignControl.RunApplication" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="Spring Boot.RunApplication (1)" />
+-<<<<<<< HEAD
+-        <item itemvalue="JUnit.DepartmentTest" />
+-        <item itemvalue="JUnit.DepartmentTest.selectCount" />
+-        <item itemvalue="JUnit.DepartmentTest.selectByPageAndCondition" />
+-        <item itemvalue="JUnit.DepartmentTest.selectAll" />
+-=======
+-        <item itemvalue="Application.MaritalStatus" />
+-        <item itemvalue="JUnit.ShiroWebApplicationTests" />
+-        <item itemvalue="Spring Boot.RunApplication (2)" />
+-        <item itemvalue="JUnit.ShiroWebApplicationTests.Users1" />
+-        <item itemvalue="Application.CodeGenerator" />
+-        <item itemvalue="JUnit.ShiroWebApplicationTests.Users" />
+-        <item itemvalue="JUnit.ShiroWebApplicationTests.contextLoads" />
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
++        <item itemvalue="JUnit.PermissionTest.insert" />
++        <item itemvalue="JUnit.DepartmentTest.insert" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -639,114 +400,42 @@
+     <configuration />
+   </component>
+   <component name="TaskManager">
+-    <task active="true" id="Default" summary="Default task">
+-      <changelist id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="" />
+-      <created>1573785966624</created>
+-      <option name="number" value="Default" />
+-      <option name="presentableId" value="Default" />
+-      <updated>1573785966624</updated>
+-      <workItem from="1573785967747" duration="641000" />
+-      <workItem from="1573786610893" duration="11489000" />
+-      <workItem from="1574122910395" duration="27741000" />
+-      <workItem from="1574209545243" duration="953000" />
+-    </task>
+-    <task id="LOCAL-00001" summary="url配置">
+-      <created>1574060342957</created>
+-      <option name="number" value="00001" />
+-      <option name="presentableId" value="LOCAL-00001" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1574060342957</updated>
+-    </task>
+-    <task id="LOCAL-00002" summary="url配置">
+-      <created>1574060475975</created>
+-      <option name="number" value="00002" />
+-      <option name="presentableId" value="LOCAL-00002" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1574060475975</updated>
+-    </task>
+-    <task id="LOCAL-00003" summary="url配置">
+-      <created>1574062380862</created>
+-      <option name="number" value="00003" />
+-      <option name="presentableId" value="LOCAL-00003" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1574062380862</updated>
+-    </task>
+-<<<<<<< HEAD
+-    <task id="LOCAL-00004" summary="Merge branch 'master' of https://github.com/wuquheiye/li_jie&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+-      <created>1574071643135</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1574071643135</updated>
+-    </task>
+-    <option name="localTasksCounter" value="5" />
+-=======
+-    <task id="LOCAL-00004" summary="url配置">
+-      <created>1574062288271</created>
+-      <option name="number" value="00004" />
+-      <option name="presentableId" value="LOCAL-00004" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1574062288271</updated>
+-    </task>
+-    <task id="LOCAL-00005" summary="url配置">
+-      <created>1574062354899</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1574062354899</updated>
+-    </task>
+-    <option name="localTasksCounter" value="6" />
+-    <option name="localTasksCounter" value="4" />
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+     <servers />
+   </component>
+   <component name="TestHistory">
+-    <history-entry file="DepartmentTest_selectByPageAndCondition - 2019.11.19 at 10h 26m 18s.xml">
+-      <configuration name="DepartmentTest.selectByPageAndCondition" configurationId="JUnit" />
+-    </history-entry>
+-    <history-entry file="DepartmentTest_selectByPageAndCondition - 2019.11.19 at 10h 30m 16s.xml">
+-      <configuration name="DepartmentTest.selectByPageAndCondition" configurationId="JUnit" />
++    <history-entry file="PermissionTest_insert - 2019.11.20 at 09h 17m 28s.xml">
++      <configuration name="PermissionTest.insert" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="DepartmentTest - 2019.11.19 at 10h 30m 40s.xml">
+-      <configuration name="DepartmentTest" configurationId="JUnit" />
++    <history-entry file="DepartmentTest_insert - 2019.11.20 at 09h 19m 58s.xml">
++      <configuration name="DepartmentTest.insert" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="DepartmentTest_selectByPageAndCondition - 2019.11.19 at 10h 30m 55s.xml">
+-      <configuration name="DepartmentTest.selectByPageAndCondition" configurationId="JUnit" />
++    <history-entry file="PermissionTest_insert - 2019.11.20 at 09h 21m 00s.xml">
++      <configuration name="PermissionTest.insert" configurationId="JUnit" />
+     </history-entry>
+-<<<<<<< HEAD
+-    <history-entry file="DepartmentTest_selectByPageAndCondition - 2019.11.19 at 10h 31m 12s.xml">
+-      <configuration name="DepartmentTest.selectByPageAndCondition" configurationId="JUnit" />
++    <history-entry file="PermissionTest_insert - 2019.11.20 at 09h 21m 05s.xml">
++      <configuration name="PermissionTest.insert" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="DepartmentTest_selectByPageAndCondition - 2019.11.19 at 10h 35m 55s.xml">
+-      <configuration name="DepartmentTest.selectByPageAndCondition" configurationId="JUnit" />
+-=======
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 21m 45s.xml">
+-      <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
++    <history-entry file="PermissionTest_insert - 2019.11.20 at 09h 22m 26s.xml">
++      <configuration name="PermissionTest.insert" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="ShiroWebApplicationTests - 2019.11.15 at 14h 23m 08s.xml">
+-      <configuration name="ShiroWebApplicationTests" configurationId="JUnit" />
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
++    <history-entry file="DepartmentTest_insert - 2019.11.20 at 09h 23m 09s.xml">
++      <configuration name="DepartmentTest.insert" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="DepartmentTest_selectCount - 2019.11.19 at 10h 40m 05s.xml">
+-      <configuration name="DepartmentTest.selectCount" configurationId="JUnit" />
++    <history-entry file="PermissionTest_insert - 2019.11.20 at 09h 23m 26s.xml">
++      <configuration name="PermissionTest.insert" configurationId="JUnit" />
+     </history-entry>
+-    <history-entry file="DepartmentTest_selectCount - 2019.11.19 at 10h 41m 10s.xml">
+-      <configuration name="DepartmentTest.selectCount" configurationId="JUnit" />
+-    </history-entry>
+-    <history-entry file="DepartmentTest - 2019.11.19 at 10h 41m 25s.xml">
+-      <configuration name="DepartmentTest" configurationId="JUnit" />
+-    </history-entry>
+-    <history-entry file="DepartmentTest - 2019.11.19 at 11h 44m 20s.xml">
+-      <configuration name="DepartmentTest" configurationId="JUnit" />
++    <history-entry file="PermissionTest_insert - 2019.11.20 at 09h 25m 16s.xml">
++      <configuration name="PermissionTest.insert" configurationId="JUnit" />
+     </history-entry>
+   </component>
+   <component name="TimeTrackingManager">
+-    <option name="totallyTimeSpent" value="37900000" />
++    <option name="totallyTimeSpent" value="532000" />
+   </component>
+   <component name="ToolWindowManager">
+-    <frame x="33" y="120" width="1305" height="909" extended-state="1" />
++    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
++    <editor active="true" />
+     <layout>
+-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.5036145" />
++      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29530916" />
+       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+       <window_info id="Designer" order="2" />
+       <window_info id="Image Layers" order="3" />
+@@ -754,26 +443,25 @@
+       <window_info id="UI Designer" order="5" />
+       <window_info id="Favorites" order="6" side_tool="true" />
+       <window_info id="Web" order="7" side_tool="true" />
+-      <window_info anchor="bottom" id="Message" order="0" />
+-      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.6670282" />
+-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+-      <window_info anchor="bottom" id="TODO" order="6" />
+-      <window_info anchor="bottom" id="Spring" order="7" />
+-      <window_info anchor="bottom" id="Terminal" order="8" />
+-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010661" side_tool="true" weight="0.3308026" />
+-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946696" weight="0.26030368" />
+-      <window_info anchor="bottom" id="Problems" order="12" />
+-      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+-      <window_info anchor="bottom" id="Database Changes" order="14" />
+-      <window_info anchor="bottom" id="Version Control" order="15" sideWeight="0.49946696" weight="0.55856836" />
++      <window_info anchor="bottom" id="Messages" order="0" weight="0.3275488" />
++      <window_info anchor="bottom" id="Message" order="1" />
++      <window_info anchor="bottom" id="Find" order="2" weight="0.329718" />
++      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49946696" weight="0.42299348" />
++      <window_info anchor="bottom" id="Debug" order="4" weight="0.318872" />
++      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
++      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
++      <window_info anchor="bottom" id="TODO" order="7" />
++      <window_info anchor="bottom" id="Spring" order="8" sideWeight="0.4989339" weight="0.329718" />
++      <window_info anchor="bottom" id="Terminal" order="9" weight="0.329718" />
++      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
++      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" weight="0.46746203" />
++      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329718" />
++      <window_info anchor="bottom" id="Database Changes" order="13" />
++      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49959838" weight="0.2624729" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+-      <window_info anchor="right" id="Maven" order="3" />
++      <window_info anchor="right" id="Maven" order="3" weight="0.4968017" />
+       <window_info anchor="right" id="Palette" order="4" />
+       <window_info anchor="right" id="Capture Analysis" order="5" />
+       <window_info anchor="right" id="Database" order="6" />
+@@ -782,7 +470,7 @@
+       <window_info anchor="right" id="Bean Validation" order="9" />
+     </layout>
+     <layout-to-restore>
+-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16577825" />
++      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.5759036" />
+       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+       <window_info id="Designer" order="2" />
+       <window_info id="Image Layers" order="3" />
+@@ -790,26 +478,25 @@
+       <window_info id="UI Designer" order="5" />
+       <window_info id="Favorites" order="6" side_tool="true" />
+       <window_info id="Web" order="7" side_tool="true" />
+-      <window_info anchor="bottom" id="Message" order="0" />
+-      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
+-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989339" weight="0.42299348" />
+-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
+-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+-      <window_info anchor="bottom" id="TODO" order="6" />
+-      <window_info anchor="bottom" id="Spring" order="7" />
+-      <window_info anchor="bottom" id="Terminal" order="8" />
+-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+-      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5010661" side_tool="true" weight="0.3308026" />
+-      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49946696" weight="0.26030368" />
+-      <window_info anchor="bottom" id="Problems" order="12" />
+-      <window_info anchor="bottom" id="Java Enterprise" order="13" />
+-      <window_info anchor="bottom" id="Database Changes" order="14" />
+-      <window_info anchor="bottom" id="Version Control" order="15" sideWeight="0.49946696" weight="0.55856836" />
++      <window_info anchor="bottom" id="Messages" order="0" weight="0.3275488" />
++      <window_info anchor="bottom" id="Message" order="1" />
++      <window_info anchor="bottom" id="Find" order="2" weight="0.329718" />
++      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.49946696" visible="true" weight="0.55612904" />
++      <window_info anchor="bottom" id="Debug" order="4" weight="0.318872" />
++      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
++      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
++      <window_info anchor="bottom" id="TODO" order="7" />
++      <window_info anchor="bottom" id="Spring" order="8" sideWeight="0.4989339" weight="0.329718" />
++      <window_info anchor="bottom" id="Terminal" order="9" weight="0.329718" />
++      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
++      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50053304" side_tool="true" weight="0.46746203" />
++      <window_info anchor="bottom" id="Java Enterprise" order="12" weight="0.329718" />
++      <window_info anchor="bottom" id="Database Changes" order="13" />
++      <window_info anchor="bottom" id="Version Control" order="14" sideWeight="0.49959838" weight="0.2624729" />
+       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+-      <window_info anchor="right" id="Maven" order="3" />
++      <window_info anchor="right" id="Maven" order="3" weight="0.4968017" />
+       <window_info anchor="right" id="Palette" order="4" />
+       <window_info anchor="right" id="Capture Analysis" order="5" />
+       <window_info anchor="right" id="Database" order="6" />
+@@ -818,29 +505,7 @@
+       <window_info anchor="right" id="Bean Validation" order="9" />
+     </layout-to-restore>
+   </component>
+-  <component name="TypeScriptGeneratedFilesManager">
+-    <option name="version" value="1" />
+-  </component>
+   <component name="Vcs.Log.Tabs.Properties">
+-    <option name="TAB_STATES">
+-      <map>
+-        <entry key="MAIN">
+-          <value>
+-            <State>
+-              <option name="COLUMN_ORDER" />
+-            </State>
+-            <State>
+-              <option name="RECENTLY_FILTERED_USER_GROUPS">
+-                <collection />
+-              </option>
+-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+-                <collection />
+-              </option>
+-            </State>
+-          </value>
+-        </entry>
+-      </map>
+-    </option>
+     <option name="RECENT_FILTERS">
+       <map>
+         <entry key="Branch">
+@@ -855,486 +520,78 @@
+         </entry>
+       </map>
+     </option>
+-  </component>
+-  <component name="VcsManagerConfiguration">
+-    <MESSAGE value="shiro" />
+-    <MESSAGE value="url配置" />
+-    <MESSAGE value="Merge branch 'master' of https://github.com/wuquheiye/li_jie&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/wuquheiye/li_jie&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+-  </component>
+-  <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" type="javascript">
+-          <url>file://$PROJECT_DIR$/src/main/resources/static/manage/js/manage.js</url>
+-          <line>20</line>
+-          <option name="timeStamp" value="2" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
+-  </component>
+-  <component name="XDebuggerManager">
+-    <breakpoint-manager>
+-      <breakpoints>
+-        <line-breakpoint enabled="true" type="java-line">
+-          <url>file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java</url>
+-          <line>15</line>
+-          <option name="timeStamp" value="2" />
+-        </line-breakpoint>
+-      </breakpoints>
+-    </breakpoint-manager>
+   </component>
+   <component name="antWorkspaceConfiguration">
+     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
+     <option name="FILTER_TARGETS" value="false" />
+   </component>
+-<<<<<<< HEAD
+   <component name="editorHistoryManager">
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/exception/ServiceException.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-284">
+-          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-2259">
+-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/EnumUtil.java">
++    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-209">
+-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/GetMessageCode.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-1475">
+-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/HttpClient.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-750">
+-          <folding>
+-            <element signature="e#0#4424#0" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/Date.java" />
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/a.java" />
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/ExcelUtil.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-1250">
+-          <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/DateUtil.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="125">
+-          <caret line="5" column="21" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="21" />
++        <state relative-caret-position="475">
++          <caret line="39" selection-start-line="39" selection-end-line="39" selection-end-column="12" />
+           <folding>
+-            <element signature="imports" expanded="true" />
+-            <element signature="e#382#383#0" expanded="true" />
+-            <element signature="e#418#419#0" expanded="true" />
++            <element signature="e#14643#14649#0" expanded="true" />
++            <element signature="e#14649#14655#0" expanded="true" />
++            <element signature="e#14796#14800#0" expanded="true" />
++            <element signature="e#14807#14813#0" expanded="true" />
++            <element signature="e#14814#14820#0" expanded="true" />
++            <element signature="e#14820#14824#0" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/ExcelParam.java">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/org/springframework/spring-test/5.1.8.RELEASE/spring-test-5.1.8.RELEASE-sources.jar!/org/springframework/test/context/junit4/SpringJUnit4ClassRunner.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-9">
+-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
++        <state relative-caret-position="154">
++          <caret line="136" selection-start-line="136" selection-end-line="136" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/CodeMsg.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-309">
+-          <caret line="2" column="22" lean-forward="true" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
++        <state relative-caret-position="289">
++          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/UploadUtil.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-859">
+-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/QRCode.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-554">
+-          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/MyX509TrustManager.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="150">
+-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/JsonUtil.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-704">
+-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/HttpClientUtils.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="196">
+-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/com/baomidou/mybatis-plus-core/3.1.2/mybatis-plus-core-3.1.2-sources.jar!/com/baomidou/mybatisplus/core/conditions/Wrapper.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-929">
+-          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/com/baomidou/mybatis-plus-core/3.1.2/mybatis-plus-core-3.1.2-sources.jar!/com/baomidou/mybatisplus/core/metadata/IPage.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-3009">
+-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/configs/MybatisPlusConfig.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="350">
+-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+-          <folding>
+-            <element signature="e#586#587#0" expanded="true" />
+-            <element signature="e#636#637#0" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/ShiroWebApplicationTests1.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-481">
+-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UpdateProjectController.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="400">
+-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UserController.java">
++    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/com/baomidou/mybatis-plus-core/3.1.2/mybatis-plus-core-3.1.2-sources.jar!/com/baomidou/mybatisplus/core/mapper/BaseMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="297">
+-          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/JournalController.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="375">
+-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/ProjectController.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="400">
+-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="350">
+-          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
++          <caret line="82" column="17" selection-start-line="82" selection-start-column="17" selection-end-line="82" selection-end-column="17" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java">
++    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="669">
+-          <caret line="52" column="5" selection-start-line="36" selection-start-column="4" selection-end-line="52" selection-end-column="5" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/DepartmentTest.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="644">
+-          <caret line="43" column="38" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../jdk/jdk1.8/src.zip!/java/io/Serializable.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="693">
+-          <caret line="168" column="17" selection-start-line="168" selection-start-column="17" selection-end-line="168" selection-end-column="17" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="368">
+-          <caret line="59" column="36" selection-start-line="59" selection-start-column="36" selection-end-line="59" selection-end-column="36" />
++        <state relative-caret-position="268">
++          <caret line="23" column="24" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="24" />
+           <folding>
+             <element signature="imports" expanded="true" />
+           </folding>
+         </state>
+       </provider>
+     </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/com/baomidou/mybatis-plus-extension/3.1.2/mybatis-plus-extension-3.1.2-sources.jar!/com/baomidou/mybatisplus/extension/service/impl/ServiceImpl.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-4806">
+-          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/com/baomidou/mybatis-plus-core/3.1.2/mybatis-plus-core-3.1.2-sources.jar!/com/baomidou/mybatisplus/core/mapper/BaseMapper.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="369">
+-          <caret line="139" column="33" lean-forward="true" selection-start-line="139" selection-start-column="4" selection-end-line="139" selection-end-column="33" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="jar://$PROJECT_DIR$/../../apache-maven-3.6.2/apache-maven-3.6.2/maven-repository/com/baomidou/mybatis-plus-extension/3.1.2/mybatis-plus-extension-3.1.2-sources.jar!/com/baomidou/mybatisplus/extension/service/IService.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="-536">
+-          <caret line="119" column="12" selection-start-line="119" selection-start-column="12" selection-end-line="119" selection-end-column="12" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/use/index.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state>
+-          <folding>
+-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#b#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#b#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/use/login.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="225">
+-          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="97" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/use/403.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="100">
+-          <caret line="4" column="16" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/config/ShiroConfiguration.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="185">
+-          <caret line="52" column="58" selection-start-line="52" selection-start-column="58" selection-end-line="52" selection-end-column="58" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/common.js">
++    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/RoleTest.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="150">
+-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="1154">
+-          <caret line="97" column="26" selection-start-line="97" selection-start-column="26" selection-end-line="97" selection-end-column="26" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-            <element signature="e#2484#2485#0" expanded="true" />
+-            <element signature="e#2518#2519#0" expanded="true" />
+-          </folding>
++          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js">
++    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/DepartmentTest.java">
+       <provider selected="true" editor-type-id="text-editor">
+         <state relative-caret-position="125">
+-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Flow.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="146">
+-          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="5" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Department.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="663">
+-          <caret line="35" column="30" selection-start-line="35" selection-start-column="19" selection-end-line="35" selection-end-column="30" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/ReturnMsgPage.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="500">
+-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/ReturnMsg.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="196">
+-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IDepartmentService.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="644">
+-          <caret line="36" column="11" lean-forward="true" selection-start-line="36" selection-start-column="11" selection-end-line="36" selection-end-column="11" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/DepartmentServiceImpl.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="619">
+-          <caret line="72" lean-forward="true" selection-start-line="72" selection-end-line="72" />
+-          <folding>
+-            <element signature="e#2034#2035#0" expanded="true" />
+-            <element signature="e#2087#2088#0" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/DepartmentMapper.xml">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="225">
+-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
++          <caret line="5" selection-start-line="5" selection-end-line="5" selection-end-column="22" />
+         </state>
+       </provider>
+     </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/DepartmentMapper.java">
++    <entry file="file://$PROJECT_DIR$/src/test/java/swtech/pageDesignControl/PermissionTest.java">
+       <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="419">
+-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/manage/css/manage.css">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="100">
+-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/manage/js/manage.js">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="716">
+-          <caret line="119" column="27" selection-start-line="119" selection-start-column="27" selection-end-line="119" selection-end-column="27" />
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/DepartmentController.java">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="25">
+-          <caret line="108" column="19" selection-start-line="108" selection-start-column="16" selection-end-line="108" selection-end-column="19" />
+-          <folding>
+-            <element signature="imports" expanded="true" />
+-          </folding>
+-        </state>
+-      </provider>
+-    </entry>
+-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/manage/manage.html">
+-      <provider selected="true" editor-type-id="text-editor">
+-        <state relative-caret-position="432">
+-          <caret line="492" column="83" selection-start-line="492" selection-start-column="83" selection-end-line="492" selection-end-column="83" />
+-          <folding>
+-            <element signature="n#style#0;n#input#0;n#td#3;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#4;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#5;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#6;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#7;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#8;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#9;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#10;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#11;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#12;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#13;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#14;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#15;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#16;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#17;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#18;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#19;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#20;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#21;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#22;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#23;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#24;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#25;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#26;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#27;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#28;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#29;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#30;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#31;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#32;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#33;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#34;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#35;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#36;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#37;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#38;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#39;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#40;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#41;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#42;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#43;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-            <element signature="n#style#0;n#input#0;n#td#44;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#9;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+-          </folding>
++        <state relative-caret-position="-100">
++          <caret line="8" selection-start-line="8" selection-end-line="8" />
+         </state>
+       </provider>
+     </entry>
+   </component>
+-=======
+->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
+ </project>
+\ No newline at end of file
+Index: src/main/java/swtech/pageDesignControl/entity/Role.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/main/java/swtech/pageDesignControl/entity/Role.java	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ src/main/java/swtech/pageDesignControl/entity/Role.java	(date 1574211789365)
+@@ -29,7 +29,7 @@
+     /**
+      * 角色名
+      */
+-    private String rroleName;
++    private String rname;
+ 
+ 
+ }
+Index: target/classes/static/flow/leave.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/static/flow/leave.html	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ target/classes/static/flow/leave.html	(date 1574212754282)
+@@ -331,7 +331,7 @@
+         var curHour = curDate.getHours();      //获取当前小时数(0-23)
+         var curMinute = curDate.getMinutes();   // 获取当前分钟数(0-59)
+         var curSec =curDate.getSeconds();      //获取当前秒数(0-59)
+-        var Current= curYear+timeStr+curMonth+timeStr+curDay+' '+curHour+':'+curMinute+':'+curSec;
++        var Current= curYear+timeStr+curMonth+timeStr+curDay+' '+curHour+':'+curMinute;
+         console.log(Current);
+         // this.datetime=Current;
+         return Current;
+Index: target/classes/templates/daily/writeDaily.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- target/classes/templates/daily/writeDaily.html	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
++++ target/classes/templates/daily/writeDaily.html	(date 1574212754337)
+@@ -19,6 +19,9 @@
+     <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.3/js/fileinput.min.js"></script>
+     <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.5/js/locales/zh.min.js "></script>
+ 
++    <!--    全局配置文件-->
++    <script type="text/javascript" src="../myjs/httpData.config.js"></script>
++
+ </head>
+ <body>
+ <div class="container-fluid">
+diff --git target/classes/META-INF/li_jie.kotlin_module target/classes/META-INF/li_jie.kotlin_module
+deleted file mode 100644
+index 8fb60192d378759239a3ecbf60eac8c8de446e9c..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git target/test-classes/META-INF/li_jie.kotlin_module target/test-classes/META-INF/li_jie.kotlin_module
+deleted file mode 100644
+index 8fb60192d378759239a3ecbf60eac8c8de446e9c..0000000000000000000000000000000000000000
+GIT binary patch
+literal 0
+Hc$@<O00001
+
+diff --git target/classes/swtech/pageDesignControl/controller/ProjectController.class target/classes/swtech/pageDesignControl/controller/ProjectController.class
+index ca35d1f4f42b48107a97bd25d2008af4a35cf25c..bf0668fd7f9e5c9bb1eb70fdfa5afecc0c752d8c
+GIT binary patch
+literal 3719
+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
+
+diff --git target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class
+index ffed5eaff9abf3930722fd17b97f2acfd092466e..9f4c78d5f6378ef09e431cdcf6d83e8bdc810011
+GIT binary patch
+literal 948
+zc$}qEO>fgc5S^`?rcG%nAEgCu6-eoY?STVQDnwg^6v>6Ck+`p&k+YS(>+Y_L!cXg=
+zKY$;Fcy^G33P?m8Ml(AfZ{8c(-@f16647gV-lhF6J?+vnL3<g85xYWrudPXD7dGdQ
+zs$fAc`thZ@Rx(#6ljGpD$p(k>R26hCW9`F0(9SuBshy0J!&G4B1+BXlWMix|qeA5n
+zzxfBi<KJ7}V#&VeoYQbR8>x&>%;e0Pi4Gtv=v_bdUjnC7S)%ryJr<%Iz(KMJI?Uuk
+z-(WcWgM?n$Hh^&rGY-lH2x(&d739r-t~p+2yq0`$Q6XROXYF;8b9>(tV{A~hc3k>p
+zY+WW*snRJ+ognR{S~SRJ3SgaUl~+))IltqX1-785e>fC$^~=dWC6_1<;?x#0QMS+%
+zTghV90GD~?WojMELY26fJXN00n{a7yy|Jxa${%zNQoD=d9PU+3NYK$=L4OjsJBN?)
+zt`tFXNiA!F1g*d#{43F_pjGPNy@ppuP#10;wn7^y^=K1qb!jW2d$ogYw=MT+2mT-e
+c*aO%@kDfN%T7=txdPI+#nfc@{J!$;j4@I&a&j0`b
+
+diff --git target/classes/swtech/pageDesignControl/controller/FlowController.class target/classes/swtech/pageDesignControl/controller/FlowController.class
+index 65d5de70e0df0e12bec1c7cf06cf4b9d4e9e31c8..c050afc28556376516017e0bf4fe2becad75c3e3
+GIT binary patch
+literal 2901
+zc$}41TUQfT6#ga&B!ux6P{i6+t=a$y;{`7jup)}3O;EwoT6>!$Ct+}yp)(UGk9}zS
+zrZ2U>pf2B9ZwqR>><{Q#{SAG}D!-!bcTO%6MHehsbN1{xd+%?5d!K#s=fA)G0bl@j
+z9Gw`8;!+$TjI|+w_u4Uz_oMhAj#gx(CM%_hc3j4l7_Q2VlQB%m^_qNqC=I4#_$Z2x
+z<G7AbqPU?UY`Y~5iHz%&4Bsve%o-WDR1)5x2HhI7-Nh;4Em(P>!N~ZFfymDo^JYn0
+z5WZD%MqMZHT-)%gdyMfl26WIpS#|<zPE1?Am9xc&<G6ttSgzx1I9-i6?^#Z%=$Uh3
+z(e-W`Ibk}!Q8e>`>n#~(!@w9R2kxTfi2~iW4q1*BoF(>T&$Ncfs9PYsZ5hiE6Xm&_
+z@UEGRrjp8=_O$6)^1Y^v1Tz-H54=2?e08;jXUKF$8?Ow#)fcwN2N_{5h!NY?FrCcI
+znhU03n@-6XcLE`)TSwLNs(5pA%y7XqCPh&8oUC7BB#l^iu5onn>%5qkRPbB4Y!x(g
+ztP@5<OEFlQr)_x7XI=X@8+OZ7VCHXT&3Q!^J0*%w*>!9)4coIKm~jhNOj)i#c%<><
+zx>Z~hIU{E|g|!8o6#hI5FV4G#r9sL6Mh!2CfN<uyPiD7Z+GS>Upt-XekeXU-GvK}|
+z3qMe97^U5o^&KZ#FHj|ZDT#t8f+f`_n=f&T3Zvoh#{5U|nT8V^&gqKluOV*Zb~P?)
+zb&40+Yojx!SCVI^NE{ksLwUP)0^?I|*~^PDOCGI`=Ht>Y+fzf|x{-YrOSrOCjiv*(
+z{#bYg&NaPZRN-wr)ltv&{mY(JvYbI3uVJr-)Mjd^qYJyE_*};Uyv6+2IjuUrz+N3Y
+zu}jC7Fr&!n$b+XheC)_k9YTt`E4RL@+<v(F^Zm-xJFB-=Dz|^E{PbY;@m(E76m*m@
+zqvIq_ap&qUE0u4)|L2ECQh0i&^6lN~P7TL4KhL7Dbj;!=Pxdq9mvgfma2j^JFkCbo
+z+(@5lNN?(%;N+I23e@1a=9y9xFY(X|-#2B~btZe(OuDJStCoBF^EVdz({hR~$7b@y
+z{qmw{^M#BOlsOyphMbjivX!q&XtJ$xp=`UJk2Y4lqv(}b>i`a|wH~!i-{(|#;bz5t
+zUe=ww)<f7MJ3~qAB=E+h+{$$i*A}kqNj_iao559++TImt50uFpwauXEn|$ik4cNy3
+zpv<O3L>d2$F!jLs-x0dLg78G|V?_E=PtX#^#66_WM7kr(h(1J2u5C{c4<VgsUxuDe
+zY+1(Ev{El)Tlzlz#t6QPk;4i>FXDV2rZ!2v!7n{bqnF?M_?N;_q;U%UIENz&<p7a%
+z<82(oA)+Iu8eS<Kre0H0l2V91&(K>hBlS_+jnIE|ABiFrMOyv$LyN*l(lyW)qCIE{
+zMPq{YN4XxO$KyAk`Q&4O?_D7(PDrKC{S7h6g=efr*k3f3;D&32WffshuswwAJtQa6
+zRkqS~vQmnyRAL9oN~Nn@rK((Yu)xh+4N-fR`iuPXE)zP(GLJCd^JHoi$8iCJ7*kyJ
+z5=0l7l3ax)oCa6JIE{Cd{}YO#kYZ?;WM~({ilH-gdJZajS~y&vqh_!{%}GT~RJPcV
+z>Yd>R6&Y@pvEy|rm{+~~<j+drDp5=+y!)y<8z|$<vx+iQLs>&|_N7RMn~}uGQ2hw(
+oSG~bPClbG+;}K#H6x3(Opp)LtDR3joJDDJ<AgOil7f3q(2W}GUZ2$lO
+
+diff --git target/classes/swtech/pageDesignControl/mapper/RoleMapper.class target/classes/swtech/pageDesignControl/mapper/RoleMapper.class
+index 6bf39a4011a5eddfa7334368e8ed1caa456ef32c..089d756373ec33db34ae0d15da7b93ea62d2199f
+GIT binary patch
+literal 900
+zc$}S5O-~y!5FN85Ay5*&OWPZ2rGx{%aHyIHiBKU$TGS{}d-rZe8^f->vb|L4PvgK3
+z;71|G8<e0zCFo%^<C%HSZ^pj6zqti~WB62q{Th6z!AAz03A&+9u{Zr`(I}B2gU_w-
+zQd|q33YGAYGg2j;_AFI6netFt*I}@6fo`J517Qf|&{zg5#hj!*l8F+oFcg1%1!4Dj
+z%L!ewZ!yK#^`--n;Hes)X*HHkYQ^ANE405I#uJ`X?K@h!kjl>Jl%sOeO}U?})9=3^
+zewn(wN)H`5VH}AsWBG^D(SK8SUkCJ~9SjS~WcW*38KpSi<Ec{G2|puk^h>Bs!bL9P
+z333@x+H$dI;3bO4D%T<{Ncq}qUuT-Q83e6%pTX6W)&7VssoV);o$*NMOpbNIvuR13
+zr-kLQHpnxP=V*9OSiC61H;lD9(uIlfT>AYseR@W5<V7$z{3p@lr3(aovA=~g;BQo3
+zWx!yGETF$1EYr(Fh0awvRT$LBt&lB2ol2{)Ms2>d9>6>A$QtvOCTx&D2#9QxY|B#5
+WJX~Ld4WinHof0!c?!sQ_-#-AvHVGjB
+
+diff --git target/classes/swtech/pageDesignControl/entity/Role.class target/classes/swtech/pageDesignControl/entity/Role.class
+index f8a3382d09b957ad32d508014e1831c99c7305f5..9c267df64aabb88b1629025b7eaa0ca3d9004c8c
+GIT binary patch
+literal 2296
+zc$|$@YjYD-7=AX{O*Ux?X@EkYYLSY$64Zjyv{mQ@Qk%A>7X@|3ZL*UrCcANWgVVp_
+z53pbQL1(ng;EbbRaK_)@&+wy&&)H2<8iLbKdfv-<FVA`2v%7!(`{Y*u)A%xq1WFOe
+zSP{#|VXQ_e%VJp*d+S2m5ZWhURHBHYq+(OZEwOB?*irGRP(KUfzJ$1=+lJQM(QU`D
+z%<a;m1ZhRW=z?WBu4cMBTC<}o@c$$ULEETFIJ5dtd!!YbnprQDOjob#c2PpI(lK45
+zrSBMyvD?&do2KPzF3UO+@~c&=RoK<6mQk}hh1T9Kcbs;!;}o=hTwzONUa7`f$|KQO
+zg6!_KDRL)DFV(gf&20Jh_SQO!*rwKEcH#xNo33q`b;g8d4byPvd8AZ&hbaqIjiIMk
+z4O3t1w03pd10#~HDhbj^6YZ{3b{hsyb#>MG*43+xLR+iri@IafO%mtYR<od!3U{wi
+zv6=!<sII#e!Q8o2dMJ0Q2=LLKJr;6=*XfohriN5VpA<>Fth)`XwxQW<=5p-p?eu%k
+zq+V`);?g1gn~v6W#35g(vcCIJue!zb1Kup__$<0x9F*lYbel*7tyA6=i+C<ykNR#O
+z;z)PHw?;Qzt@?FYYkPy?<KW$DwW^s*0u0rL<~01-a?mCA+NhMuO9VqbWb00+>2jWa
+zqfoD`>RSHk*?iOL*j0Vm5Oa@+qh1pyh~Z6KiQxj0F-+pJgsGFT6vI5;iy@6n4DSjp
+zi(CvJ;v)&?2Z_JaF`6~Oiq|wnfO9cCz~^H5f)I0)9@se^B^|>uavbg;w>*;8ZtEt`
+zmLEFWS2QgS#P^2y%6MGndndtnL=YEo24}%rKr4W8{*xry7ilLbFVQpM(D|B<*YO4|
+z^2fah_sA*NDOv?eiBicthV-LX>MgDz&pC#xTw{I!-bPBioCK>cCI5uL4+F`Uh9+|m
+zLz07o$&*8q^SH(+kzAw<P=+(vpApCmru)Fh{g7_D(0qmpqNqe8PUAY>8CElR;+lfh
+ze$7d*Ca+w#=HHZI%0@QxJrwyM`#a?Cpac)Hzd<hNGKWw+lS*hU$7M#&|ACRD{1jvR
+zh~<;=A;P@~bw<gFHI!6DOz0^R`xs3s$xtsyKJc!_An1EOhCb*9KXEs_tFwul^a-qs
+zc%Qx?XFHD%sL8m?gWaO0pv+;;Pz#YGF`GzO{RgMQn0<!vFy{DErDwR{tC2n#(<DO{
+zPhyvhTWl%VQv?eK|3k0RN2(CtjU#$*di3%+?%tul7%sk=Gx6fAJm--(5id4Kp&HNb
+zBb+}(<f}Q4I$3Na<?fCuh~?JAaKfhjs$CdCQga)3xUUe*0<{1??AJ+|AnXdxW62{-
+zkh22$IUO>|ktDLgkNI;39oYflI0vQY=*7s#T?}Kt<^I!BVNZcC^$Vi+A7dmDJH)6s
+f@F7kmPW!q_k%)6S#MtoL>pxJb{sVQ_i@Nt8GZwgJ
+
+diff --git target/classes/swtech/pageDesignControl/enums/Flow/Fstatus.class target/classes/swtech/pageDesignControl/enums/Flow/Fstatus.class
+index b01e3959b3b2cf1a664727efa59f0ec8e36895da..91005b2c5f7518fb12d8e855112cb4e9bc55e3b8
+GIT binary patch
+literal 2854
+zc$}40?^6_I9RDo0ce@-59*1I}<fW*`p&X!=2@(g~DRuma1?n`jWm(|#*u}j)v>%q0
+zX^k&xdRJ4^Sk5%l3q~=4U{YWAroW*X75fi*WqqH$r9p1BxS4&v&-3~Ie!k!DbH6=W
+zybWMKJ}m~1VLx8O>jDl6Ncj=LF+YLF8Rrc@PT);;JSpHU0g4|b7!jc|I?5JJ#2BOF
+ze)uuLw9`!S6w^5^Vh=Nr5i!ZmI^!538bnO7?HLhK5hmMaMKp@A*fuAkNyIeUo)yt7
+z;vCz)E#Msi?{X*}>Kz=2#|GnF9QG!&XDv;gh)yZvT9=khkL#U=Zka|Vs_D7OY&4NE
+z&PEeiOR;j<77qT-qp^V_@&1@BbCB|ffp}s_j&msKiS@?lm}izcrxk9QJQzzPx_ghX
+zb)bg>uNtEohl=DWWm<`56n#9}ty|i-W|AL%RLiOyf~%OaWv2CU;t93GvE)#kd^8+i
+zXZXHpC6m*#92&!Q>(%8u?RYmN)4JB1n;g;1L1iREh+rG-8{-fQ7sgw+PB+1%p(>eS
+z#Y{8njtgE_CW!=kG;6{b?N>}XTAE3T2;-X7W#85Au**%>xnAH{-WwH3wiNYrk22->
+z@wKM)wAIF;#U+z&7yB;x4pX?+M4GJoYgvZ1`PfVI2g4jq>q>^YP^O!pC`{so-9mRa
+z&GO9`VpF)zwRJXzU6Xzs?i)F!sTRRvtD13g_Jo;(^Q)xd6mjdi>etrtU*a7~R?FKh
+z48Dy`m~7-sRZFB<JtW6&1Cy2T0()Q%N_Y?b9O~B*mxRMOFX2TTlCTf^1-vie16+{M
+zfj$n0o@hxmCMOL&s-07{DJxAoSu>~8suo`XIBZ^f*B!ZZW>hmJBrw2Xo2;D+g?f$9
+zq++QP#15&3PC@BbXv{D}$0dA-kJ$1t2kwM~i|AvTpRnbUgade9LJxXb0+*?29(?oD
+z{c9JOzqrKsM<ndQUK*Ku3rov0SMSeUeel^Ye_r_d;hoD88VWcMu6((?^sR)b%~@Xh
+zoXk9~(^$Y+(P?5F>E7bvy~QibS7#p1T$9kuu(HRyg~srI)}Mn{%@{fr`M~P#@60IK
+ztXuD|X-n#q@`47U0oKmsluVXQM`5?u9U}o{YD&{b>E(BQtDaEImNoJ#2A?7?T1FmP
+z6U(Yuu5^23@{De`*=}#5zp)6Y^-<hj#cB@_ZE$GRp^Xl0a%eN7C}NFoQ|c)oP|c=^
+z&LWE0T#(fkI&CM)e*Rf-b11qC&viO+Xr<L>^O*c$w2_?_`~SblM*TrPvH<U0@Yii0
+ztL0y!Rmw}Do%u$LJ}-y%3m{`1=yZ(zK<RmjzOn#cvi|mAPg~8_?-8o6X+FeP@jpX|
+z%t8DL#Z~+qimzYva6kV2#}fRhC6uJ*Aq7k4P(~sff&tphp?n^}J7msdM^kB=-h>L;
+zZNp~lq<uZA?dU2gfC>cBMK{H>0Gzvu(^m%1BNPkpaNL%^$c7X9K08gCK{C%`?<dL}
+z1S9oZ=TQ;adyB%Y;%{N&4c7|^kvvJ`s9hYkV=nU;D-drxD(BH10A8kV9|FV(P;AUx
+zl1$OF;8ZP2l$rKM=#thJpnO#UypBJPJ$x?88`mla3zY*g^4wpbJcmtBEB%UR5wBvv
+zQU0Ce*zda~@Tp*>$FqRV!Dr@CbraP#w1wvxwAF@cZ0K39mqFWXC}cy=`Fsr8ZbLh4
+zs8$ddw9|%m+0brLWKh_K>H@xB3G~dOT2Aq^sF73NS%l=2Zx%b`lrW23a!Q;<oqQAA
+mjejTLSqQY2P_IbXg;JWEGOEM|oTR##lv<Hf9T|f*9r_0>G`dg#
+
+diff --git target/classes/swtech/pageDesignControl/service/impl/JournalServiceImpl.class target/classes/swtech/pageDesignControl/service/impl/JournalServiceImpl.class
+index 4a339dd688b91f5532757e3d2b528cc31956c803..3f02c79468b3e45bfd872b395779b0c212ae270d
+GIT binary patch
+literal 2117
+zc$}qG-BTM?6#w0jvPrsFnp&W(sL&4+NLj2@YeUhRf(DaP3F7d$372Kl&2DD*hQg~e
+zI*u>;(&^}n<BU9Xd?{lG5Jvmx=-*+`KceG!?&bpur5b&?=kD3xJ?D46?)~krt)Bsm
+z;G+mmU_`;?2m(^R9>N<D1aT#dPP};(SCI^1G=yvN|5yZX;cdCQ9>P0PrWD+WU>p+?
+z{;q=e6r>s2EXQDoW*pbhJZoX3sAU|(;BJzkqv%vzTeq@$xy)S#E#uu0ys)U1b%WpF
+zo@v-A#}=+*X(b<`P3}EF7EVo9Y+;u8tm&C~i(j{GN9e+IY>(kgrl>FJ%bMO)YSY{!
+z0|ibe+eb~?6l26M7N2DZrkr`sa4cim{AQ(;=kAP727TfM-I~>1Q-0T#L9u9(hpUJ4
+z^|-ra7Pw}X%2tDQuBJ<qN(OJ*1QPXs40Ex=t#JxctTgN-<A);)PN_tJE;$sdAavF<
+z$d^)VczMRreNHGdC66jM)T*=gT3`%}s^5_ldf_(J%g-FO7DH#2i$!PtmhS2$F1YI_
+z((jJ4Yud(wRNryj+nR87+tUkv<@OYDW>@Xg42>47dM(2_Vy6=os?o0*qNn9`r)17M
+z6|J<Ar{iAPs(2b-7TorvttZN~r#_=CcH+Oz>ew@&4KnE``-MV`<ovdsFlF;~A8e-~
+z+35_ir>4=P9CJsklzAh<q>3|mfg#aKWvNR41n0{IUiNELcQoEmF!b!)Tdh92SN-<;
+z>Ze~-zxa6P?t|YqxBj@lCAmzh=thr%_f^D@p`ojTf4W=!WVQO;+Mf?ssU0s3539&x
+zQo&6XQ@Ew#15ED&?|k-U_4993<S@x_<-d-nf*BPbVphdTbTK6VM<+21w_0$9lQIA9
+z(k$IJw49LjOv+p8VoP1Q&(2i7$O|GFr>P8kT+m>O3eDc}T}0Xz+>qy#CEcp<sRf3v
+zSUR3LfRIy8Cj72=st@9-HhuW8?)~@w1dXuct`Hf6i<*kz{9a=zOZPmw><+vf=%WYb
+z1Q?#DSLd{>5j|f4*+Qf{Mf-M=r%ASvq)w-`m%cQTjO3Al4X`!;$cuF_=-5lNsx<&!
+zCKsT6KhBa7d3c*-kmUF_0&^Q^%MSj6j%@_zqDMB+{%GJKl))bnqIa?P>-vwd{E>)8
+z)^Rk^y9sq29f|03>o}Hp;B%AC`w^nGkJf&Q;w<gX5zq6uj0?DiSCFECki-UR&g;bF
+z?i``$@*~s*!Ug=3F~rI4fFDTUF}f5CK1L4>x(tdD0L}DVBpJd`GdX>J<UlyuxryUH
+aAiCx!U^hWMWLfi*HjGz&d8ujaHQ;Zt%4)9w
+
+diff --git target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class
+index bcf8668259636ab484b91b32069b4e4fdc0b7cdb..bf91c8752d19046305762db4b36ce2cb0002b1e6
+GIT binary patch
+literal 5552
+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
+bB>C$TgvN_Gblat>^0nNs^dB5BycPH_TjXfX
+
+diff --git target/classes/swtech/pageDesignControl/service/IFlowService.class target/classes/swtech/pageDesignControl/service/IFlowService.class
+index 10441bc6e7d244e1c8d9930e1c8aefeef1a12495..4ad140e7ad168daf4c51827d63eacffbb4f44c22
+GIT binary patch
+literal 720
+zc$}S5+fKqj5S`^>1r$NNeS$vdKIj|9#GoWiAQ(w}U&>IHY<Ed_%jMU6@B{oP<Fpz=
+z3?%A9clMlg&YU^z`^W1W0NlWt2S*+pdvL;_qEO7x*A`>P;N`qy=MIB0pNbG4(8^G^
+zjCQe69JP~f$=k}zn-|+(3rrLl&1Z%`qf27lwPBM%`Ee28)JdbQ2d4~bU36nJd=jyU
+z&|z#D6f-9bsumRnu9KpBr7}|!F%w(~9dchg3^8tQp#E$sKaxY5J95h@%`J}-Ic$wZ
+z91<vuXiWyCK8XnGAj+(b><uPlvDqPAJ`g67LzD1mIS@|TsY)!zg+py=T~5KyWPsf7
+ze_d{Wm+)O0THhpbfNiO0eBDp^Z;`9i3WLk7Qmd(JO_ci24H#ViV+96{Oh_8;_f{Wv
+zhXI2eJ$d@c@&(EeiiCFv6^Qj<mu^MMlrZfE6(Uorl!HAg`x#x`+;c!B2es_1!(mn%
+EpPj4H^#A|>
+
+diff --git target/classes/swtech/pageDesignControl/service/IJournalService.class target/classes/swtech/pageDesignControl/service/IJournalService.class
+index e45b6b9fae8a66d1d6a4bfc9c0c918aca9f3750b..0ebf78d56386a58380f343205a5c8e44452f73a6
+GIT binary patch
+literal 496
+zc$}S4K~BRk5L}nGp@jkm9sw5?32s4LKuATYK=j1XNmr?(#IEd3pkL#_1Ntb$QUVf4
+zl@JGeJ@V|%jJ<k$c?E!T*pFa0f>8u}3P#2T@_g%RZ*{5Q@hAyTOxYY4I;U$2Cbw74
+zvUeqtWy4Esx$*I4X6CBOS!^6W5DR+}@>s#agm~^|_uA`<n0!zW6<@-Gsq||hlLDU<
+zy3tr_o8w(tP{wg0BQe#kGBa0WwM;deuqf+*^vq;~5jhFcn2c~d{XAU!Im)HD8%_me
+zbYn_!a5!$S+EFJTh7_D`9QdvMvrj_*j-ue~A6fbe6m(>5$rq}wf-dv~^#%3h8Krb!
+Ld%X`}xUM_z`!$|@
+
+diff --git target/classes/swtech/pageDesignControl/controller/JournalController.class target/classes/swtech/pageDesignControl/controller/JournalController.class
+index adce67ee1a70a5800d34d0aa355a5388ee3a3e5d..3fb450a28d288a18612f81b9c0e8dd7ab604d6e8
+GIT binary patch
+literal 2137
+zc$}S8|56)O6#g~=HiV^M+R~Q#i%M-0QkK%vRzs_8TC_C*B#2_wnI&A7rJLQjdjsVG
+zd<3U2AmhJMJJjl^|2yMj;P@2kcQ*kFv>k9Vx#!-q=f`)?`R=`c{PXi~050LHBvQ!h
+z7)>IEd^@^vtpnHbo{smEXu}Pqxv6G_4&1`+1jdx%2MK(r<Q+BK)$vghMU-@mYlyqP
+ztszzP1KSMUg-c6j(YI|8<TZ3Tcl~<cS#DVb%T7gT7%qk@QdAbrnq`YyB6Mu8;CnLg
+zT{CRhn0I#jFwCi`x+k5gm~ld9&J{O2&zF{Td@s~+y0~O5TMtZYTWL;-kP#x!wo%7(
+z<aL5fXJ$0C6#RLD=qfs%7_V37L@;eJV1&M6xiePasC84>A{QNIxbkAim4<XhU^YP)
+zwl&P&>3H0fY<|)(n|^U9!5zxgtuXn_%aT^B+~u;*jY?XVLYuiX0zMwq!gMXqHg7+u
+zh?*(~zv)X`2woC)4*-^|8nUm0hXvAEmR99{$*M(FBvW)ukZq)whVGJ(i~jti6<Adv
+zMZoG_Zt$iSIG(+r)GK~)-&_%M=A7fr?`dm|Ef+Wa`Bml_Ik4lTA4=k>(U5+v%a&Vb
+zv5uH~x^reX%eF!8qT9i<PKmGUB9u+EiP4JNq++rhv2)B(9P8P~n?cn>4Fk_j6cUf{
+z<!VisyO?%xScSk3!->GL9mR~RhuzLj9TR4gRR&I>S3~YFJTY(_Jvt^0yoo*yN1wx6
+z10SQ;z)>7CFom*?X#<~thd4ewbiu%<YMT1%;o9c!4>y1PcJrIH&F|L#e!OPjGt3y6
+z#pkTb|2nuj?iu(3Uy`mnuqNh~L`7;icfj+bVd$_I9q%R82N|88>A+H&q%CAggdt;S
+zIF`;lbHK|oXf&dG@5RfT%kdU`-UsRZ_UamJ4~5Di>m;<XJuj)_-o|A#+2z~VedK#$
+zZ?-Y3BK=^MQHga6z}aWL3$7K0ywUbO5a{Dulj5rsL$7LdG$S#<G@Q3lo}`RZl42ZB
+zb7fL$l&#q((AFcDSDVJ5(Q6!yh5=s38<d*j7+NCdKWW`UdF>a(W}hHl%05QRz*Drw
+zQ2HL}@$(zdA0a`}{uId=a;c6D7`asE29D&Eb^~3x9~d%0ygf`BkCJDR<amzS4E00&
+zlI0Etm@-H0dHx1*k;wD75CO~*#0m7{4Blb{!f8TPvwob7;*a2M`o@r^wg<6)ImC5j
+zbYyi#)^z0h8JFAC=z^$VDVh&9OEh#3TF7+6T<fZ07dc7r{okr%UsNQZJ=OgaUilG;
+e^{7@mwLHmaBT;=XN70!dS17OY|IT)XcmD&C?o2fR
+
