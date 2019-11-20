@@ -1,20 +1,28 @@
-package swtech.pageDesignControl.mapper;
+package swtech.pageDesignControl.service;
 
 import org.apache.ibatis.annotations.Param;
 import swtech.pageDesignControl.entity.Department;
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
 
 /**
  * <p>
- * Mapper 接口
+ * 服务类
  * </p>
  *
  * @author 袁君选
  * @since 2019-11-19
  */
-public interface DepartmentMapper extends BaseMapper<Department> {
+public interface IDepartmentService extends IService<Department> {
+    /**
+     * 查询单个
+     *
+     * @param did
+     * @return
+     */
+    Department selectById(int did);
+
     /**
      * 分页查询
      *
@@ -23,7 +31,7 @@ public interface DepartmentMapper extends BaseMapper<Department> {
      * @param pageSize
      * @return
      */
-    List<Department> selectByPageAndCondition(@Param("department") Department department, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+    List<Department> selectByPageAndCondition(Department department, int pageStart, int pageSize);
 
     /**
      * 查询个数

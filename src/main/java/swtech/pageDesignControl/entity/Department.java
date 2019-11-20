@@ -3,16 +3,15 @@ package swtech.pageDesignControl.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
- * @author jobob
- * @since 2019-11-18
+ * @author 袁君选
+ * @since 2019-11-19
  */
 @Data
 @Accessors(chain = true)
@@ -30,6 +29,11 @@ public class Department {
      * 部门名称
      */
     private String dname;
+
+    /**
+     * 创建时间
+     */
+    private String dcreateTime;
 
 
 }

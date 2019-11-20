@@ -4,7 +4,7 @@
  */
 function regist() {
     $.ajax({
-        url: '/doregist',
+        url: pageDesignControl_HOST+'/doregist',
         type: 'Post',
         contentType: 'application/json',
         dataType: 'json',

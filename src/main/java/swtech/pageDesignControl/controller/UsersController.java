@@ -84,11 +84,21 @@ public class UsersController {
     public String login() {
         return "use/login";
     }
-//
-//    @RequestMapping("/use/index")
-//    public String page13(){
-//        return "use/index";
-//    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "use/index";
+    }
+    @RequestMapping("/manage")
+    public String manage(){
+        return "manage/manage";
+    }
+
+    @RequestMapping("/403")
+    public String index403(){
+        return "use/403";
+    }
+
 //
 //
 //    @RequiresRoles("user")
