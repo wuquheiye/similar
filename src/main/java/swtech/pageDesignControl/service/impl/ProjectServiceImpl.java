@@ -50,7 +50,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         if(insert1 == 0) throw  new ServiceException("updateProject表插入失败");
         WebSocketServer.sendInfo(
                 JSONObject.fromObject(
-                        projectAndScheduleVO).toString(),"2");
+                        projectAndScheduleVO).toString(),"0");
         log.info("项目创建成功，向前台返回判断");
         msg.setStatus("200");
         msg.setMsg(insert);
@@ -69,7 +69,7 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
 
         WebSocketServer.sendInfo(
                 JSONObject.fromObject(
-                        projectAndScheduleVO).toString(),"2");
+                        projectAndScheduleVO).toString(),"0");
         msg.setStatus("200");
         msg.setMsg(i);
         msg.setStatusMsg("项目跟更新成功");

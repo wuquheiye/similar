@@ -42,7 +42,7 @@
                 <b>今日完成工作</b>
             </div>
             <div class="col-xs-12">
-                <textarea class="form-control" class="textarea" style='overflow-y: hidden;
+                <textarea  id="jnowTask" class="form-control" class="textarea" style='overflow-y: hidden;
                             border: 0px;box-shadow: inherit;padding:0px;line-height: 30px;height:35px'
                           onpropertychange="this.style.height = this.scrollHeight + 'px';"
                           oninput="this.style.height = this.scrollHeight + 'px';" onclink="textareasend();">
@@ -53,7 +53,7 @@
                 <b>未完成工作</b>
             </div>
             <div class="col-xs-12">
-                <textarea class="form-control" class="textarea" style='overflow-y: hidden;
+                <textarea id="jundoneTask" class="form-control" class="textarea" style='overflow-y: hidden;
                             border: 0px;padding:0px;line-height: 30px;height:35px'
                           onpropertychange="this.style.height = this.scrollHeight + 'px';"
                           oninput="this.style.height = this.scrollHeight + 'px';" onclink="textareasend();">
@@ -63,7 +63,7 @@
                 <b>明日计划</b>
             </div>
             <div class="col-xs-12">
-                <textarea class="form-control" class="textarea" style='overflow-y: hidden;
+                <textarea id="jtomorrowTask" class="form-control" class="textarea" style='overflow-y: hidden;
                             border: 0px;padding:0px;line-height: 30px;height:35px'
                           onpropertychange="this.style.height = this.scrollHeight + 'px';"
                           oninput="this.style.height = this.scrollHeight + 'px';" onclink="textareasend();">
@@ -73,13 +73,13 @@
                 <b>项目所属</b>
             </div>
             <div class="col-xs-12">
-                <select class="form-control" style="border: 0px">
-                    <option value="请选择所属项目">请选择所属项目</option>
-                    <option value="0">项目一</option>
-                    <option value="1">项目二</option>
-                    <option value="2">项目三</option>
-                    <option value="3">项目四</option>
-                    <option value="4">项目五</option>
+                <select class="form-control" style="border: 0px" id="pid">
+                    <option value="0">请选择所属项目</option>
+                    <option value="1">项目一</option>
+                    <option value="2">项目二</option>
+                    <option value="3">项目三</option>
+                    <option value="4">项目四</option>
+                    <option value="5">项目五</option>
                 </select>
             </div>
         </div>
@@ -124,7 +124,7 @@
     <!--底部-->
     <div class="container navbar-fixed-bottom" >
         <div class="row" style="border-top: 2px solid gainsboro;text-align: center;line-height: 35px">
-            <button type="button" class="btn btn-primary btn-lg btn-block">提交</button>
+            <button type="button" class="btn btn-primary btn-lg btn-block" onclick="insertJournal()">提交</button>
         </div>
     </div>
 </div>
@@ -169,6 +169,73 @@
         }
 
     });
+
+    //获取当前时间
+    function getCurrentDate(){
+        var timeStr = '-';
+        var curDate = new Date();
+        var curYear =curDate.getFullYear();  //获取完整的年份(4位,1970-????)
+        var curMonth = curDate.getMonth()+1;  //获取当前月份(0-11,0代表1月)
+        var curDay = curDate.getDate();       //获取当前日(1-31)
+        var curWeekDay = curDate.getDay();    //获取当前星期X(0-6,0代表星期天)
+        var curHour = curDate.getHours();      //获取当前小时数(0-23)
+        var curMinute = curDate.getMinutes();   // 获取当前分钟数(0-59)
+        var curSec =curDate.getSeconds();      //获取当前秒数(0-59)
+        if(curSec<10){
+            curSec = '0'+curSec;
+        }
+        if(curMinute<10){
+            curMinute = '0'+curMinute;
+        }
+        var Current= curYear+timeStr+curMonth+timeStr+curDay+' '+curHour+':'+curMinute+':'+curSec;
+        console.log(Current);
+        // this.datetime=Current;
+        return Current;
+    }
+
+    /**
+     *  日志提交
+     */
+    function insertJournal() {
+        let uid = 1; //缓存获取当前用户信息
+        let username  = "张三";//缓存获取当前用户名
+        let jnowTask = $("#jnowTask").val();
+        let jundoneTask = $("#jundoneTask").val();
+        let jtomorrowTask = $("#jtomorrowTask").val();
+        let pid = $("#pid").val();
+        let nowtime= getCurrentDate();
+
+        let journal = {
+            "uid" : uid,
+            "uusername" : username,
+            "jnowTask" : jnowTask,
+            "jundoneTask" : jundoneTask,
+            "jtomorrowTask" :jtomorrowTask,
+            "pid" :pid,
+            "jcreateTime" : nowtime
+        }
+        $.ajax({
+            url: pageDesignControl_HOST + "journal/insertJournal",
+            type: "post",
+            dataType: "json",
+            data:JSON.stringify(journal),
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(res.msg==true){
+                    alert("申请已发出")
+                }else{
+                    alert("申请发出失败");
+                }
+            },
+            error: function(){
+                alert("网络信号不好，请重试");
+            }
+
+        })
+
+
+    }
 
 </script>
 </html>

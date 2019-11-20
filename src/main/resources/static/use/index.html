@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="/use/css/index.css">
     <!--jq-->
     <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <!--bootstrap 样式-->
@@ -716,24 +716,43 @@
         //将消息显示在网页上
 
         function getSocket(event) {
-            alert(JSON.stringify(event))
+            // alert(JSON.stringify(event))
             console.log("转json前"+event);
-            console.log("获取updateProject"+event.updateProject);
-            // console.log("转json前获取upProgress"+event.updateProject.upProgress);
-            console.log("转json后"+JSON.stringify(event));
-            console.log("获取updateProject"+JSON.parse(event).updateProject);
-            console.log("转json后获取upProgress"+JSON.parse(event).updateProject.upProgress);
-            datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
-                '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                '                            <b style="font-size: 16px;">'+JSON.parse(event).project.pname+'</b>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+JSON.parse(event).updateProject.upProgress+'%">'+JSON.parse(event).updateProject.upProgress+'%</div>'+
-                '                        </div>\n' +
-                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
-                                        JSON.parse(event).updateProject.upTime
+            // console.log("获取updateProject"+event.updateProject);
+            // // console.log("转json前获取upProgress"+event.updateProject.upProgress);
+            // console.log("转json后"+JSON.stringify(event));
+            // console.log("获取updateProject"+JSON.parse(event).updateProject);
+            // console.log("转json后获取upProgress"+JSON.parse(event).updateProject.upProgress);
+            //判斷接收的消息類型
+            // alert("event.journal"+event.journal);
+            if(JSON.parse(event).updateProject !=undefined){
+                alert("進入項目")
+                datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
+                    '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                    '                            <b style="font-size: 16px;">'+JSON.parse(event).project.pname+'</b>\n' +
+                    '                        </div>\n' +
+                    '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                    '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+JSON.parse(event).updateProject.upProgress+'%">'+JSON.parse(event).updateProject.upProgress+'%</div>'+
+                    '                        </div>\n' +
+                    '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
+                    JSON.parse(event).updateProject.upTime
                 '                        </div>\n' +
                 '                    </div></a>';
+            }else if(JSON.parse(event).journal!=undefined) {
+                // alert("進入日誌")
+                datashow='<a href="../daily/dailyinfo.html" style="color: black"><div class="row" style="position: relative">\n' +
+                            '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                            '                            <b style="font-size: 16px;">'+JSON.parse(event).users.uusername+'的日报</b>\n' +
+                            '                        </div>\n' +
+                            '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                            '                            日志详情:\n' + JSON.parse(event).journal.jnowTask+
+                            '                        </div>\n' +
+                            '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n'
+                            +JSON.parse(event).journal.jcreateTime+
+                            '                        </div>\n' +
+                            '                    </div></a>';
+            }
+            // alert(datashow);
             $("#pushServer").prepend(datashow);
         }
 

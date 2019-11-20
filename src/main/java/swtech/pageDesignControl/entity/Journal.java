@@ -58,8 +58,13 @@ public class Journal  {
     /**
      * 创建时间
      */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
-    private LocalDateTime jcreateTime;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+    private String jcreateTime;
+
+    /**
+     * 日志创建者
+     */
+    private String uusername;
 
 
 }

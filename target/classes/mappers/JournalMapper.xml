@@ -5,16 +5,18 @@
         <id column="jid" property="jid" jdbcType="INTEGER"/>
         <result column="uid" property="uid" jdbcType="INTEGER"/>
         <result column="pid" property="pid" jdbcType="INTEGER"/>
+        <result column="uusername" property="uusername" jdbcType="VARCHAR" />
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="swtech.pageDesignControl.entity.Journal" extends="BaseResultMap">
         <result column="jnow_task" property="jnowTask" jdbcType="LONGVARCHAR"/>
         <result column="jtomorrow_task" property="jtomorrowTask" jdbcType="LONGVARCHAR"/>
         <result column="jundone_task" property="jundoneTask" jdbcType="LONGVARCHAR"/>
+        <result column="jcreate_time" property="jcreateTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List">
     jid, uid, pid
   </sql>
     <sql id="Blob_Column_List">
-    jnow_task, jtomorrow_task, jundone_task
+    jnow_task, jtomorrow_task, jundone_task , jcreate_time
   </sql>
 </mapper>

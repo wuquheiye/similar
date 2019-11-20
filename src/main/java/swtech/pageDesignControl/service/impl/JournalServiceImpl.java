@@ -7,13 +7,17 @@ import swtech.pageDesignControl.common.exception.ServiceException;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.websocket.WebSocketServer;
 import swtech.pageDesignControl.entity.Journal;
+import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.JournalMapper;
+import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IJournalService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * <p>
@@ -30,6 +34,10 @@ public class JournalServiceImpl extends ServiceImpl<JournalMapper, Journal> impl
     @Resource
     private  JournalMapper journalMapper;
 
+    @Resource
+    private UsersMapper usersMapper;
+
+
     @Override
     @Transactional
     public ReturnMsg insertJournal(Journal journal) throws IOException {
@@ -38,7 +46,11 @@ public class JournalServiceImpl extends ServiceImpl<JournalMapper, Journal> impl
         int insert = journalMapper.insert(journal);
         if(insert == 0) throw  new ServiceException("日志录入失败");
         //暂时推送到公共窗口测试 测试后推送给指定窗口
-        WebSocketServer.sendInfo(JSONObject.fromObject(journal).toString(),"0");
+        Users users = usersMapper.selectById(journal.getUid());
+        Map<String,Object> map = new HashMap<>();
+        map.put("journal",journal);
+        map.put("users",users);
+        WebSocketServer.sendInfo(JSONObject.fromObject(map).toString(),"0");
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("日志录入成功");
