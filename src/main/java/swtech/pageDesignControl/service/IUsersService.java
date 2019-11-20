@@ -8,7 +8,7 @@ import swtech.pageDesignControl.entity.Users;
  *  服务类
  * </p>
  *
- * @author jobob
+ * @author 李鸿智
  * @since 2019-11-15
  */
 public interface IUsersService extends IService<Users> {

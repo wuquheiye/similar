@@ -44,12 +44,14 @@ public class ShiroConfiguration {
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
         // 未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/403.html");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         // 权限控制map.过滤器链
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         filterChainDefinitionMap.put("/login", "anon");
 //        filterChainDefinitionMap.put("/*", "anon");
-        filterChainDefinitionMap.put("/interface/*", "authc");
+//        filterChainDefinitionMap.put("/interface/*", "authc");
+        filterChainDefinitionMap.put("/interface/*", "anon");
+        filterChainDefinitionMap.put("/manage/*", "anon");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

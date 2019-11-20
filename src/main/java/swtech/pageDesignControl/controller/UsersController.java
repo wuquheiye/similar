@@ -16,7 +16,12 @@ import swtech.pageDesignControl.service.IUsersService;
 import javax.annotation.Resource;
 
 /**
- * Created by Administrator on 2018/6/24 0024.
+ * <p>
+ * 前端控制器
+ * </p>
+ *
+ * @author 李鸿智
+ * @since 2019-11-19
  */
 @Controller
 public class UsersController {
@@ -84,11 +89,21 @@ public class UsersController {
     public String login() {
         return "use/login";
     }
-//
-//    @RequestMapping("/use/index")
-//    public String page13(){
-//        return "use/index";
-//    }
+
+    @RequestMapping("/index")
+    public String index(){
+        return "use/index";
+    }
+    @RequestMapping("/manage")
+    public String manage(){
+        return "manage/manage";
+    }
+
+    @RequestMapping("/403")
+    public String index403(){
+        return "use/403";
+    }
+
 //
 //
 //    @RequiresRoles("user")

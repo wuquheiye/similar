@@ -2,7 +2,6 @@ package swtech.pageDesignControl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.entity.Department;
@@ -17,7 +16,7 @@ import javax.annotation.Resource;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ShiroWebApplicationTests {
+public class ShiroWebApplicationTests1 {
     @Resource
     private UsersMapper usersMapper;
 
@@ -41,7 +40,7 @@ public class ShiroWebApplicationTests {
         Department department = new Department();
         department.setDname("开发");
         departmentMapper.insert(department);
-        System.out.println(departmentMapper.findAll());
+//        System.out.println(departmentMapper.findAll());
 
 	}
 
