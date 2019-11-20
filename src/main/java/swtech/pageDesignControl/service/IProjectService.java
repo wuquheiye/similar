@@ -1,7 +1,11 @@
 package swtech.pageDesignControl.service;
 
+import swtech.pageDesignControl.common.vo.ProjectAndScheduleVO;
+import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Project;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.io.IOException;
 
 /**
  * <p>
@@ -12,5 +16,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2019-11-18
  */
 public interface IProjectService extends IService<Project> {
+
+    ReturnMsg createProject(ProjectAndScheduleVO projectAndScheduleVO) throws IOException;
+
+    ReturnMsg updateProject(ProjectAndScheduleVO projectAndScheduleVO) throws IOException;
 
 }

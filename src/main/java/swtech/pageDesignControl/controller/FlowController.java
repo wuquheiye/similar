@@ -21,6 +21,7 @@ import swtech.pageDesignControl.service.IFlowService;
 @Slf4j
 @Controller
 @RequestMapping("/flow")
+@CrossOrigin
 public class FlowController  {
 
     @Autowired
@@ -28,16 +29,16 @@ public class FlowController  {
 
     /**
      * 根据id查询历史请假记录
-     * @param fid id
+     * @param uid  uid
      * @param ftype 申请类型
      * @return
      */
     @ResponseBody
     @GetMapping("selectLeaveAll")
-    public  ReturnMsg  selectLeaveAll (@RequestParam("fid") Integer fid,@RequestParam("ftype") Integer ftype){
+    public  ReturnMsg  selectLeaveAll (@RequestParam("uid") Integer uid,@RequestParam("ftype") Integer ftype){
         ReturnMsg msg = new ReturnMsg();
         try {
-            msg = iFlowService.selectLeaveAll(fid,ftype);
+            msg = iFlowService.selectLeaveAll(uid,ftype);
         } catch (Exception e) {
             e.printStackTrace();
             log.info(e.getMessage());
@@ -58,18 +59,29 @@ public class FlowController  {
     @PostMapping("leaveInsert")
     public ReturnMsg leaveInsert(@RequestBody Flow leave){
         ReturnMsg msg =new ReturnMsg();
-        boolean save = iFlowService.save(leave);
-        if(save==true){
-           msg.setStatus("200");
-           msg.setMsg(save);
-            msg.setStatusMsg("请假申请录入成功");
-        }else{
+        try {
+            msg = iFlowService.leaveInsert(leave);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info(e.getMessage());
             msg.setStatus("201");
-            msg.setMsg(save);
             msg.setStatusMsg("请假申请录入失败");
+            msg.setMsg(e.getMessage());
         }
         return  msg;
+    }
 
+    /**
+     * 流程审批
+     * @param flow
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("fuidCharge")
+    public  ReturnMsg fuidCharge(@RequestBody Flow flow){
+        ReturnMsg msg = new ReturnMsg();
+
+        return msg;
     }
 
 }

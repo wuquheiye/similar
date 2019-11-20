@@ -40,12 +40,12 @@ public class Project  {
     /**
      * 项目创建时间
      */
-    private LocalDateTime pstartTime;
+    private String pstartTime;
 
     /**
      * 项目结束时间
      */
-    private LocalDateTime pendTime;
+    private String pendTime;
 
     /**
      * 项目团队

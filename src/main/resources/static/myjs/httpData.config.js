@@ -4,17 +4,17 @@ localHost = '127.0.0.1';
 var pageDesignControl_HOST = 'http://' + localHost + ':43008/';
 
 //枚举  fstatus 申请状态
-var fstatus={
+var fstatusFlow={
 
 }
 // 申请类型
-var ftype ={
+var ftypeFlow ={
     LEAVE :{code:1,desc:"请假申请"},
     OVERTIME : {code:2,desc:"加班申请"}
 }
 
 //请假类型
-var fleaveType={
+var fleaveTypeFlow={
     ANNUAL :{code:1,desc:"年假"},
     CASUAL :{code:2,desc:"事假"},
     SICK   :{code:3,desc:"病假"},
