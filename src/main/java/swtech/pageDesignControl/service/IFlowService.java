@@ -4,6 +4,8 @@ import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Flow;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.io.IOException;
+
 /**
  * <p>
  *  服务类
@@ -14,6 +16,10 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IFlowService extends IService<Flow> {
 
+    ReturnMsg leaveInsert(Flow leave) throws IOException;
+
     ReturnMsg  selectLeaveAll(Integer fid,Integer ftype);
+
+    ReturnMsg fuidCharge(Flow flow) throws IOException;
 
 }

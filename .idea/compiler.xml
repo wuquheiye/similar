@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="swtech-service-pageDesign-control" />
         <module name="li_jie_bg" />
+        <module name="swtech-service-pageDesign-control" />
         <module name="li_jie" />
       </profile>
     </annotationProcessing>

@@ -5,6 +5,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -42,7 +45,9 @@ public class Flow implements Serializable {
     /**
      * 申请日期
      */
-    private LocalDateTime fapplyTime;
+
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm")
+    private String fapplyTime;
 
     /**
      * 休假类型
@@ -52,11 +57,14 @@ public class Flow implements Serializable {
     /**
      * 申请开始时间
      */
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm")
     private LocalDateTime fstartTime;
 
     /**
      * 申请结束时间
      */
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm")
     private LocalDateTime fendTime;
 
     /**
@@ -82,7 +90,8 @@ public class Flow implements Serializable {
     /**
      * 主管处理时间
      */
-    private LocalDateTime fuidChargeHand;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+    private String fuidChargeHand;
 
     /**
      * 获取审批经理id
@@ -97,7 +106,8 @@ public class Flow implements Serializable {
     /**
      * 经理审批时间
      */
-    private LocalDateTime fuidManagerHand;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+    private String fuidManagerHand;
 
     /**
      * 获取确认人事id
@@ -107,7 +117,8 @@ public class Flow implements Serializable {
     /**
      * 人事确认时间
      */
-    private LocalDateTime fuidStaffingHand;
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+    private String fuidStaffingHand;
 
 
 }

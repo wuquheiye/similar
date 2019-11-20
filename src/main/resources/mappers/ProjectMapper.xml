@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="swtech.pageDesignControl.mapper.ProjectMapper">
-
+    <resultMap id="BaseResultMap" type="swtech.pageDesignControl.entity.Project" >
+        <id column="pid" property="pid" jdbcType="INTEGER" />
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="pname" property="pname" jdbcType="VARCHAR" />
+        <result column="pstart_time" property="pstartTime" jdbcType="TIMESTAMP" />
+        <result column="pend_time" property="pendTime" jdbcType="TIMESTAMP" />
+        <result column="pteam" property="pteam" jdbcType="VARCHAR" />
+        <result column="up_id" property="upId" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    pid, uid, pname, pstart_time, pend_time, pteam, up_id
+  </sql>
 </mapper>

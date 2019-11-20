@@ -101,8 +101,8 @@
                 <div class="col-xs-6" >
                     <select class="form-control" style="border: 0px" id="fleaveType">
                         <option>请选择休假类型</option>
-                        <option th:value="0">年假</option>
-                        <option th:value="1">事假</option>
+                        <option value="0">年假</option>
+                        <option value="1">事假</option>
                         <option value="2">病假</option>
                         <option value="3">婚假</option>
                         <option value="4">产假及哺乳假</option>
@@ -170,14 +170,13 @@
                 </div>
                 <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 100%;background: #F4F4F4;margin: auto">
                 <div class="col-xs-12" id="history_flow">
-                    <div class="row" style="height: 30px">
-                        <div class="col-xs-6" style="line-height: 30px;">事假</div>
-                        <div class="col-xs-6" style="line-height: 30px;text-align: right">
-                            2019-10-06
-                        </div>
-                    </div>
-                    <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">
-
+<!--                    <div class="row" style="height: 30px">-->
+<!--                        <div class="col-xs-6" style="line-height: 30px;">事假</div>-->
+<!--                        <div class="col-xs-6" style="line-height: 30px;text-align: right">-->
+<!--                            2019-10-06-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">-->
                 </div>
             </div>
         </div>
@@ -219,29 +218,90 @@
 </body>
 
 <script>
+    var uid =1;// window.sessionStorage.getItem("user");
     $(function () {
-        $("#defuletTime").text(getCurrentDate().split(" ")[0]);
+        $("#defuletTime").text(getCurrentDate());
         //获取选择时间
         // $("#duration").text("");
+        selectLeaveAll();
     })
-    
+    /**
+     *  获取历史申请记录
+     */
+    function selectLeaveAll() {
+        let showdata='';
+        $.ajax({
+            url: pageDesignControl_HOST + "flow/selectLeaveAll?fid="+uid+"&&ftype="+ftypeFlow.LEAVE.code,
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(res.msg!=null){
+                    $.each(res.msg,function (index,value) {
+                        showdata+='<div class="row" style="height: 30px">\n' +
+                            '                        <div class="col-xs-6" style="line-height: 30px;">事假</div>\n' +
+                            '                        <div class="col-xs-6" style="line-height: 30px;text-align: right">\n' +
+                                                value.fapplyTime+
+                            '                        </div>\n' +
+                            '                    </div>\n' +
+                            '                    <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">';
+                    })
+                    $("#history_flow").html(showdata);
+                }else{
+                    alert("申请发出失败");
+                }
+            },
+            error: function(){
+                alert("网络信号不好，请重试");
+            }
+
+        })
+    }
+
+
+    /**
+     * 录入请假申请
+     */
     function commitflow() {
-        let ftype = ftype.OVERTIME.code;
-        let uid = 1;// window.sessionStorage.getItem("user");
+        let ftype= ftypeFlow.LEAVE.code;
+        alert(ftype);
+        // let uid = 1;
         let fapplyTime = $("#defuletTime").text();
         let fleaveType = $("#fleaveType").val();
+        alert(fleaveType);
         let fstartTime = $("#date-start").val();
         let fendTime = $("#date-end").val();
         let fapplyReason = $("#fapplyReason").val();
         let leaveflow={
             "ftype" : ftype,
             "uid" :uid,
+            "fleaveType":fleaveType,
             "fapplyTime" : fapplyTime,
             "fstartTime":fstartTime,
             "fendTime" :　fendTime,
             "fapplyReason":fapplyReason
         }
+        alert(JSON.stringify(leaveflow))
+        $.ajax({
+                url: pageDesignControl_HOST + "flow/leaveInsert",
+                type: "post",
+                dataType: "json",
+                data:JSON.stringify(leaveflow),
+                contentType: 'application/json; charset=UTF-8',
+                async: false,
+                success: function(res) {
+                if(res.msg==true){
+                    alert("申请已发出")
+                }else{
+                    alert("申请发出失败");
+                }
+            },
+            error: function(){
+                alert("网络信号不好，请重试");
+            }
 
+        })
 
     }
 
