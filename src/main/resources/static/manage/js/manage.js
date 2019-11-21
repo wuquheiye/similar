@@ -1,4 +1,536 @@
 /**
+ * 角色权限关系start
+ */
+var rolePermissionManageId = 0;
+$(function () {
+    // 左侧点击变色和显示隐藏并获取角色权限关系列表
+    $(".manageLeft").on("click", "#rolePermissionManage", function () {
+        $("#rolePermissionManageName").val("");
+        // if (!$(this).is('.manageActive')) {
+        $(".manageLeft .manageClick").removeClass("manageActive");
+        $(this).addClass("manageActive");
+        $(".manageRight .rightManageDiv").addClass("hidden");
+        $(".rolePermissionManage").removeClass("hidden");
+        // }
+        getRolePermissionList(1);
+    });
+
+    // 点击分页
+    $("#rolePermissionManagePageDiv").on("click", "a", function () {
+        getRolePermissionList($(this).text());
+    });
+
+    // 清除
+    $(".rolePermissionManage").on("click", "#rolePermissionManageClean", function () {
+        $("#rolePermissionManageName").val("");
+    });
+
+    // 查询
+    $(".rolePermissionManage").on("click", "#rolePermissionManageSearch", function () {
+        getRolePermissionList(1)
+    });
+
+    // 删除单个角色权限关系
+    $(".rolePermissionManage").on("click", ".delete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            var pid = $(this).next().attr("class");
+            removeRolePermission(pid);
+        }
+    });
+
+    // 删除多个角色权限关系
+    $(".rolePermissionManage").on("click", ".rolePermissionManageDelete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            $("input:checkbox[class=rolePermissionManageCheckBox]:checked").each(function () {
+                var pid = $(this).next().attr("class");
+                removeRolePermission(pid);
+            });
+        }
+    });
+
+    // 增加角色权限关系
+    $(".rolePermissionManageEdit").on("click", "#saveRolePermission", function () {
+        saveRolePermission();
+    });
+
+    // 更改角色权限关系
+    $(".rolePermissionManageEdit").on("click", "#updateRolePermission", function () {
+        updateRolePermission();
+    });
+})
+
+// 角色权限关系管理
+$(function () {
+    // 点击添加
+    $(".manageRight").on("click", ".rolePermissionManageAdd", function () {
+        rolePermissionManageId = -1;
+        $(".manageRight .rolePermissionManage").addClass("hidden");
+        $(".manageRight").children(".rolePermissionManageEdit").removeClass("hidden");
+        $(".RolePermission").attr("id", "saveRolePermission");
+        $(".rolePermissionManageEdit #dname").val("");
+    });
+    // 点击更新
+    $(".manageRight").on("click", ".rolePermissionManageUpdate", function () {
+        rolePermissionManageId = $(this).prev().attr("class");
+        getRolePermission();
+        $(".manageRight .rolePermissionManage").addClass("hidden");
+        $(".manageRight").children(".rolePermissionManageEdit").removeClass("hidden");
+        $(".RolePermission").attr("id", "updateRolePermission");
+    });
+    // 点击返回
+    $(".manageRight").on("click", ".rolePermissionManageBack", function () {
+        $(".manageRight .rolePermissionManage").removeClass("hidden");
+        $(".manageRight").children(".rolePermissionManageEdit").addClass("hidden");
+        getRolePermissionList(1);
+    });
+})
+
+/**
+ * 获取角色权限关系列表
+ */
+function getRolePermission() {
+    var rpid = rolePermissionManageId;
+    $.ajax({
+        url: pageDesignControl_HOST + '/manage/rolePermission/selectbyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"rpid": rpid},
+        success: function (msg) {
+            var rolePermissionList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                // $(".rolePermissionManageEdit #dname").attr("value",msg.msg.pname);
+                $(".rolePermissionManageEdit #pname").val(msg.msg.pname);
+                $(".rolePermissionManageEdit #ptype").val(msg.msg.ptype);
+            }
+        }
+    });
+}
+
+/**
+ * 更改角色权限关系
+ */
+function updateRolePermission() {
+    var pid = rolePermissionManageId;
+    var pname = $(".rolePermissionManageEdit #pname").val();
+    var ptype = $(".rolePermissionManageEdit #ptype").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/rolePermission/updatebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"ptype": ptype, "pname": pname, "pid": pid},
+        success: function (msg) {
+            var rolePermissionList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                alert("更改成功")
+            }
+        }
+    });
+}
+
+/**
+ * 添加角色权限关系
+ */
+function saveRolePermission() {
+    var pname = $(".rolePermissionManageEdit #pname").val();
+    var ptype = $(".rolePermissionManageEdit #ptype").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/rolePermission/save',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"pname": pname, "ptype": ptype},
+        success: function (msg) {
+            var rolePermissionList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                alert("添加成功")
+            }
+        }
+    });
+}
+
+/**
+ * 删除单个角色权限关系
+ */
+function removeRolePermission(pid) {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/rolePermission/removebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"rpid": rpid},
+        success: function (msg) {
+            if (msg.status == 200) {
+                getRolePermissionList(1);
+                alert("删除成功")
+            }
+        }
+    });
+}
+
+// 角色权限关系管理所有checkbox全选
+function rolePermissionManageCheckbox() {
+    if ($(".rolePermissionManage .rolePermissionManageCheckBoxManage").is(':checked')) {
+        $(".rolePermissionManage .rolePermissionManageCheckBox").prop("checked", true);
+    } else {
+        $(".rolePermissionManage .rolePermissionManageCheckBox").prop("checked", false);
+    }
+}
+
+/**
+ * 获取角色权限关系列表
+ */
+function getRolePermissionList(page) {
+    var pname = $("#rolePermissionManageName").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/rolePermission/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"pname": pname, "page": page},
+        success: function (msg) {
+            var rolePermissionList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                // 添加列表
+                var rolePermissionListStr = "";
+                for (var i = 0; i < msg.msg.length; i++) {
+                    rolePermissionListStr += '<tr class="active">' +
+                        '<td class="text-center">' +
+                        '<input type="checkbox" class="rolePermissionManageCheckBox">' + msg.msg[i].pname +
+                        '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
+                        '</td>' +
+                        '<td class="text-center">' +
+                        '<input type="checkbox" class="rolePermissionManageCheckBox">' + msg.msg[i].ptype +
+                        '</td>' +
+                        '<td class="text-center">' +
+                        '<button type="button" class="btn btn-info delete" >删除</button>' +
+                        '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
+                        '<button type="button" class="btn btn-warning manageEdit rolePermissionManageUpdate">修改</button>' +
+                        '<input type="hidden" class="rolePermissionManageEdit">' +
+                        '</td>' +
+                        '</tr>'
+                }
+                $("#rolePermissionManageTable").empty();
+                $("#rolePermissionManageTable").append(rolePermissionListStr);
+                // 回显搜索名
+                $("#rolePermissionManageName").val(pname);
+                // 是否显示分页
+                if (msg.totalSize <= 10) {
+                    $("#rolePermissionManagePageDiv").addClass("hidden");
+                } else {
+                    $("#rolePermissionManagePageDiv").removeClass("hidden");
+                }
+                // 分页具体信息
+                var pageSpanStr = "第 " + msg.pageStart + " 条 到 " + (msg.pageEnd < msg.totalSize ? msg.pageEnd : msg.totalSize) + " 条 ，共 " + msg.totalSize + " 条记录, 当前第 " + msg.currentPage + "页";
+                $("#rolePermissionManagePageSpan").text(pageSpanStr);
+                var pageUlStr = "";
+                if (parseInt(msg.currentPage) - 2 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 2) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) - 1 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 1) + '</a></li>';
+                }
+                pageUlStr += '<li><a href="#">' + msg.currentPage + '</a></li>';
+                if (parseInt(msg.currentPage) + 1 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 1) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) + 2 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 2) + '</a></li>';
+                }
+                $("#rolePermissionManagePageUl").empty();
+                $("#rolePermissionManagePageUl").append(pageUlStr);
+            }
+        }
+    });
+}
+
+/**
+ * 角色权限关系end
+ */
+
+/**
+ * 用户start
+ */
+var usersManageId = 0;
+$(function () {
+    // 左侧点击变色和显示隐藏并获取用户列表
+    $(".manageLeft").on("click", "#usersManage", function () {
+        $("#usersManageName").val("");
+        // if (!$(this).is('.manageActive')) {
+            $(".manageLeft .manageClick").removeClass("manageActive");
+            $(this).addClass("manageActive");
+            $(".manageRight .rightManageDiv").addClass("hidden");
+            $(".usersManage").removeClass("hidden");
+        // }
+        getUsersList(1);
+    });
+
+    // 点击分页
+    $("#usersManagePageDiv").on("click", "a", function () {
+        getUsersList($(this).text());
+    });
+
+    // 清除
+    $(".usersManage").on("click", "#usersManageClean", function () {
+        $("#usersManageName").val("");
+    });
+
+    // 查询
+    $(".usersManage").on("click", "#usersManageSearch", function () {
+        getUsersList(1)
+    });
+
+    // 删除单个用户
+    $(".usersManage").on("click", ".delete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            var uid = $(this).next().attr("class");
+            removeUsers(uid);
+        }
+    });
+
+    // 删除多个用户
+    $(".usersManage").on("click", ".usersManageDelete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            $("input:checkbox[class=usersManageCheckBox]:checked").each(function () {
+                var uid = $(this).next().attr("class");
+                removeUsers(uid);
+            });
+        }
+    });
+
+    // 增加用户
+    $(".usersManageEdit").on("click", "#saveUsers", function () {
+        saveUsers();
+    });
+
+    // 更改用户
+    $(".usersManageEdit").on("click", "#updateUsers", function () {
+        updateUsers();
+    });
+
+})
+
+// 用户管理
+$(function () {
+    // 点击添加
+    $(".manageRight").on("click", ".usersManageAdd", function () {
+        usersManageId = -1;
+        $(".manageRight .usersManage").addClass("hidden");
+        $(".manageRight").children(".usersManageEdit").removeClass("hidden");
+        $(".Users").attr("id", "saveUsers");
+        $(".usersManageEdit #uusername").val("");
+        $(".usersManageEdit #did").val("");
+        $(".usersManageEdit #utelephonenumber").val("");
+        $(".usersManageEdit #upassword").val("");
+    });
+    // 点击更新
+    $(".manageRight").on("click", ".usersManageUpdate", function () {
+        usersManageId = $(this).prev().attr("class");
+        getUsers();
+        $(".manageRight .usersManage").addClass("hidden");
+        $(".manageRight").children(".usersManageEdit").removeClass("hidden");
+        $(".Users").attr("id", "updateUsers");
+    });
+    // 点击返回
+    $(".manageRight").on("click", ".usersManageBack", function () {
+        $(".manageRight .usersManage").removeClass("hidden");
+        $(".manageRight").children(".usersManageEdit").addClass("hidden");
+        getUsersList(1);
+    });
+})
+
+/**
+ * 获取用户列表
+ */
+function getUsers() {
+    var uid = usersManageId;
+    $.ajax({
+        url: pageDesignControl_HOST + '/manage/users/selectbyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"uid": uid},
+        success: function (msg) {
+            var usersList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                // $(".usersManageEdit #rname").attr("value",msg.msg.rname);
+                $(".usersManageEdit #uusername").val(msg.msg.uusername);
+                $(".usersManageEdit #did").val(msg.msg.did);
+                $(".usersManageEdit #utelephonenumber").val(msg.msg.utelephonenumber);
+                $(".usersManageEdit #upassword").val(msg.msg.upassword);
+            }
+        }
+    });
+}
+
+/**
+ * 更改用户
+ */
+function updateUsers() {
+    var uid = usersManageId;
+    var uusername = $(".usersManageEdit #uusername").val();
+    var did = $(".usersManageEdit #did").val();
+    var utelephonenumber = $(".usersManageEdit #utelephonenumber").val();
+    var upassword = $(".usersManageEdit #upassword").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/users/updatebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {
+            "uid": uid,
+            "uusername": uusername,
+            "did": did,
+            "utelephonenumber": utelephonenumber,
+            "upassword": upassword
+        },
+        success: function (msg) {
+            var usersList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                alert("更改成功")
+            }
+        }
+    });
+}
+
+/**
+ * 添加用户
+ */
+function saveUsers() {
+    var uusername = $(".usersManageEdit #uusername").val();
+    var did = $(".usersManageEdit #did").val();
+    var utelephonenumber = $(".usersManageEdit #utelephonenumber").val();
+    var upassword = $(".usersManageEdit #upassword").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/users/save',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {
+            "uusername": uusername,
+            "did": did,
+            "utelephonenumber": utelephonenumber,
+            "upassword": upassword
+        },
+        success: function (msg) {
+            var usersList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                alert("添加成功")
+            }
+        }
+    });
+}
+
+/**
+ * 删除单个用户
+ */
+function removeUsers(uid) {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/users/removebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"uid": uid},
+        success: function (msg) {
+            if (msg.status == 200) {
+                getUsersList(1);
+                alert("删除成功")
+            }
+        }
+    });
+}
+
+/**
+ * 用户管理所有checkbox全选
+ */
+function usersManageCheckbox() {
+    if ($(".usersManage .usersManageCheckBoxManage").is(':checked')) {
+        $(".usersManage .usersManageCheckBox").prop("checked", true);
+    } else {
+        $(".usersManage .usersManageCheckBox").prop("checked", false);
+    }
+}
+
+/**
+ * 获取用户列表
+ */
+function getUsersList(page) {
+    var uusername = $("#usersManageName").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/users/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"uusername": uusername, "page": page},
+        success: function (msg) {
+            var usersmentList = JSON.stringify(msg.msg);
+            if (msg.status == 200) {
+                // 添加列表
+                var usersListStr = "";
+                for (var i = 0; i < msg.msg.length; i++) {
+                    usersListStr += '<tr class="active">' +
+                        '<td class="text-center">' +
+                        '<input type="checkbox" class="usersManageCheckBox">' + msg.msg[i].uid +
+                        '<input type="hidden" class="' + msg.msg[i].uid + '" />' +
+                        '</td>' +
+                        '<td class="text-center">' + msg.msg[i].uusername +'</td>' +
+                        '<td class="text-center">' + msg.msg[i].did +'</td>' +
+                        '<td class="text-center">' + msg.msg[i].utelephonenumber+'</td>' +
+                        '<td class="text-center">' +
+                        '<ul class="Switch"><li><input type="checkbox" name="Storage" id="users'+ msg.msg[i].uid +'" /><label for="users'+ msg.msg[i].uid +'"><em></em></label></li></ul>' +
+                        '</td>' +
+                        '<td class="text-center">' + msg.msg[i].ucreationtime+'</td>' +
+                        '<td class="text-center">' +
+                        '<button type="button" class="btn btn-info delete">删除</button>' +
+                        '<input type="hidden" class="' + msg.msg[i].uid + '" />' +
+                        '<button type="button" class="btn btn-warning manageEdit usersManageUpdate">修改</button>' +
+                        '<input type="hidden" class="usersManageEdit">' +
+                        '</td>' +
+                        '</tr>'
+                }
+                $("#usersManageTable").empty();
+                $("#usersManageTable").append(usersListStr);
+                // 回显搜索名
+                $("#usersManageName").val(uusername);
+                // 是否显示分页
+                if (msg.totalSize <= 10) {
+                    $("#usersManagePageDiv").addClass("hidden");
+                } else {
+                    $("#usersManagePageDiv").removeClass("hidden");
+                }
+                // 分页具体信息
+                var pageSpanStr = "第 " + msg.pageStart + " 条 到 " + (msg.pageEnd < msg.totalSize ? msg.pageEnd : msg.totalSize) + " 条 ，共 " + msg.totalSize + " 条记录, 当前第 " + msg.currentPage + "页";
+                $("#usersManagePageSpan").text(pageSpanStr);
+                var pageUlStr = "";
+                if (parseInt(msg.currentPage) - 2 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 2) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) - 1 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 1) + '</a></li>';
+                }
+                pageUlStr += '<li><a href="#">' + msg.currentPage + '</a></li>';
+                if (parseInt(msg.currentPage) + 1 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 1) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) + 2 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 2) + '</a></li>';
+                }
+                $("#usersManagePageUl").empty();
+                $("#usersManagePageUl").append(pageUlStr);
+            }
+        }
+    });
+}
+/**
+ * 用户end
+ */
+
+/**
  * 权限start
  */
 var permissionManageId = 0;
@@ -6,12 +538,12 @@ $(function () {
     // 左侧点击变色和显示隐藏并获取权限列表
     $(".manageLeft").on("click", "#permissionManage", function () {
         $("#permissionManageName").val("");
-        if (!$(this).is('.manageActive')) {
+        // if (!$(this).is('.manageActive')) {
             $(".manageLeft .manageClick").removeClass("manageActive");
             $(this).addClass("manageActive");
             $(".manageRight .rightManageDiv").addClass("hidden");
             $(".permissionManage").removeClass("hidden");
-        }
+        // }
         getPermissionList(1);
     });
 
@@ -121,12 +653,10 @@ function updatePermission() {
         type: 'Get',
         contentType: 'application/json',
         dataType: 'json',
-        data: {"ptype": ptype,"pname": pname, "pid": pid},
+        data: {"ptype": ptype, "pname": pname, "pid": pid},
         success: function (msg) {
             var permissionList = JSON.stringify(msg.msg);
             if (msg.status == 200) {
-                $(".permissionManageEdit #pname").val("");
-                $(".permissionManageEdit #ptype").val("");
                 alert("更改成功")
             }
         }
@@ -144,12 +674,10 @@ function savePermission() {
         type: 'Get',
         contentType: 'application/json',
         dataType: 'json',
-        data: {"pname": pname,"ptype": ptype},
+        data: {"pname": pname, "ptype": ptype},
         success: function (msg) {
             var permissionList = JSON.stringify(msg.msg);
             if (msg.status == 200) {
-                $(".permissionManageEdit #pname").val("");
-                $(".permissionManageEdit #ptype").val("");
                 alert("添加成功")
             }
         }
@@ -201,14 +729,13 @@ function getPermissionList(page) {
                 // 添加列表
                 var permissionListStr = "";
                 for (var i = 0; i < msg.msg.length; i++) {
-                    permissionListStr += '<tr class="active">' +
-                        '<td class="text-center">' +
-                        '<input type="checkbox" class="permissionManageCheckBox">' + msg.msg[i].pname +
+                    permissionListStr += '<tr class="">' +
+                        '<td class="text-center">'+ msg.msg[i].pname +
                         '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
                         '</td>' +
-                        '<td class="text-center">' +
-                        '<input type="checkbox" class="permissionManageCheckBox">' + msg.msg[i].ptype +
-                        '</td>' +
+                        '<td class="text-center">' + msg.msg[i].purl + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].ptype + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].ppermission + '</td>' +
                         '<td class="text-center">' +
                         '<button type="button" class="btn btn-info delete" >删除</button>' +
                         '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
@@ -263,12 +790,12 @@ $(function () {
     // 左侧点击变色和显示隐藏并获取角色列表
     $(".manageLeft").on("click", "#roleManage", function () {
         $("#roleManageName").val("");
-        if (!$(this).is('.manageActive')) {
+        // if (!$(this).is('.manageActive')) {
             $(".manageLeft .manageClick").removeClass("manageActive");
             $(this).addClass("manageActive");
             $(".manageRight .rightManageDiv").addClass("hidden");
             $(".roleManage").removeClass("hidden");
-        }
+        // }
         getRoleList(1);
     });
 
@@ -381,7 +908,6 @@ function updateRole() {
         success: function (msg) {
             var roleList = JSON.stringify(msg.msg);
             if (msg.status == 200) {
-                $(".roleManageEdit #rname").val("");
                 alert("更改成功")
             }
         }
@@ -402,7 +928,6 @@ function saveRole() {
         success: function (msg) {
             var roleList = JSON.stringify(msg.msg);
             if (msg.status == 200) {
-                $(".roleManageEdit #rname").val("");
                 alert("添加成功")
             }
         }
@@ -428,7 +953,9 @@ function removeRole(rid) {
     });
 }
 
-// 角色管理所有checkbox全选
+/**
+ * 角色管理所有checkbox全选
+ */
 function roleManageCheckbox() {
     if ($(".roleManage .roleManageCheckBoxManage").is(':checked')) {
         $(".roleManage .roleManageCheckBox").prop("checked", true);
@@ -500,7 +1027,6 @@ function getRoleList(page) {
         }
     });
 }
-
 /**
  * 角色end
  */
@@ -513,12 +1039,12 @@ $(function () {
     // 左侧点击变色和显示隐藏并获取部门列表
     $(".manageLeft").on("click", "#departmentManage", function () {
         $("#departmentManageName").val("");
-        if (!$(this).is('.manageActive')) {
+        // if (!$(this).is('.manageActive')) {
             $(".manageLeft .manageClick").removeClass("manageActive");
             $(this).addClass("manageActive");
             $(".manageRight .rightManageDiv").addClass("hidden");
             $(".departmentManage").removeClass("hidden");
-        }
+        // }
         getDepartmentList(1);
     });
 
@@ -630,7 +1156,6 @@ function updateDepartment() {
         success: function (msg) {
             var departmentList = JSON.stringify(msg.msg);
             if (msg.status == 200) {
-                $(".departmentManageEdit #dname").val("");
                 alert("更改成功")
             }
         }
@@ -651,7 +1176,6 @@ function saveDepartment() {
         success: function (msg) {
             var departmentList = JSON.stringify(msg.msg);
             if (msg.status == 200) {
-                $(".departmentManageEdit #dname").val("");
                 alert("添加成功")
             }
         }
@@ -677,7 +1201,9 @@ function removeDepartment(did) {
     });
 }
 
-// 部门管理所有checkbox全选
+/**
+ * 部门管理所有checkbox全选
+ */
 function departmentManageCheckbox() {
     if ($(".departmentManage .departmentManageCheckBoxManage").is(':checked')) {
         $(".departmentManage .departmentManageCheckBox").prop("checked", true);
@@ -750,73 +1276,24 @@ function getDepartmentList(page) {
         }
     });
 }
-
 /**
  * 部门end
  */
 
-// // 用户管理启用
-// $(function () {
-//     $(".manageRight").on("click", ".manageEdit", function () {
-//         $(".manageLeft .manageClick").removeClass("manageActive");
-//         $(".manageRight").children("." + $(this).next().attr("class")).addClass("manageActive");
-//         $(".manageRight .rightManageDiv").addClass("hidden");
-//         $(".manageRight").children("." + $(this).next().attr("class")).removeClass("hidden");
-//     });
-// })
-// 用户管理启用
+/**
+ * 左侧手风琴显示隐藏
+ */
 $(function () {
-    $(".userManage").on("click", ".button", function () {
-        if ($(this).val() == "true") {
-            $(this).val("false");
-            $(this).text("启用");
-        } else {
-            $(this).val("true");
-            $(this).text("停用");
-        }
-    });
-})
-
-// 用户管理所有checkbox全选
-function userManageCheckbox() {
-    if ($(".userManage .userManageCheckBoxManage").is(':checked')) {
-        $(".userManage .userManageCheckBox").prop("checked", true);
-    } else {
-        $(".userManage .userManageCheckBox").prop("checked", false);
-    }
-}
-
-// 用户管理清除
-function userManageClean() {
-    $("#userManageName").val("");
-    $("#userManageDateBegin").val("");
-    $("#userManageDateEnd").val("");
-}
-
-// $(function () {
-//     // 左侧点击变色和显示隐藏
-//     $(".manageLeft").on("click", ".manageClick", function () {
-//         if (!$(this).is('.manageActive')) {
-//             // 显示隐藏start
-//             $(".manageLeft .manageClick").removeClass("manageActive");
-//             $(this).addClass("manageActive");
-//             $(".manageRight .rightManageDiv").addClass("hidden");
-//             $("." + $(this).attr("id")).removeClass("hidden");
-//             // 显示隐藏end
-//         }
-//     });
-// })
-$(function () {
-    // 左侧手风琴显示隐藏start
     $(".manageLeft").on("click", ".organizationHeaderOrganizationClick", function () {
         $(this).find("span").toggleClass("glyphicon-chevron-down");
         $(this).find("span").toggleClass("glyphicon-chevron-up");
         $(this).parent().children("ul").toggle();
     });
-    // 左侧手风琴显示隐藏end
 })
 
-// 日期插件
+/**
+ * 日期插件
+ */
 $(document).ready(function () {
     $('#userManageDateBegin').bootstrapMaterialDatePicker({
         time: false

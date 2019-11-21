@@ -12,41 +12,29 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author 李鸿智
- * @since 2019-11-18
+ * @since 2019-11-21
  */
 @Data
 @Accessors(chain = true)
-public class Permission {
+public class UserRole {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * id
      */
-    @TableId(value = "pid", type = IdType.AUTO)
-    private Integer pid;
+    @TableId(value = "urid", type = IdType.AUTO)
+    private Integer urid;
 
     /**
-     * 权限名
+     * 用户id
      */
-    private String pname;
+    private Integer uid;
 
     /**
-     * 权限类型
+     * 角色id
      */
-    private String ptype;
+    private Integer rid;
 
-    /**
-     * 父类Id
-     */
-    private String ppid;
 
-    /**
-     * 权限
-     */
-    private String ppermission;
-    /**
-     * url
-     */
-    private String purl;
 }

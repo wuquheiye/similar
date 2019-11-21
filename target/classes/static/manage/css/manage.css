@@ -1,3 +1,75 @@
+/* 按钮右距离10px */
+.btn{
+    margin-right: 10px;
+}
+/* 所有表格内容居中 */
+.table th, .table td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+/* checkbox */
+input.labelauty + label > span.labelauty-checked-image
+{
+    background-image: url( ../images/input-checked.png );
+}
+.RadioStyle input{
+    display: none;
+}
+-->
+.RadioStyle label{
+    border: 1px solid #adadad;
+    padding: 2px 10px 2px 5px;
+    line-height: 28px;
+    min-width: 80px;
+    text-align: center;
+    float: left;
+    margin: 5px;
+    border-radius: 5px;
+}
+.RadioStyle input:checked+label{
+    color: white;
+    background: url(../images/input-checked.png) 400px 100px;
+}
+.clear{
+    clear: both;
+}
+/* 开关按钮 */
+.Switch {
+    margin-top: auto;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: auto;
+    padding: 0;
+}
+.Switch li {
+    clear: both;
+    list-style: none;
+}
+.Switch input {
+    display: none
+}
+.Switch label {
+    width: 52px;
+    background: #CCC;
+    height: 28px;
+    border-radius: 14px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.1) inset;
+}
+.Switch label em {
+    width: 26px;
+    height: 26px;
+    float: left;
+    margin: 1px;
+    border-radius: 13px;
+    box-shadow: 2px 3px 8px rgba(0,0,0,.1);
+    background: #FFF;
+}
+.Switch input:checked + label {
+    background: #a4d714;
+}
+.Switch input:checked + label em {
+    float: right;
+}
 /* 公共start */
 /* 隐藏*/
 .hidden{
