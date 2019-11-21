@@ -4,4 +4,17 @@
     <select id="findPasswordByUsername" resultType="java.lang.String" parameterType="java.lang.String">
         SELECT upassword from users where uusername = #{username}
     </select>
+
+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Users"
+            parameterType="swtech.pageDesignControl.entity.Users">
+        SELECT * FROM users where 1=1
+        <if test="users!=null and users.uusername!=''">
+            and uusername like concat('%',#{users.uusername},'%')
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="int">
+        SELECT count(*) FROM users
+    </select>
 </mapper>

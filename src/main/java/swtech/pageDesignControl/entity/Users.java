@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author 李鸿智
- * @since 2019-11-18
+ * @since 2019-11-21
  */
 @Data
 @Accessors(chain = true)
@@ -46,5 +46,19 @@ public class Users {
      */
     private Integer did;
 
+    /**
+     * 电话号码
+     */
+    private String utelephonenumber;
 
+    /**
+     * 创建时间
+     */
+    private String ucreationtime;
+
+
+    /**
+     * 创建时间
+     */
+    private String ustate;
 }

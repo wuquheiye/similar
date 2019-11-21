@@ -37,8 +37,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
     @Transactional
     @Override
-    public boolean removeById(Serializable did) {
-        int num = roleMapper.deleteById(did);
+    public boolean removeById(Serializable rid) {
+        int num = roleMapper.deleteById(rid);
         if (num > 0) {
             return true;
         }
@@ -57,8 +57,8 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
     @Transactional
     @Override
-    public Role selectById(int did) {
-        return roleMapper.selectById(did);
+    public Role selectById(int rid) {
+        return roleMapper.selectById(rid);
     }
 
     @Transactional
