@@ -9,8 +9,11 @@
         <result column="pend_time" property="pendTime" jdbcType="TIMESTAMP" />
         <result column="pteam" property="pteam" jdbcType="VARCHAR" />
         <result column="up_id" property="upId" jdbcType="INTEGER" />
+        <result column="uusername" property="uusername" jdbcType="VARCHAR" />
+        <result column="pdescribe" property="pdescribe" jdbcType="LONGVARCHAR" />
+        <result column="pcreat_time" property="pcreatTime" jdbcType="TIMESTAMP" />
     </resultMap>
     <sql id="Base_Column_List" >
-    pid, uid, pname, pstart_time, pend_time, pteam, up_id
+    pid, uid, pname, pstart_time, pend_time, pteam, up_id,uusername,pdescribe,pcreat_time
   </sql>
 </mapper>

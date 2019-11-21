@@ -123,6 +123,11 @@ function clean() {
 }
 
 //李鸿智end
+
+
+
+
+
 // 袁君选start
 //flowPath连续点击事件
 $(".manage").click(function () {
@@ -391,4 +396,54 @@ $(".daily").click(function () {
         // $(this).children().children(".iconUse").attr("xlink:href","#icon-chebaba-xialakuangjiantou");
     }
 })
+
+//获取当前时间
+function getCurrentTime() {
+    var timeStr = '-';
+    var curDate = new Date();
+    var curYear =curDate.getFullYear();  //获取完整的年份(4位,1970-????)
+    var curMonth = curDate.getMonth()+1;  //获取当前月份(0-11,0代表1月)
+    var curDay = curDate.getDate();       //获取当前日(1-31)
+    var curWeekDay = curDate.getDay();    //获取当前星期X(0-6,0代表星期天)
+    var curHour = curDate.getHours();      //获取当前小时数(0-23)
+    var curMinute = curDate.getMinutes();   // 获取当前分钟数(0-59)
+    var curSec =curDate.getSeconds();      //获取当前秒数(0-59)
+    var Current= curYear+timeStr+curMonth+timeStr+curDay+" "+curHour+":"+curMinute;
+    console.log(Current);
+    // this.datetime=Current;
+    if(curSec<10){
+        curSec = '0'+curSec;
+    }
+    if(curHour <10){
+        curHour = '0'+curHour;
+    }
+    if(curDay < 10){
+        curDay = '0'+curDay;
+    }
+    return Current;
+}
+
+//字符串转日期格式，strDate要转为日期格式的字符串
+function getDate(strDate) {
+    var st = strDate;
+    var a = st.split(" ");
+    var b = a[0].split("-");
+    var c = a[1].split(":");
+    var date = new Date(b[0], b[1]-1, b[2], c[0], c[1], c[2]);
+    return date;
+}
+
+//日期相减
+function leadTime(e) {
+    getDate(e);
+    let databaseTime =Date.parse(getDate(e));
+    let date = Date.parse(new Date());
+    let lead =date- databaseTime ;
+    let leadTime =Math.floor(lead/86400000)+"天";
+    if(leadTime<=0){
+        leadTime = "项目未开始";
+    }
+    return leadTime;
+}
+
 // 袁君选end

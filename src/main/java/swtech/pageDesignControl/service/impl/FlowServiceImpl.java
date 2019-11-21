@@ -53,8 +53,8 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         qw.eq("fstatus", Fstatus.UNTREATED.getCode());
         List<Flow> list = flowMapper.selectList(qw);
         JSONArray jsonArray = new JSONArray(list);
-        String sid =Integer.toString(leave.getFuidCharge()) ;
-        WebSocketServer.sendInfo(jsonArray.toString(),sid);
+//        String sid =Integer.toString(leave.getFuidCharge()) ;
+        WebSocketServer.sendInfo(jsonArray.toString(),"3");
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("请假申请录入成功");

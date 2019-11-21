@@ -169,7 +169,9 @@
                     历史休假信息
                 </div>
                 <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 100%;background: #F4F4F4;margin: auto">
-                <div class="col-xs-12" id="history_flow">
+                <div class="col-xs-12" id="history_flow" style="height:100px;
+                                      position: relative;
+                                      overflow-y:scroll; overflow-x: hidden;">
 <!--                    <div class="row" style="height: 30px">-->
 <!--                        <div class="col-xs-6" style="line-height: 30px;">事假</div>-->
 <!--                        <div class="col-xs-6" style="line-height: 30px;text-align: right">-->
@@ -231,7 +233,7 @@
     function selectLeaveAll() {
         let showdata='';
         $.ajax({
-            url: pageDesignControl_HOST + "flow/selectLeaveAll?fid="+uid+"&&ftype="+ftypeFlow.LEAVE.code,
+            url: pageDesignControl_HOST + "flow/selectLeaveAll?uid="+uid+"&ftype="+ftypeFlow.LEAVE.code,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',

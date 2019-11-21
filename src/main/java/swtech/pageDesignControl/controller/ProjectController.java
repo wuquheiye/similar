@@ -3,8 +3,10 @@ package swtech.pageDesignControl.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
+import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import swtech.pageDesignControl.common.exception.ServiceException;
@@ -17,8 +19,10 @@ import swtech.pageDesignControl.service.IUpdateProjectService;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.sql.Wrapper;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -39,7 +43,53 @@ public class ProjectController {
     private IProjectService iProjectService;
 
     /**
-     * 根据uid获取其所创建的项目信息
+     * 根据pid获取相关信息
+     * @param pid
+     * @param model
+     * @return
+     */
+    @GetMapping("/selectProjectByid/{pid}/{status}")
+    public  String selectProjectByid(@PathVariable("pid") Integer pid,@PathVariable("status") Integer status, Model model){
+
+            Map<String, Object> stringObjectMap = iProjectService.selectProjectByid(pid);
+            model.addAllAttributes(stringObjectMap);
+            log.info(JSONObject.fromObject(stringObjectMap).toString());
+        if(status == 0){
+            return "./use/create/selectProject";
+        }else {
+            return  "./use/create/updatProject";
+        }
+
+    }
+    /**
+     * 通过uid查询未完成的项目
+     * @param uid
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("selectUndone/{uid}")
+    public ReturnMsg selectUndone(@PathVariable("uid") Integer uid){
+        ReturnMsg msg = new ReturnMsg();
+        if(uid==null) throw  new ServiceException("参数不能为空");
+        QueryWrapper qw = new QueryWrapper();
+        qw.eq("uid",uid);
+        qw.isNull("pend_time");
+        qw.orderByDesc("pid");
+        List<Project> list = iProjectService.list(qw);
+        if(list != null){
+            msg.setStatus("200");
+            msg.setMsg(list);
+            msg.setStatusMsg("查询未完成项目成功");
+        }else {
+            msg.setStatus("201");
+            msg.setMsg(list);
+            msg.setStatusMsg("没有未完成项目");
+        }
+            return msg ;
+    }
+
+    /**
+     * 根据uid获取其所创建的all项目信息
      * @param uid
      * @return
      */
@@ -49,7 +99,9 @@ public class ProjectController {
         ReturnMsg msg = new ReturnMsg();
         try {
             QueryWrapper qw = new QueryWrapper<Project>();
-            qw.eq("uid",uid);
+            if(uid != null){
+                qw.eq("uid",uid);
+            }
             List list = iProjectService.list(qw);
             if(list ==null)throw new ServiceException("列表为空,无数据");
             msg.setStatus("200");
@@ -103,7 +155,7 @@ public class ProjectController {
             e.printStackTrace();
             log.info(e.getMessage());
             msg.setStatus("201");
-            msg.setStatusMsg("项目创建失败");
+            msg.setStatusMsg("项目进度更新失败");
             msg.setMsg(e.getMessage());
         }
         return  msg;

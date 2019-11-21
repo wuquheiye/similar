@@ -57,5 +57,20 @@ public class Project  {
      */
     private Integer upId;
 
+    /**
+     * 项目描述
+     */
+    private String pdescribe;
+
+    /**
+     * 创建者
+     */
+    private String uusername;
+
+    /**
+     * 项目创建时间
+     */
+    private String pcreatTime;
+
 
 }

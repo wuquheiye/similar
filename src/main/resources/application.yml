@@ -69,6 +69,6 @@ mybatis-plus:
   
 logging:
   level: 
-    swtech.pageDesignControl.mapper: error
+    swtech.pageDesignControl.mapper: debug
 
 

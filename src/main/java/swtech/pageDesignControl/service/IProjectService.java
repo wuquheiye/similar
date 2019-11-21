@@ -6,6 +6,7 @@ import swtech.pageDesignControl.entity.Project;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * <p>
@@ -21,4 +22,5 @@ public interface IProjectService extends IService<Project> {
 
     ReturnMsg updateProject(ProjectAndScheduleVO projectAndScheduleVO) throws IOException;
 
+    Map<String,Object> selectProjectByid(Integer pid);
 }

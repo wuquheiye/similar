@@ -45,7 +45,7 @@ public class UpdateProject  {
     /**
      * 更新时间
      */
-    private LocalDateTime upTime;
+    private String upTime;
 
 
 }

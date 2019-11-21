@@ -46,6 +46,7 @@ public class JournalController{
      */
      @GetMapping("/selectJournal/{jid}")
      public String selectJournal(@PathVariable("jid") Integer jid, Model model){
+         System.out.println("进入日志");
          Journal byId = iJournalService.getById(jid);
          if(byId==null) throw  new ServiceException("参数错误，此id作废，或无值");
          model.addAttribute("journal",byId);
@@ -62,6 +63,7 @@ public class JournalController{
     public ReturnMsg selectJournalAll(@RequestBody PageVO<Journal> pageVO){
         QueryWrapper qw  = new QueryWrapper();
         qw.eq("uid",pageVO.getJournal().getUid());
+        qw.orderByDesc("jid");
         ReturnMsg msg = new ReturnMsg();
         IPage<Journal> page1 = iJournalService.page(pageVO.getPage(), qw);
         print(page1.getRecords());

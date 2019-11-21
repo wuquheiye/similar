@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>日志详情</title>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
-    <link rel="stylesheet" href="../use/css/common.css">
+    <link rel="stylesheet" th:href="@{/bootstrop/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/use/css/common.css}">
 
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.js"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/bootstrop/js/bootstrap.js}"></script>
     <script src="https://at.alicdn.com/t/font_1502544_6qxgh0ec3xu.js"></script>
 
 </head>
@@ -20,11 +20,11 @@
     <div class="container navbar-fixed-top" style="background: white;border-bottom: 2px solid gainsboro">
         <div class="row">
             <div class="col-xs-2">
-                <a href="../use/index.html"><h4><span class="glyphicon glyphicon-menu-left"
+                <a href="javascript:history.back(-1)"><h4><span class="glyphicon glyphicon-menu-left"
                                                aria-hidden="true"></span></h4></a>
             </div>
             <div class="col-xs-8" style="text-align: center">
-                <h4><b id="title">XXX的日报</b></h4></div>
+                <h4><b id="title" th:text="${journal.uusername}"></b></h4></div>
         </div>
     </div>
     <div class="container" style="padding-top: 80px;padding-bottom: 80px;">
@@ -33,73 +33,60 @@
                 <b>今日完成工作</b>
             </div>
             <div class="col-xs-12">
-               <pre>
-                   dasfasfas
-                   fasfagassgs
-                   fgashah
-
-               </pre>
+               <pre th:text="${journal.jnowTask}"></pre>
             </div>
 
             <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
                 <b>未完成工作</b>
             </div>
             <div class="col-xs-12">
-               <pre>
-dasdfas
-                   fafasfas
-                   asa
-
-               </pre>
+               <pre th:text="${journal.jundoneTask}"></pre>
             </div>
             <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
                 <b>明日计划</b>
             </div>
             <div class="col-xs-12">
-                <pre>
-
-                    fasfa
-  计划详情
-                </pre>
+                <pre th:text="${journal.jtomorrowTask}"></pre>
             </div>
             <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
                 <b>项目所属</b>
             </div>
-            <div class="col-xs-12" style="text-align: right">
-                项目一
+            <div class="col-xs-12" style="text-align: right" th:text="${journal.pid}">
             </div>
         </div>
-        <div class="row" style="border-top: 10px solid gainsboro;padding-top: 10px;margin-top: 10px">
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-6" style="line-height: 35px">
-                        图片
-                    </div>
-                    <div class="col-xs-6" style="text-align: right">
-                        <svg class="icon" aria-hidden="true" style="width: 30px;height: 30px;color: #2aabd2">
-                            <use xlink:href="#icon-14"></use>
-                        </svg>
-                    </div>
-                    <!--<div class="col-xs-12">-->
-                        <!--<input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">-->
-                    <!--</div>-->
-                    <div class="col-xs-12" style="" id="picture">
-                        <ul class="list-group row">
-                            <li class="list-group-item col-xs-4">
-                                <img src="../use/image/日报.png" style=" width: 40px;height: 40px;">
-                            </li>
-                            <li class="list-group-item col-xs-4">
-                                <img src="../use/image/流程管理.png" style=" width: 40px;height: 40px;">
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!--        图片-->
+<!--        <div class="row" style="border-top: 10px solid gainsboro;padding-top: 10px;margin-top: 10px">-->
+<!--            <div class="col-xs-12">-->
+<!--                <div class="row">-->
+<!--                    <div class="col-xs-6" style="line-height: 35px">-->
+<!--                        图片-->
+<!--                    </div>-->
+<!--                    <div class="col-xs-6" style="text-align: right">-->
+<!--                        <svg class="icon" aria-hidden="true" style="width: 30px;height: 30px;color: #2aabd2">-->
+<!--                            <use xlink:href="#icon-14"></use>-->
+<!--                        </svg>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;<div class="col-xs-12">&ndash;&gt;-->
+<!--                        &lt;!&ndash;<input id="file-1" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="2">&ndash;&gt;-->
+<!--                    &lt;!&ndash;</div>&ndash;&gt;-->
+<!--                    <div class="col-xs-12" style="" id="picture">-->
+<!--                        <ul class="list-group row">-->
+<!--                            <li class="list-group-item col-xs-4">-->
+<!--                                <img src="../use/image/日报.png" style=" width: 40px;height: 40px;">-->
+<!--                            </li>-->
+<!--                            <li class="list-group-item col-xs-4">-->
+<!--                                <img src="../use/image/流程管理.png" style=" width: 40px;height: 40px;">-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
     </div>
 </div>
 </body>
 <script  type="text/javascript" src="../myjs/common.js"></script>
 <script>
+
 </script>
 </html>
