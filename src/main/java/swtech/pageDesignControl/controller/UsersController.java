@@ -10,7 +10,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import swtech.pageDesignControl.entity.Users;
-import swtech.pageDesignControl.service.IUserService;
 import swtech.pageDesignControl.service.IUsersService;
 
 import javax.annotation.Resource;
