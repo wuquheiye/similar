@@ -3,13 +3,14 @@ package swtech.pageDesignControl.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import swtech.pageDesignControl.common.utils.DateUtil;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.vo.ReturnMsgPage;
-import swtech.pageDesignControl.entity.Department;
-import swtech.pageDesignControl.service.IDepartmentService;
+import swtech.pageDesignControl.entity.Permission;
+import swtech.pageDesignControl.service.IPermissionService;
 
 import java.util.List;
 
@@ -19,33 +20,32 @@ import java.util.List;
  * </p>
  *
  * @author 李鸿智
- * @since 2019-11-19
+ * @since 2019-11-20
  */
 @Slf4j
 @Controller
-public class DepartmentController {
+public class PermissionController {
 
     @Autowired
-    private IDepartmentService iDepartmentService;
+    private IPermissionService iPermissionService;
 
     @ResponseBody
-    @GetMapping("/manage/department/save")
-    public ReturnMsg save( Department department) {
+    @GetMapping("/manage/permission/save")
+    public ReturnMsg save(Permission permission) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            department.setDcreateTime(DateUtil.getNewDate());
-            boolean isTrue = iDepartmentService.save(department);
+            boolean isTrue = iPermissionService.save(permission);
             if (isTrue) {
                 msg.setStatus("200");
-                msg.setStatusMsg("新建部门成功");
+                msg.setStatusMsg("新建权限成功");
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("新建部门失败");
+                msg.setStatusMsg("新建权限失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("新建部门异常");
+            msg.setStatusMsg("新建权限异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -53,22 +53,22 @@ public class DepartmentController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/department/removebyid")
-    public ReturnMsg removeById(@RequestParam("did") int did) {
+    @GetMapping("/manage/permission/removebyid")
+    public ReturnMsg removeById(@RequestParam("pid") int pid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iDepartmentService.removeById(did);
+            boolean isTrue = iPermissionService.removeById(pid);
             if (isTrue) {
                 msg.setStatus("200");
-                msg.setStatusMsg("删除部门成功");
+                msg.setStatusMsg("删除权限成功");
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("删除部门失败");
+                msg.setStatusMsg("删除权限失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("删除部门异常");
+            msg.setStatusMsg("删除权限异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -76,22 +76,22 @@ public class DepartmentController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/department/updatebyid")
-    public ReturnMsg updateById( Department department) {
+    @GetMapping("/manage/permission/updatebyid")
+    public ReturnMsg updateById(Permission permission) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iDepartmentService.updateById(department);
+            boolean isTrue = iPermissionService.updateById(permission);
             if (isTrue) {
                 msg.setStatus("200");
-                msg.setStatusMsg("修改部门成功");
+                msg.setStatusMsg("修改权限成功");
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("修改部门失败");
+                msg.setStatusMsg("修改权限失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("修改部门异常");
+            msg.setStatusMsg("修改权限异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -99,23 +99,23 @@ public class DepartmentController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/department/selectbyid")
-    public ReturnMsg selectById(@RequestParam("did") int did) {
+    @GetMapping("/manage/permission/selectbyid")
+    public ReturnMsg selectById(@RequestParam("pid") int pid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Department department = iDepartmentService.selectById(did);
-            if (department != null) {
+            Permission permission = iPermissionService.selectById(pid);
+            if (permission != null) {
                 msg.setStatus("200");
-                msg.setStatusMsg("查询单个部门成功");
-                msg.setMsg(department);
+                msg.setStatusMsg("查询单个权限成功");
+                msg.setMsg(permission);
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("查询单个部门失败");
+                msg.setStatusMsg("查询单个权限失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("查询单个部门异常");
+            msg.setStatusMsg("查询单个权限异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -123,33 +123,33 @@ public class DepartmentController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/department/selectbypageandcondition")
-    public ReturnMsgPage selectByPageAndCondition(Department department, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+    @GetMapping("/manage/permission/selectbypageandcondition")
+    public ReturnMsgPage selectByPageAndCondition(Permission permission, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         ReturnMsgPage msg = new ReturnMsgPage();
         try {
-            List<Department> departmentList = iDepartmentService.selectByPageAndCondition(department, page, pageSize);
-            int totalSize = iDepartmentService.selectCount();
+            List<Permission> permissionList = iPermissionService.selectByPageAndCondition(permission, page, pageSize);
+            int totalSize = iPermissionService.selectCount();
             int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
-            int pageEnd = page * pageSize < pageSize ? page * pageSize :  pageSize;
-            if (departmentList != null ) {
+            int pageEnd = page * pageSize < pageSize ? page * pageSize : pageSize;
+            if (permissionList != null ) {
                 msg.setStatus("200");
-                msg.setStatusMsg("获取部门条件分页成功");
-                msg.setMsg(departmentList);
+                msg.setStatusMsg("获取权限条件分页成功");
                 msg.setCurrentPage(page);
-                msg.setPageSize(pageSize);
                 msg.setTotalPage(totalPage);
+                msg.setMsg(permissionList);
                 msg.setTotalSize(totalSize);
                 msg.setPageStart((page - 1) * pageSize);
                 msg.setPageEnd(page * pageSize);
+                msg.setPageSize(pageSize);
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("获取部门条件分页失败");
+                msg.setStatusMsg("获取权限条件分页失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             log.info(e.getMessage());
             msg.setStatus("201");
-            msg.setStatusMsg("获取部门条件分页异常");
+            msg.setStatusMsg("获取权限条件分页异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));

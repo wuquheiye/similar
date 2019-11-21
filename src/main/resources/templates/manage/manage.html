@@ -43,14 +43,14 @@
                     </ul>
                     <ul class="organizationHeaderOrganizationUl">
                         <li class="">
-                            <div class="organizationHeaderOrganizationClick manageClick" id="departManage">
+                            <div class="organizationHeaderOrganizationClick manageClick" id="departmentManage">
                                 部门管理
                             </div>
                         </li>
                     </ul>
                     <ul class="organizationHeaderOrganizationUl">
                         <li class="">
-                            <div class="organizationHeaderOrganizationClick manageClick" id="authorityManage">
+                            <div class="organizationHeaderOrganizationClick manageClick" id="permissionManage">
                                 权限管理
                             </div>
                         </li>
@@ -109,7 +109,6 @@
                 <button type="button" class="btn btn-success manageEdit">增加</button>
                 <input type="hidden" class="userManageEdit">
                 <button type="button" class="btn btn-info">删除</button>
-                <button type="button" class="btn btn-warning manageEdit">修改</button>
                 <input type="hidden" class="userManageEdit">
             </div>
             <div>
@@ -213,7 +212,7 @@
                         <div class="form-group">
                             <label for="usersex" class="col-sm-2 control-label">*用户性别：</label>
                             <div class="col-sm-10" id="usersex">
-                                <input type="radio" name="usersex" value="" checked> 男
+                                <input type="radio" name="usersex" value=""> 男
                                 <input type="radio" name="usersex" value=""> 女
                             </div>
                         </div>
@@ -231,7 +230,7 @@
                         <div class="form-group">
                             <label for="usersex" class="col-sm-2 control-label">*用户性别：</label>
                             <div class="col-sm-10" id="usersex">
-                                <input type="checkbox" value="" checked> 男
+                                <input type="checkbox" value=""> 男
                                 <input type="checkbox" value=""> 女
                             </div>
                         </div>
@@ -278,27 +277,17 @@
                 <form class="form-inline" role="form">
                     角色名称：
                     <div class="form-group">
-                        <label class="sr-only" for="name">角色名称：</label>
-                        <input type="text" class="form-control" id="userManageName" placeholder="请输入角色名称：">
+                        <label class="sr-only" for="roleManageName">角色名称：</label>
+                        <input type="text" class="form-control" id="roleManageName" placeholder="请输入角色名称：">
                     </div>
-                    创建时间
-                    <div class="form-group">
-                        <input type="text" id="userManageDateBegin" class="form-control floating-label"
-                               placeholder="开始时间：">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="userManageDateEnd" class="form-control floating-label"
-                               placeholder="结束时间：">
-                    </div>
-                    <button type="button" class="btn btn-default">搜索</button>
-                    <button type="button" class="btn btn-default" onclick="userManageClean()">重置</button>
+                    <button type="button" class="btn btn-default" id="roleManageSearch">搜索</button>
+                    <button type="button" class="btn btn-default" id="roleManageClean">重置</button>
                 </form>
             </div>
             <div>
-                <button type="button" class="btn btn-success manageEdit">增加</button>
+                <button type="button" class="btn btn-success manageEdit roleManageAdd">增加</button>
                 <input type="hidden" class="roleManageEdit">
-                <button type="button" class="btn btn-info">删除</button>
-                <button type="button" class="btn btn-warning manageEdit">修改</button>
+                <button type="button" class="btn btn-info roleManageDelete">删除</button>
                 <input type="hidden" class="roleManageEdit">
             </div>
             <div>
@@ -306,77 +295,30 @@
                     <thead>
                     <tr>
                         <th class="text-center">
-                            <input type="checkbox" class="userManageCheckBoxManage" onclick="userManageCheckbox()">
-                            用户ID
-                        </th>
-                        <th class="text-center">角色名称</th>
-                        <th class="text-center">权限名称</th>
-                        <th class="text-center">用户状态</th>
-                        <th class="text-center organizationHeaderOrganizationClick">
-                            创建时间
-                            <span class="glyphicon glyphicon-chevron-down organizationHeaderOrganizationSpan"></span>
+                            <input type="checkbox" class="roleManageCheckBoxManage" onclick="roleManageCheckbox()">
+                            角色名称
                         </th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr class="active">
-                        <td class="text-center">
-                            <input type="checkbox" class="userManageCheckBox">
-                            1001
-                        </td>
-                        <td class="text-center">管理员</td>
-                        <td class="text-center">admin</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info button" value="false">启用</button>
-                        </td>
-                        <td class="text-center">12/13/12</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info">删除</button>
-                            <button type="button" class="btn btn-warning manageEdit">修改</button>
-                            <input type="hidden" class="roleManageEdit">
-                        </td>
-                    </tr>
-                    <tr class="active">
-                        <td class="text-center">
-                            <input type="checkbox" class="userManageCheckBox">
-                            1002
-                        </td>
-                        <td class="text-center">操作员</td>
-                        <td class="text-center">common</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info button" value="true">停用</button>
-                        </td>
-                        <td class="text-center">12/13/12</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info">删除</button>
-                            <button type="button" class="btn btn-warning manageEdit">修改</button>
-                            <input type="hidden" class="roleManageEdit">
-                        </td>
-                    </tr>
+                    <!-- 角色列表 -->
+                    <tbody id="roleManageTable">
                     </tbody>
                 </table>
             </div>
-            <div>
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
+            <div id="roleManagePageDiv">
+                <ul class="pagination" id="roleManagePageUl">
                 </ul>
-            </div>
-            <div>
-                第 1 到 2 条，共 2 条记录。
+                <div>
+                    <span id="roleManagePageSpan"></span>
+                </div>
             </div>
         </div>
         <div class="roleManageEdit hidden rightManageDiv">
             <div class="container containerTop">
                 <div class="row">
                     <div class="col-xs-3">
-                        <button type="button" class="btn btn-info" value="true">返回</button>
+                        <button type="button" class="btn btn-info roleManageBack" value="true">返回</button>
                     </div>
                     <div class="col-xs-6 text-center">
                         编辑角色
@@ -385,28 +327,9 @@
                 <div class="row form-horizontal">
                     <div class="col-xs-8">
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label">*角色名称：</label>
+                            <label for="rname" class="col-sm-2 control-label">*角色名称：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" placeholder="请输入角色名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phonenumber" class="col-sm-2 control-label">*权限名称：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="phonenumber" placeholder="请输入权限名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="usersex" class="col-sm-2 control-label">*用户性别：</label>
-                            <div class="col-sm-10" id="usersex">
-                                <input type="checkbox" value="" checked> 男
-                                <input type="checkbox" value=""> 女
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="" class="col-sm-2 control-label">*状态：</label>
-                            <div class="col-sm-10">
-                                <button type="button" class="btn btn-info button" value="true">停用</button>
+                                <input type="text" class="form-control" id="rname" placeholder="请输入角色名称">
                             </div>
                         </div>
                     </div>
@@ -414,38 +337,37 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-default">保存</button>
-                            <button type="button" class="btn btn-default">返回</button>
+                            <button type="button" class="btn btn-default Role" id="saveRole">保存</button>
+                            <button type="button" class="btn btn-default roleManageBack">返回</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="departManage hidden rightManageDiv">
+        <div class="departmentManage hidden rightManageDiv">
             <div>
                 <form class="form-inline" role="form">
                     部门名称：
                     <div class="form-group">
-                        <label class="sr-only" for="departManageName">部门名称：</label>
-                        <input type="text" class="form-control" id="departManageName" placeholder="请输入部门名称：">
+                        <label class="sr-only" for="departmentManageName">部门名称：</label>
+                        <input type="text" class="form-control" id="departmentManageName" placeholder="请输入部门名称：">
                     </div>
-                    <button type="button" class="btn btn-default" id="departManageSearch">搜索</button>
-                    <button type="button" class="btn btn-default" id="departManageClean">重置</button>
+                    <button type="button" class="btn btn-default" id="departmentManageSearch">搜索</button>
+                    <button type="button" class="btn btn-default" id="departmentManageClean">重置</button>
                 </form>
             </div>
             <div>
-                <button type="button" class="btn btn-success manageEdit departManageAdd">增加</button>
-                <input type="hidden" class="departManageEdit">
-                <button type="button" class="btn btn-info">删除</button>
-                <button type="button" class="btn btn-warning manageEdit">修改</button>
-                <input type="hidden" class="departManageEdit">
+                <button type="button" class="btn btn-success manageEdit departmentManageAdd">增加</button>
+                <input type="hidden" class="departmentManageEdit">
+                <button type="button" class="btn btn-info departmentManageDelete">删除</button>
+                <input type="hidden" class="departmentManageEdit">
             </div>
             <div>
                 <table class="table">
                     <thead>
                     <tr>
                         <th class="text-center">
-                            <input type="checkbox" class="userManageCheckBoxManage" onclick="userManageCheckbox()">
+                            <input type="checkbox" class="departmentManageCheckBoxManage" onclick="departmentManageCheckbox()">
                             部门名称
                         </th>
                         <th class="text-center organizationHeaderOrganizationClick">
@@ -455,23 +377,23 @@
                     </tr>
                     </thead>
                     <!-- 部门列表 -->
-                    <tbody id="departManageTable">
+                    <tbody id="departmentManageTable">
                     </tbody>
                 </table>
             </div>
-            <div id="departManagePageDiv">
-                <ul class="pagination" id="departManagePageUl">
+            <div id="departmentManagePageDiv">
+                <ul class="pagination" id="departmentManagePageUl">
                 </ul>
                 <div>
-                    <span id="departManagePageSpan"></span>
+                    <span id="departmentManagePageSpan"></span>
                 </div>
             </div>
         </div>
-        <div class="departManageEdit hidden rightManageDiv">
+        <div class="departmentManageEdit hidden rightManageDiv">
             <div class="container containerTop">
                 <div class="row">
                     <div class="col-xs-3">
-                        <button type="button" class="btn btn-info" value="true">返回</button>
+                        <button type="button" class="btn btn-info departmentManageBack" value="true">返回</button>
                     </div>
                     <div class="col-xs-6 text-center">
                         编辑部门
@@ -491,139 +413,79 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="button" class="btn btn-default Department" id="saveDepartment">保存</button>
-                            <button type="button" class="btn btn-default">返回</button>
+                            <button type="button" class="btn btn-default departmentManageBack">返回</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="authorityManage hidden rightManageDiv">
+        <div class="permissionManage hidden rightManageDiv">
             <div>
                 <form class="form-inline" role="form">
                     权限名称：
                     <div class="form-group">
-                        <label class="sr-only" for="name">权限名称：</label>
-                        <input type="text" class="form-control" id="userManageName" placeholder="请输入权限名称：">
+                        <label class="sr-only" for="permissionManageName">权限名称：</label>
+                        <input type="text" class="form-control" id="permissionManageName" placeholder="请输入权限名称：">
                     </div>
-                    <button type="button" class="btn btn-default">搜索</button>
-                    <button type="button" class="btn btn-default" onclick="userManageClean()">重置</button>
+                    <button type="button" class="btn btn-default" id="permissionManageSearch">搜索</button>
+                    <button type="button" class="btn btn-default" id="permissionManageClean">重置</button>
                 </form>
             </div>
             <div>
-                <button type="button" class="btn btn-success manageEdit">增加</button>
-                <input type="hidden" class="authorityManageEdit">
-                <button type="button" class="btn btn-info">删除</button>
-                <button type="button" class="btn btn-warning manageEdit">修改</button>
-                <input type="hidden" class="authorityManageEdit">
+                <button type="button" class="btn btn-success manageEdit permissionManageAdd">增加</button>
+                <input type="hidden" class="permissionManageEdit">
+                <button type="button" class="btn btn-info permissionManageDelete">删除</button>
+                <input type="hidden" class="permissionManageEdit">
             </div>
             <div>
                 <table class="table">
                     <thead>
                     <tr>
                         <th class="text-center">
-                            <input type="checkbox" class="userManageCheckBoxManage" onclick="userManageCheckbox()">
+                            <input type="checkbox" class="permissionManageCheckBoxManage" onclick="permissionManageCheckbox()">
                             权限名称
                         </th>
-                        <th class="text-center">请求地址</th>
-                        <th class="text-center">类型</th>
-                        <th class="text-center">权限标识</th>
                         <th class="text-center organizationHeaderOrganizationClick">
-                            创建时间
-                            <span class="glyphicon glyphicon-chevron-down organizationHeaderOrganizationSpan"></span>
+                            类型
                         </th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr class="active">
-                        <td class="text-center">
-                            <input type="checkbox" class="userManageCheckBox">
-                            开发部
-                        </td>
-                        <td class="text-center">/system/user</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info" value="false">系统管理</button>
-                        </td>
-                        <td class="text-center">system:user:view</td>
-                        <td class="text-center">12/13/12</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info">删除</button>
-                            <button type="button" class="btn btn-warning manageEdit">修改</button>
-                            <input type="hidden" class="authorityManageEdit">
-                        </td>
-                    </tr>
-                    <tr class="active">
-                        <td class="text-center">
-                            <input type="checkbox" class="userManageCheckBox">
-                            生产部
-                        </td>
-                        <td class="text-center">/system/user</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info" value="true">用户管理</button>
-                        </td>
-                        <td class="text-center">system:user:view</td>
-                        <td class="text-center">12/13/12</td>
-                        <td class="text-center">
-                            <button type="button" class="btn btn-info">删除</button>
-                            <button type="button" class="btn btn-warning manageEdit">修改</button>
-                            <input type="hidden" class="authorityManageEdit">
-                        </td>
-                    </tr>
+                    <!-- 权限列表 -->
+                    <tbody id="permissionManageTable">
                     </tbody>
                 </table>
             </div>
-            <div>
-                <ul class="pagination">
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
+            <div id="permissionManagePageDiv">
+                <ul class="pagination" id="permissionManagePageUl">
                 </ul>
-            </div>
-            <div>
-                第 1 到 2 条，共 2 条记录。
+                <div>
+                    <span id="permissionManagePageSpan"></span>
+                </div>
             </div>
         </div>
-        <div class="authorityManageEdit hidden rightManageDiv">
+        <div class="permissionManageEdit hidden rightManageDiv">
             <div class="container containerTop">
                 <div class="row">
                     <div class="col-xs-3">
-                        <button type="button" class="btn btn-info" value="true">返回</button>
+                        <button type="button" class="btn btn-info permissionManageBack" value="true">返回</button>
                     </div>
                     <div class="col-xs-6 text-center">
-                        编辑部门
+                        编辑权限
                     </div>
                 </div>
                 <div class="row form-horizontal">
                     <div class="col-xs-8">
                         <div class="form-group">
-                            <label for="department" class="col-sm-2 control-label">*上级权限名称：</label>
+                            <label for="pname" class="col-sm-2 control-label">*权限名称：</label>
                             <div class="col-sm-10">
-                                <select class="form-control" id="department">
-                                    <option>系统管理</option>
-                                    <option>用户管理</option>
-                                </select>
+                                <input type="text" class="form-control" id="pname" placeholder="请输入权限名称">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label">*权限名称：</label>
+                            <label for="ptype" class="col-sm-2 control-label">*权限类型：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" placeholder="请输入权限名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label">*请求地址：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" placeholder="请输入权限名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="username" class="col-sm-2 control-label">*权限标识：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="username" placeholder="请输入权限名称">
+                                <input type="text" class="form-control" id="ptype" placeholder="请输入权限类型">
                             </div>
                         </div>
                     </div>
@@ -631,8 +493,8 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-default">保存</button>
-                            <button type="button" class="btn btn-default">返回</button>
+                            <button type="button" class="btn btn-default Permission" id="savePermission">保存</button>
+                            <button type="button" class="btn btn-default permissionManageBack">返回</button>
                         </div>
                     </div>
                 </div>
@@ -659,7 +521,6 @@
                 <button type="button" class="btn btn-success manageEdit">增加</button>
                 <input type="hidden" class="attendanceManageEdit">
                 <button type="button" class="btn btn-info">删除</button>
-                <button type="button" class="btn btn-warning manageEdit">修改</button>
                 <input type="hidden" class="attendanceManageEdit">
                 <input type="file">
             </div>
@@ -1027,7 +888,6 @@
                 <button type="button" class="btn btn-success manageEdit">增加</button>
                 <input type="hidden" class="personInfomationManageEdit">
                 <button type="button" class="btn btn-info">删除</button>
-                <button type="button" class="btn btn-warning manageEdit">修改</button>
                 <input type="hidden" class="personInfomationManageEdit">
             </div>
             <div>
