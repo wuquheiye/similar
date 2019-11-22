@@ -4,7 +4,6 @@
 }
 /* 所有表格内容居中 */
 .table th, .table td {
-    text-align: center;
     vertical-align: middle !important;
 }
 /* checkbox */
@@ -128,4 +127,4 @@ time, mark, audio, video, input, button, textarea,select{
 	display: none;
 }
 /* 组织end */
-td{width:12.5%;height:40px;text-align:center;line-height:40px;}
+td{width:12.5%;height:40px;line-height:40px;}

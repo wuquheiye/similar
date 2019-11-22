@@ -20,4 +20,12 @@
     <select id="selectCount" resultType="int">
         SELECT count(*) FROM permission
     </select>
+
+    <select id="selecGtrandfather" resultType="swtech.pageDesignControl.common.vo.PermissionVo">
+        SELECT * FROM permission where ppid = -1
+    </select>
+
+    <select id="selectChild" resultType="swtech.pageDesignControl.common.vo.PermissionVo" parameterType="java.lang.Integer" >
+        SELECT * FROM permission where ppid = #{ppid}
+    </select>
 </mapper>

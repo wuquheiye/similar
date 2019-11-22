@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 李鸿智
@@ -52,5 +53,11 @@ public class RolePermissionServiceImpl extends ServiceImpl<RolePermissionMapper,
             return true;
         }
         return false;
+    }
+
+    @Transactional
+    @Override
+    public List<String> getPermissionByRoleId(int rid) {
+        return rolePermissionMapper.getPermissionByRoleId(rid);
     }
 }

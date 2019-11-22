@@ -1,6 +1,7 @@
 package swtech.pageDesignControl.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import swtech.pageDesignControl.common.vo.PermissionVo;
 import swtech.pageDesignControl.entity.Permission;
 
 import java.util.List;
@@ -22,21 +23,27 @@ public interface IPermissionService extends IService<Permission> {
      */
     Permission selectById(int pid);
 
-    /**
-     * 分页查询
-     *
-     * @param permission
-     * @param pageStart
-     * @param pageSize
-     * @return
-     */
-    List<Permission> selectByPageAndCondition(Permission permission, int pageStart, int pageSize);
+//    /**
+//     * 分页查询
+//     *
+//     * @param permission
+//     * @param pageStart
+//     * @param pageSize
+//     * @return
+//     */
+//    List<Permission> selectByPageAndCondition(Permission permission, int pageStart, int pageSize);
+//
+//    /**
+//     * 查询个数
+//     *
+//     * @return
+//     */
+//    int selectCount();
 
     /**
-     * 查询个数
+     * 查询权限树
      *
      * @return
      */
-    int selectCount();
-
+    List<PermissionVo> selecTree();
 }

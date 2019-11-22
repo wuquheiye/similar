@@ -44,13 +44,6 @@
                     </ul>
                     <ul class="organizationHeaderOrganizationUl">
                         <li class="">
-                            <div class="organizationHeaderOrganizationClick manageClick" id="rolePermissionManage">
-                                角色权限关系管理
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="organizationHeaderOrganizationUl">
-                        <li class="">
                             <div class="organizationHeaderOrganizationClick manageClick" id="departmentManage">
                                 部门管理
                             </div>
@@ -337,20 +330,7 @@
         </div>
         <div class="permissionManage hidden rightManageDiv">
             <div>
-                <form class="form-inline" role="form">
-                    权限名称：
-                    <div class="form-group">
-                        <label class="sr-only" for="permissionManageName">权限名称：</label>
-                        <input type="text" class="form-control" id="permissionManageName" placeholder="请输入权限名称：">
-                    </div>
-                    <button type="button" class="btn btn-default" id="permissionManageSearch">搜索</button>
-                    <button type="button" class="btn btn-default" id="permissionManageClean">重置</button>
-                </form>
-            </div>
-            <div>
                 <button type="button" class="btn btn-success manageEdit permissionManageAdd">增加</button>
-                <input type="hidden" class="permissionManageEdit">
-                <button type="button" class="btn btn-info permissionManageDelete">删除</button>
                 <input type="hidden" class="permissionManageEdit">
             </div>
             <div>
@@ -376,13 +356,6 @@
                     <tbody id="permissionManageTable">
                     </tbody>
                 </table>
-            </div>
-            <div id="permissionManagePageDiv">
-                <ul class="pagination" id="permissionManagePageUl">
-                </ul>
-                <div>
-                    <span id="permissionManagePageSpan"></span>
-                </div>
             </div>
         </div>
         <div class="permissionManageEdit hidden rightManageDiv">
@@ -416,87 +389,6 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="button" class="btn btn-default Permission" id="savePermission">保存</button>
                             <button type="button" class="btn btn-default permissionManageBack">返回</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="rolePermissionManage hidden rightManageDiv">
-            <div>
-                <form class="form-inline" role="form">
-                    角色权限关系名称：
-                    <div class="form-group">
-                        <label class="sr-only" for="rolePermissionManageName">角色权限关系名称：</label>
-                        <input type="text" class="form-control" id="rolePermissionManageName" placeholder="请输入角色权限关系名称：">
-                    </div>
-                    <button type="button" class="btn btn-default" id="rolePermissionManageSearch">搜索</button>
-                    <button type="button" class="btn btn-default" id="rolePermissionManageClean">重置</button>
-                </form>
-            </div>
-            <div>
-                <button type="button" class="btn btn-success manageEdit rolePermissionManageAdd">增加</button>
-                <input type="hidden" class="rolePermissionManageEdit">
-                <button type="button" class="btn btn-info rolePermissionManageDelete">删除</button>
-                <input type="hidden" class="rolePermissionManageEdit">
-            </div>
-            <div>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="text-center">
-                            <input type="checkbox" class="rolePermissionManageCheckBoxManage" onclick="rolePermissionManageCheckbox()">
-                            角色权限关系名称
-                        </th>
-                        <th class="text-center organizationHeaderOrganizationClick">
-                            类型
-                        </th>
-                        <th class="text-center">操作</th>
-                    </tr>
-                    </thead>
-                    <!-- 角色权限关系列表 -->
-                    <tbody id="rolePermissionManageTable">
-                    </tbody>
-                </table>
-            </div>
-            <div id="rolePermissionManagePageDiv">
-                <ul class="pagination" id="rolePermissionManagePageUl">
-                </ul>
-                <div>
-                    <span id="rolePermissionManagePageSpan"></span>
-                </div>
-            </div>
-        </div>
-        <div class="rolePermissionManageEdit hidden rightManageDiv">
-            <div class="container containerTop">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <button type="button" class="btn btn-info rolePermissionManageBack" value="true">返回</button>
-                    </div>
-                    <div class="col-xs-6 text-center">
-                        编辑角色权限关系
-                    </div>
-                </div>
-                <div class="row form-horizontal">
-                    <div class="col-xs-8">
-                        <div class="form-group">
-                            <label for="pname" class="col-sm-2 control-label">*角色权限关系名称：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="pname" placeholder="请输入角色权限关系名称">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="ptype" class="col-sm-2 control-label">*角色权限关系类型：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="ptype" placeholder="请输入角色权限关系类型">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-default RolePermission" id="saveRolePermission">保存</button>
-                            <button type="button" class="btn btn-default rolePermissionManageBack">返回</button>
                         </div>
                     </div>
                 </div>
@@ -1323,15 +1215,40 @@
     </div>
 </div>
 
-你最喜欢吃哪些水果（checkbox多选）<br>
-<div class="RadioStyle">
-    <input type="checkbox" name="sg" id="sg1"><label for="sg1">柚子</label>
-    <input type="checkbox" name="sg" id="sg2"><label for="sg2">橘子</label>
-    <input type="checkbox" name="sg" id="sg3"><label for="sg3">葡萄</label>
-    <input type="checkbox" name="sg" id="sg4"><label for="sg4">梨子</label>
-    <input type="checkbox" name="sg" id="sg5"><label for="sg5">香蕉</label>
-    <input type="checkbox" name="sg" id="sg6"><label for="sg6">苹果</label>
-</div>
+<!--你最喜欢吃哪些水果（checkbox多选）<br>-->
+<!--<div class="RadioStyle">-->
+<!--    <input type="checkbox" name="sg" id="sg1"><label for="sg1">柚子</label>-->
+<!--    <input type="checkbox" name="sg" id="sg2"><label for="sg2">橘子</label>-->
+<!--    <input type="checkbox" name="sg" id="sg3"><label for="sg3">葡萄</label>-->
+<!--    <input type="checkbox" name="sg" id="sg4"><label for="sg4">梨子</label>-->
+<!--    <input type="checkbox" name="sg" id="sg5"><label for="sg5">香蕉</label>-->
+<!--    <input type="checkbox" name="sg" id="sg6"><label for="sg6">苹果</label>-->
+<!--</div>-->
 
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    给角色分配权限
+                </h4>
+            </div>
+            <div class="modal-body">
+                <ul id="tree"></ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                </button>
+                <button type="button" class="btn btn-primary">
+                    提交更改
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

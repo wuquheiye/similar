@@ -45,6 +45,7 @@ public class Permission {
      * 权限
      */
     private String ppermission;
+
     /**
      * url
      */

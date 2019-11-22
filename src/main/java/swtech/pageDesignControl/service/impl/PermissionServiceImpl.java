@@ -1,6 +1,7 @@
 package swtech.pageDesignControl.service.impl;
 
 import org.springframework.transaction.annotation.Transactional;
+import swtech.pageDesignControl.common.vo.PermissionVo;
 import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.mapper.PermissionMapper;
 import swtech.pageDesignControl.service.IPermissionService;
@@ -13,7 +14,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 李鸿智
@@ -61,16 +62,41 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         return permissionMapper.selectById(did);
     }
 
+    //    @Transactional
+//    @Override
+//    public List<Permission> selectByPageAndCondition(Permission permission, int page, int pageSize) {
+//        int pageStart = (page - 1) * pageSize;
+//        return permissionMapper.selectByPageAndCondition(permission, pageStart, pageSize);
+//    }
+//
+//    @Transactional
+//    @Override
+//    public int selectCount() {
+//        return permissionMapper.selectCount();
+//    }
+//
     @Transactional
     @Override
-    public List<Permission> selectByPageAndCondition(Permission permission, int page, int pageSize) {
-        int pageStart = (page - 1) * pageSize;
-        return permissionMapper.selectByPageAndCondition(permission, pageStart, pageSize);
+    public List<PermissionVo> selecTree() {
+        List<PermissionVo> permissionVoList = permissionMapper.selecGtrandfather();
+        getChild(permissionVoList);
+        return permissionVoList;
     }
 
-    @Transactional
-    @Override
-    public int selectCount() {
-        return permissionMapper.selectCount();
+    /**
+     *  获取子类
+     *
+     * @param permissionVoList
+     * @return
+     */
+    public List<PermissionVo> getChild(List<PermissionVo> permissionVoList) {
+        for (PermissionVo permissionVo : permissionVoList) {
+            List<PermissionVo> childPermissionVo = permissionMapper.selectChild(permissionVo.getPid());
+            if (childPermissionVo != null && childPermissionVo.size() > 0) {
+                getChild(childPermissionVo);
+            }
+            permissionVo.setChildrenPermission(childPermissionVo);
+        }
+        return permissionVoList;
     }
 }

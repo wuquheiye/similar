@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import swtech.pageDesignControl.common.vo.PermissionVo;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.vo.ReturnMsgPage;
 import swtech.pageDesignControl.entity.Permission;
@@ -122,25 +123,21 @@ public class PermissionController {
         return msg;
     }
 
+    /**
+     * 获取权限树
+     *
+     * @return
+     */
     @ResponseBody
-    @GetMapping("/manage/permission/selectbypageandcondition")
-    public ReturnMsgPage selectByPageAndCondition(Permission permission, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
-        ReturnMsgPage msg = new ReturnMsgPage();
+    @GetMapping("/manage/permission/selecttree")
+    public ReturnMsg selectTree() {
+        ReturnMsg msg = new ReturnMsg();
         try {
-            List<Permission> permissionList = iPermissionService.selectByPageAndCondition(permission, page, pageSize);
-            int totalSize = iPermissionService.selectCount();
-            int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
-            int pageEnd = page * pageSize < pageSize ? page * pageSize : pageSize;
-            if (permissionList != null ) {
+            List<PermissionVo> permissionVoList = iPermissionService.selecTree();
+            if (permissionVoList != null ) {
                 msg.setStatus("200");
                 msg.setStatusMsg("获取权限条件分页成功");
-                msg.setCurrentPage(page);
-                msg.setTotalPage(totalPage);
-                msg.setMsg(permissionList);
-                msg.setTotalSize(totalSize);
-                msg.setPageStart((page - 1) * pageSize);
-                msg.setPageEnd(page * pageSize);
-                msg.setPageSize(pageSize);
+                msg.setMsg(permissionVoList);
             } else {
                 msg.setStatus("202");
                 msg.setStatusMsg("获取权限条件分页失败");
