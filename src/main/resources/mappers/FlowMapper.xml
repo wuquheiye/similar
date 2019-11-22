@@ -17,6 +17,7 @@
         <result column="fuid_manager_hand" property="fuidManagerHand" jdbcType="TIMESTAMP" />
         <result column="fuid_staffing" property="fuidStaffing" jdbcType="INTEGER" />
         <result column="fuid_staffing_hand" property="fuidStaffingHand" jdbcType="TIMESTAMP" />
+        <result column="uusername" property="uusername" jdbcType="VARCHAR" />
     </resultMap>
     <resultMap id="ResultMapWithBLOBs" type="swtech.pageDesignControl.entity.Flow" extends="BaseResultMap" >
         <result column="fapply_reason" property="fapplyReason" jdbcType="LONGVARCHAR" />
@@ -25,7 +26,7 @@
     </resultMap>
     <sql id="Base_Column_List" >
     fid, ftype, uid, fapply_time, fleave_type, fstart_time, fend_time, fstatus, fuid_charge,
-    fuid_charge_hand, fuid_manager, fuid_manager_hand, fuid_staffing, fuid_staffing_hand
+    fuid_charge_hand, fuid_manager, fuid_manager_hand, fuid_staffing, fuid_staffing_hand,uusername
   </sql>
     <sql id="Blob_Column_List" >
     fapply_reason, fuid_charge_refuse, fuid_manager_refuse

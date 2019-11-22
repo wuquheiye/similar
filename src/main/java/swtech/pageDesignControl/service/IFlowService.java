@@ -1,5 +1,8 @@
 package swtech.pageDesignControl.service;
 
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import swtech.pageDesignControl.common.vo.FlowApproval;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Flow;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -20,6 +23,8 @@ public interface IFlowService extends IService<Flow> {
 
     ReturnMsg  selectLeaveAll(Integer fid,Integer ftype);
 
-    ReturnMsg fuidCharge(Flow flow) throws IOException;
+    ReturnMsg fuidCharge( FlowApproval flowApproval) throws IOException;
+
+    ReturnMsg selectBacklog(Integer uid ,  Integer rid);
 
 }

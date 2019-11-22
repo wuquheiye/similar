@@ -6,19 +6,21 @@ import swtech.pageDesignControl.common.exception.ServiceException;
 
 @AllArgsConstructor
 @Getter
-public enum Sex implements BaseEnum<Integer>{
-    MAN(0,"男"),
-    GIRL(1,"女");
+public enum Role implements BaseEnum<Integer>{
+    MANAGE(1,"经理"),
+    GOVERNOR(2,"主管"),
+    ADMINISTRATIVE(3,"人事"),
+    EMPLOYEES(4,"职工");
 
     private Integer code;
     private String desc;
-
     public static String getDesc(Integer code) {
-        for(Sex sex: Sex.values()) {
-            if(sex.code.equals(code)) {
-                return sex.getDesc();
+        for(Role role: Role.values()) {
+            if(role.code.equals(code)) {
+                return role.getDesc();
             }
         }
         throw  new ServiceException("Sex  No matching constant for [" + code + "]");
     }
+
 }

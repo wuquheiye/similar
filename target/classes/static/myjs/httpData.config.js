@@ -4,13 +4,23 @@ localHost = '127.0.0.1';
 var pageDesignControl_HOST = 'http://' + localHost + ':43008/';
 
 //枚举  fstatus 申请状态
-var fstatusFlow={
-
+var fstatusFlow = {
+    UNTREATED:{code:0,desc:"未处理"},
+    CHARGEPASS:{code:1,desc:"主管审批通过"},
+    CHARGEREFUSE:{code:2,desc:"主管审批拒绝"},
+    MANAGERPASS:{code:3,desc:"经理审批通过"},
+    MANAGERREFUSE:{code:4,desc:"经理审批拒绝"},
+    STAFFINGAFFIRM:{code:5,desc:"人事确认"}
 }
 // 申请类型
-var ftypeFlow ={
-    LEAVE :{code:1,desc:"请假申请"},
-    OVERTIME : {code:2,desc:"加班申请"}
+var ftypeFlow = {
+    LEAVE: {code: 1, desc: "请假申请"},
+    OVERTIME: {code: 2, desc: "加班申请"},
+    SERVE:{code:3,desc :"招待申请"},
+    GOOUT:{code:4,desc: "外出申请"},
+    ONBUSINESS:{code:5,desc: "出差申请"},
+    SEALUSE:{code:6,desc: "印章使用申请"},
+    FINANCEPAY:{code:7,desc: "财务付款申请"}
 }
 
 //请假类型

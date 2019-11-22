@@ -8,11 +8,14 @@ import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.common.exception.ServiceException;
+import swtech.pageDesignControl.common.vo.FlowApproval;
 import swtech.pageDesignControl.common.vo.FlowVO;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.websocket.WebSocketServer;
 import swtech.pageDesignControl.entity.Flow;
 import swtech.pageDesignControl.enums.Flow.Fstatus;
+import swtech.pageDesignControl.enums.Judge;
+import swtech.pageDesignControl.enums.Role;
 import swtech.pageDesignControl.mapper.FlowMapper;
 import swtech.pageDesignControl.service.IFlowService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -20,6 +23,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -70,6 +75,7 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         QueryWrapper queryWrapper = new QueryWrapper();
         queryWrapper.eq("uid",uid);
         queryWrapper.eq("ftype",ftype);
+        queryWrapper.eq("fstatus",Fstatus.STAFFINGAFFIRM.getCode());
         List<FlowVO> list = flowMapper.selectList(queryWrapper);
         logger.info(list);
         if(list!=null){
@@ -82,43 +88,94 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
 
     @Override
     @Transactional
-    public ReturnMsg fuidCharge(Flow flow) throws IOException {
+    public ReturnMsg fuidCharge(FlowApproval flowApproval) throws IOException {
         ReturnMsg msg = new ReturnMsg();
-        if(flow == null) throw  new ServiceException("审批参数为空");
+        Flow flow = new Flow();
+        Date date = new Date();
+        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
+        flow.setFid(flowApproval.getFid());
+        if(flowApproval == null) throw  new ServiceException("审批参数为空");
+        if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){
+            flow.setFuidChargeHand(dateFormat.format(date));
+            if(flowApproval.getStatus()== Judge.YES.getCode()){
+                flow.setFstatus(Fstatus.CHARGEPASS.getCode());
+            }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+                flow.setFstatus(Fstatus.CHARGEREFUSE.getCode());
+                flow.setFuidChargeRefuse(flowApproval.getHand());
+            }
+        }else if(flowApproval.getFstatus().equals(Fstatus.CHARGEPASS.getCode())){
+            flow.setFuidManagerHand(dateFormat.format(date));
+            if(flowApproval.getStatus()== Judge.YES.getCode()){
+                flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+            }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+                flow.setFstatus(Fstatus.MANAGERREFUSE.getCode());
+                flow.setFuidManagerRefuse(flowApproval.getHand());
+            }
+        }else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){
+            flow.setFuidStaffingHand(dateFormat.format(date));
+            flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+        }
+
         int i = flowMapper.updateById(flow);
         if(i == 0) throw  new ServiceException("审批数据库操作失败");
         //备用查询 如果 测试时获取不到数据 启用下面两行代码
-//        Flow flow1 = flowMapper.selectById(flow.getFid());
-//        if(flow1 == null) throw new ServiceException("获取申请信息失败");
-        if(flow.getFstatus().equals(Fstatus.CHARGEPASS.getCode())){
-            log.info("主管推送内容"+JSONObject.fromObject(flow).toString()+",推送给 "+flow.getFuidManager());
+        Flow flow1 = flowMapper.selectById(flow.getFid());
+        if(flow1 == null) throw new ServiceException("获取申请信息失败");
+        if(flow1.getFstatus().equals(Fstatus.CHARGEPASS.getCode())){
+            log.info("主管推送内容"+JSONObject.fromObject(flow1).toString()+",推送给 "+flow1.getFuidManager());
             //主管审批通过
             WebSocketServer.sendInfo(
-                    JSONObject.fromObject(flow).toString()
-                    ,Integer.toString(flow.getFuidManager()));
-        }else if(flow.getFstatus().equals(Fstatus.CHARGEREFUSE.getCode())){
+                    JSONObject.fromObject(flow1).toString()
+                    ,Integer.toString(flow1.getFuidManager()));
+        }else if(flow1.getFstatus().equals(Fstatus.CHARGEREFUSE.getCode())){
             //主管审批拒绝
             WebSocketServer.sendInfo(
-                    JSONObject.fromObject(flow).toString()
-                    ,Integer.toString(flow.getUid()));
-        }else if(flow.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){
+                    JSONObject.fromObject(flow1).toString()
+                    ,Integer.toString(flow1.getUid()));
+        }else if(flow1.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){
             //经理审批通过
             WebSocketServer.sendInfo(
-                    JSONObject.fromObject(flow).toString()
-                    ,Integer.toString(flow.getFuidStaffing()));
-        }else if(flow.getFstatus().equals(Fstatus.MANAGERREFUSE.getCode())){
+                    JSONObject.fromObject(flow1).toString()
+                    ,Integer.toString(flow1.getFuidStaffing()));
+        }else if(flow1.getFstatus().equals(Fstatus.MANAGERREFUSE.getCode())){
             //经理审批拒绝
             WebSocketServer.sendInfo(
-                    JSONObject.fromObject(flow).toString()
-                    ,Integer.toString(flow.getUid()));
-        }else if(flow.getFstatus().equals(Fstatus.STAFFINGAFFIRM.getCode())){
+                    JSONObject.fromObject(flow1).toString()
+                    ,Integer.toString(flow1.getUid()));
+        }else if(flow1.getFstatus().equals(Fstatus.STAFFINGAFFIRM.getCode())){
             //人事确认
             WebSocketServer.sendInfo(
-                    JSONObject.fromObject(flow).toString()
-                    ,Integer.toString(flow.getUid()));
+                    JSONObject.fromObject(flow1).toString()
+                    ,Integer.toString(flow1.getUid()));
         }
         msg.setStatus("200");
         msg.setMsg(i);
+        msg.setStatusMsg("审批成功");
+        return msg;
+    }
+
+    @Override
+    @Transactional
+    public ReturnMsg selectBacklog(Integer uid,Integer rid) {
+        ReturnMsg msg  = new ReturnMsg();
+        if(uid == null)throw  new  ServiceException("参数Uid为空，无法获取当前用户需要办理的信息");
+        if(rid == null)throw  new  ServiceException("参数rid为空");
+        QueryWrapper qw = new QueryWrapper();
+        if(rid == Role.GOVERNOR.getCode()){
+            qw.eq("fuid_charge",uid);
+            qw.eq("fstatus",Fstatus.UNTREATED.getCode());
+        }else if(rid == Role.MANAGE.getCode()){
+            qw.eq("fuid_manager",uid);
+            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+        }else if(rid == Role.ADMINISTRATIVE.getCode()){
+            qw.eq("fuid_staffing",uid);
+            qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
+        }else if(rid == Role.EMPLOYEES.getCode()){
+            qw.eq("uid",uid);
+        }
+        List list = flowMapper.selectList(qw);
+        msg.setStatus("200");
+        msg.setMsg(list);
         msg.setStatusMsg("审批成功");
         return msg;
     }
