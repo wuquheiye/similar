@@ -1,5 +1,6 @@
 package swtech.pageDesignControl.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.common.vo.PermissionVo;
 import swtech.pageDesignControl.entity.Permission;
@@ -40,10 +41,25 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Override
     public boolean removeById(Serializable did) {
         int num = permissionMapper.deleteById(did);
+        List<PermissionVo> permissionVoList = permissionMapper.selectChild((Integer) did);
+        removeChild(permissionVoList);
         if (num > 0) {
             return true;
         }
         return false;
+    }
+
+    public List<PermissionVo> removeChild(List<PermissionVo> permissionVoList){
+        for (PermissionVo permissionVo : permissionVoList){
+            List<PermissionVo> childPermissionVo = permissionMapper.selectChild(permissionVo.getPid());
+            if(childPermissionVo!=null&&childPermissionVo.size()>0){
+                permissionMapper.deleteById(permissionVo.getPid());
+                removeChild(childPermissionVo);
+            }else{
+                permissionMapper.deleteById(permissionVo.getPid());
+            }
+        }
+        return permissionVoList;
     }
 
     @Transactional
@@ -62,19 +78,6 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         return permissionMapper.selectById(did);
     }
 
-    //    @Transactional
-//    @Override
-//    public List<Permission> selectByPageAndCondition(Permission permission, int page, int pageSize) {
-//        int pageStart = (page - 1) * pageSize;
-//        return permissionMapper.selectByPageAndCondition(permission, pageStart, pageSize);
-//    }
-//
-//    @Transactional
-//    @Override
-//    public int selectCount() {
-//        return permissionMapper.selectCount();
-//    }
-//
     @Transactional
     @Override
     public List<PermissionVo> selecTree() {
@@ -84,7 +87,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     }
 
     /**
-     *  获取子类
+     * 获取子类
      *
      * @param permissionVoList
      * @return
@@ -98,5 +101,11 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
             permissionVo.setChildrenPermission(childPermissionVo);
         }
         return permissionVoList;
+    }
+
+    @Transactional
+    @Override
+    public List<Permission> list(Wrapper<Permission> queryWrapper) {
+        return permissionMapper.selectList(null);
     }
 }

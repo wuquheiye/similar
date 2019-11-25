@@ -25,23 +25,6 @@ public interface PermissionMapper extends BaseMapper<Permission> {
     List<String> getPermissionyRoleName(String roleName);
 
     /**
-     * 分页查询
-     *
-     * @param permission
-     * @param pageStart
-     * @param pageSize
-     * @return
-     */
-    List<Permission> selectByPageAndCondition(@Param("permission") Permission permission, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
-
-    /**
-     * 查询个数
-     *
-     * @return
-     */
-    int selectCount();
-
-    /**
      * 查询所有的父类
      *
      * @return

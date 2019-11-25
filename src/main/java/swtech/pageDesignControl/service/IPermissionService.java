@@ -23,22 +23,6 @@ public interface IPermissionService extends IService<Permission> {
      */
     Permission selectById(int pid);
 
-//    /**
-//     * 分页查询
-//     *
-//     * @param permission
-//     * @param pageStart
-//     * @param pageSize
-//     * @return
-//     */
-//    List<Permission> selectByPageAndCondition(Permission permission, int pageStart, int pageSize);
-//
-//    /**
-//     * 查询个数
-//     *
-//     * @return
-//     */
-//    int selectCount();
 
     /**
      * 查询权限树

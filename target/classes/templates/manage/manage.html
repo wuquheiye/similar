@@ -37,15 +37,15 @@
                     </ul>
                     <ul class="organizationHeaderOrganizationUl">
                         <li class="">
-                            <div class="organizationHeaderOrganizationClick manageClick" id="roleManage">
-                                角色管理
+                            <div class="organizationHeaderOrganizationClick manageClick" id="departmentManage">
+                                部门管理
                             </div>
                         </li>
                     </ul>
                     <ul class="organizationHeaderOrganizationUl">
                         <li class="">
-                            <div class="organizationHeaderOrganizationClick manageClick" id="departmentManage">
-                                部门管理
+                            <div class="organizationHeaderOrganizationClick manageClick" id="roleManage">
+                                角色管理
                             </div>
                         </li>
                     </ul>
@@ -181,78 +181,6 @@
             </div>
         </div>
         <!--复制开始-->
-        <div class="roleManage hidden rightManageDiv">
-            <div>
-                <form class="form-inline" role="form">
-                    角色名称：
-                    <div class="form-group">
-                        <label class="sr-only" for="roleManageName">角色名称：</label>
-                        <input type="text" class="form-control" id="roleManageName" placeholder="请输入角色名称：">
-                    </div>
-                    <button type="button" class="btn btn-default" id="roleManageSearch">搜索</button>
-                    <button type="button" class="btn btn-default" id="roleManageClean">重置</button>
-                </form>
-            </div>
-            <div>
-                <button type="button" class="btn btn-success manageEdit roleManageAdd">增加</button>
-                <input type="hidden" class="roleManageEdit">
-                <button type="button" class="btn btn-info roleManageDelete">删除</button>
-                <input type="hidden" class="roleManageEdit">
-            </div>
-            <div>
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th class="text-center">
-                            <input type="checkbox" class="roleManageCheckBoxManage" onclick="roleManageCheckbox()">
-                            角色名称
-                        </th>
-                        <th class="text-center">操作</th>
-                    </tr>
-                    </thead>
-                    <!-- 角色列表 -->
-                    <tbody id="roleManageTable">
-                    </tbody>
-                </table>
-            </div>
-            <div id="roleManagePageDiv">
-                <ul class="pagination" id="roleManagePageUl">
-                </ul>
-                <div>
-                    <span id="roleManagePageSpan"></span>
-                </div>
-            </div>
-        </div>
-        <div class="roleManageEdit hidden rightManageDiv">
-            <div class="container containerTop">
-                <div class="row">
-                    <div class="col-xs-3">
-                        <button type="button" class="btn btn-info roleManageBack" value="true">返回</button>
-                    </div>
-                    <div class="col-xs-6 text-center">
-                        编辑角色
-                    </div>
-                </div>
-                <div class="row form-horizontal">
-                    <div class="col-xs-8">
-                        <div class="form-group">
-                            <label for="rname" class="col-sm-2 control-label">*角色名称：</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="rname" placeholder="请输入角色名称">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-default Role" id="saveRole">保存</button>
-                            <button type="button" class="btn btn-default roleManageBack">返回</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="departmentManage hidden rightManageDiv">
             <div>
                 <form class="form-inline" role="form">
@@ -328,6 +256,78 @@
                 </div>
             </div>
         </div>
+        <div class="roleManage hidden rightManageDiv">
+            <div>
+                <form class="form-inline" role="form">
+                    角色名称：
+                    <div class="form-group">
+                        <label class="sr-only" for="roleManageName">角色名称：</label>
+                        <input type="text" class="form-control" id="roleManageName" placeholder="请输入角色名称：">
+                    </div>
+                    <button type="button" class="btn btn-default" id="roleManageSearch">搜索</button>
+                    <button type="button" class="btn btn-default" id="roleManageClean">重置</button>
+                </form>
+            </div>
+            <div>
+                <button type="button" class="btn btn-success manageEdit roleManageAdd">增加</button>
+                <input type="hidden" class="roleManageEdit">
+                <button type="button" class="btn btn-info roleManageDelete">删除</button>
+                <input type="hidden" class="roleManageEdit">
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            <input type="checkbox" class="roleManageCheckBoxManage" onclick="roleManageCheckbox()">
+                            角色名称
+                        </th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <!-- 角色列表 -->
+                    <tbody id="roleManageTable">
+                    </tbody>
+                </table>
+            </div>
+            <div id="roleManagePageDiv">
+                <ul class="pagination" id="roleManagePageUl">
+                </ul>
+                <div>
+                    <span id="roleManagePageSpan"></span>
+                </div>
+            </div>
+        </div>
+        <div class="roleManageEdit hidden rightManageDiv">
+            <div class="container containerTop">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-info roleManageBack" value="true">返回</button>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        编辑角色
+                    </div>
+                </div>
+                <div class="row form-horizontal">
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <label for="rname" class="col-sm-2 control-label">*角色名称：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="rname" placeholder="请输入角色名称">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default Role" id="saveRole">保存</button>
+                            <button type="button" class="btn btn-default roleManageBack">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="permissionManage hidden rightManageDiv">
             <div>
                 <button type="button" class="btn btn-success manageEdit permissionManageAdd">增加</button>
@@ -341,13 +341,13 @@
                             权限名称
                         </th>
                         <th class="text-center organizationHeaderOrganizationClick">
-                            url
+                            权限url
                         </th>
                         <th class="text-center organizationHeaderOrganizationClick">
-                            类型
+                            权限类型
                         </th>
                         <th class="text-center organizationHeaderOrganizationClick">
-                            权限
+                            权限标识
                         </th>
                         <th class="text-center">操作</th>
                     </tr>
@@ -377,9 +377,28 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="ppid" class="col-sm-2 control-label">*上级菜单：</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="ppid">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="purl" class="col-sm-2 control-label">*权限url：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="purl" placeholder="请输入权限url">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="ptype" class="col-sm-2 control-label">*权限类型：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="ptype" placeholder="请输入权限类型">
+                                <input type="text" class="form-control" id="ptype" placeholder="请输入权限类型" disabled="true ">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ppermission" class="col-sm-2 control-label">*权限标识：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ppermission" placeholder="请输入权限标识">
                             </div>
                         </div>
                     </div>
