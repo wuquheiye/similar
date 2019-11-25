@@ -1,46 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="流程审批">
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/FlowApproval.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Flow/Ftype.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Judge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/message/chargeMessage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/message/chargeSkip.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/message/systemMessage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/li_jie_bg.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/message/chargeMessage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/message/chargeSkip.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/static/message/systemMessage.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/FlowApproval.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Flow/Ftype.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Judge.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Role.class" afterDir="false" />
+    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Flow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Flow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Sex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Role.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/FlowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/FlowMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/daily/daily.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/daily/daily.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/flowPath.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/flowPath.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/FlowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/FlowMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/daily/daily.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/daily/daily.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/flowPath.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/flowPath.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Flow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Flow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Sex.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/RolePermissionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/RolePermissionMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/FlowApproval.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/PermissionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/RolePermissionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Flow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Permission.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Flow/Ftype.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Judge.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Role.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/RolePermissionMapper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IPermissionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IRolePermissionService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/PermissionServiceImpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/RolePermissionServiceImpl.class" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -257,7 +237,8 @@
       <option name="presentableId" value="Default" />
       <updated>1574296061916</updated>
       <workItem from="1574296103762" duration="27199000" />
-      <workItem from="1574382595257" duration="22209000" />
+      <workItem from="1574382595257" duration="22603000" />
+      <workItem from="1574641622379" duration="558000" />
     </task>
     <task id="LOCAL-00004" summary="项目管理ok">
       <created>1574330254965</created>
@@ -266,7 +247,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574330254965</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="流程审批">
+      <created>1574417671084</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1574417671084</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
