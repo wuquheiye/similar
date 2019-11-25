@@ -120,5 +120,9 @@ public class Flow implements Serializable {
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private String fuidStaffingHand;
 
+    /**
+     * 申请人
+     */
+    private String uusername;
 
 }

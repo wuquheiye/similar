@@ -168,7 +168,6 @@
 <script type="text/javascript" src="../myjs/common.js"></script>
 <script>
     var chargeList;
-
     //缓存获取当前用户信息 , 并得到他的角色
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
     $(function () {
@@ -179,26 +178,23 @@
     function selectBacklog() {
         let showdata ='';
         $.ajax({
-            url: pageDesignControl_HOST  + "flow/seletByUid?uid="+loginObj.users.uid,
+            url: pageDesignControl_HOST  + "flow/selectBacklog?uid="+loginObj.users.uid+"&rid="+loginObj.role.rid,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',
             async: false,
             success: function(res) {
                 chargeList =res.msg;
-                if(res.msg!=null){
+                if(res.msg!=0){
                     $.each(res.msg,function (index,value) {
                         showdata +=
                             // '<a href="chargeSkip.html?fid='+value.fid+'&ftype='+value.ftype+'">\n' +
                             '<a href="javascript:void(0)" onclick="selectFlowId('+value.fid+')">'+
                             '            <div class="row flow"  style="border-bottom: 1px solid gainsboro">\n' +
-                            '                <div class="col-xs-6" style="line-height: 20px">\n' +
+                            '                <div class="col-xs-12" style="line-height: 20px">\n' +
                             '                    <span style="background: red;width: 5px;height: 5px;border-radius: 50%;display: inline-block;">' +
-                            '</span>' +flowType(value.ftype)+
+                            '</span>' +value.uusername+'__'+flowType(value.ftype)+
                             '                </div>\n' +
-                            '                <div class="col-xs-6" style="line-height: 20px;text-align: right"><b>\n' +
-                            getStatus(value.fstatus)+
-                            '                </b></div>\n' +
                             '                <div class="col-xs-12" style="line-height: 20px;text-align: right">\n' +
                             value.fapplyTime+
                             '                </div>\n' +
@@ -209,8 +205,8 @@
                 }else{
                     alert("暂时无需要处理的信息")
                 }
-                alert(JSON.stringify(chargeList));
-                alert(chargeList[0].ftype);
+                // alert(JSON.stringify(chargeList));
+                // alert(chargeList[0].ftype);
             },
             error: function(){
                 alert("网络异常，请重试");
@@ -422,7 +418,7 @@
                 '        </div>\n' +
                 '        <div class="col-xs-12">\n' +
                 '            <div class="row">\n' +
-                '                <div class="col-xs-12 " >\n' +
+                '                <div class="col-xs-12">\n' +
                 '                    <select class="form-control" id="idea" style="border: 0px">\n' +
                 '                        <option value="0">同意</option>\n' +
                 '                        <option value="1">拒绝</option>\n' +
@@ -535,24 +531,24 @@
             "fid":r
         }
         alert(JSON.stringify(flow));
-        // $.ajax({
-        //     url: pageDesignControl_HOST  + "flow/fuidCharge",
-        //     type: "post",
-        //     dataType: "json",
-        //     data:JSON.stringify(flow),
-        //     contentType: 'application/json; charset=UTF-8',
-        //     async: false,
-        //     success: function(res) {
-        //         if(res!=0){
-        //             alert("审批通过");
-        //         }else{
-        //             alert("数据异常，请重新操作")
-        //         }
-        //     },
-        //     error: function(){
-        //         alert("网络异常，请重试");
-        //     }
-        // });
+        $.ajax({
+            url: pageDesignControl_HOST  + "flow/fuidCharge",
+            type: "post",
+            dataType: "json",
+            data:JSON.stringify(flow),
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(res!=0){
+                    alert("审批通过");
+                }else{
+                    alert("数据异常，请重新操作")
+                }
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
     }
 
     /**
@@ -576,10 +572,6 @@
         $("body").html(showdata);
         selectLeaveAll(chargeListOne.uid);
     }
-
-
-
-
 
     //显示拒绝框
     $(document).on("change", "#idea", function () {

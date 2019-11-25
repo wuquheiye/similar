@@ -1,13 +1,18 @@
 package swtech.pageDesignControl.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import swtech.pageDesignControl.common.vo.FlowApproval;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Flow;
 import swtech.pageDesignControl.service.IFlowService;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  * <p>
@@ -71,15 +76,71 @@ public class FlowController  {
     }
 
     /**
+     * 查询当前用户需要待办的信息
+     * uid
+     * rid
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("selectBacklog")
+    public  ReturnMsg selectBacklog(@RequestParam("uid") Integer uid ,@RequestParam("rid") Integer rid){
+        ReturnMsg msg =new ReturnMsg();
+        try {
+            msg = iFlowService.selectBacklog(uid, rid);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("查询待办信息失败");
+            msg.setMsg(e.getMessage());
+        }
+        return  msg;
+    }
+
+    /**
+     * 查询个人申请信息
+     * @param uid
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("seletByUid")
+    public ReturnMsg seletByUid(@RequestParam("uid") Integer uid){
+        ReturnMsg msg =new ReturnMsg();
+        try {
+            QueryWrapper qw = new QueryWrapper();
+            qw.eq("uid",uid);
+            List list = iFlowService.list(qw);
+            msg.setStatus("200");
+            msg.setStatusMsg("查询个人申请成功");
+            msg.setMsg(list);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("查询待办信息失败");
+            msg.setMsg(e.getMessage());
+        }
+        return  msg;
+    }
+
+    /**
      * 流程审批
-     * @param flow
+     * @param flowApproval
      * @return
      */
     @ResponseBody
     @PostMapping("fuidCharge")
-    public  ReturnMsg fuidCharge(@RequestBody Flow flow){
+    public  ReturnMsg fuidCharge(@RequestBody FlowApproval flowApproval){
         ReturnMsg msg = new ReturnMsg();
-
+        try {
+            msg = iFlowService.fuidCharge(flowApproval);
+        } catch (IOException e) {
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("审批流程功能失败");
+            msg.setMsg(e.getMessage());
+        }
         return msg;
     }
 

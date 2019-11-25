@@ -446,4 +446,83 @@ function leadTime(e) {
     return leadTime;
 }
 
+/**
+ *  获取状态
+ *  e fstatus
+ */
+function getStatus(e) {
+    let desc='';
+    if(e==fstatusFlow.UNTREATED.code){
+        desc=fstatusFlow.UNTREATED.desc;
+    }else if(e==fstatusFlow.CHARGEPASS.code){
+        desc= fstatusFlow.CHARGEPASS.desc;
+    }else if(e==fstatusFlow.CHARGEREFUSE.code){
+        desc = fstatusFlow.CHARGEREFUSE.desc;
+    }else  if(e==fstatusFlow.MANAGERPASS.code){
+        desc = fstatusFlow.MANAGERPASS.desc;
+    }else  if(e==fstatusFlow.MANAGERREFUSE.code){
+        desc = fstatusFlow.MANAGERREFUSE.desc;
+    } else if(e==fstatusFlow.STAFFINGAFFIRM.code){
+        desc = fstatusFlow.STAFFINGAFFIRM.desc;
+    }
+    return desc;
+}
+
+/**
+ * 申请类型
+ */
+function  flowType(e){
+    let desc='';
+    if(e==ftypeFlow.LEAVE.code){
+        desc=ftypeFlow.LEAVE.desc;
+    }else if(e==ftypeFlow.OVERTIME.code){
+        desc = ftypeFlow.OVERTIME.desc;
+    }else if(e==ftypeFlow.FINANCEPAY.code){
+        desc = ftypeFlow.FINANCEPAY.desc;
+    }else if(e==ftypeFlow.GOOUT.code){
+        desc = ftypeFlow.GOOUT.desc;
+    }else if(e==ftypeFlow.SEALUSE.code){
+        desc = ftypeFlow.SEALUSE.desc;
+    }else if(e==ftypeFlow.SERVE.code){
+        desc = ftypeFlow.SERVE.desc;
+    }else if(e==ftypeFlow.ONBUSINESS.code){
+        desc = ftypeFlow.ONBUSINESS.desc;
+    }
+
+    return desc;
+}
+/**
+ *  获取历史申请记录
+ */
+function selectLeaveAll(uid) {
+    let showdata='';
+    $.ajax({
+        url: pageDesignControl_HOST + "flow/selectLeaveAll?uid="+uid+"&ftype="+ftypeFlow.LEAVE.code,
+        type: "get",
+        dataType: "json",
+        contentType: 'application/json; charset=UTF-8',
+        async: false,
+        success: function(res) {
+            if(res.msg!=null){
+                $.each(res.msg,function (index,value) {
+                    showdata+='<div class="row" style="height: 30px">\n' +
+                        '                        <div class="col-xs-6" style="line-height: 30px;">事假</div>\n' +
+                        '                        <div class="col-xs-6" style="line-height: 30px;text-align: right">\n' +
+                        value.fapplyTime+
+                        '                        </div>\n' +
+                        '                    </div>\n' +
+                        '                    <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">';
+                })
+                $("#history_flow").html(showdata);
+            }else{
+                alert("申请发出失败");
+            }
+        },
+        error: function(){
+            alert("网络信号不好，请重试");
+        }
+
+    })
+}
+
 // 袁君选end
