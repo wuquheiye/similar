@@ -1,7 +1,10 @@
 package swtech.pageDesignControl.service.impl;
 
 import org.springframework.transaction.annotation.Transactional;
+import swtech.pageDesignControl.common.vo.UsersVo;
+import swtech.pageDesignControl.entity.Department;
 import swtech.pageDesignControl.entity.Users;
+import swtech.pageDesignControl.mapper.DepartmentMapper;
 import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IUsersService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -24,6 +27,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
     @Resource
     private UsersMapper usersMapper;
+
+    @Resource
+    private DepartmentMapper departmentMapper;
 
     @Transactional
     @Override
@@ -57,15 +63,20 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
     @Transactional
     @Override
-    public Users selectById(int did) {
+    public Users getById(Serializable did) {
         return usersMapper.selectById(did);
     }
 
     @Transactional
     @Override
-    public List<Users> selectByPageAndCondition(Users users, int page, int pageSize) {
+    public List<UsersVo> selectByPageAndCondition(Users users, int page, int pageSize) {
         int pageStart = (page - 1) * pageSize;
-        return usersMapper.selectByPageAndCondition(users, pageStart, pageSize);
+        List<UsersVo> usersVoList = usersMapper.selectByPageAndCondition(users, pageStart, pageSize);
+        for (UsersVo usersVo: usersVoList){
+            Department department = departmentMapper.selectById(usersVo.getDid());
+            usersVo.setDepartment(department);
+        }
+        return usersVoList;
     }
 
     @Transactional

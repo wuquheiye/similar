@@ -1,18 +1,12 @@
 package swtech.pageDesignControl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import swtech.pageDesignControl.common.utils.DateUtil;
 import swtech.pageDesignControl.common.vo.PermissionVo;
-import swtech.pageDesignControl.entity.Department;
 import swtech.pageDesignControl.entity.Permission;
-import swtech.pageDesignControl.mapper.DepartmentMapper;
 import swtech.pageDesignControl.mapper.PermissionMapper;
 import swtech.pageDesignControl.service.IPermissionService;
 
@@ -54,7 +48,7 @@ public class PermissionTest {
 
     @Test
     public void removeById() {
-        boolean isTrue = iPermissionService.removeById(77);
+        boolean isTrue = iPermissionService.removeById(95);
         System.out.println(isTrue);
     }
 }

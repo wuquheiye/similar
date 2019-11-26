@@ -99,11 +99,11 @@ public class DepartmentController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/department/selectbyid")
-    public ReturnMsg selectById(@RequestParam("did") int did) {
+    @GetMapping("/manage/department/getbyid")
+    public ReturnMsg getById(@RequestParam("did") int did) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Department department = iDepartmentService.selectById(did);
+            Department department = iDepartmentService.getById(did);
             if (department != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询单个部门成功");

@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author 李鸿智
@@ -26,22 +26,22 @@ public class RolePermissionController {
     private IRolePermissionService iRolePermissionService;
 
     @ResponseBody
-    @GetMapping("/manage/rolepermission/save")
-    public ReturnMsg save(RolePermission rolePermission) {
+    @RequestMapping("/manage/rolepermission/insertlist")
+    public ReturnMsg save(@RequestBody List<RolePermission> rolePermissionList) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iRolePermissionService.save(rolePermission);
-            if (isTrue) {
+            int num = iRolePermissionService.insertList(rolePermissionList);
+            if (num > 0) {
                 msg.setStatus("200");
-                msg.setStatusMsg("新建角色权限关系成功");
+                msg.setStatusMsg("新建角色权限关系列表成功");
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("新建角色权限关系失败");
+                msg.setStatusMsg("新建角色权限关系列表失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("新建角色权限关系异常");
+            msg.setStatusMsg("新建角色权限关系列表异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -49,22 +49,22 @@ public class RolePermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/rolepermission/removebyid")
-    public ReturnMsg removeById(@RequestParam("rpid") int rpid) {
+    @GetMapping("/manage/rolepermission/deletebyroleid")
+    public ReturnMsg deleteByRoleId(@RequestParam("rid") int rid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iRolePermissionService.removeById(rpid);
-            if (isTrue) {
+            int num = iRolePermissionService.deleteByRoleId(rid);
+            if (num > 0) {
                 msg.setStatus("200");
-                msg.setStatusMsg("删除角色权限关系成功");
+                msg.setStatusMsg("通过角色ID删除角色权限关系成功");
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("删除角色权限关系失败");
+                msg.setStatusMsg("通过角色ID删除角色权限关系失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("删除角色权限关系异常");
+            msg.setStatusMsg("通过角色ID删除角色权限关系异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -72,22 +72,22 @@ public class RolePermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/rolepermission/updatebyid")
-    public ReturnMsg updateById(RolePermission rolePermission) {
+    @GetMapping("/manage/rolepermission/deletebypermissionid")
+    public ReturnMsg removeById(@RequestParam("pid") int pid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iRolePermissionService.updateById(rolePermission);
-            if (isTrue) {
+            int num = iRolePermissionService.deleteByPermissionId(pid);
+            if (num > 0) {
                 msg.setStatus("200");
-                msg.setStatusMsg("修改角色权限关系成功");
+                msg.setStatusMsg("通过权限ID删除角色权限关系成功");
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("修改角色权限关系失败");
+                msg.setStatusMsg("通过权限ID删除角色权限关系失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("修改角色权限关系异常");
+            msg.setStatusMsg("通过权限ID删除角色权限关系异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -100,7 +100,7 @@ public class RolePermissionController {
         ReturnMsg msg = new ReturnMsg();
         try {
             List<String> permissionIdList = iRolePermissionService.getPermissionByRoleId(rid);
-            if (permissionIdList!=null) {
+            if (permissionIdList != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询角色权限关系成功");
                 msg.setMsg(permissionIdList);

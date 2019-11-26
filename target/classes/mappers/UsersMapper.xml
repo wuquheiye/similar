@@ -5,10 +5,10 @@
         SELECT upassword from users where uusername = #{username}
     </select>
 
-    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Users"
+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.common.vo.UsersVo"
             parameterType="swtech.pageDesignControl.entity.Users">
         SELECT * FROM users where 1=1
-        <if test="users!=null and users.uusername!=''">
+        <if test="users!=null and users.uusername!='' and users.uusername!='null'">
             and uusername like concat('%',#{users.uusername},'%')
         </if>
         LIMIT #{pageStart},#{pageSize}

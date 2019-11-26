@@ -21,4 +21,29 @@ public interface IRolePermissionService extends IService<RolePermission> {
      * @return
      */
     List<String> getPermissionByRoleId(int rid);
+
+    /**
+     * 插入列表
+     *
+     * @param rolePermissionList
+     * @return
+     */
+    int insertList(List<RolePermission> rolePermissionList);
+
+    /**
+     * 根据角色id删除角色权限关系
+     *
+     * @param rid
+     * @return
+     */
+    int deleteByRoleId(int rid);
+
+    /**
+     * 根据权限id删除角色权限关系
+     *
+     * @param pid
+     * @return
+     */
+    int deleteByPermissionId(int pid);
+
 }

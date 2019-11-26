@@ -60,7 +60,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
 
     @Transactional
     @Override
-    public Department selectById(int did) {
+    public Department getById(Serializable  did) {
         return departmentMapper.selectById(did);
     }
 

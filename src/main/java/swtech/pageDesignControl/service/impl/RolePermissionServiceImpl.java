@@ -8,7 +8,6 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -25,39 +24,28 @@ public class RolePermissionServiceImpl extends ServiceImpl<RolePermissionMapper,
     @Resource
     private RolePermissionMapper rolePermissionMapper;
 
-    @Transactional
-    @Override
-    public boolean save(RolePermission rolePermission) {
-        int num = rolePermissionMapper.insert(rolePermission);
-        if (num > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Transactional
-    @Override
-    public boolean removeById(Serializable rpid) {
-        int num = rolePermissionMapper.deleteById(rpid);
-        if (num > 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Transactional
-    @Override
-    public boolean updateById(RolePermission rolePermission) {
-        int num = rolePermissionMapper.updateById(rolePermission);
-        if (num > 0) {
-            return true;
-        }
-        return false;
-    }
 
     @Transactional
     @Override
     public List<String> getPermissionByRoleId(int rid) {
         return rolePermissionMapper.getPermissionByRoleId(rid);
+    }
+
+    @Transactional
+    @Override
+    public int insertList(List<RolePermission> rolePermissionList) {
+        return rolePermissionMapper.insertList(rolePermissionList);
+    }
+
+    @Transactional
+    @Override
+    public int deleteByRoleId(int rid) {
+        return rolePermissionMapper.deleteByRoleId(rid);
+    }
+
+    @Transactional
+    @Override
+    public int deleteByPermissionId(int pid) {
+        return rolePermissionMapper.deleteByPermissionId(pid);
     }
 }

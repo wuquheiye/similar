@@ -3,6 +3,7 @@ package swtech.pageDesignControl.service.impl;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.entity.Role;
 import swtech.pageDesignControl.mapper.RoleMapper;
+import swtech.pageDesignControl.mapper.RolePermissionMapper;
 import swtech.pageDesignControl.service.IRoleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -25,6 +26,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Resource
     private RoleMapper roleMapper;
 
+    @Resource
+    private RolePermissionMapper rolePermissionMapper;
+
     @Transactional
     @Override
     public boolean save(Role role) {
@@ -39,6 +43,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
     @Override
     public boolean removeById(Serializable rid) {
         int num = roleMapper.deleteById(rid);
+        rolePermissionMapper.deleteByRoleId((Integer) rid);
         if (num > 0) {
             return true;
         }
@@ -57,7 +62,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 
     @Transactional
     @Override
-    public Role selectById(int rid) {
+    public Role  getById(Serializable rid) {
         return roleMapper.selectById(rid);
     }
 

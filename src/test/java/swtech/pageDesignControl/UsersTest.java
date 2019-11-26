@@ -1,13 +1,11 @@
 package swtech.pageDesignControl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.common.utils.DateUtil;
+import swtech.pageDesignControl.common.vo.UsersVo;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.UsersMapper;
 
@@ -80,8 +78,8 @@ public class UsersTest {
     @Test
     public void selectByPageAndCondition() {
         Users users = new Users();
-        users.setUusername("2");
-        List<Users> usersList = usersMapper.selectByPageAndCondition(users, 0, 8);
+        users.setUusername("");
+        List<UsersVo> usersList = usersMapper.selectByPageAndCondition(users, 0, 8);
         System.out.println(usersList.size());
     }
 

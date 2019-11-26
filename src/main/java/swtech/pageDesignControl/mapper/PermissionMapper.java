@@ -1,6 +1,5 @@
 package swtech.pageDesignControl.mapper;
 
-import org.apache.ibatis.annotations.Param;
 import swtech.pageDesignControl.common.vo.PermissionVo;
 import swtech.pageDesignControl.entity.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
@@ -17,7 +16,7 @@ import java.util.List;
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
     /**
-     * 根据角色查询权限
+     * 根据角色查询权限Shiro
      *
      * @param roleName
      * @return

@@ -1,6 +1,7 @@
 package swtech.pageDesignControl.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import swtech.pageDesignControl.common.vo.UsersVo;
 import swtech.pageDesignControl.entity.Users;
 
 import java.util.List;
@@ -16,14 +17,6 @@ import java.util.List;
 public interface IUsersService extends IService<Users> {
 
     /**
-     * 查询单个
-     *
-     * @param uid
-     * @return
-     */
-    Users selectById(int uid);
-
-    /**
      * 分页查询
      *
      * @param users
@@ -31,7 +24,7 @@ public interface IUsersService extends IService<Users> {
      * @param pageSize
      * @return
      */
-    List<Users> selectByPageAndCondition(Users users, int pageStart, int pageSize);
+    List<UsersVo> selectByPageAndCondition(Users users, int pageStart, int pageSize);
 
     /**
      * 查询个数

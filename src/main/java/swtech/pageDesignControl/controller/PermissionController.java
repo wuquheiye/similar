@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import swtech.pageDesignControl.common.vo.PermissionVo;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
-import swtech.pageDesignControl.common.vo.ReturnMsgPage;
 import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.service.IPermissionService;
 
@@ -100,11 +99,11 @@ public class PermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/permission/selectbyid")
+    @GetMapping("/manage/permission/getbyid")
     public ReturnMsg selectById(@RequestParam("pid") int pid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Permission permission = iPermissionService.selectById(pid);
+            Permission permission = iPermissionService.getById(pid);
             if (permission != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询单个权限成功");
