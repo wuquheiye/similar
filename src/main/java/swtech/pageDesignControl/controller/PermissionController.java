@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import swtech.pageDesignControl.common.vo.PermissionVo;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
-import swtech.pageDesignControl.common.vo.ReturnMsgPage;
 import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.service.IPermissionService;
 
@@ -100,11 +99,11 @@ public class PermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/permission/selectbyid")
+    @GetMapping("/manage/permission/getbyid")
     public ReturnMsg selectById(@RequestParam("pid") int pid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Permission permission = iPermissionService.selectById(pid);
+            Permission permission = iPermissionService.getById(pid);
             if (permission != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询单个权限成功");
@@ -123,11 +122,6 @@ public class PermissionController {
         return msg;
     }
 
-    /**
-     * 获取权限树
-     *
-     * @return
-     */
     @ResponseBody
     @GetMapping("/manage/permission/selecttree")
     public ReturnMsg selectTree() {
@@ -136,17 +130,42 @@ public class PermissionController {
             List<PermissionVo> permissionVoList = iPermissionService.selecTree();
             if (permissionVoList != null ) {
                 msg.setStatus("200");
-                msg.setStatusMsg("获取权限条件分页成功");
+                msg.setStatusMsg("获取权限树成功");
                 msg.setMsg(permissionVoList);
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("获取权限条件分页失败");
+                msg.setStatusMsg("获取权限树失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             log.info(e.getMessage());
             msg.setStatus("201");
-            msg.setStatusMsg("获取权限条件分页异常");
+            msg.setStatusMsg("获取权限树异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    @ResponseBody
+    @GetMapping("/manage/permission/list")
+    public ReturnMsg list() {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            List<Permission> permissionList = iPermissionService.list(null);
+            if (permissionList != null ) {
+                msg.setStatus("200");
+                msg.setStatusMsg("获取所有权限成功");
+                msg.setMsg(permissionList);
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("获取所有权限失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("获取所有权限异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));

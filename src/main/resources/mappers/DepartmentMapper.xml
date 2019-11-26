@@ -4,7 +4,7 @@
     <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Department"
             parameterType="swtech.pageDesignControl.entity.Department">
         SELECT * FROM department where 1=1
-        <if test="department!=null and department.dname!=''">
+        <if test="department!=null and department.dname!='' and department.dname!='null'">
             and dname like concat('%',#{department.dname},'%')
         </if>
         LIMIT #{pageStart},#{pageSize}

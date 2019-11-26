@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import swtech.pageDesignControl.common.utils.DateUtil;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.vo.ReturnMsgPage;
+import swtech.pageDesignControl.common.vo.UsersVo;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.service.IUsersService;
 
@@ -107,11 +108,11 @@ public class UsersController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/users/selectbyid")
-    public ReturnMsg selectById(@RequestParam("uid") int uid) {
+    @GetMapping("/manage/users/getbyid")
+    public ReturnMsg getById(@RequestParam("uid") int uid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Users users = iUsersService.selectById(uid);
+            Users users = iUsersService.getById(uid);
             if (users != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询单个用户成功");
@@ -135,7 +136,7 @@ public class UsersController {
     public ReturnMsgPage selectByPageAndCondition(Users users, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         ReturnMsgPage msg = new ReturnMsgPage();
         try {
-            List<Users> roleList = iUsersService.selectByPageAndCondition(users, page, pageSize);
+            List<UsersVo> roleList = iUsersService.selectByPageAndCondition(users, page, pageSize);
             int totalSize = iUsersService.selectCount();
             int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
             int pageEnd = page * pageSize < pageSize ? page * pageSize : pageSize;
@@ -212,6 +213,5 @@ public class UsersController {
         json.put("result", "登陆成功");
         return json.toString();
     }
-
 }
 

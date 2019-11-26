@@ -96,11 +96,11 @@ public class RoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/role/selectbyid")
-    public ReturnMsg selectById(@RequestParam("rid") int rid) {
+    @GetMapping("/manage/role/getbyid")
+    public ReturnMsg getById(@RequestParam("rid") int rid) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Role role = iRoleService.selectById(rid);
+            Role role = iRoleService.getById(rid);
             if (role != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询单个角色成功");

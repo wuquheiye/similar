@@ -15,30 +15,6 @@ import java.util.List;
  * @since 2019-11-15
  */
 public interface IPermissionService extends IService<Permission> {
-    /**
-     * 查询单个
-     *
-     * @param pid
-     * @return
-     */
-    Permission selectById(int pid);
-
-//    /**
-//     * 分页查询
-//     *
-//     * @param permission
-//     * @param pageStart
-//     * @param pageSize
-//     * @return
-//     */
-//    List<Permission> selectByPageAndCondition(Permission permission, int pageStart, int pageSize);
-//
-//    /**
-//     * 查询个数
-//     *
-//     * @return
-//     */
-//    int selectCount();
 
     /**
      * 查询权限树

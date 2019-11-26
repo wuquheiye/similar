@@ -16,14 +16,6 @@ import java.util.List;
  */
 public interface IDepartmentService extends IService<Department> {
     /**
-     * 查询单个
-     *
-     * @param did
-     * @return
-     */
-    Department selectById(int did);
-
-    /**
      * 分页查询
      *
      * @param department
