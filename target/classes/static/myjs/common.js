@@ -446,6 +446,27 @@ function leadTime(e) {
     return leadTime;
 }
 
+//hh:mm  dd/MM/yyyy 格式字符串转日期
+function getDateSprit(strDate) {
+    var st = strDate;
+    var a = st.split(" ");
+    var b = a[0].split("/");
+    var c = a[1].split(":");
+    var date = new Date(b[2], b[1], b[0], c[0], c[1] );
+    return date;
+}
+
+
+//两个时间计算时间差
+function leadTimeTwo(s,e) {
+    let databaseTime =Date.parse(getDateSprit(s));
+    let date = Date.parse(getDateSprit(e));
+    let lead =date- databaseTime ;
+    let leadDate =Math.floor(lead/86400000)+"天";
+    let leadTime = Math.floor((lead%86400000)/(1000*60*60))+"小时";
+    return leadDate+leadTime;
+}
+
 /**
  *  获取状态
  *  e fstatus

@@ -9,21 +9,28 @@ import org.json.JSONArray;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.common.exception.ServiceException;
 import swtech.pageDesignControl.common.vo.FlowApproval;
+import swtech.pageDesignControl.common.vo.FlowOnbusIness;
 import swtech.pageDesignControl.common.vo.FlowVO;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.websocket.WebSocketServer;
 import swtech.pageDesignControl.entity.Flow;
+import swtech.pageDesignControl.entity.OnbusInessFlow;
+import swtech.pageDesignControl.entity.ServeFlow;
 import swtech.pageDesignControl.enums.Flow.Fstatus;
 import swtech.pageDesignControl.enums.Judge;
 import swtech.pageDesignControl.enums.Role;
 import swtech.pageDesignControl.mapper.FlowMapper;
+import swtech.pageDesignControl.mapper.OnbusInessFlowMapper;
+import swtech.pageDesignControl.mapper.ServeFlowMapper;
 import swtech.pageDesignControl.service.IFlowService;
+import swtech.pageDesignControl.enums.Flow.Ftype;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -45,26 +52,99 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
 
     @Resource
     private FlowMapper flowMapper;
+    @Resource
+    private OnbusInessFlowMapper onbusInessFlowMapper;
+    @Resource
+    private ServeFlowMapper serveFlowMapper;
+
+
+
 
     @Override
     @Transactional
     public ReturnMsg leaveInsert(Flow leave) throws IOException {
         ReturnMsg msg = new ReturnMsg();
         if(leave ==null) throw new ServiceException("申请参数为空");
+        //给时间赋值
+        if(leave.getFendTime()==null){
+            leave.setFendTime(LocalDateTime.of(2000,10,10,0,00));
+        }
+        if(leave.getFstartTime()==null){
+            leave.setFstartTime(LocalDateTime.of(2000,10,10,0,00));
+        }
         int insert = flowMapper.insert(leave);
         if(insert == 0) throw  new ServiceException("申请录入失败");
         QueryWrapper qw = new QueryWrapper();
         qw.eq("uid",leave.getUid());
-        qw.eq("fstatus", Fstatus.UNTREATED.getCode());
+        String  sid;
+        //判断申请人是职工，还是主管
+        if(leave.getFuidCharge()==0){
+            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            sid=Integer.toString(leave.getFuidStaffing()) ;
+        }else {
+            qw.eq("fstatus", Fstatus.UNTREATED.getCode());
+            sid =Integer.toString(leave.getFuidCharge()) ;
+        }
         List<Flow> list = flowMapper.selectList(qw);
         JSONArray jsonArray = new JSONArray(list);
-//        String sid =Integer.toString(leave.getFuidCharge()) ;
-        WebSocketServer.sendInfo(jsonArray.toString(),"3");
+
+        WebSocketServer.sendInfo(jsonArray.toString(),sid);
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("请假申请录入成功");
         return  msg;
     }
+
+    @Override
+    @Transactional
+    public ReturnMsg OnbusInessInsert(FlowOnbusIness flowOnbusIness) throws IOException {
+        Flow leave = new Flow();
+        leave=flowOnbusIness.getLeave();
+        ReturnMsg msg = new ReturnMsg();
+        if(leave ==null) throw new ServiceException("申请参数为空");
+
+        //给时间赋值
+        if(leave.getFendTime()==null){
+            leave.setFendTime(LocalDateTime.of(2000,10,10,0,00));
+        }
+        if(leave.getFstartTime()==null){
+            leave.setFstartTime(LocalDateTime.of(2000,10,10,0,00));
+        }
+
+        int insert = flowMapper.insert(leave);
+        //        //根据请假类型进行业务
+        if(leave.getFtype().equals(Ftype.ONBUSINESS.getCode())){
+            flowOnbusIness.getOnbusInessFlow().setFid(leave.getFid());
+            int insert1 = onbusInessFlowMapper.insert(flowOnbusIness.getOnbusInessFlow());
+            if(insert1==0) throw  new ServiceException("外出申请表录入失败");
+        }else if(leave.getFtype().equals(Ftype.SERVE.getCode())){
+            flowOnbusIness.getServeFlow().setFid(leave.getFid());
+            int insert1 = serveFlowMapper.insert(flowOnbusIness.getServeFlow());
+            if(insert1==0) throw  new ServiceException("业务招待申请录入失败");
+        }
+        if(insert == 0) throw  new ServiceException("申请录入失败");
+        QueryWrapper qw = new QueryWrapper();
+        qw.eq("uid",leave.getUid());
+        String  sid;
+        //判断申请人是职工，还是主管
+        if(leave.getFuidCharge()==0){
+            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            sid=Integer.toString(leave.getFuidStaffing()) ;
+        }else {
+            qw.eq("fstatus", Fstatus.UNTREATED.getCode());
+            sid =Integer.toString(leave.getFuidCharge()) ;
+        }
+        List<Flow> list = flowMapper.selectList(qw);
+        JSONArray jsonArray = new JSONArray(list);
+
+        WebSocketServer.sendInfo(jsonArray.toString(),sid);
+        msg.setStatus("200");
+        msg.setMsg(insert);
+        msg.setStatusMsg("请假申请录入成功");
+        return  msg;
+    }
+
+
 
     @Transactional
     @Override
@@ -179,4 +259,6 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         msg.setStatusMsg("审批成功");
         return msg;
     }
+
+
 }

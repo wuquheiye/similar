@@ -3,6 +3,7 @@ package swtech.pageDesignControl.service;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import swtech.pageDesignControl.common.vo.FlowApproval;
+import swtech.pageDesignControl.common.vo.FlowOnbusIness;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Flow;
 import com.baomidou.mybatisplus.extension.service.IService;
@@ -14,7 +15,7 @@ import java.io.IOException;
  *  服务类
  * </p>
  *
- * @author 李鸿智
+ * @author 袁君选
  * @since 2019-11-18
  */
 public interface IFlowService extends IService<Flow> {
@@ -26,5 +27,7 @@ public interface IFlowService extends IService<Flow> {
     ReturnMsg fuidCharge( FlowApproval flowApproval) throws IOException;
 
     ReturnMsg selectBacklog(Integer uid ,  Integer rid);
+
+    ReturnMsg OnbusInessInsert(FlowOnbusIness flowOnbusIness) throws IOException;
 
 }

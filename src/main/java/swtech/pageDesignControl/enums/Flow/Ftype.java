@@ -27,4 +27,4 @@ public enum Ftype implements BaseEnum<Integer> {
         }
         throw new ServiceException("ftype  No matching constant for [" + code + "]");
     }
-    }
+}
