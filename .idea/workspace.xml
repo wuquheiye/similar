@@ -1,60 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="修改流程">
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/FlowOnbusIness.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/OnbusInessFlow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/ServeFlow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/OnbusInessFlowMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/ServeFlowMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/OnbusInessFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/ServeFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/flow/financePayFlow.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/flow/onbusInessFlow.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/flow/overTimeFlow.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/flow/sealuseFlow.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/flow/serveFlow.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mappers/OnbusInessFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/mappers/ServeFlowMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/FlowApproval.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/FlowOnbusIness.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/PermissionController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Flow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/OnbusInessFlow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/Permission.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/ServeFlow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Flow/Ftype.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Judge.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Role.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/FlowMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/OnbusInessFlowMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/ServeFlowMapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IPermissionService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/PermissionServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/CodeGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Flow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Flow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Flow/Ftype.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Flow/Ftype.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/FlowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/FlowMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/flowPath.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/flowPath.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/leave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/FlowMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/FlowMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/flowPath.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/flowPath.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/leave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/CodeGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/CodeGenerator.class" afterDir="false" />
-    </list>
+    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -240,7 +187,7 @@
       <workItem from="1574641622379" duration="6675000" />
       <workItem from="1574664698326" duration="4829000" />
       <workItem from="1574728058055" duration="11945000" />
-      <workItem from="1574747988772" duration="7698000" />
+      <workItem from="1574747988772" duration="7956000" />
     </task>
     <task id="LOCAL-00004" summary="项目管理ok">
       <created>1574330254965</created>
@@ -263,7 +210,14 @@
       <option name="project" value="LOCAL" />
       <updated>1574642192334</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="各种流程申请页面">
+      <created>1574762845389</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1574762845389</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -320,7 +274,8 @@
     <MESSAGE value="项目管理ok" />
     <MESSAGE value="流程审批" />
     <MESSAGE value="修改流程" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改流程" />
+    <MESSAGE value="各种流程申请页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="各种流程申请页面" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
