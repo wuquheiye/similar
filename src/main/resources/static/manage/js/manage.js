@@ -112,6 +112,24 @@ $(function () {
         $(".manageRight").children(".usersManageEdit").addClass("hidden");
         getUsersList(1);
     });
+
+    /**
+     * 点击控制状态
+     */
+    $(".manageRight").on("click", "#usersUstate", function () {
+        uid = $(this).next().val();
+        ustate = $(this).next().attr("class");
+        if (ustate == 0) {
+            ustate = 1;
+            $(this).text("停用");
+            $(this).next().attr("class", 1);
+        } else {
+            ustate = 0;
+            $(this).text("启用");
+            $(this).next().attr("class", 0);
+        }
+        updateUustate(uid, ustate);
+    });
 })
 
 /**
@@ -203,6 +221,30 @@ function updateUsers() {
 }
 
 /**
+ * 更改用户状态
+ */
+function updateUustate(uid, ustate) {
+    var r = confirm("是否更改用户状态!");
+    if (r == true) {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/users/updateuustate',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {
+                "uid": uid,
+                "ustate": ustate
+            },
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("更改成功")
+                }
+            }
+        });
+    }
+}
+
+/**
  * 判断用户是否重名
  */
 function isUnameHendiadysUsers(uusername) {
@@ -265,19 +307,22 @@ function saveUsers() {
  * 删除单个用户
  */
 function removeUsers(uid) {
-    $.ajax({
-        url: pageDesignControl_HOST + 'manage/users/removebyid',
-        type: 'Get',
-        contentType: 'application/json',
-        dataType: 'json',
-        data: {"uid": uid},
-        success: function (msg) {
-            if (msg.status == 200) {
-                getUsersList(1);
-                alert("删除成功")
+    var r = confirm("是否删除!");
+    if (r == true) {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/users/removebyid',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {"uid": uid},
+            success: function (msg) {
+                if (msg.status == 200) {
+                    getUsersList(1);
+                    alert("删除成功")
+                }
             }
-        }
-    });
+        });
+    }
 }
 
 /**
@@ -313,10 +358,11 @@ function getUsersList(page) {
                         '<input type="hidden" class="' + msg.msg[i].uid + '" />' +
                         '</td>' +
                         '<td class="text-center">' + msg.msg[i].uusername + '</td>' +
-                        '<td class="text-center">' + msg.msg[i].department.dname + '</td>' +
+                        '<td class="text-center">' + (msg.msg[i].department == null ? "" : msg.msg[i].department.dname) + '</td>' +
                         '<td class="text-center">' + msg.msg[i].utelephonenumber + '</td>' +
                         '<td class="text-center">' +
-                        '<ul class="Switch"><li><input type="checkbox" name="Storage" id="users' + msg.msg[i].uid + '" /><label for="users' + msg.msg[i].uid + '"><em></em></label></li></ul>' +
+                        '<button type="button" class="btn btn-danger" id = "usersUstate">' + (msg.msg[i].ustate == 0 ? "启用" : "停用") + '</button>' +
+                        '<input type="hidden" value="' + msg.msg[i].uid + '" class="' + msg.msg[i].ustate + '"/>' +
                         '</td>' +
                         '<td class="text-center">' + msg.msg[i].ucreationtime + '</td>' +
                         '<td class="text-center">' +
@@ -324,6 +370,8 @@ function getUsersList(page) {
                         '<input type="hidden" class="' + msg.msg[i].uid + '" />' +
                         '<button type="button" class="btn btn-warning manageEdit usersManageUpdate">修改</button>' +
                         '<input type="hidden" class="usersManageEdit">' +
+                        '<button type="button" class="btn btn-warning manageEdit usersRoleEdit" data-toggle="modal" data-target="#usersRoleEdit">分配角色</button>' +
+                        '<input type="hidden" class="' + msg.msg[i].uid + '" />' +
                         '</td>' +
                         '</tr>'
                 }
@@ -364,6 +412,117 @@ function getUsersList(page) {
 /**
  * 用户end
  */
+/**
+ * 用户角色关系start
+ */
+/**
+ * 用户角色关系生成权限树并回显
+ */
+var userRoleId = 0;
+$(function () {
+    $(".usersManage").on("click", ".usersRoleEdit", function () {
+        getUserRoleList();
+        var uid = $(this).next().attr("class");
+        userRoleId = uid;
+        getRoleByUserId(userRoleId);
+    });
+})
+
+/**
+ * 获取权限树Role列表
+ */
+function getUserRoleList() {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/role/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"rname": "", "pageSize": 10000},
+        async: false,
+        success: function (msg) {
+            if (msg.status == 200) {
+                $("#usersRole").empty();
+                var str = "";
+                for (var i = 0; i < msg.msg.length; i++) {
+                    str += '<button type="button" class="button btn btn-default usersRole' + msg.msg[i].rid + '">' + msg.msg[i].rname + '</button>'
+                        + '<input type="hidden" value="' + msg.msg[i].rid + '" />'
+                }
+                $("#usersRole").append(str);
+            }
+        }
+    });
+}
+
+/**
+ * 用户角色关系权限树回显
+ */
+function getRoleByUserId(uid) {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/userrole/getrolebyuserid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"uid": uid},
+        async: false,
+        success: function (msg) {
+            if (msg.status == 200) {
+                var list = msg.msg;
+                for (var i = 0; i < list.length; i++) {
+                    $(".usersRole" + list[i]).removeClass("btn-default");
+                    $(".usersRole" + list[i]).addClass("btn-warning");
+                }
+            }
+        }
+    });
+}
+
+/**
+ * 点击是否取消角
+ */
+$(function () {
+    $("#usersRole").on("click", ".button", function () {
+        if (!$(this).hasClass("btn-warning")) {
+            $("#usersRole .button").removeClass("btn-warning");
+            $(this).addClass("btn-warning");
+        }
+    });
+})
+
+/**
+ * 获取角色权限关系列表被选中的CheckBox值，先根据rid删除所有，在重新生成
+ */
+$(function () {
+    $("#usersRoleEdit").on("click", "#usersRoleSubmit", function () {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/userrole/deletebyuserid',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {"uid": userRoleId},
+            async: false,
+            success: function (msg) {
+                $.ajax({
+                    url: pageDesignControl_HOST + 'manage/userrole/save',
+                    type: 'get',
+                    contentType: 'application/json',
+                    dataType: 'json',
+                    async: false,
+                    data: {"uid": userRoleId, "rid": $("#usersRole .btn-warning").next().val()},
+                    success: function (msg) {
+                        if (msg.status == 200) {
+                            getRoleByUserId(userRoleId);
+                        }
+                    }
+                });
+                alert("修改成功")
+            }
+        });
+    });
+})
+/**
+ * 用户角色关系end
+ */
+
 
 /**
  * 部门start
@@ -476,7 +635,6 @@ function getDepartment() {
         data: {"did": did},
         success: function (msg) {
             if (msg.status == 200) {
-                // $(".departmentManageEdit #dname").attr("value",msg.msg.dname);
                 departmentDname = msg.msg.dname;
                 $(".departmentManageEdit #dname").val(msg.msg.dname);
             }
@@ -518,7 +676,7 @@ function updateDepartment() {
     var dname = $(".departmentManageEdit #dname").val();
     if (!dname) {
         alert("权限名称不能为空");
-    } else if (isDnameHendiadysDepartment(dname) && dname != dname) {
+    } else if (isDnameHendiadysDepartment(dname) && departmentDname != dname) {
         alert("权限名称不能重复");
     } else {
         $.ajax({
@@ -543,7 +701,7 @@ function saveDepartment() {
     var dname = $(".departmentManageEdit #dname").val();
     if (!dname) {
         alert("权限名称不能为空");
-    } else if (isDnameHendiadysDepartment(dname) && departmentDname != dname) {
+    } else if (isDnameHendiadysDepartment(dname)) {
         alert("权限名称不能重复");
     } else {
         $.ajax({
@@ -592,7 +750,6 @@ function getDepartmentList(page) {
         dataType: 'json',
         data: {"dname": dname, "page": page},
         success: function (msg) {
-            // var departmentList = JSON.stringify(msg.msg);
             if (msg.status == 200) {
                 // 添加列表
                 var departmentListStr = "";

@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- * 
+ * 生成权限树（父类中包含子类）
  * </p>
  *
  * @author 李鸿智
@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Data
 @Accessors(chain = true)
-public class PermissionVo {
+public class PermissionVO {
 
     private static final long serialVersionUID = 1L;
 
@@ -55,5 +55,5 @@ public class PermissionVo {
     /**
      * 子元素
      */
-    private List<PermissionVo> childrenPermission = new ArrayList<>();
+    private List<PermissionVO> childrenPermission = new ArrayList<>();
 }

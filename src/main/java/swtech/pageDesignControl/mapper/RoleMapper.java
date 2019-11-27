@@ -16,12 +16,12 @@ import java.util.List;
  */
 public interface RoleMapper extends BaseMapper<Role> {
     /**
-     * 通过用户名查询角色Shiro
+     * 通过用户名查询角色shiro
      *
      * @param username
      * @return
      */
-    List<String> getRoleByUsername(String username);
+    Role getRoleByUsername(String username);
 
     /**
      * 分页查询

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import swtech.pageDesignControl.common.utils.DateUtil;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.vo.ReturnMsgPage;
-import swtech.pageDesignControl.common.vo.UsersVo;
+import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.service.IUsersService;
 
@@ -108,6 +108,29 @@ public class UsersController {
     }
 
     @ResponseBody
+    @GetMapping("/manage/users/updateuustate")
+    public ReturnMsg updateUustate(@RequestParam("uid") int uid, @RequestParam("ustate") int ustate) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            boolean isTrue = iUsersService.updateUustate(uid, ustate);
+            if (isTrue) {
+                msg.setStatus("200");
+                msg.setStatusMsg("修改用户状态成功");
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("修改用户状态失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("修改用户状态异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    @ResponseBody
     @GetMapping("/manage/users/getbyid")
     public ReturnMsg getById(@RequestParam("uid") int uid) {
         ReturnMsg msg = new ReturnMsg();
@@ -136,7 +159,7 @@ public class UsersController {
     public ReturnMsgPage selectByPageAndCondition(Users users, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         ReturnMsgPage msg = new ReturnMsgPage();
         try {
-            List<UsersVo> roleList = iUsersService.selectByPageAndCondition(users, page, pageSize);
+            List<UsersVO> roleList = iUsersService.selectByPageAndCondition(users, page, pageSize);
             int totalSize = iUsersService.selectCount();
             int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
             int pageEnd = page * pageSize < pageSize ? page * pageSize : pageSize;
@@ -165,53 +188,5 @@ public class UsersController {
         return msg;
     }
 
-    /**
-     * 注册
-     *
-     * @param users
-     * @return
-     */
-    @PostMapping("/doregist")
-    @ResponseBody
-    public String doregist(@RequestBody Users users) {
-        JSONObject json = new JSONObject();
-        System.out.println(users);
-        boolean isTrue = iUsersService.save(users);
-        if (isTrue) {
-            json.put("result", "注册成功");
-            return json.toString();
-        }
-        json.put("result", "注册失败");
-        return json.toString();
-    }
-
-    /**
-     * 登录
-     *
-     * @param users
-     * @return
-     */
-    @PostMapping("/dologin")
-    @ResponseBody
-    public String doLogin(@RequestBody Users users) {
-        JSONObject json = new JSONObject();
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(users.getUusername(), users.getUpassword());
-        try {
-            //主体提交登录请求到SecurityManager
-            subject.login(token);
-        } catch (IncorrectCredentialsException ice) {
-            json.put("result", "密码不正确");
-            return json.toString();
-        } catch (UnknownAccountException uae) {
-            json.put("result", "账号不存在");
-            return json.toString();
-        } catch (AuthenticationException ae) {
-            json.put("result", "状态不正常");
-            return json.toString();
-        }
-        json.put("result", "登陆成功");
-        return json.toString();
-    }
 }
 

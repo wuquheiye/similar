@@ -10,10 +10,11 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 李鸿智
@@ -27,6 +28,12 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
 
     @Transactional
     @Override
+    public List<String> getRoleByUserId(int uid) {
+        return userRoleMapper.getRoleByUserId(uid);
+    }
+
+    @Transactional
+    @Override
     public boolean save(UserRole userRole) {
         int num = userRoleMapper.insert(userRole);
         if (num > 0) {
@@ -37,23 +44,13 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
 
     @Transactional
     @Override
-    public boolean removeById(Serializable urid) {
-        int num = userRoleMapper.deleteById(urid);
-        if (num > 0) {
-            return true;
-        }
-        return false;
+    public int deleteByUserId(int uid) {
+        return userRoleMapper.deleteByUserId(uid);
     }
 
     @Transactional
     @Override
-    public boolean updateById(UserRole userRole) {
-        int num = userRoleMapper.updateById(userRole);
-        if (num > 0) {
-            return true;
-        }
-        return false;
+    public int deleteByRoleId(int rid) {
+        return userRoleMapper.deleteByUserId(rid);
     }
-
-
 }

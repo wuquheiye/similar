@@ -55,7 +55,6 @@ public class Users {
      */
     private String ucreationtime;
 
-
     /**
      * 用户状态
      */

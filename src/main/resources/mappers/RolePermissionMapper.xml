@@ -8,14 +8,6 @@
         where r.rid = #{rid}
     </select>
 
-    <delete id="deleteByRoleId" parameterType="java.lang.Integer">
-        delete from role_permission WHERE rid = #{rid}
-    </delete>
-
-    <delete id="deleteByPermissionId" parameterType="java.lang.Integer">
-        delete from role_permission WHERE pid = #{pid}
-    </delete>
-
     <insert id="insertList" parameterType="java.util.List">
         insert into role_permission (rid,pid)
         values
@@ -23,4 +15,12 @@
             ( #{item.rid},#{item.pid})
         </foreach>
     </insert>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.Integer">
+        delete from role_permission WHERE rid = #{rid}
+    </delete>
+
+    <delete id="deleteByPermissionId" parameterType="java.lang.Integer">
+        delete from role_permission WHERE pid = #{pid}
+    </delete>
 </mapper>

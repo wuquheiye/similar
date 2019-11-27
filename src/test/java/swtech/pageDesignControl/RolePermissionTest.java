@@ -18,7 +18,7 @@ public class RolePermissionTest {
     private RolePermissionMapper rolePermissionMapper;
 
     @Test
-    public void selecGtrandfather() {
+    public void getPermissionByRoleId() {
         List<String> list = rolePermissionMapper.getPermissionByRoleId(33);
         System.out.println(list);
     }

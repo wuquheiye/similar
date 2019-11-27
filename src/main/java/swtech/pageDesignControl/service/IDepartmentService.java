@@ -1,6 +1,5 @@
 package swtech.pageDesignControl.service;
 
-import org.apache.ibatis.annotations.Param;
 import swtech.pageDesignControl.entity.Department;
 import com.baomidou.mybatisplus.extension.service.IService;
 

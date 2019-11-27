@@ -1,7 +1,7 @@
 package swtech.pageDesignControl.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import swtech.pageDesignControl.common.vo.PermissionVo;
+import swtech.pageDesignControl.common.vo.PermissionVO;
 import swtech.pageDesignControl.entity.Permission;
 
 import java.util.List;
@@ -21,5 +21,5 @@ public interface IPermissionService extends IService<Permission> {
      *
      * @return
      */
-    List<PermissionVo> selecTree();
+    List<PermissionVO> selecTree();
 }

@@ -114,7 +114,7 @@
                         <th class="text-center">用户姓名</th>
                         <th class="text-center">部门</th>
                         <th class="text-center">手机号码</th>
-                        <th class="text-center">用户状态</th>
+                        <th class="text-center">用户状态操作</th>
                         <th class="text-center">创建时间</th>
                         <th class="text-center">操作</th>
                     </tr>
@@ -177,6 +177,32 @@
                             <button type="button" class="btn btn-default Users" id="saveUsers">保存</button>
                             <button type="button" class="btn btn-default usersManageBack">返回</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="usersRoleEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabe2">
+                            给用户分配角色
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- 角色列表 -->
+                        <ul id="usersRole">
+                        </ul>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+                        </button>
+                        <button type="button" class="btn btn-primary" id="usersRoleSubmit">
+                            提交更改
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1252,18 +1278,5 @@
         <!--复制结束-->
     </div>
 </div>
-
-你最喜欢吃哪些水果（checkbox多选）<br>
-<div class="RadioStyle">
-    <input type="checkbox" name="sg" id="sg1"><label for="sg1">柚子</label>
-    <input type="checkbox" name="sg" id="sg2"><label for="sg2">橘子</label>
-    <input type="checkbox" name="sg" id="sg3"><label for="sg3">葡萄</label>
-    <input type="checkbox" name="sg" id="sg4"><label for="sg4">梨子</label>
-    <input type="checkbox" name="sg" id="sg5"><label for="sg5">香蕉</label>
-    <input type="checkbox" name="sg" id="sg6"><label for="sg6">苹果</label>
-</div>
-
-
-
 </body>
 </html>

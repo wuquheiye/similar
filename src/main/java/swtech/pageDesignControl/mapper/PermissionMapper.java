@@ -1,6 +1,6 @@
 package swtech.pageDesignControl.mapper;
 
-import swtech.pageDesignControl.common.vo.PermissionVo;
+import swtech.pageDesignControl.common.vo.PermissionVO;
 import swtech.pageDesignControl.entity.Permission;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -16,22 +16,22 @@ import java.util.List;
  */
 public interface PermissionMapper extends BaseMapper<Permission> {
     /**
-     * 根据角色查询权限Shiro
+     * 根据角色查询权限shiro
      *
      * @param roleName
      * @return
      */
-    List<String> getPermissionyRoleName(String roleName);
+    List<Permission> getPermissionByRoleName(String roleName);
 
     /**
      * 查询所有的父类
      *
      * @return
      */
-    List<PermissionVo> selecGtrandfather();
+    List<PermissionVO> selecGtrandfather();
 
     /**
      * 根据父类id查询子类
      */
-    List<PermissionVo> selectChild(int ppid);
+    List<PermissionVO> selectChild(int ppid);
 }
