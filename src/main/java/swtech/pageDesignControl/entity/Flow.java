@@ -67,6 +67,7 @@ public class Flow implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm")
     private LocalDateTime fendTime;
 
+
     /**
      * 申请理由
      */
@@ -124,5 +125,15 @@ public class Flow implements Serializable {
      * 申请人
      */
     private String uusername;
+
+    /**
+     * 所属部门
+     */
+    private  String  dname;
+
+    /**
+     * 变化字段
+     */
+    private String fchange;
 
 }

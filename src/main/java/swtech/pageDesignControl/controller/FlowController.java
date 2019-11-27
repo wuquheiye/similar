@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import swtech.pageDesignControl.common.vo.FlowApproval;
+import swtech.pageDesignControl.common.vo.FlowOnbusIness;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Flow;
 import swtech.pageDesignControl.service.IFlowService;
@@ -69,7 +70,28 @@ public class FlowController  {
             e.printStackTrace();
             log.info(e.getMessage());
             msg.setStatus("201");
-            msg.setStatusMsg("请假申请录入失败");
+            msg.setStatusMsg("流程申请录入失败");
+            msg.setMsg(e.getMessage());
+        }
+        return  msg;
+    }
+
+    /**
+     * 出差申请
+     * @param flowOnbusIness
+     * @return
+     */
+    @ResponseBody
+    @PostMapping("onbusInessInsert")
+    public ReturnMsg OnbusInessInsert(@RequestBody FlowOnbusIness flowOnbusIness){
+        ReturnMsg msg =new ReturnMsg();
+        try {
+            msg = iFlowService.OnbusInessInsert(flowOnbusIness);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("出差申请录入失败");
             msg.setMsg(e.getMessage());
         }
         return  msg;
