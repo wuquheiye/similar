@@ -10,15 +10,11 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import swtech.pageDesignControl.common.utils.DateUtil;
-import swtech.pageDesignControl.common.vo.ReturnMsg;
-import swtech.pageDesignControl.common.vo.ReturnMsgPage;
-import swtech.pageDesignControl.common.vo.UsersVO;
+import swtech.pageDesignControl.common.vo.LoginVO;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.service.IUsersService;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * <p>
@@ -71,7 +67,8 @@ public class LoginController {
             //主体提交登录请求到SecurityManager
             subject.login(token);
             // 缓存到shiro
-            subject.getSession().setAttribute("userLogin", users);
+            LoginVO loginUser = iUsersService.getLoginVO(users.getUusername());
+            subject.getSession().setAttribute("loginUser", loginUser);
             json.put("result", "登陆成功");
             return json.toString();
         } catch (IncorrectCredentialsException ice) {
@@ -96,8 +93,9 @@ public class LoginController {
     public String logout1() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        log.info(" 用户注销成功 ！");
-        return "use/index";
+        LoginVO loginUser = (LoginVO) SecurityUtils.getSubject().getSession().getAttribute("loginUser");
+        log.info(" 用户"+loginUser.getUsers().getUusername()+"注销成功 ！");
+        return "use/login";
     }
 
     /**
@@ -105,14 +103,11 @@ public class LoginController {
      *
      * @return
      */
-    @RequestMapping("/getuser")
+    @RequestMapping("/getusers")
     @ResponseBody
-    public String getUser() {
-        JSONObject json = new JSONObject();
-//        String loginName = (String) SecurityUtils.getSubject().getPrincipal();
-        Users currentUserId = (Users) SecurityUtils.getSubject().getSession().getAttribute("userLogin");
-        json.put("c",currentUserId.toString());
-        return json.toString();
+    public LoginVO getUser() {
+        LoginVO loginUser = (LoginVO) SecurityUtils.getSubject().getSession().getAttribute("loginUser");
+        return loginUser;
     }
 }
 

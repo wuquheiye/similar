@@ -47,11 +47,15 @@ public class ShiroConfiguration {
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         // 权限控制map.过滤器链
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+        filterChainDefinitionMap.put("/manage", "anon");
         filterChainDefinitionMap.put("/login", "anon");
+        filterChainDefinitionMap.put("/dologin", "anon");
+        filterChainDefinitionMap.put("/doregist", "anon");
 //        filterChainDefinitionMap.put("/*", "anon");
 //        filterChainDefinitionMap.put("/interface/*", "authc");
-        filterChainDefinitionMap.put("/interface/*", "anon");
+//        filterChainDefinitionMap.put("/interface/*", "anon");
         filterChainDefinitionMap.put("/manage/*", "anon");
+        filterChainDefinitionMap.put("/*", "authc");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return shiroFilterFactoryBean;
     }

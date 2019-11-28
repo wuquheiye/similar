@@ -106,4 +106,10 @@ public class UsersTest {
         Users users = usersMapper.findUsersByName("2");
         System.out.println(users);
     }
+
+    @Test
+    public void findUsersByDepartmentAndRole() {
+        List<Users> users = usersMapper.findUsersByDepartmentAndRole(117,1);
+        System.out.println(users);
+    }
 }

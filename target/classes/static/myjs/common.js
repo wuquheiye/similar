@@ -25,15 +25,15 @@ function regist() {
 function login() {
     $.ajax({
         url: '/dologin',
-        type: 'Post',
+        type: 'get',
         contentType: 'application/json',
         dataType: 'json',
-        data: JSON.stringify({
+        data: {
             "uusername" : $("#loginUusername").val(),
             "upassword" : $("#loginUpassword").val()
-        }),
+        },
         success: function (result) {
-            alert(result.result);
+            window.location.href = pageDesignControl_HOST+"use/index.html";
         }
     });
 }

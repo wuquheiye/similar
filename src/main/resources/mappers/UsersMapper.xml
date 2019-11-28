@@ -5,6 +5,14 @@
         SELECT * from users where uusername = #{username}
     </select>
 
+    <select id="findUsersByDepartmentAndRole" resultType="swtech.pageDesignControl.entity.Users">
+        select * from users u
+        join user_role ur on ur.uid = u.uid
+        join role r on ur.rid = r.rid
+        join department d on u.did = d.did
+        where d.did = #{did} and r.rtype = #{rtype}
+    </select>
+
     <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.common.vo.UsersVO"
             parameterType="swtech.pageDesignControl.entity.Users">
         SELECT * FROM users where 1=1

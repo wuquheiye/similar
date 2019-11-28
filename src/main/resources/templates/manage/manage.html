@@ -303,6 +303,9 @@
                         <th class="text-center">
                             角色名称
                         </th>
+                        <th class="text-center">
+                            角色职位
+                        </th>
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
@@ -335,6 +338,17 @@
                             <label for="rname" class="col-sm-2 control-label">*角色名称：</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="rname" placeholder="请输入角色名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="rtype" class="col-sm-2 control-label">*角色职位：</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="rtype">
+                                    <option value="2">员工</option>
+                                    <option value="1">人事</option>
+                                    <option value="3">主管</option>
+                                    <option value="4">经理</option>
+                                </select>
                             </div>
                         </div>
                     </div>

@@ -2,6 +2,8 @@ package swtech.pageDesignControl.common.vo;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import swtech.pageDesignControl.entity.Department;
+import swtech.pageDesignControl.entity.Role;
 
 /**
  * <p>
@@ -20,12 +22,12 @@ public class LoginVO {
     /**
      * 用户部门
      */
-    private LoginDepartmentVO department;
+    private Department department;
 
     /**
      * 用户角色
      */
-    private LoginRoleVO role;
+    private Role role;
 
     /**
      * 用户信息

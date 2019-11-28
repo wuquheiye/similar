@@ -30,5 +30,9 @@ public class Role {
      */
     private String rname;
 
+    /**
+     * 角色等级（1人事,2员工,3主管,4经理,5总经理）
+     */
+    private int rtype;
 
 }

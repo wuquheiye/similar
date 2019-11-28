@@ -25,6 +25,15 @@ public interface UsersMapper extends BaseMapper<Users> {
     Users findUsersByName(String username);
 
     /**
+     * 通过部门和角色查询用户
+     *
+     * @param did
+     * @param rtype
+     * @return
+     */
+    List<Users> findUsersByDepartmentAndRole(@Param("did") int did, @Param("rtype") int rtype);
+
+    /**
      * 分页查询
      *
      * @param users

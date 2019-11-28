@@ -919,6 +919,7 @@ function getRole() {
             if (msg.status == 200) {
                 roleRname = msg.msg.rname;
                 $(".roleManageEdit #rname").val(msg.msg.rname);
+                $(".roleManageEdit #rtype").val(msg.msg.rtype);
             }
         }
     });
@@ -930,6 +931,7 @@ function getRole() {
 function updateRole() {
     var rid = roleManageId;
     var rname = $(".roleManageEdit #rname").val();
+    var rtype = $(".roleManageEdit #rtype option:selected").val();
     if (!rname) {
         alert("角色名称不能为空");
     } else if (isRnameHendiadysRole(rname) && roleRname != rname) {
@@ -940,7 +942,7 @@ function updateRole() {
             type: 'Get',
             contentType: 'application/json',
             dataType: 'json',
-            data: {"rname": rname, "rid": rid},
+            data: {"rname": rname, "rid": rid, "rtype": rtype},
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
@@ -955,6 +957,7 @@ function updateRole() {
  */
 function saveRole() {
     var rname = $(".roleManageEdit #rname").val();
+    var rtype = $(".roleManageEdit #rtype option:selected").val();
     if (!rname) {
         alert("角色名称不能为空");
     } else if (isRnameHendiadysRole(rname)) {
@@ -965,7 +968,7 @@ function saveRole() {
             type: 'Get',
             contentType: 'application/json',
             dataType: 'json',
-            data: {"rname": rname},
+            data: {"rname": rname, "rtype": rtype},
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
@@ -1020,6 +1023,20 @@ function removeRole(rid) {
     });
 }
 
+function getRtype(rtype) {
+    if (rtype == 1) {
+        return "人事";
+    } else if (rtype == 2) {
+        return "员工";
+    } else if (rtype == 3) {
+        return "主管";
+    } else if (rtype == 4) {
+        return "经理";
+    } else {
+        return "未分配";
+    }
+}
+
 /**
  * 生成角色列表
  */
@@ -1040,6 +1057,9 @@ function getRoleList(page) {
                         '<td class="text-center">' +
                         msg.msg[i].rname +
                         '<input type="hidden" class="' + msg.msg[i].rid + '" />' +
+                        '</td>' +
+                        '<td class="text-center">' +
+                        getRtype(msg.msg[i].rtype) +
                         '</td>' +
                         '<td class="text-center">' +
                         '<button type="button" class="btn btn-info delete">删除</button>' +
