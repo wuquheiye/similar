@@ -13,7 +13,8 @@ public enum  Fstatus implements BaseEnum<Integer> {
     CHARGEREFUSE(2,"主管审批拒绝"),
     MANAGERPASS(3,"经理审批通过"),
     MANAGERREFUSE(4,"经理审批拒绝"),
-    STAFFINGAFFIRM(5,"人事确认");
+    STAFFINGAFFIRM(5,"行政部门已确认"),
+    STAFFINGAREFUSE(6,"行政部门拒绝");
     private Integer code;
     private String desc;
 

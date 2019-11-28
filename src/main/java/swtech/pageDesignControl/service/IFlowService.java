@@ -30,4 +30,8 @@ public interface IFlowService extends IService<Flow> {
 
     ReturnMsg OnbusInessInsert(FlowOnbusIness flowOnbusIness) throws IOException;
 
+    ReturnMsg seletByUid(Integer uid);
+
+    ReturnMsg selectChargeHistory(Integer uid ,Integer rid,Integer ArtsVision);
+
 }

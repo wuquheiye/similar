@@ -546,4 +546,62 @@ function selectLeaveAll(uid) {
     })
 }
 
+
+/**
+ * 加班时间段
+ */
+function overtimeType(e) {
+    let desc='';
+    alert("overtimeTypeS.WORKDAY.code"+overtimeTypeS.WORKDAY.code)
+    alert("e"+e)
+    if(e==overtimeTypeS.WORKDAY.code){
+        desc=overtimeTypeS.WORKDAY.desc;
+    }else if(e==overtimeTypeS.WEEKEND.code){
+        desc=overtimeTypeS.WEEKEND.code;
+    }else if(e==overtimeTypeS.HOLIDAYS.code){
+        desc=overtimeTypeS.HOLIDAYS.desc;
+    }
+    return desc;
+}
+
+/**
+ * 获取总人数
+ */
+function  getNumProper(e) {
+    let numProper=e.split(",").length;
+    return numProper;
+}
+
+/**
+ * yes or no
+ */
+function yesOrNofun(e) {
+    let desc='';
+    if(e==yesOrNo.YES.code){
+        desc=yesOrNo.YES.desc;
+    }else if(e==yesOrNo.NO.code){
+        desc = yesOrNo.NO.desc;
+    }
+    return desc;
+}
+
+/**
+ * 印章使用
+ */
+function sealsUseDesc(e) {
+    let desc ='';
+    if(e==sealsUseType.COMPANYSEAL.code){
+        desc = sealsUseType.COMPANYSEAL.desc;
+    }else if(e==sealsUseType.ELSESEAL.code){
+        desc = sealsUseType.ELSESEAL.desc;
+    }else if(e==sealsUseType.FINANCESEAL.code){
+        desc = sealsUseType.FINANCESEAL.desc;
+    }else if(e==sealsUseType.LEGALPERSONSEAL.code){
+        desc = sealsUseType.LEGALPERSONSEAL.desc;
+    }else if(e==sealsUseType.PACTSEAL.code){
+        desc = sealsUseType.PACTSEAL.desc;
+    }
+    return desc;
+}
+
 // 袁君选end

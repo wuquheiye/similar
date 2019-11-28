@@ -136,4 +136,9 @@ public class Flow implements Serializable {
      */
     private String fchange;
 
+    /**
+     * 发送给谁处理
+     */
+    private Integer frid;
+
 }

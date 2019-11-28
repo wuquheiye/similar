@@ -6,12 +6,12 @@ import net.sf.json.JSONObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
+import org.springframework.beans.BeanUtils;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import swtech.pageDesignControl.common.exception.ServiceException;
-import swtech.pageDesignControl.common.vo.FlowApproval;
-import swtech.pageDesignControl.common.vo.FlowOnbusIness;
-import swtech.pageDesignControl.common.vo.FlowVO;
-import swtech.pageDesignControl.common.vo.ReturnMsg;
+import swtech.pageDesignControl.common.vo.*;
 import swtech.pageDesignControl.common.websocket.WebSocketServer;
 import swtech.pageDesignControl.entity.Flow;
 import swtech.pageDesignControl.entity.OnbusInessFlow;
@@ -31,8 +31,8 @@ import javax.annotation.Resource;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -56,8 +56,6 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
     private OnbusInessFlowMapper onbusInessFlowMapper;
     @Resource
     private ServeFlowMapper serveFlowMapper;
-
-
 
 
     @Override
@@ -144,6 +142,78 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         return  msg;
     }
 
+    @Override
+    @Transactional
+    public ReturnMsg seletByUid(Integer uid) {
+        ReturnMsg msg =new ReturnMsg();
+        List<FlowOnbusIness> list = new ArrayList<>();
+        if(uid == null ) throw new ServiceException("uid参数不能为空");
+//        QueryWrapper qw = new QueryWrapper();
+//        qw.eq("uid",uid);
+        List<FlowVO> listflow = flowMapper.selectByUid(uid);
+        for (FlowVO flow: listflow) {
+            QueryWrapper wq = new QueryWrapper();
+            wq.eq("fid",flow.getFid());
+            if(flow.getFtype()==Ftype.SERVE.getCode()){
+                ServeFlow serveFlow = serveFlowMapper.selectOne(wq);
+                flow.setServeFlow(serveFlow);
+            }else if(flow.getFtype() == Ftype.ONBUSINESS.getCode()){
+                OnbusInessFlow onbusInessFlow = onbusInessFlowMapper.selectOne(wq);
+                flow.setOnbusInessFlow(onbusInessFlow);
+            }
+        }
+        msg.setStatus("200");
+        msg.setStatusMsg("查询个人申请成功");
+        msg.setMsg(listflow);
+        return msg;
+    }
+
+    @Override
+    @Transactional
+    public ReturnMsg selectChargeHistory(Integer uid, Integer rid,Integer ArtsVision) {
+        ReturnMsg msg = new ReturnMsg();
+        if(uid == null) throw new ServiceException("uid参数不能为空");
+        if(rid == null) throw  new ServiceException("rid 参数不能为空");
+        QueryWrapper qw = new QueryWrapper();
+        if(ArtsVision.equals(Judge.YES.getCode())){ //利捷
+            switch (Role.getByCode(rid)){
+                case MANAGE:
+                    qw.gt("fstatus",0);
+                    break;
+                case GOVERNOR:
+                    qw.lt("fstatus",0);
+                    break;
+                case ADMINISTRATIVE:
+                    qw.between("fstatus",5,6);
+                    break;
+                default:
+                    break;
+
+            }
+        }else if(ArtsVision.equals(Judge.NO.getCode())){
+            switch (Role.getByCode(rid)){
+                case MANAGE:
+
+                    break;
+                case GOVERNOR:
+                    break;
+                case ADMINISTRATIVE:
+                    break;
+                case EMPLOYEES:
+                    break;
+                default:
+                    break;
+
+            }
+        }
+        qw.eq("fuid_manager",uid);
+        List list = flowMapper.selectList(qw);
+        List<FlowVO> listtwo = getFlowVOInfo(list);
+        msg.setStatus("200");
+        msg.setMsg(listtwo);
+        msg.setStatusMsg("获取当前人员历史审批记录成功");
+        return msg;
+    }
 
 
     @Transactional
@@ -175,26 +245,49 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
         flow.setFid(flowApproval.getFid());
         if(flowApproval == null) throw  new ServiceException("审批参数为空");
-        if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){
-            flow.setFuidChargeHand(dateFormat.format(date));
-            if(flowApproval.getStatus()== Judge.YES.getCode()){
-                flow.setFstatus(Fstatus.CHARGEPASS.getCode());
-            }else if(flowApproval.getStatus()== Judge.NO.getCode()){
-                flow.setFstatus(Fstatus.CHARGEREFUSE.getCode());
-                flow.setFuidChargeRefuse(flowApproval.getHand());
-            }
-        }else if(flowApproval.getFstatus().equals(Fstatus.CHARGEPASS.getCode())){
-            flow.setFuidManagerHand(dateFormat.format(date));
-            if(flowApproval.getStatus()== Judge.YES.getCode()){
-                flow.setFstatus(Fstatus.MANAGERPASS.getCode());
-            }else if(flowApproval.getStatus()== Judge.NO.getCode()){
-                flow.setFstatus(Fstatus.MANAGERREFUSE.getCode());
-                flow.setFuidManagerRefuse(flowApproval.getHand());
-            }
-        }else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){
-            flow.setFuidStaffingHand(dateFormat.format(date));
-            flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+        switch (flowApproval.getArtsVision()){
+            case 0: //利捷
+                if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){ //未处理
+                    flow.setFuidManagerHand(dateFormat.format(date));
+                    if(flowApproval.getStatus()== Judge.YES.getCode()){
+                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+                        flow.setFrid(Role.ADMINISTRATIVE.getCode());
+                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+                        flow.setFuidManagerRefuse(flowApproval.getHand());
+                    }
+                }
+                else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
+                    flow.setFuidStaffingHand(dateFormat.format(date));
+                    flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+                }
+                break;
+            case 1: //广空
+                if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){ //未处理
+                    flow.setFuidChargeHand(dateFormat.format(date));
+                    if(flowApproval.getStatus()== Judge.YES.getCode()){
+                        flow.setFstatus(Fstatus.CHARGEPASS.getCode());
+                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+                        flow.setFstatus(Fstatus.CHARGEREFUSE.getCode());
+                        flow.setFuidChargeRefuse(flowApproval.getHand());
+                    }
+                }
+                else if(flowApproval.getFstatus().equals(Fstatus.CHARGEPASS.getCode())){//主管通过
+                    flow.setFuidManagerHand(dateFormat.format(date));
+                    if(flowApproval.getStatus()== Judge.YES.getCode()){
+                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+                        flow.setFstatus(Fstatus.MANAGERREFUSE.getCode());
+                        flow.setFuidManagerRefuse(flowApproval.getHand());
+                    }
+                }
+                else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
+                    flow.setFuidStaffingHand(dateFormat.format(date));
+                    flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+                }
+                break;
         }
+
 
         int i = flowMapper.updateById(flow);
         if(i == 0) throw  new ServiceException("审批数据库操作失败");
@@ -244,21 +337,69 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(rid == Role.GOVERNOR.getCode()){
             qw.eq("fuid_charge",uid);
             qw.eq("fstatus",Fstatus.UNTREATED.getCode());
+            qw.eq("frid",Role.GOVERNOR.getCode());
         }else if(rid == Role.MANAGE.getCode()){
             qw.eq("fuid_manager",uid);
             qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            qw.eq("frid",Role.MANAGE.getCode());
         }else if(rid == Role.ADMINISTRATIVE.getCode()){
             qw.eq("fuid_staffing",uid);
             qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
+            qw.eq("frid",Role.ADMINISTRATIVE.getCode());
         }else if(rid == Role.EMPLOYEES.getCode()){
             qw.eq("uid",uid);
         }
-        List list = flowMapper.selectList(qw);
+        List<Flow> list =flowMapper.selectList(qw);;
+        List<FlowVO> listtwo = new ArrayList<FlowVO>();
+        listtwo= list.stream().map(e ->convert(e)).collect(Collectors.toList());
+        System.out.println("list"+list);
+        System.out.println("listtwo"+listtwo);
+        for (FlowVO flow:listtwo){
+            QueryWrapper wq = new QueryWrapper();
+            wq.eq("fid",flow.getFid());
+            if(flow.getFtype()==Ftype.SERVE.getCode()){
+                ServeFlow serveFlow = serveFlowMapper.selectOne(wq);
+                flow.setServeFlow(serveFlow);
+            }else if(flow.getFtype() == Ftype.ONBUSINESS.getCode()){
+                OnbusInessFlow onbusInessFlow = onbusInessFlowMapper.selectOne(wq);
+                flow.setOnbusInessFlow(onbusInessFlow);
+            }
+        }
         msg.setStatus("200");
-        msg.setMsg(list);
-        msg.setStatusMsg("审批成功");
+        msg.setMsg(listtwo);
+        msg.setStatusMsg("获取当前人员审批信息成功");
         return msg;
     }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public  List<FlowVO> getFlowVOInfo(List<Flow> list){
+        List<FlowVO> listtwo = new ArrayList<FlowVO>();
+        listtwo= list.stream().map(e ->convert(e)).collect(Collectors.toList());
+        System.out.println("list"+list);
+        System.out.println("listtwo"+listtwo);
+        for (FlowVO flow:listtwo){
+            QueryWrapper wq = new QueryWrapper();
+            wq.eq("fid",flow.getFid());
+            if(flow.getFtype()==Ftype.SERVE.getCode()){
+                ServeFlow serveFlow = serveFlowMapper.selectOne(wq);
+                flow.setServeFlow(serveFlow);
+            }else if(flow.getFtype() == Ftype.ONBUSINESS.getCode()){
+                OnbusInessFlow onbusInessFlow = onbusInessFlowMapper.selectOne(wq);
+                flow.setOnbusInessFlow(onbusInessFlow);
+            }
+        }
+        return  listtwo;
+    }
+
+    public static  FlowVO convert(Flow flow){
+        if(flow==null){
+            return null;
+        }
+        FlowVO vo = new FlowVO();
+        BeanUtils.copyProperties(flow,vo);
+        return vo;
+    }
+
 
 
 }

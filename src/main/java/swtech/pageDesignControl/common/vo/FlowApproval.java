@@ -11,5 +11,6 @@ public class FlowApproval implements Serializable {
      private Integer status;
      private String hand;
      private  Integer fstatus;
-     private Integer fid;
+     private Integer fid; //
+     private Integer ArtsVision; //所属公司
 }
