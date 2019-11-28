@@ -73,7 +73,7 @@ public class RolePermissionController {
 
     @ResponseBody
     @GetMapping("/manage/rolepermission/deletebypermissionid")
-    public ReturnMsg removeById(@RequestParam("pid") int pid) {
+    public ReturnMsg deleteByPermissionId(@RequestParam("pid") int pid) {
         ReturnMsg msg = new ReturnMsg();
         try {
             int num = iRolePermissionService.deleteByPermissionId(pid);
@@ -96,7 +96,7 @@ public class RolePermissionController {
 
     @ResponseBody
     @GetMapping("/manage/rolepermission/getpermissionbyroleid")
-    public ReturnMsg updateById(@RequestParam("rid") int rid) {
+    public ReturnMsg getPermissionByRoleId(@RequestParam("rid") int rid) {
         ReturnMsg msg = new ReturnMsg();
         try {
             List<String> permissionIdList = iRolePermissionService.getPermissionByRoleId(rid);

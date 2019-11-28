@@ -2,7 +2,7 @@ package swtech.pageDesignControl.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import org.springframework.transaction.annotation.Transactional;
-import swtech.pageDesignControl.common.vo.PermissionVo;
+import swtech.pageDesignControl.common.vo.PermissionVO;
 import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.mapper.PermissionMapper;
 import swtech.pageDesignControl.mapper.RolePermissionMapper;
@@ -47,27 +47,27 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
         int num = 0;
         num = permissionMapper.deleteById(pid);
         rolePermissionMapper.deleteByPermissionId((Integer) pid);
-        List<PermissionVo> permissionVoList = permissionMapper.selectChild((Integer) pid);
-        removeChild(permissionVoList);
+        List<PermissionVO> permissionVOList = permissionMapper.selectChild((Integer) pid);
+        removeChild(permissionVOList);
         if (num > 0) {
             return true;
         }
         return false;
     }
 
-    public List<PermissionVo> removeChild(List<PermissionVo> permissionVoList) {
-        for (PermissionVo permissionVo : permissionVoList) {
-            List<PermissionVo> childPermissionVo = permissionMapper.selectChild(permissionVo.getPid());
-            if (childPermissionVo != null && childPermissionVo.size() > 0) {
+    public List<PermissionVO> removeChild(List<PermissionVO> permissionVOList) {
+        for (PermissionVO permissionVo : permissionVOList) {
+            List<PermissionVO> childPermissionVO = permissionMapper.selectChild(permissionVo.getPid());
+            if (childPermissionVO != null && childPermissionVO.size() > 0) {
                 permissionMapper.deleteById(permissionVo.getPid());
                 rolePermissionMapper.deleteByPermissionId(permissionVo.getPid());
-                removeChild(childPermissionVo);
+                removeChild(childPermissionVO);
             } else {
                 rolePermissionMapper.deleteByPermissionId(permissionVo.getPid());
                 permissionMapper.deleteById(permissionVo.getPid());
             }
         }
-        return permissionVoList;
+        return permissionVOList;
     }
 
     @Transactional
@@ -88,27 +88,27 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 
     @Transactional
     @Override
-    public List<PermissionVo> selecTree() {
-        List<PermissionVo> permissionVoList = permissionMapper.selecGtrandfather();
-        getChild(permissionVoList);
-        return permissionVoList;
+    public List<PermissionVO> selecTree() {
+        List<PermissionVO> permissionVOList = permissionMapper.selecGtrandfather();
+        getChild(permissionVOList);
+        return permissionVOList;
     }
 
     /**
      * 获取子类
      *
-     * @param permissionVoList
+     * @param permissionVOList
      * @return
      */
-    public List<PermissionVo> getChild(List<PermissionVo> permissionVoList) {
-        for (PermissionVo permissionVo : permissionVoList) {
-            List<PermissionVo> childPermissionVo = permissionMapper.selectChild(permissionVo.getPid());
-            if (childPermissionVo != null && childPermissionVo.size() > 0) {
-                getChild(childPermissionVo);
+    public List<PermissionVO> getChild(List<PermissionVO> permissionVOList) {
+        for (PermissionVO permissionVo : permissionVOList) {
+            List<PermissionVO> childPermissionVO = permissionMapper.selectChild(permissionVo.getPid());
+            if (childPermissionVO != null && childPermissionVO.size() > 0) {
+                getChild(childPermissionVO);
             }
-            permissionVo.setChildrenPermission(childPermissionVo);
+            permissionVo.setChildrenPermission(childPermissionVO);
         }
-        return permissionVoList;
+        return permissionVOList;
     }
 
     @Transactional

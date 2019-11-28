@@ -1,11 +1,9 @@
 package swtech.pageDesignControl.service.impl;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.entity.Department;
 import swtech.pageDesignControl.mapper.DepartmentMapper;
-import swtech.pageDesignControl.mapper.FlowMapper;
+import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IDepartmentService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -28,6 +26,9 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     @Resource
     private DepartmentMapper departmentMapper;
 
+    @Resource
+    private UsersMapper usersMapper;
+
     @Transactional
     @Override
     public boolean save(Department department) {
@@ -42,6 +43,7 @@ public class DepartmentServiceImpl extends ServiceImpl<DepartmentMapper, Departm
     @Override
     public boolean removeById(Serializable did) {
         int num = departmentMapper.deleteById(did);
+        usersMapper.updateDepartmentToNull((Integer) did);
         if (num > 0) {
             return true;
         }

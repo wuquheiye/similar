@@ -1,4 +1,4 @@
-package swtech.pageDesignControl.entity;
+package swtech.pageDesignControl.common.vo;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 李鸿智
@@ -15,7 +15,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Users {
+public class LoginUsersVO {
 
     private static final long serialVersionUID = 1L;
 
@@ -59,4 +59,14 @@ public class Users {
      * 用户状态
      */
     private String ustate;
+
+    /**
+     * 主管id
+     */
+    private int fuidChange;
+
+    /**
+     * 经理id
+     */
+    private int fuidManager;
 }

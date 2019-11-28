@@ -8,7 +8,7 @@ import swtech.pageDesignControl.entity.Department;
 
 /**
  * <p>
- * 
+ * 生成用户信息包括部门
  * </p>
  *
  * @author 李鸿智
@@ -16,7 +16,7 @@ import swtech.pageDesignControl.entity.Department;
  */
 @Data
 @Accessors(chain = true)
-public class UsersVo {
+public class UsersVO {
 
     private static final long serialVersionUID = 1L;
 

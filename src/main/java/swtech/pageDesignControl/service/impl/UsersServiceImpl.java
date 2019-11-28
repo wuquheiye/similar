@@ -1,10 +1,13 @@
 package swtech.pageDesignControl.service.impl;
 
 import org.springframework.transaction.annotation.Transactional;
-import swtech.pageDesignControl.common.vo.UsersVo;
+import swtech.pageDesignControl.common.vo.*;
 import swtech.pageDesignControl.entity.Department;
+import swtech.pageDesignControl.entity.Role;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.DepartmentMapper;
+import swtech.pageDesignControl.mapper.RoleMapper;
+import swtech.pageDesignControl.mapper.UserRoleMapper;
 import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IUsersService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -16,7 +19,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 李鸿智
@@ -30,6 +33,59 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
     @Resource
     private DepartmentMapper departmentMapper;
+
+    @Resource
+    private UserRoleMapper userRoleMapper;
+
+    @Resource
+    private RoleMapper roleMapper;
+
+    @Override
+    public LoginVO getLoginVO(String uusername) {
+        if ("".equals(uusername)) {
+            return null;
+        }
+        LoginVO loginVO = new LoginVO();
+        // 根据用户名查询实体类
+        Users users = usersMapper.findUsersByName(uusername);
+        if (users == null) {
+            return null;
+        }
+        // 根据用户名查询角色
+        Role role = roleMapper.getRoleByUsername(uusername);
+        // 根据用户部门id查询部门
+        Department department = departmentMapper.selectById(users.getDid());
+        int fuidChange = 0;
+        int fuidManager = 0;
+        LoginUsersVO loginUsersVO = new LoginUsersVO();
+        loginUsersVO.setUid(users.getUid());
+        loginUsersVO.setDid(users.getDid());
+        loginUsersVO.setUusername(users.getUusername());
+        // 查询本部门主管
+        List<Users> chargeUser = usersMapper.findUsersByDepartmentAndRole(users.getDid(), 3);
+        // 查询本部门经理
+        List<Users> manageUser = usersMapper.findUsersByDepartmentAndRole(users.getDid(), 4);
+        if (manageUser != null && manageUser.size() > 0 && manageUser.get(0) != null && manageUser.get(0).getDid() > 0) {
+            fuidChange = manageUser.get(0).getDid();
+        }
+        if (chargeUser != null && chargeUser.size() > 0 && chargeUser.get(0) != null && chargeUser.get(0).getDid() > 0) {
+            fuidManager = chargeUser.get(0).getDid();
+        }
+        if (role.getRtype() == 1 || role.getRtype() == 2) {
+            loginUsersVO.setFuidChange(fuidChange);
+            loginUsersVO.setFuidManager(fuidChange);
+        } else if (role.getRtype() == 3) {
+            loginUsersVO.setFuidChange(0);
+            loginUsersVO.setFuidManager(fuidChange);
+        } else if (role.getRtype() == 4) {
+            loginUsersVO.setFuidChange(0);
+            loginUsersVO.setFuidManager(0);
+        }
+        loginVO.setUsers(loginUsersVO);
+        loginVO.setDepartment(department);
+        loginVO.setRole(role);
+        return loginVO;
+    }
 
     @Transactional
     @Override
@@ -45,6 +101,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     @Override
     public boolean removeById(Serializable uid) {
         int num = usersMapper.deleteById(uid);
+        userRoleMapper.deleteByUserId((Integer) uid);
         if (num > 0) {
             return true;
         }
@@ -69,19 +126,28 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
     @Transactional
     @Override
-    public List<UsersVo> selectByPageAndCondition(Users users, int page, int pageSize) {
+    public List<UsersVO> selectByPageAndCondition(Users users, int page, int pageSize) {
         int pageStart = (page - 1) * pageSize;
-        List<UsersVo> usersVoList = usersMapper.selectByPageAndCondition(users, pageStart, pageSize);
-        for (UsersVo usersVo: usersVoList){
+        List<UsersVO> usersVOList = usersMapper.selectByPageAndCondition(users, pageStart, pageSize);
+        for (UsersVO usersVo : usersVOList) {
             Department department = departmentMapper.selectById(usersVo.getDid());
             usersVo.setDepartment(department);
         }
-        return usersVoList;
+        return usersVOList;
     }
 
     @Transactional
     @Override
     public int selectCount() {
         return usersMapper.selectCount();
+    }
+
+    @Override
+    public boolean updateUustate(int uid, int ustate) {
+        int num = usersMapper.updateUustate(uid, ustate);
+        if (num > 0) {
+            return true;
+        }
+        return false;
     }
 }

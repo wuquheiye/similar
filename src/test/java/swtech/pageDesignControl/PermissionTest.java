@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import swtech.pageDesignControl.common.vo.PermissionVo;
+import swtech.pageDesignControl.common.vo.PermissionVO;
 import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.mapper.PermissionMapper;
 import swtech.pageDesignControl.service.IPermissionService;
@@ -24,20 +24,20 @@ public class PermissionTest {
 
     @Test
     public void selecGtrandfather() {
-        List<PermissionVo> permissionVoList = permissionMapper.selecGtrandfather();
-        getChild(permissionVoList);
-        System.out.println(permissionVoList);
+        List<PermissionVO> permissionVOList = permissionMapper.selecGtrandfather();
+        getChild(permissionVOList);
+        System.out.println(permissionVOList);
     }
 
-    public List<PermissionVo> getChild(List<PermissionVo> permissionVoList){
-        for (PermissionVo permissionVo : permissionVoList){
-            List<PermissionVo> childPermissionVo = permissionMapper.selectChild(permissionVo.getPid());
-            if(childPermissionVo!=null&&childPermissionVo.size()>0){
-                getChild(childPermissionVo);
+    public List<PermissionVO> getChild(List<PermissionVO> permissionVOList){
+        for (PermissionVO permissionVo : permissionVOList){
+            List<PermissionVO> childPermissionVO = permissionMapper.selectChild(permissionVo.getPid());
+            if(childPermissionVO !=null&& childPermissionVO.size()>0){
+                getChild(childPermissionVO);
             }
-            permissionVo.setChildrenPermission(childPermissionVo);
+            permissionVo.setChildrenPermission(childPermissionVO);
         }
-        return permissionVoList;
+        return permissionVOList;
     }
 
     @Test
@@ -50,5 +50,11 @@ public class PermissionTest {
     public void removeById() {
         boolean isTrue = iPermissionService.removeById(95);
         System.out.println(isTrue);
+    }
+
+    @Test
+    public void getPermissionByRoleName() {
+        List<Permission> permissionList = permissionMapper.getPermissionByRoleName("admin");
+        System.out.println(permissionList);
     }
 }

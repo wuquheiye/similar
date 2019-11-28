@@ -5,7 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.common.utils.DateUtil;
-import swtech.pageDesignControl.common.vo.UsersVo;
+import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.UsersMapper;
 
@@ -79,7 +79,7 @@ public class UsersTest {
     public void selectByPageAndCondition() {
         Users users = new Users();
         users.setUusername("");
-        List<UsersVo> usersList = usersMapper.selectByPageAndCondition(users, 0, 8);
+        List<UsersVO> usersList = usersMapper.selectByPageAndCondition(users, 0, 8);
         System.out.println(usersList.size());
     }
 
@@ -87,5 +87,29 @@ public class UsersTest {
     public void selectCount() {
         int num = usersMapper.selectCount();
         System.out.println(num);
+    }
+
+    @Test
+    public void updateDepartmentToNull() {
+        int num = usersMapper.updateDepartmentToNull(115);
+        System.out.println(num);
+    }
+
+    @Test
+    public void updateUustate() {
+        int num = usersMapper.updateUustate(27,0);
+        System.out.println(num);
+    }
+
+    @Test
+    public void findUsersByName() {
+        Users users = usersMapper.findUsersByName("2");
+        System.out.println(users);
+    }
+
+    @Test
+    public void findUsersByDepartmentAndRole() {
+        List<Users> users = usersMapper.findUsersByDepartmentAndRole(117,1);
+        System.out.println(users);
     }
 }

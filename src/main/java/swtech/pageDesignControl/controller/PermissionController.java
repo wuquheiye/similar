@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import swtech.pageDesignControl.common.vo.PermissionVo;
+import swtech.pageDesignControl.common.vo.PermissionVO;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.service.IPermissionService;
@@ -127,11 +127,11 @@ public class PermissionController {
     public ReturnMsg selectTree() {
         ReturnMsg msg = new ReturnMsg();
         try {
-            List<PermissionVo> permissionVoList = iPermissionService.selecTree();
-            if (permissionVoList != null ) {
+            List<PermissionVO> permissionVOList = iPermissionService.selecTree();
+            if (permissionVOList != null ) {
                 msg.setStatus("200");
                 msg.setStatusMsg("获取权限树成功");
-                msg.setMsg(permissionVoList);
+                msg.setMsg(permissionVOList);
             } else {
                 msg.setStatus("202");
                 msg.setStatusMsg("获取权限树失败");
