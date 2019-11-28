@@ -174,39 +174,46 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         ReturnMsg msg = new ReturnMsg();
         if(uid == null) throw new ServiceException("uid参数不能为空");
         if(rid == null) throw  new ServiceException("rid 参数不能为空");
+        if(ArtsVision == null) throw  new ServiceException("rid 参数不能为空");
         QueryWrapper qw = new QueryWrapper();
         if(ArtsVision.equals(Judge.YES.getCode())){ //利捷
             switch (Role.getByCode(rid)){
                 case MANAGE:
                     qw.gt("fstatus",0);
+                    qw.eq("fuid_manager",uid);
                     break;
                 case GOVERNOR:
                     qw.lt("fstatus",0);
+                    qw.eq("fuid_charge",uid);
                     break;
                 case ADMINISTRATIVE:
                     qw.between("fstatus",5,6);
                     break;
                 default:
                     break;
-
             }
-        }else if(ArtsVision.equals(Judge.NO.getCode())){
+        }
+        else if(ArtsVision.equals(Judge.NO.getCode())){
             switch (Role.getByCode(rid)){
                 case MANAGE:
-
+                    qw.gt("fstatus",2);
+                    qw.eq("fuid_manager",uid);
                     break;
                 case GOVERNOR:
+                    qw.gt("fstatus",0);
+                    qw.eq("fuid_charge",uid);
                     break;
                 case ADMINISTRATIVE:
-                    break;
-                case EMPLOYEES:
+                    qw.eq("fstatus",9);
+                    qw.ne("ftype",3);
+                    qw.ne("ftype",7);
                     break;
                 default:
                     break;
 
             }
         }
-        qw.eq("fuid_manager",uid);
+
         List list = flowMapper.selectList(qw);
         List<FlowVO> listtwo = getFlowVOInfo(list);
         msg.setStatus("200");

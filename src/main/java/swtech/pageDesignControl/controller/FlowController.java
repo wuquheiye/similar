@@ -38,11 +38,22 @@ public class FlowController  {
      * @param rid
      * @return
      */
+    @ResponseBody
+    @GetMapping("/selectChargeHistory")
     public  ReturnMsg selectChargeHistory(@RequestParam("uid") Integer uid ,
                                           @RequestParam("rid") Integer rid,
                                           @RequestParam("ArtsVision") Integer ArtsVision){
         ReturnMsg msg = new ReturnMsg();
-        iFlowService.selectChargeHistory(uid,rid,ArtsVision);
+        try {
+            msg = iFlowService.selectChargeHistory(uid, rid, ArtsVision);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("查看历史办理信息记录失败");
+            msg.setMsg(e.getMessage());
+        }
+
         return msg;
     }
 
