@@ -33,6 +33,20 @@ public class FlowController  {
     private IFlowService iFlowService;
 
     /**
+     * 查看历史办理信息记录
+     * @param uid
+     * @param rid
+     * @return
+     */
+    public  ReturnMsg selectChargeHistory(@RequestParam("uid") Integer uid ,
+                                          @RequestParam("rid") Integer rid,
+                                          @RequestParam("ArtsVision") Integer ArtsVision){
+        ReturnMsg msg = new ReturnMsg();
+        iFlowService.selectChargeHistory(uid,rid,ArtsVision);
+        return msg;
+    }
+
+    /**
      * 根据id查询历史请假记录
      * @param uid  uid
      * @param ftype 申请类型
@@ -129,17 +143,12 @@ public class FlowController  {
     public ReturnMsg seletByUid(@RequestParam("uid") Integer uid){
         ReturnMsg msg =new ReturnMsg();
         try {
-            QueryWrapper qw = new QueryWrapper();
-            qw.eq("uid",uid);
-            List list = iFlowService.list(qw);
-            msg.setStatus("200");
-            msg.setStatusMsg("查询个人申请成功");
-            msg.setMsg(list);
+             msg = iFlowService.seletByUid(uid);
         }catch (Exception e){
             e.printStackTrace();
             log.info(e.getMessage());
             msg.setStatus("201");
-            msg.setStatusMsg("查询待办信息失败");
+            msg.setStatusMsg("查询个人申请信息");
             msg.setMsg(e.getMessage());
         }
         return  msg;

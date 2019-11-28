@@ -23,4 +23,13 @@ public enum Role implements BaseEnum<Integer>{
         throw  new ServiceException("Sex  No matching constant for [" + code + "]");
     }
 
+    public static Role getByCode(Integer value){
+        for( Role  role : values()){
+            if (role.getCode() == value) {
+                return role;
+            }
+        }
+        return null;
+    }
+
 }

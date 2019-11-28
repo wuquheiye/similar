@@ -45,4 +45,8 @@
     fapply_reason, fuid_charge_refuse, fuid_manager_refuse
   </sql>
 
+    <select id="selectByUid" resultType="swtech.pageDesignControl.common.vo.FlowVO" parameterType="java.lang.Integer">
+        SELECT * FROM flow where uid = #{uid}
+    </select>
+
 </mapper>
