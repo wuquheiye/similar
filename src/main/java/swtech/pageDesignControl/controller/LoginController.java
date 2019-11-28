@@ -11,6 +11,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import swtech.pageDesignControl.common.vo.LoginVO;
+import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.service.IUsersService;
 
@@ -59,27 +60,33 @@ public class LoginController {
      */
     @RequestMapping("/dologin")
     @ResponseBody
-    public String doLogin(Users users) {
-        JSONObject json = new JSONObject();
+    public ReturnMsg doLogin(Users users) {
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(users.getUusername(), users.getUpassword());
+        ReturnMsg msg = new ReturnMsg();
         try {
             //主体提交登录请求到SecurityManager
             subject.login(token);
             // 缓存到shiro
             LoginVO loginUser = iUsersService.getLoginVO(users.getUusername());
             subject.getSession().setAttribute("loginUser", loginUser);
-            json.put("result", "登陆成功");
-            return json.toString();
+            LoginVO login = (LoginVO) SecurityUtils.getSubject().getSession().getAttribute("loginUser");
+            msg.setStatus("200");
+            msg.setStatusMsg("登陆成功");
+            msg.setMsg(login);
+            return msg;
         } catch (IncorrectCredentialsException ice) {
-            json.put("result", "密码不正确");
-            return json.toString();
+            msg.setStatus("201");
+            msg.setStatusMsg("密码不正确");
+            return msg;
         } catch (UnknownAccountException uae) {
-            json.put("result", "账号不存在");
-            return json.toString();
+            msg.setStatus("202");
+            msg.setStatusMsg("账号不存在");
+            return msg;
         } catch (AuthenticationException ae) {
-            json.put("result", "状态不正常");
-            return json.toString();
+            msg.setStatus("202");
+            msg.setStatusMsg("状态不正常");
+            return msg;
         }
     }
 

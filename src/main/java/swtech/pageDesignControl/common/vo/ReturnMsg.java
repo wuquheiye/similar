@@ -24,7 +24,7 @@ public class ReturnMsg<T> implements Serializable {
 		this.statusMsg = statusMsg;
 	}
 
-	public String getStatus() {
+	public String getStatus(String s) {
 		return status;
 	}
 
