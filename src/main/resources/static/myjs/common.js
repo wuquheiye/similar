@@ -4,21 +4,22 @@
  */
 function regist() {
     $.ajax({
-        url: pageDesignControl_HOST+'/doregist',
+        url: pageDesignControl_HOST + '/doregist',
         type: 'Post',
         contentType: 'application/json',
         dataType: 'json',
         data: JSON.stringify({
-            "uusername" : $("#registUusername").val(),
-            "upassword" : $("#registUpassword").val(),
-            "uinvitationCode" : $("#registDid option:selected").val(),
-            "did" : $("#registUinvitationCode").val()
+            "uusername": $("#registUusername").val(),
+            "upassword": $("#registUpassword").val(),
+            "uinvitationCode": $("#registDid option:selected").val(),
+            "did": $("#registUinvitationCode").val()
         }),
         success: function (result) {
             alert(result.result);
         }
     });
 }
+
 /**
  * 登录点击事件
  */
@@ -29,11 +30,17 @@ function login() {
         contentType: 'application/json',
         dataType: 'json',
         data: {
-            "uusername" : $("#loginUusername").val(),
-            "upassword" : $("#loginUpassword").val()
+            "uusername": $("#loginUusername").val(),
+            "upassword": $("#loginUpassword").val()
         },
-        success: function (result) {
-            window.location.href = pageDesignControl_HOST+"use/index.html";
+        success: function (msg) {
+            if (msg.statusMsg == "登陆成功") {
+                sessionStorage.setItem("login", JSON.stringify(msg.msg));
+                var lastname = sessionStorage.getItem("login");
+                window.location.href = pageDesignControl_HOST + "use/index.html";
+            } else {
+                alert(msg.statusMsg)
+            }
         }
     });
 }
@@ -123,9 +130,6 @@ function clean() {
 }
 
 //李鸿智end
-
-
-
 
 
 // 袁君选start
@@ -401,24 +405,24 @@ $(".daily").click(function () {
 function getCurrentTime() {
     var timeStr = '-';
     var curDate = new Date();
-    var curYear =curDate.getFullYear();  //获取完整的年份(4位,1970-????)
-    var curMonth = curDate.getMonth()+1;  //获取当前月份(0-11,0代表1月)
+    var curYear = curDate.getFullYear();  //获取完整的年份(4位,1970-????)
+    var curMonth = curDate.getMonth() + 1;  //获取当前月份(0-11,0代表1月)
     var curDay = curDate.getDate();       //获取当前日(1-31)
     var curWeekDay = curDate.getDay();    //获取当前星期X(0-6,0代表星期天)
     var curHour = curDate.getHours();      //获取当前小时数(0-23)
     var curMinute = curDate.getMinutes();   // 获取当前分钟数(0-59)
-    var curSec =curDate.getSeconds();      //获取当前秒数(0-59)
-    var Current= curYear+timeStr+curMonth+timeStr+curDay+" "+curHour+":"+curMinute;
+    var curSec = curDate.getSeconds();      //获取当前秒数(0-59)
+    var Current = curYear + timeStr + curMonth + timeStr + curDay + " " + curHour + ":" + curMinute;
     console.log(Current);
     // this.datetime=Current;
-    if(curSec<10){
-        curSec = '0'+curSec;
+    if (curSec < 10) {
+        curSec = '0' + curSec;
     }
-    if(curHour <10){
-        curHour = '0'+curHour;
+    if (curHour < 10) {
+        curHour = '0' + curHour;
     }
-    if(curDay < 10){
-        curDay = '0'+curDay;
+    if (curDay < 10) {
+        curDay = '0' + curDay;
     }
     return Current;
 }
@@ -429,18 +433,18 @@ function getDate(strDate) {
     var a = st.split(" ");
     var b = a[0].split("-");
     var c = a[1].split(":");
-    var date = new Date(b[0], b[1]-1, b[2], c[0], c[1], c[2]);
+    var date = new Date(b[0], b[1] - 1, b[2], c[0], c[1], c[2]);
     return date;
 }
 
 //日期相减
 function leadTime(e) {
     getDate(e);
-    let databaseTime =Date.parse(getDate(e));
+    let databaseTime = Date.parse(getDate(e));
     let date = Date.parse(new Date());
-    let lead =date- databaseTime ;
-    let leadTime =Math.floor(lead/86400000)+"天";
-    if(leadTime<=0){
+    let lead = date - databaseTime;
+    let leadTime = Math.floor(lead / 86400000) + "天";
+    if (leadTime <= 0) {
         leadTime = "项目未开始";
     }
     return leadTime;
@@ -452,19 +456,19 @@ function getDateSprit(strDate) {
     var a = st.split(" ");
     var b = a[0].split("/");
     var c = a[1].split(":");
-    var date = new Date(b[2], b[1], b[0], c[0], c[1] );
+    var date = new Date(b[2], b[1], b[0], c[0], c[1]);
     return date;
 }
 
 
 //两个时间计算时间差
-function leadTimeTwo(s,e) {
-    let databaseTime =Date.parse(getDateSprit(s));
+function leadTimeTwo(s, e) {
+    let databaseTime = Date.parse(getDateSprit(s));
     let date = Date.parse(getDateSprit(e));
-    let lead =date- databaseTime ;
-    let leadDate =Math.floor(lead/86400000)+"天";
-    let leadTime = Math.floor((lead%86400000)/(1000*60*60))+"小时";
-    return leadDate+leadTime;
+    let lead = date - databaseTime;
+    let leadDate = Math.floor(lead / 86400000) + "天";
+    let leadTime = Math.floor((lead % 86400000) / (1000 * 60 * 60)) + "小时";
+    return leadDate + leadTime;
 }
 
 /**
@@ -472,18 +476,18 @@ function leadTimeTwo(s,e) {
  *  e fstatus
  */
 function getStatus(e) {
-    let desc='';
-    if(e==fstatusFlow.UNTREATED.code){
-        desc=fstatusFlow.UNTREATED.desc;
-    }else if(e==fstatusFlow.CHARGEPASS.code){
-        desc= fstatusFlow.CHARGEPASS.desc;
-    }else if(e==fstatusFlow.CHARGEREFUSE.code){
+    let desc = '';
+    if (e == fstatusFlow.UNTREATED.code) {
+        desc = fstatusFlow.UNTREATED.desc;
+    } else if (e == fstatusFlow.CHARGEPASS.code) {
+        desc = fstatusFlow.CHARGEPASS.desc;
+    } else if (e == fstatusFlow.CHARGEREFUSE.code) {
         desc = fstatusFlow.CHARGEREFUSE.desc;
-    }else  if(e==fstatusFlow.MANAGERPASS.code){
+    } else if (e == fstatusFlow.MANAGERPASS.code) {
         desc = fstatusFlow.MANAGERPASS.desc;
-    }else  if(e==fstatusFlow.MANAGERREFUSE.code){
+    } else if (e == fstatusFlow.MANAGERREFUSE.code) {
         desc = fstatusFlow.MANAGERREFUSE.desc;
-    } else if(e==fstatusFlow.STAFFINGAFFIRM.code){
+    } else if (e == fstatusFlow.STAFFINGAFFIRM.code) {
         desc = fstatusFlow.STAFFINGAFFIRM.desc;
     }
     return desc;
@@ -492,54 +496,55 @@ function getStatus(e) {
 /**
  * 申请类型
  */
-function  flowType(e){
-    let desc='';
-    if(e==ftypeFlow.LEAVE.code){
-        desc=ftypeFlow.LEAVE.desc;
-    }else if(e==ftypeFlow.OVERTIME.code){
+function flowType(e) {
+    let desc = '';
+    if (e == ftypeFlow.LEAVE.code) {
+        desc = ftypeFlow.LEAVE.desc;
+    } else if (e == ftypeFlow.OVERTIME.code) {
         desc = ftypeFlow.OVERTIME.desc;
-    }else if(e==ftypeFlow.FINANCEPAY.code){
+    } else if (e == ftypeFlow.FINANCEPAY.code) {
         desc = ftypeFlow.FINANCEPAY.desc;
-    }else if(e==ftypeFlow.GOOUT.code){
+    } else if (e == ftypeFlow.GOOUT.code) {
         desc = ftypeFlow.GOOUT.desc;
-    }else if(e==ftypeFlow.SEALUSE.code){
+    } else if (e == ftypeFlow.SEALUSE.code) {
         desc = ftypeFlow.SEALUSE.desc;
-    }else if(e==ftypeFlow.SERVE.code){
+    } else if (e == ftypeFlow.SERVE.code) {
         desc = ftypeFlow.SERVE.desc;
-    }else if(e==ftypeFlow.ONBUSINESS.code){
+    } else if (e == ftypeFlow.ONBUSINESS.code) {
         desc = ftypeFlow.ONBUSINESS.desc;
     }
 
     return desc;
 }
+
 /**
  *  获取历史申请记录
  */
 function selectLeaveAll(uid) {
-    let showdata='';
+    let showdata = '';
     $.ajax({
-        url: pageDesignControl_HOST + "flow/selectLeaveAll?uid="+uid+"&ftype="+ftypeFlow.LEAVE.code,
+        url: pageDesignControl_HOST + "flow/selectLeaveAll?uid=" + uid + "&ftype=" + ftypeFlow.LEAVE.code,
         type: "get",
         dataType: "json",
         contentType: 'application/json; charset=UTF-8',
         async: false,
-        success: function(res) {
-            if(res.msg!=null){
-                $.each(res.msg,function (index,value) {
-                    showdata+='<div class="row" style="height: 30px">\n' +
+        success: function (res) {
+            if (res.msg != null) {
+                $.each(res.msg, function (index, value) {
+                    showdata += '<div class="row" style="height: 30px">\n' +
                         '                        <div class="col-xs-6" style="line-height: 30px;">事假</div>\n' +
                         '                        <div class="col-xs-6" style="line-height: 30px;text-align: right">\n' +
-                        value.fapplyTime+
+                        value.fapplyTime +
                         '                        </div>\n' +
                         '                    </div>\n' +
                         '                    <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">';
                 })
                 $("#history_flow").html(showdata);
-            }else{
+            } else {
                 alert("申请发出失败");
             }
         },
-        error: function(){
+        error: function () {
             alert("网络信号不好，请重试");
         }
 
