@@ -34,7 +34,7 @@ function login() {
             "upassword": $("#loginUpassword").val()
         },
         success: function (msg) {
-            if (msg.statusMsg == "登陆成功") {
+            if (msg.status == "200") {
                 sessionStorage.setItem("login", JSON.stringify(msg.msg));
                 var lastname = sessionStorage.getItem("login");
                 window.location.href = pageDesignControl_HOST + "use/index.html";

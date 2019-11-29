@@ -4,9 +4,9 @@
     <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.PersonInfomation"
             parameterType="swtech.pageDesignControl.entity.PersonInfomation">
         SELECT * FROM person_infomation where 1=1
-<!--        <if test="personInfomation!=null and personInfomation.pname!='' and personInfomation.pname!='null'">-->
-<!--            and pname like concat('%',#{personInfomation.pname},'%')-->
-<!--        </if>-->
+        <if test="personInfomation!=null and personInfomation.pname!='' and personInfomation.pname!='null'">
+            and pname like concat('%',#{personInfomation.pname},'%')
+        </if>
         LIMIT #{pageStart},#{pageSize}
     </select>
 
