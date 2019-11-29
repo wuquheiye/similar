@@ -234,7 +234,7 @@
                             </a>
                         </li>
                         <li class="list-group-item col-xs-3" style="border: 0px">
-                            <a href="../checkingin/checkingin.html">
+                            <a href="../message/chargeHistory.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-xingzhuang"></use>
                                 </svg>
@@ -597,7 +597,7 @@
 
 </html>
 <script>
-    var uid= 3;
+    // var uid= 3;
     let status = window.location.href.split("=")[1];
     if(status==1){
         $(".centerContain .center").addClass("hidden");
@@ -605,6 +605,9 @@
         $("#dibu").hide();
         // $("publicBottomMy")
     }
+
+    //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
+    var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
 
 
     var analogInformation = [{
@@ -677,7 +680,10 @@
         //判断当前浏览器是否支持WebSocket
 
         if ('WebSocket' in window) {
-            websocket = new WebSocket("ws://localhost:43008/websocket/0");
+            let sid="";
+            sid='ws://localhost:43008/websocket/'+loginObj.users.uid;
+            websocket = new WebSocket(sid);
+            // websocket = new WebSocket(JSON.stringify(websoc));
             websockettwo = new WebSocket("ws://localhost:43008/websocket/3");
         }
 

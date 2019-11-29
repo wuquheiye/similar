@@ -7,10 +7,10 @@ import swtech.pageDesignControl.common.exception.ServiceException;
 @AllArgsConstructor
 @Getter
 public enum Role implements BaseEnum<Integer>{
-    MANAGE(1,"经理"),
-    GOVERNOR(2,"主管"),
-    ADMINISTRATIVE(3,"人事"),
-    EMPLOYEES(4,"职工");
+    MANAGE(4,"经理"),
+    GOVERNOR(3,"主管"),
+    ADMINISTRATIVE(1,"人事"),
+    EMPLOYEES(2,"职工");
 
     private Integer code;
     private String desc;

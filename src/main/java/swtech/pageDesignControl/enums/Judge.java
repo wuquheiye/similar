@@ -21,4 +21,12 @@ public enum Judge implements BaseEnum<Integer>{
         }
         throw  new ServiceException("judge  No matching constant for [" + code + "]");
     }
+    public static Judge getByCode(Integer value){
+        for( Judge  role : values()){
+            if (role.getCode() == value) {
+                return role;
+            }
+        }
+        return null;
+    }
 }

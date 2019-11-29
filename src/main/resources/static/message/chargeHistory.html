@@ -43,13 +43,13 @@
                                                       aria-hidden="true"></span></h4></a>
             </div>
             <div class="col-xs-8" style="text-align: center">
-                <h4><b id="title">代办消息</b></h4></div>
+                <h4><b id="title">历史办理记录</b></h4></div>
         </div>
-        <div class="row" style="height: 35px;box-shadow: 0px 0px 2px rgba(0,0,0,0.2);">
-            <ul class="list-group" style="height: 35px ;text-align: center;line-height: 35px">
-                <li class="list-group-item">代办申请</li>
-            </ul>
-        </div>
+        <!--<div class="row" style="height: 35px;box-shadow: 0px 0px 2px rgba(0,0,0,0.2);">-->
+            <!--<ul class="list-group" style="height: 35px ;text-align: center;line-height: 35px">-->
+                <!--<li class="list-group-item">代办申请</li>-->
+            <!--</ul>-->
+        <!--</div>-->
     </div>
 
     <!--内容  新建流程主页-->
@@ -169,6 +169,7 @@
 <script>
 
 
+
     var chargeList;
     //缓存获取当前用户信息 , 并得到他的角色
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
@@ -180,18 +181,18 @@
     function selectBacklog() {
         let showdata ='';
         $.ajax({
-            url: pageDesignControl_HOST  + "flow/selectBacklog?uid="+loginObj.users.uid+"&rid="+loginObj.role.rtype,
+            url: pageDesignControl_HOST  + "flow/selectChargeHistory?uid="+loginObj.users.uid+"&rid="+loginObj.role.rid+"&ArtsVision="+loginObj.department.ArtsVision,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',
             async: false,
             success: function(res) {
                 chargeList =res.msg;
-                if(res.msg!=""){
+                if(res.msg!=null){
                     $.each(res.msg,function (index,value) {
                         showdata +=
                             // '<a href="chargeSkip.html?fid='+value.fid+'&ftype='+value.ftype+'">\n' +
-                            '<a href="javascript:void(0)" onclick="selectFlowId('+value.fid+')">'+
+                            '<a href="javascript:history.go(-1)" onclick="selectFlowId('+value.fid+')">'+
                             '            <div class="row flow"  style="border-bottom: 1px solid gainsboro">\n' +
                             '                <div class="col-xs-12" style="line-height: 20px">\n' +
                             '                    <span style="background: red;width: 5px;height: 5px;border-radius: 50%;display: inline-block;">' +
@@ -207,8 +208,8 @@
                 }else{
                     alert("暂时无需要处理的信息")
                 }
-                // alert(JSON.stringify(chargeList));
-                // alert(chargeList[0].ftype);
+                alert(JSON.stringify(chargeList));
+                alert(chargeList[0].ftype);
             },
             error: function(){
                 alert("网络异常，请重试");
@@ -565,7 +566,7 @@
             '            <div class="col-xs-6" style="line-height: 30px">\n' +
             '                申请原因\n' +
             '            </div>\n' +
-            '            <div class="col-xs-12" style="padding: 0px">\n' +
+            '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
             '               <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
             '            </div>\n' +
             '        </div>\n' +
@@ -620,13 +621,12 @@
     //加班申请页面
     function overTime(e,desc) {
         let overTime='';
-        alert("加班申请页面")
         overTime='<div class="container-fluid">\n' +
             '    <!--头部-->\n' +
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="#"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -724,7 +724,7 @@
             '            <div class="col-xs-6" style="line-height: 30px">\n' +
             '                申请原因\n' +
             '            </div>\n' +
-            '            <div class="col-xs-12" style="padding: 0px">\n' +
+            '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
             '               <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
             '            </div>\n' +
             '        </div>\n' +
@@ -1013,7 +1013,6 @@
         }else if(e.ftype==ftypeFlow.ONBUSINESS.code){
             flowStatusSelect+=onbusInessFlow(e,desc);
         }else if(e.ftype==ftypeFlow.OVERTIME.code){
-            alert("加班申请类型")
             flowStatusSelect+=overTime(e,desc);
         }else if(e.ftype==ftypeFlow.SEALUSE.code){
             flowStatusSelect+=sealuseFlow(e,desc);
@@ -1025,7 +1024,7 @@
         flowStatusSelect += ' <!--底部-->\n' +
             '    <div class="container navbar-fixed-bottom">\n' +
             '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
-            '    </div></div>';
+            '    </div></div>';;
         return flowStatusSelect;
 
     }
@@ -1235,9 +1234,9 @@
         return flowTypeHtml;
     }
     //审批显示信息
-    function flowStatus(e) {
-        alert("所属部门"+e.artsVision);
-        let fstatusHtml='';
+    function flowStatus(e){
+        let fstatusHtml= '';
+        if()
         if(e.fstatus==fstatusFlow.UNTREATED.code){
             fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
                 '    <div class="row">\n' +
@@ -1261,24 +1260,21 @@
                 '    </div>\n' +
                 '</div>';
         }else  if(e.fstatus==fstatusFlow.CHARGEPASS.code){
-            fstatusHtml+='<div class="container" style="padding-bottom: 70px">\n' ;
-                    if(e.artsVision==yesOrNo.NO.code){
-                        fstatusHtml+=    '        <div class="row">\n' +
-                            '            <div class="col-xs-12">\n' +
-                            '                部门主管审批\n' +
-                            '            </div>\n' +
-                            '            <div class="col-xs-12">\n' +
-                            '                <div class="row">\n' +
-                            '                    <div class="col-xs-12">同意</div>\n' +
-                            '                    <div class="col-xs-12" style="text-align: right">'+e.fuidChargeHand+' 主管名'+'</div>\n' +
-                            '                </div>\n' +
-                            '            </div>\n' +
-                            '\n' +
-                            '        </div>\n' +
-                            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' ;
-
-                    }
-            fstatusHtml+= '        <div class="row">\n' +
+            fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
+                '        <div class="row">\n' +
+                '            <div class="col-xs-12">\n' +
+                '                部门主管审批\n' +
+                '            </div>\n' +
+                '            <div class="col-xs-12">\n' +
+                '                <div class="row">\n' +
+                '                    <div class="col-xs-12">同意</div>\n' +
+                '                    <div class="col-xs-12" style="text-align: right">'+e.fuidChargeHand+' 主管名'+'</div>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '\n' +
+                '        </div>\n' +
+                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                '        <div class="row">\n' +
                 '            <div class="col-xs-12">\n' +
                 '                总经理审批\n' +
                 '            </div>\n' +
@@ -1299,24 +1295,21 @@
                 '        </div>\n' +
                 '    </div>';
         }else  if(e.fstatus==fstatusFlow.MANAGERPASS.code){
-            fstatusHtml +='<div class="container" style="padding-bottom: 70px">\n';
-            if(e.artsVision==yesOrNo.NO.code){
-                fstatusHtml+=  '        <div class="row">\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                部门主管审批\n' +
-                    '            </div>\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                <div class="row">\n' +
-                    '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '\n' +
-                    '        </div>\n' +
-                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' ;
-            }
-
-            fstatusHtml+= '        <div class="row">\n' +
+            fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
+                '        <div class="row">\n' +
+                '            <div class="col-xs-12">\n' +
+                '                部门主管审批\n' +
+                '            </div>\n' +
+                '            <div class="col-xs-12">\n' +
+                '                <div class="row">\n' +
+                '                    <div class="col-xs-12">同意</div>\n' +
+                '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '\n' +
+                '        </div>\n' +
+                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                '        <div class="row">\n' +
                 '            <div class="col-xs-12">\n' +
                 '                总经理审批\n' +
                 '            </div>\n' +
@@ -1330,43 +1323,21 @@
                 '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
                 '        <div class="row">\n' +
                 '            <div class="col-xs-12">\n' +
-                '                行政部门复核\n' +
+                '                考勤员审批\n' +
                 '            </div>\n' +
                 '            <div class="col-xs-12">\n' +
                 '                <div class="row">\n' +
                 '                    <div class="col-xs-12">\n' +
                 '                        <select class="form-control" id="idea" style="border: 0px">\n' +
                 '                            <option value="0">确认</option>\n' +
-                '                            <option value="1">意见反馈</option>\n' +
                 '                        </select>\n' +
                 '                    </div>\n' +
                 '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                '                        <textarea class="form-control" style="height: 120px" placeholder="请输入反馈意见" id="hand"></textarea>\n' +
+                '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
                 '                    </div>\n' +
                 '\n' +
                 '                </div>\n' +
                 '            </div>\n' +
-                '        </div>\n' +
-                '\n' +
-                '    </div>';
-        }else if(e.fstatus==fstatusFlow.MANAGERPASS.code){
-            fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                行政部门审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">拒绝</div>\n' +
-                '                       <div class="col-xs-12">\n' +
-                '                            <textarea class="form-control" style="height: 120px" readonly="readonly">\n' +
-                e.fuidStaffingRefuse+
-                '                            </textarea>\n' +
-                '                        </div>'+
-                '                    <div class="col-xs-12" style="text-align: right">'+e.chargeHand+' 主管名</div>'+
-                '                </div>\n' +
-                '            </div>\n' +
-                '\n' +
                 '        </div>\n' +
                 '\n' +
                 '    </div>';
@@ -1385,8 +1356,7 @@
             "status" : status,
             "fstatus" :e,
             "fid":r,
-            "ArtsVision":e,//所属公司
-            "fuidManager":loginObj.users.fuidManager
+            "ArtsVision":0 //所属公司
         }
         alert(JSON.stringify(flow));
         $.ajax({

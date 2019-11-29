@@ -66,5 +66,14 @@ public class Journal  {
      */
     private String uusername;
 
+    /**
+     * 获取审批经理id
+     */
+    private Integer fuidManager;
+
+    /**
+     * 获取审批主管id
+     */
+    private Integer fuidCharge;
 
 }

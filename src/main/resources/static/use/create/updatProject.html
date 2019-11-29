@@ -125,8 +125,10 @@
 </body>
 </html>
 <script>
+    //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
+    var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
     function updataProject() {
-        let uid =1;
+        let uid =loginObj.users.uusername;
         let pname=$("#pname").val();
         let pstart_time = $("#date").val();
         let pteam = "1,2,3"; // 项目团队 成员id

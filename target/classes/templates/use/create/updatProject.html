@@ -131,9 +131,11 @@
 </html>
 <script>
     let pid = $("#tit").attr("value");
+    //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
+    var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
     alert(pid);
     function updateProject() {
-        let uid =1;
+        let uid =loginObj.users.uusername;
         let pid = $("#tit").attr("value");
 
         let pname=$("#pname").attr("value");

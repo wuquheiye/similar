@@ -274,7 +274,9 @@
     //     $("#team").html(showdata);
     //     $("#model").modal("hide");
     // }
-    var uid = 1;//缓存获取
+    //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
+    var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
+    var uid=loginObj.users.uid;
 
     // 日期插件
     $(document).ready(function() {

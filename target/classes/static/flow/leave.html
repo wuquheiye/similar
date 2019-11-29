@@ -42,7 +42,7 @@
                 </div>
                 <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">
                 <div class="col-xs-12" style="padding-top: 10px">
-                    <span  id="ftype">貂蝉_请假</span>
+                    <span  id="otTitle"></span>
                 </div>
             </div>
         </div>
@@ -58,7 +58,7 @@
                         border-radius: 30px;
                         background: ghostwhite;
                         text-align: center;
-                        float: right;">研发部</span>
+                        float: right;" id="otSection"></span>
                         </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
                         border-radius: 30px;
                         background: ghostwhite;
                         text-align: center;
-                        float: right;">貂蝉</span>
+                        float: right;" id="otName">貂蝉</span>
                     </div>
                 </div>
             </div>
@@ -224,6 +224,9 @@
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
 
     $(function () {
+        $("#otTitle").text(loginObj.users.uusername+"_加班");
+        $("#otSection").text(loginObj.department.dname);
+        $("#otName").text(loginObj.users.uusername);
         $("#defuletTime").text(getCurrentDate());
         //获取选择时间
         // $("#duration").text("");
@@ -286,7 +289,8 @@
             "fendTime" :　fendTime,
             "fapplyReason":fapplyReason,
             "fuidCharge" :loginObj.users.fuidCharge,
-            "fuidManager":loginObj.users.fuidManager
+            "fuidManager":loginObj.users.fuidManager,
+            "artsVision":loginObj.department.ArtsVision
         }
         alert(JSON.stringify(leaveflow))
         $.ajax({

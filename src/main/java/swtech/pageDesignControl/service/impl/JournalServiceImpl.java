@@ -38,6 +38,8 @@ public class JournalServiceImpl extends ServiceImpl<JournalMapper, Journal> impl
     private UsersMapper usersMapper;
 
 
+
+
     @Override
     @Transactional
     public ReturnMsg insertJournal(Journal journal) throws IOException {
@@ -50,7 +52,11 @@ public class JournalServiceImpl extends ServiceImpl<JournalMapper, Journal> impl
         Map<String,Object> map = new HashMap<>();
         map.put("journal",journal);
         map.put("users",users);
-        WebSocketServer.sendInfo(JSONObject.fromObject(map).toString(),"0");
+        String sid =String.valueOf(journal.getFuidCharge());
+
+        String sidtwo=String.valueOf(journal.getFuidManager());
+        WebSocketServer.sendInfo(JSONObject.fromObject(map).toString(),sid);
+        WebSocketServer.sendInfo(JSONObject.fromObject(map).toString(),sidtwo);
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("日志录入成功");
