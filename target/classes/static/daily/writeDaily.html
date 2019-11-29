@@ -131,6 +131,9 @@
 </body>
 <script  type="text/javascript" src="../myjs/common.js"></script>
 <script>
+
+    //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
+    var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
     $("#file-1").fileinput({
         language: 'zh', //设置语言
         uploadUrl: pageDesignControl_HOST +"/journal/picture", //上传的地址
@@ -197,8 +200,8 @@
      *  日志提交
      */
     function insertJournal() {
-        let uid = 1; //缓存获取当前用户信息
-        let username  = "张三";//缓存获取当前用户名
+        let uid = loginObj.users.uid; //缓存获取当前用户信息
+        let username  = loginObj.users.uusername;//缓存获取当前用户名
         let jnowTask = $("#jnowTask").val();
         let jundoneTask = $("#jundoneTask").val();
         let jtomorrowTask = $("#jtomorrowTask").val();
@@ -212,8 +215,11 @@
             "jundoneTask" : jundoneTask,
             "jtomorrowTask" :jtomorrowTask,
             "pid" :pid,
-            "jcreateTime" : nowtime
+            "jcreateTime" : nowtime,
+            "fuidCharge" :loginObj.users.fuidCharge,
+            "fuidManager":loginObj.users.fuidManager
         }
+        alert(JSON.stringify(journal))
         $.ajax({
             url: pageDesignControl_HOST + "journal/insertJournal",
             type: "post",

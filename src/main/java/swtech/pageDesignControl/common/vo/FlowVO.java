@@ -131,6 +131,11 @@ public class FlowVO  implements Serializable {
      */
     private Integer frid;
 
+    /**
+     * 所属部门
+     */
+    private Integer artsVision;
+
 
     /**
      *

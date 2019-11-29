@@ -1,5 +1,6 @@
 package swtech.pageDesignControl.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.AbstractWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
@@ -70,6 +71,15 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(leave.getFstartTime()==null){
             leave.setFstartTime(LocalDateTime.of(2000,10,10,0,00));
         }
+        switch (Judge.getByCode(leave.getArtsVision())){
+            case YES:  //利捷
+                leave.setFstatus(Fstatus.CHARGEPASS.getCode());
+                break;
+            case NO: //广空
+                break;
+            default:
+                break;
+        }
         int insert = flowMapper.insert(leave);
         if(insert == 0) throw  new ServiceException("申请录入失败");
         QueryWrapper qw = new QueryWrapper();
@@ -108,7 +118,15 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(leave.getFstartTime()==null){
             leave.setFstartTime(LocalDateTime.of(2000,10,10,0,00));
         }
-
+        switch (Judge.getByCode(leave.getArtsVision())){
+            case YES:  //利捷
+                leave.setFstatus(Fstatus.CHARGEPASS.getCode());
+                break;
+            case NO: //广空
+                break;
+            default:
+                break;
+        }
         int insert = flowMapper.insert(leave);
         //        //根据请假类型进行业务
         if(leave.getFtype().equals(Ftype.ONBUSINESS.getCode())){
@@ -252,24 +270,26 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd :hh:mm:ss");
         flow.setFid(flowApproval.getFid());
         if(flowApproval == null) throw  new ServiceException("审批参数为空");
-        switch (flowApproval.getArtsVision()){
-            case 0: //利捷
-                if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){ //未处理
-                    flow.setFuidManagerHand(dateFormat.format(date));
-                    if(flowApproval.getStatus()== Judge.YES.getCode()){
-                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
-                        flow.setFrid(Role.ADMINISTRATIVE.getCode());
-                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
-                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
-                        flow.setFuidManagerRefuse(flowApproval.getHand());
-                    }
-                }
-                else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
-                    flow.setFuidStaffingHand(dateFormat.format(date));
-                    flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
-                }
-                break;
-            case 1: //广空
+
+//        switch (flowApproval.getArtsVision()){
+
+//            case 0: //利捷
+//                if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){ //未处理
+//                    flow.setFuidManagerHand(dateFormat.format(date));
+//                    if(flowApproval.getStatus()== Judge.YES.getCode()){
+//                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+//                        flow.setFrid(Role.ADMINISTRATIVE.getCode());
+//                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+//                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+//                        flow.setFuidManagerRefuse(flowApproval.getHand());
+//                    }
+//                }
+//                else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
+//                    flow.setFuidStaffingHand(dateFormat.format(date));
+//                    flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+//                }
+//                break;
+//            case 1: //广空
                 if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){ //未处理
                     flow.setFuidChargeHand(dateFormat.format(date));
                     if(flowApproval.getStatus()== Judge.YES.getCode()){
@@ -290,10 +310,16 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
                 }
                 else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
                     flow.setFuidStaffingHand(dateFormat.format(date));
-                    flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+                    if(flowApproval.getStatus()==Judge.YES.getCode()){
+                        flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+                    }else if(flowApproval.getStatus()==Judge.NO.getCode()){
+                        flow.setFstatus(Fstatus.STAFFINGAREFUSE.getCode());
+                        flow.setFrid(flowApproval.getFuidManager());
+                    }
+
                 }
-                break;
-        }
+//                break;
+//        }
 
 
         int i = flowMapper.updateById(flow);
@@ -316,7 +342,7 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
             //经理审批通过
             WebSocketServer.sendInfo(
                     JSONObject.fromObject(flow1).toString()
-                    ,Integer.toString(flow1.getFuidStaffing()));
+                    ,Integer.toString(flow1.getUid()));
         }else if(flow1.getFstatus().equals(Fstatus.MANAGERREFUSE.getCode())){
             //经理审批拒绝
             WebSocketServer.sendInfo(
@@ -344,15 +370,17 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(rid == Role.GOVERNOR.getCode()){
             qw.eq("fuid_charge",uid);
             qw.eq("fstatus",Fstatus.UNTREATED.getCode());
-            qw.eq("frid",Role.GOVERNOR.getCode());
+//            qw.eq("frid",Role.GOVERNOR.getCode());
         }else if(rid == Role.MANAGE.getCode()){
             qw.eq("fuid_manager",uid);
             qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
-            qw.eq("frid",Role.MANAGE.getCode());
+            qw.or();
+            qw.eq("frid",uid);
+//            qw.eq("frid",Role.MANAGE.getCode());
         }else if(rid == Role.ADMINISTRATIVE.getCode()){
-            qw.eq("fuid_staffing",uid);
+//            qw.eq("fuid_staffing",uid);
             qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
-            qw.eq("frid",Role.ADMINISTRATIVE.getCode());
+//            qw.eq("frid",Role.ADMINISTRATIVE.getCode());
         }else if(rid == Role.EMPLOYEES.getCode()){
             qw.eq("uid",uid);
         }

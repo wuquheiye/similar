@@ -37,6 +37,7 @@ function login() {
             if (msg.statusMsg == "登陆成功") {
                 sessionStorage.setItem("login", JSON.stringify(msg.msg));
                 var lastname = sessionStorage.getItem("login");
+                alert(lastname)
                 window.location.href = pageDesignControl_HOST + "use/index.html";
             } else {
                 alert(msg.statusMsg)
@@ -557,8 +558,8 @@ function selectLeaveAll(uid) {
  */
 function overtimeType(e) {
     let desc='';
-    alert("overtimeTypeS.WORKDAY.code"+overtimeTypeS.WORKDAY.code)
-    alert("e"+e)
+    // alert("overtimeTypeS.WORKDAY.code"+overtimeTypeS.WORKDAY.code)
+    // alert("e"+e)
     if(e==overtimeTypeS.WORKDAY.code){
         desc=overtimeTypeS.WORKDAY.desc;
     }else if(e==overtimeTypeS.WEEKEND.code){

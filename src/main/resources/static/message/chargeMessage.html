@@ -167,6 +167,8 @@
 </html>
 <script type="text/javascript" src="../myjs/common.js"></script>
 <script>
+
+
     var chargeList;
     //缓存获取当前用户信息 , 并得到他的角色
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
@@ -178,14 +180,14 @@
     function selectBacklog() {
         let showdata ='';
         $.ajax({
-            url: pageDesignControl_HOST  + "flow/selectBacklog?uid="+loginObj.users.uid+"&rid="+loginObj.role.rid,
+            url: pageDesignControl_HOST  + "flow/selectBacklog?uid="+loginObj.users.uid+"&rid="+loginObj.role.rtype,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',
             async: false,
             success: function(res) {
                 chargeList =res.msg;
-                if(res.msg!=0){
+                if(res.msg!=""){
                     $.each(res.msg,function (index,value) {
                         showdata +=
                             // '<a href="chargeSkip.html?fid='+value.fid+'&ftype='+value.ftype+'">\n' +
@@ -214,7 +216,819 @@
         });
     }
 
+    /**
+     * 财务付款申请页面
+     */
+    function financePayFlow(e,desc) {
+        let financePayFlowHtml='';
+        financePayFlowHtml='<div class="container-fluid">\n' +
+            '    <!--头部-->\n' +
+            '    <div class="container navbar-fixed-top" style="background: white">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-2">\n' +
+            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                                                        aria-hidden="true"></span></h4></a>\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-8" style="text-align: center">\n' +
+            '                <h4><b id="title">财务付款申请</b></h4></div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '    <div class="container" style="padding-top: 55px">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                承办人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                承办部门\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请日期\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                开支金额\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.change +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                承办时间\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            e.fstartTime +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" >\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                承办事项\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-12" style="padding: 0px">\n' +
+            '<pre style="border: 1px solid black">'+e.fapplyReason+'</pre>'+
+            '            </div>\n' +
+            '            <div class="col-xs-12">\n' +
+            '                <b style="font-size: 3px">注：此项应写明承办事项,付款形式，收款账户等详细信息。</b>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
+            '\n' +
+            '\n' +
+            '    </div>';
+        return financePayFlowHtml;
+    }
+    //外出申请页面 需修改
+    function gooutFlow(e,desc) {
+        let gooutFlowHtml='';
+        gooutFlowHtml='<div class="container-fluid">\n' +
+            '    <!--头部-->\n' +
+            '    <div class="container navbar-fixed-top" style="background: white">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-2">\n' +
+            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                                                        aria-hidden="true"></span></h4></a>\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-8" style="text-align: center">\n' +
+            '                <h4><b id="title">外出申请</b></h4></div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '    <div class="container" style="padding-top: 55px">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                部门\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                同行人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <input type="text"  style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="请选择同行人">\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                总人数\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '               4人\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请日期\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime"></span>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请开始\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            '                <input type="text" id="date-start" style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="Date">\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请结束\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            '                <input type="text" id="date-end" style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="Date" >\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请时长\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px;text-align: right" id="duration">\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" >\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                外出事由\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
+            '                <textarea class="form-control" style="height: 120px" id="fapplyReason"></textarea>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
+            '\n' +
+            '\n' +
+            '    </div>';
+        return gooutFlowHtml;
+    }
+    //出差申请页面
+    function onbusInessFlow(e,desc) {
+        let onbusInessFlowHtml='';
+        onbusInessFlowHtml='<div class="container-fluid">\n' +
+            '    <!--头部-->\n' +
+            '    <div class="container navbar-fixed-top" style="background: white">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-2">\n' +
+            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                                                        aria-hidden="true"></span></h4></a>\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-8" style="text-align: center">\n' +
+            '                <h4><b id="title">出差申请</b></h4></div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '    <div class="container" style="padding-top: 55px">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container" >\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                部门\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请日期\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                同行人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.onbusInessFlow.oifPeer +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                总人数\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" id="numProper">\n' +
+            getNumProper( e.onbusInessFlow.oifPeer) +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                到达地点\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.onbusInessFlow.oifSite +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <!--请假info-->\n' +
+            '    <div class="container">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请开始\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            e.fstartTime +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请结束\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            e.fendTime +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            leadTimeTwo(e.fstartTime,e.fendTime)+
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px;text-align: right" id="duration">\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" >\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请原因\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-12" style="padding: 0px">\n' +
+            '               <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row" style="line-height: 35px">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                所到单位是否提供交通工具\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            yesOrNofun(e.onbusInessFlow.oifIfVehicle) +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                接待单位\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.onbusInessFlow.oifHost+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                伙食费是否自理\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            yesOrNofun(e.onbusInessFlow.oifIfBoard) +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                住宿费是否自理\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            yesOrNofun(e.onbusInessFlow.oifIfPutup) +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>';
+        return onbusInessFlowHtml;
+    }
+    //加班申请页面
+    function overTime(e,desc) {
+        let overTime='';
+        alert("加班申请页面")
+        overTime='<div class="container-fluid">\n' +
+            '    <!--头部-->\n' +
+            '    <div class="container navbar-fixed-top" style="background: white">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-2">\n' +
+            '                <a href="#"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                                                        aria-hidden="true"></span></h4></a>\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-8" style="text-align: center">\n' +
+            '                <h4><b id="title">加班申请</b></h4></div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '\n' +
+            '    <div class="container" style="padding-top: 55px">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                部门\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请日期\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 35px">\n' +
+            '                <span style="color: red;">*</span>加班时间段\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" >\n' +
+            overtimeType(e.fleaveType)+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <!--请假info-->\n' +
+            '    <div class="container">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请开始\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            e.fstartTime+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请结束\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            e.fendTime +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请时长\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px;text-align: right" id="duration">\n' +
+            leadTimeTwo(e.fstartTime,e.fendTime)+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row" >\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                申请原因\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-12" style="padding: 0px">\n' +
+            '               <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
+            '    </div>';
+        return overTime;
+    }
+    //印章使用页面
+    function sealuseFlow(e,desc) {
+        let sealuseFlow='';
+        sealuseFlow='   <!--头部-->\n' +
+            '    <div class="container navbar-fixed-top" style="background: white">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-2">\n' +
+            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                                                        aria-hidden="true"></span></h4></a>\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-8" style="text-align: center">\n' +
+            '                <h4><b id="title">印章使用申请</b></h4></div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '    <div class="container" style="padding-top: 55px">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                部门\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请日期\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fstartTime+'</span>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                文件份数\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.fchange +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '   <div class="container">\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 35px">\n' +
+            '                <span style="color: red;">*</span>用章类别\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" >\n' +
+            sealsUseDesc(e.fleaveType) +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '       <div class="row" >\n' +
+            '           <div class="col-xs-6" style="line-height: 30px">\n' +
+            '               盖章内容\n' +
+            '           </div>\n' +
+            '           <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
+            '             <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
+            '           </div>\n' +
+            '       </div>\n' +
+            '       <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
+            '\n' +
+            '   </div>';
+        return sealuseFlow;
+    }
+    //招待申请页面
+    function serveFlow(e,desc) {
+        let serveFlowHtml='';
+        serveFlowHtml='<div class="container-fluid">\n' +
+            '    <!--头部-->\n' +
+            '    <div class="container navbar-fixed-top" style="background: white">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-2">\n' +
+            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                                                        aria-hidden="true"></span></h4></a>\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-8" style="text-align: center">\n' +
+            '                <h4><b id="title">业务招待申请</b></h4></div>\n' +
+            '        </div>\n' +
+            '    </div>\n' +
+            '    <div class="container" style="padding-top: 55px">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                招待地点\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfSite +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                客户单位\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfUnit +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                客户人数\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfNum+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                主要联系人\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfLinkman+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                联系电话\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfPhone+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                参与人员\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfPlayers+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                预计费用\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfEstimatedCost+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                部门\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <div>\n' +
+            '                        <span style="width: 85px;\n' +
+            '                        border-radius: 30px;\n' +
+            '                        background: ghostwhite;\n' +
+            '                        text-align: center;\n' +
+            '                        float: right;" id="otSection">'+e.dname+'</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                申请日期\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <div class="container">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6">\n' +
+            '                实际费用\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6">\n' +
+            e.serveFlow.sfActualCosts+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
+            '    </div>\n' +
+            '    <!--请假info-->\n' +
+            '    <div class="container">\n' +
+            '\n' +
+            '        <div class="row" style="height: 35px">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                招待日期\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
+            e.fstartTime+
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+            '        <div class="row">\n' +
+            '            <div class="col-xs-6" style="line-height: 30px">\n' +
+            '                招待原因\n' +
+            '            </div>\n' +
+            '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
+            '              <pre style="border: 1px solid black">'+e.fapplyReason+'</pre> ' +
+            '            </div>\n' +
+            '        </div>\n' +
+            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
+            '    </div>';
+        alert("业务招待啊")
+        return serveFlowHtml;
+    }
 
+    //申请显示查看(分类型)
+    function flowStatusSelect(e,desc) {
+        let flowStatusSelect='';
+        if(e.ftype==ftypeFlow.FINANCEPAY.code){
+            flowStatusSelect+=financePayFlow(e,desc);
+        }else if(e.ftype==ftypeFlow.GOOUT.code){
+            flowStatusSelect+=gooutFlow(e,desc);
+        }else if(e.ftype==ftypeFlow.ONBUSINESS.code){
+            flowStatusSelect+=onbusInessFlow(e,desc);
+        }else if(e.ftype==ftypeFlow.OVERTIME.code){
+            alert("加班申请类型")
+            flowStatusSelect+=overTime(e,desc);
+        }else if(e.ftype==ftypeFlow.SEALUSE.code){
+            flowStatusSelect+=sealuseFlow(e,desc);
+        }else if(e.ftype==ftypeFlow.SERVE.code){
+            alert("业务招待查看")
+            flowStatusSelect+=serveFlow(e,desc);
+        }
+        flowStatusSelect +=flowStatus(e);
+        flowStatusSelect += ' <!--底部-->\n' +
+            '    <div class="container navbar-fixed-bottom">\n' +
+            '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
+            '    </div></div>';
+        return flowStatusSelect;
+
+    }
 
     /**
      * 申请类型进入页面
@@ -391,24 +1205,38 @@
                 '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
                 '    </div></div>';
             // desc=ftypeFlow.LEAVE.desc;
-        }else if(e==ftypeFlow.OVERTIME.code){
+        }
+        else if(e.ftype==ftypeFlow.OVERTIME.code){
+            alert("进入加班申请")
             desc = ftypeFlow.OVERTIME.desc;
-        }else if(e==ftypeFlow.FINANCEPAY.code){
+            flowTypeHtml=flowStatusSelect(e,desc)
+        }else if(e.ftype==ftypeFlow.FINANCEPAY.code){
+            alert("进入财务付款申请")
             desc = ftypeFlow.FINANCEPAY.desc;
-        }else if(e==ftypeFlow.GOOUT.code){
+            flowTypeHtml=flowStatusSelect(e,desc)
+        }else if(e.ftype==ftypeFlow.GOOUT.code){
+            alert("进入外出申请")
             desc = ftypeFlow.GOOUT.desc;
-        }else if(e==ftypeFlow.SEALUSE.code){
+            flowTypeHtml=flowStatusSelect(e,desc)
+        }else if(e.ftype==ftypeFlow.SEALUSE.code){
+            alert("进入印章使用是申请")
             desc = ftypeFlow.SEALUSE.desc;
-        }else if(e==ftypeFlow.SERVE.code){
+            flowTypeHtml=flowStatusSelect(e,desc)
+        }else if(e.ftype==ftypeFlow.SERVE.code){
+            alert("进入业务招待申请")
             desc = ftypeFlow.SERVE.desc;
-        }else if(e==ftypeFlow.ONBUSINESS.code){
+            flowTypeHtml=flowStatusSelect(e,desc)
+        }else if(e.ftype==ftypeFlow.ONBUSINESS.code){
+            alert("进入出差申请")
             desc = ftypeFlow.ONBUSINESS.desc;
+            flowTypeHtml=flowStatusSelect(e,desc)
         }
 
         return flowTypeHtml;
     }
     //审批显示信息
     function flowStatus(e) {
+        alert("所属部门"+e.artsVision);
         let fstatusHtml='';
         if(e.fstatus==fstatusFlow.UNTREATED.code){
             fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
@@ -418,7 +1246,7 @@
                 '        </div>\n' +
                 '        <div class="col-xs-12">\n' +
                 '            <div class="row">\n' +
-                '                <div class="col-xs-12">\n' +
+                '                <div class="col-xs-12 " >\n' +
                 '                    <select class="form-control" id="idea" style="border: 0px">\n' +
                 '                        <option value="0">同意</option>\n' +
                 '                        <option value="1">拒绝</option>\n' +
@@ -433,21 +1261,24 @@
                 '    </div>\n' +
                 '</div>';
         }else  if(e.fstatus==fstatusFlow.CHARGEPASS.code){
-            fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                部门主管审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">同意</div>\n' +
-                '                    <div class="col-xs-12" style="text-align: right">'+e.fuidChargeHand+' 主管名'+'</div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '\n' +
-                '        </div>\n' +
-                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                '        <div class="row">\n' +
+            fstatusHtml+='<div class="container" style="padding-bottom: 70px">\n' ;
+                    if(e.artsVision==yesOrNo.NO.code){
+                        fstatusHtml+=    '        <div class="row">\n' +
+                            '            <div class="col-xs-12">\n' +
+                            '                部门主管审批\n' +
+                            '            </div>\n' +
+                            '            <div class="col-xs-12">\n' +
+                            '                <div class="row">\n' +
+                            '                    <div class="col-xs-12">同意</div>\n' +
+                            '                    <div class="col-xs-12" style="text-align: right">'+e.fuidChargeHand+' 主管名'+'</div>\n' +
+                            '                </div>\n' +
+                            '            </div>\n' +
+                            '\n' +
+                            '        </div>\n' +
+                            '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' ;
+
+                    }
+            fstatusHtml+= '        <div class="row">\n' +
                 '            <div class="col-xs-12">\n' +
                 '                总经理审批\n' +
                 '            </div>\n' +
@@ -468,21 +1299,24 @@
                 '        </div>\n' +
                 '    </div>';
         }else  if(e.fstatus==fstatusFlow.MANAGERPASS.code){
-            fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                部门主管审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">同意</div>\n' +
-                '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '\n' +
-                '        </div>\n' +
-                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                '        <div class="row">\n' +
+            fstatusHtml +='<div class="container" style="padding-bottom: 70px">\n';
+            if(e.artsVision==yesOrNo.NO.code){
+                fstatusHtml+=  '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                部门主管审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' ;
+            }
+
+            fstatusHtml+= '        <div class="row">\n' +
                 '            <div class="col-xs-12">\n' +
                 '                总经理审批\n' +
                 '            </div>\n' +
@@ -496,21 +1330,43 @@
                 '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
                 '        <div class="row">\n' +
                 '            <div class="col-xs-12">\n' +
-                '                考勤员审批\n' +
+                '                行政部门复核\n' +
                 '            </div>\n' +
                 '            <div class="col-xs-12">\n' +
                 '                <div class="row">\n' +
                 '                    <div class="col-xs-12">\n' +
                 '                        <select class="form-control" id="idea" style="border: 0px">\n' +
                 '                            <option value="0">确认</option>\n' +
+                '                            <option value="1">意见反馈</option>\n' +
                 '                        </select>\n' +
                 '                    </div>\n' +
                 '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
+                '                        <textarea class="form-control" style="height: 120px" placeholder="请输入反馈意见" id="hand"></textarea>\n' +
                 '                    </div>\n' +
                 '\n' +
                 '                </div>\n' +
                 '            </div>\n' +
+                '        </div>\n' +
+                '\n' +
+                '    </div>';
+        }else if(e.fstatus==fstatusFlow.MANAGERPASS.code){
+            fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
+                '        <div class="row">\n' +
+                '            <div class="col-xs-12">\n' +
+                '                行政部门审批\n' +
+                '            </div>\n' +
+                '            <div class="col-xs-12">\n' +
+                '                <div class="row">\n' +
+                '                    <div class="col-xs-12">拒绝</div>\n' +
+                '                       <div class="col-xs-12">\n' +
+                '                            <textarea class="form-control" style="height: 120px" readonly="readonly">\n' +
+                e.fuidStaffingRefuse+
+                '                            </textarea>\n' +
+                '                        </div>'+
+                '                    <div class="col-xs-12" style="text-align: right">'+e.chargeHand+' 主管名</div>'+
+                '                </div>\n' +
+                '            </div>\n' +
+                '\n' +
                 '        </div>\n' +
                 '\n' +
                 '    </div>';
@@ -528,7 +1384,9 @@
             "hand" : hand,
             "status" : status,
             "fstatus" :e,
-            "fid":r
+            "fid":r,
+            "ArtsVision":e,//所属公司
+            "fuidManager":loginObj.users.fuidManager
         }
         alert(JSON.stringify(flow));
         $.ajax({
@@ -540,7 +1398,8 @@
             async: false,
             success: function(res) {
                 if(res!=0){
-                    alert("审批通过");
+                    alert("已审批");
+                    window.location.href("#")
                 }else{
                     alert("数据异常，请重新操作")
                 }
@@ -572,6 +1431,10 @@
         $("body").html(showdata);
         selectLeaveAll(chargeListOne.uid);
     }
+
+
+
+
 
     //显示拒绝框
     $(document).on("change", "#idea", function () {

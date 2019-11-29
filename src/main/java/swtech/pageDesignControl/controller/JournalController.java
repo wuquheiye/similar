@@ -40,6 +40,16 @@ public class JournalController{
 
 
     /**
+     * 根距uid获取当前主管部下的日志信息
+     * @param uid
+     * @return
+     */
+    public ReturnMsg selectByCharge(@RequestParam("uid") Integer uid){
+        ReturnMsg msg = new ReturnMsg();
+        return msg;
+    }
+
+    /**
      * 根据id获取日志信息
      * @param jid
      * @return

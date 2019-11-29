@@ -10,7 +10,8 @@ var fstatusFlow = {
     CHARGEREFUSE:{code:2,desc:"主管审批拒绝"},
     MANAGERPASS:{code:3,desc:"经理审批通过"},
     MANAGERREFUSE:{code:4,desc:"经理审批拒绝"},
-    STAFFINGAFFIRM:{code:5,desc:"人事确认"}
+    STAFFINGAFFIRM:{code:5,desc:"人事确认"},
+    STAFFINGREFUSE:{code:6,desc:"人事反馈"}
 }
 // 申请类型
 var ftypeFlow = {
@@ -21,6 +22,28 @@ var ftypeFlow = {
     ONBUSINESS:{code:5,desc: "出差申请"},
     SEALUSE:{code:6,desc: "印章使用申请"},
     FINANCEPAY:{code:7,desc: "财务付款申请"}
+}
+
+//加班类型
+var overtimeTypeS={
+    WORKDAY:{code: 1,desc:"工作日加班"},
+    WEEKEND:{code: 2,desc:"周末假日加班"},
+    HOLIDAYS:{code: 3,desc:"法定节假日加班"}
+}
+
+//yes or no
+var yesOrNo={
+    YES:{code:0,desc:"是"},
+    NO:{code:1,desc:"否"}
+}
+
+//印章使用类型
+var sealsUseType={
+    COMPANYSEAL:{code:1,desc:"公司公章"},
+    LEGALPERSONSEAL:{code:2,desc:"公司法人章"},
+    FINANCESEAL:{code:3,desc:"财务专用章"},
+    PACTSEAL:{code:4,desc:"合同专用章"},
+    ELSESEAL:{code:5,desc:"其他"}
 }
 
 //请假类型

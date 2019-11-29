@@ -205,6 +205,8 @@
 <script type="text/javascript" charset="utf-8" src="../myjs/paging.js"></script>
 <script>
 
+    //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
+    var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
     let total=0;
     $(function(){
         var a={color:'red',judge:'black',border:'1px solid #ddd'};
@@ -212,7 +214,7 @@
         var b={background:'black'};
 
 
-        selectJournalAll(1,1,2);
+        selectJournalAll(loginObj.users.uid,1,2);
         $(".pagination").Paging({
             classStyle:a,//a标签样式的对象,也可以不定义使用默认值
             backClass:b,//选中的页数的背景，也可以不定义使用默认值
