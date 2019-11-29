@@ -1,4 +1,288 @@
 /**
+ * 个人档案start
+ */
+var personInfomationManageId = 0;
+var personInfomationDname = "";
+$(function () {
+    /**
+     * 左侧显示隐藏并获取个人档案列表
+     */
+    $(".manageLeft").on("click", "#personInfomationManage", function () {
+        $("#personInfomationManageName").val("");
+        $(".manageRight .rightManageDiv").addClass("hidden");
+        $(".personInfomationManage").removeClass("hidden");
+        getPersonInfomationList(1);
+    });
+
+    /**
+     * 点击分页
+     */
+    $("#personInfomationManagePageDiv").on("click", "a", function () {
+        getPersonInfomationList($(this).text());
+    });
+
+    /**
+     * 清除
+     */
+    $(".personInfomationManage").on("click", "#personInfomationManageClean", function () {
+        $("#personInfomationManageName").val("");
+    });
+
+    /**
+     * 查询
+     */
+    $(".personInfomationManage").on("click", "#personInfomationManageSearch", function () {
+        getPersonInfomationList(1)
+    });
+
+    /**
+     * 删除单个个人档案
+     */
+    $(".personInfomationManage").on("click", ".delete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            var did = $(this).next().attr("class");
+            removePersonInfomation(did);
+        }
+    });
+
+    /**
+     * 增加个人档案
+     */
+    $(".personInfomationManageEdit").on("click", "#savePersonInfomation", function () {
+        savePersonInfomation();
+    });
+
+    /**
+     * 更改个人档案
+     */
+    $(".personInfomationManageEdit").on("click", "#updatePersonInfomation", function () {
+        updatePersonInfomation();
+    });
+})
+
+/**
+ * 个人档案管理
+ */
+$(function () {
+    /**
+     * 点击添加
+     */
+    $(".manageRight").on("click", ".personInfomationManageAdd", function () {
+        $(".manageRight .personInfomationManage").addClass("hidden");
+        $(".manageRight").children(".personInfomationManageEdit").removeClass("hidden");
+        $(".PersonInfomation").attr("id", "savePersonInfomation");
+        $(".personInfomationManageEdit #dname").val("");
+    });
+
+    /**
+     * 点击更新
+     */
+    $(".manageRight").on("click", ".personInfomationManageUpdate", function () {
+        personInfomationManageId = $(this).prev().attr("class");
+        getPersonInfomation();
+        $(".manageRight .personInfomationManage").addClass("hidden");
+        $(".manageRight").children(".personInfomationManageEdit").removeClass("hidden");
+        $(".PersonInfomation").attr("id", "updatePersonInfomation");
+    });
+
+    /**
+     * 点击返回
+     */
+    $(".manageRight").on("click", ".personInfomationManageBack", function () {
+        $(".manageRight .personInfomationManage").removeClass("hidden");
+        $(".manageRight").children(".personInfomationManageEdit").addClass("hidden");
+        getPersonInfomationList(1);
+    });
+})
+
+/**
+ * 获取单个个人档案
+ */
+function getpersonInfomation() {
+    var did = personInfomationManageId;
+    $.ajax({
+        url: pageDesignControl_HOST + '/manage/personinfomation/getbyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"did": did},
+        success: function (msg) {
+            if (msg.status == 200) {
+                personInfomationDname = msg.msg.dname;
+                $(".personInfomationManageEdit #dname").val(msg.msg.dname);
+            }
+        }
+    });
+}
+
+/**
+ * 判断用户是否重名
+ */
+function isDnameHendiadysPersonInfomation(dname) {
+    var result = 0;
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/personinfomation/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"dname": "", "pageSize": 10000},
+        async: false,
+        success: function (msg) {
+            if (msg.status == 200) {
+                var personInfomationList = msg.msg;
+                for (var i = 0; i < personInfomationList.length; i++) {
+                    if (personInfomationList[i].dname == dname) {
+                        result = 1;
+                    }
+                }
+            }
+        }
+    });
+    return result;
+}
+
+/**
+ * 更改个人档案
+ */
+function updatePersonInfomation() {
+    var did = personInfomationManageId;
+    var dname = $(".personInfomationManageEdit #dname").val();
+    if (!dname) {
+        alert("权限名称不能为空");
+    } else if (isDnameHendiadysPersonInfomation(dname) && personInfomationDname != dname) {
+        alert("权限名称不能重复");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/personinfomation/updatebyid',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {"dname": dname, "did": did},
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("更改成功")
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 添加个人档案
+ */
+function savePersonInfomation() {
+    var dname = $(".personInfomationManageEdit #dname").val();
+    if (!dname) {
+        alert("权限名称不能为空");
+    } else if (isDnameHendiadysPersonInfomation(dname)) {
+        alert("权限名称不能重复");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/personinfomation/save',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {"dname": dname},
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("添加成功")
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 删除单个个人档案
+ */
+function removePersonInfomation(did) {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/personinfomation/removebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"did": did},
+        success: function (msg) {
+            if (msg.status == 200) {
+                getPersonInfomationList(1);
+                alert("删除成功")
+            }
+        }
+    });
+}
+
+/**
+ * 获取个人档案列表
+ */
+function getPersonInfomationList(page) {
+    var pname = $("#personInfomationManageName").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/personinfomation/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"pname": pname, "page": page},
+        success: function (msg) {
+            if (msg.status == 200) {
+                console.log(msg.msg)
+                // 添加列表
+                var personInfomationListStr = "";
+                for (var i = 0; i < msg.msg.length; i++) {
+                    personInfomationListStr += '<tr class="">' +
+                        '<td class="text-center">' +
+                        '<input type="checkbox" class="personInfomationManageCheckBox">' + msg.msg[i].pname +
+                        '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
+                        '</td>' +
+                        '<td class="text-center">' + msg.msg[i].uid + '</td>' +
+                        '<td class="text-center">' +
+                        '<button type="button" class="btn btn-info delete" >删除</button>' +
+                        '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
+                        '<button type="button" class="btn btn-warning manageEdit personInfomationManageUpdate">修改</button>' +
+                        '<input type="hidden" class="personInfomationManageEdit">' +
+                        '</td>' +
+                        '</tr>'
+                }
+                console.log(personInfomationListStr)
+                $("#personInfomationManageTable").empty();
+                $("#personInfomationManageTable").append(personInfomationListStr);
+                // 回显搜索名
+                $("#personInfomationManageName").val(dname);
+                // 是否显示分页
+                if (msg.totalSize <= 10) {
+                    $("#personInfomationManagePageDiv").addClass("hidden");
+                } else {
+                    $("#personInfomationManagePageDiv").removeClass("hidden");
+                }
+                // 分页具体信息
+                var pageSpanStr = "第 " + msg.pageStart + " 条 到 " + (msg.pageEnd < msg.totalSize ? msg.pageEnd : msg.totalSize) + " 条 ，共 " + msg.totalSize + " 条记录, 当前第 " + msg.currentPage + "页";
+                $("#personInfomationManagePageSpan").text(pageSpanStr);
+                var pageUlStr = "";
+                if (parseInt(msg.currentPage) - 2 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 2) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) - 1 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 1) + '</a></li>';
+                }
+                pageUlStr += '<li><a href="#">' + msg.currentPage + '</a></li>';
+                if (parseInt(msg.currentPage) + 1 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 1) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) + 2 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 2) + '</a></li>';
+                }
+                $("#personInfomationManagePageUl").empty();
+                $("#personInfomationManagePageUl").append(pageUlStr);
+            }
+        }
+    });
+}
+
+/**
+ * 个人档案end
+ */
+
+/**
  * 用户start
  */
 var usersManageId = 0;

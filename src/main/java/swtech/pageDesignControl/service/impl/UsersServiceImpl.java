@@ -55,7 +55,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         Role role = roleMapper.getRoleByUsername(uusername);
         // 根据用户部门id查询部门
         Department department = departmentMapper.selectById(users.getDid());
-        int fuidChange = 0;
+        int fuidCharge = 0;
         int fuidManager = 0;
         LoginUsersVO loginUsersVO = new LoginUsersVO();
         loginUsersVO.setUid(users.getUid());
@@ -66,19 +66,19 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         // 查询本部门经理
         List<Users> manageUser = usersMapper.findUsersByDepartmentAndRole(users.getDid(), 4);
         if (manageUser != null && manageUser.size() > 0 && manageUser.get(0) != null && manageUser.get(0).getDid() > 0) {
-            fuidChange = manageUser.get(0).getDid();
+            fuidCharge = manageUser.get(0).getUid();
         }
         if (chargeUser != null && chargeUser.size() > 0 && chargeUser.get(0) != null && chargeUser.get(0).getDid() > 0) {
-            fuidManager = chargeUser.get(0).getDid();
+            fuidManager = chargeUser.get(0).getUid();
         }
         if (role.getRtype() == 1 || role.getRtype() == 2) {
-            loginUsersVO.setFuidChange(fuidChange);
-            loginUsersVO.setFuidManager(fuidChange);
+            loginUsersVO.setFuidCharge(fuidCharge);
+            loginUsersVO.setFuidManager(fuidCharge);
         } else if (role.getRtype() == 3) {
-            loginUsersVO.setFuidChange(0);
-            loginUsersVO.setFuidManager(fuidChange);
+            loginUsersVO.setFuidCharge(0);
+            loginUsersVO.setFuidManager(fuidCharge);
         } else if (role.getRtype() == 4) {
-            loginUsersVO.setFuidChange(0);
+            loginUsersVO.setFuidCharge(0);
             loginUsersVO.setFuidManager(0);
         }
         loginVO.setUsers(loginUsersVO);

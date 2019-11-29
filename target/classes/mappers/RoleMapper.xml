@@ -11,7 +11,7 @@
     <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Role"
             parameterType="swtech.pageDesignControl.entity.Role">
         SELECT * FROM role where 1=1
-        <if test="role!=null and role.rname!=''">
+        <if test="role!=null and role.rname!='' and role.rname!='null'">
             and rname like concat('%',#{role.rname},'%')
         </if>
         LIMIT #{pageStart},#{pageSize}
