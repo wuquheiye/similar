@@ -63,7 +63,7 @@ public class LoginUsersVO {
     /**
      * 主管id
      */
-    private int fuidChange;
+    private int fuidCharge;
 
     /**
      * 经理id
