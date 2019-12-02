@@ -106,6 +106,11 @@ public class FlowVO  implements Serializable {
     private Integer fuidStaffing;
 
     /**
+     * 人事意见反馈
+     */
+    private String fuidStaffingRefuse;
+
+    /**
      * 人事确认时间
      */
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")

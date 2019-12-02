@@ -194,43 +194,45 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(rid == null) throw  new ServiceException("rid 参数不能为空");
         if(ArtsVision == null) throw  new ServiceException("rid 参数不能为空");
         QueryWrapper qw = new QueryWrapper();
-        if(ArtsVision.equals(Judge.YES.getCode())){ //利捷
+//        if(ArtsVision.equals(Judge.YES.getCode())){ //利捷
             switch (Role.getByCode(rid)){
                 case MANAGE:
                     qw.gt("fstatus",0);
                     qw.eq("fuid_manager",uid);
                     break;
-                case GOVERNOR:
-                    qw.lt("fstatus",0);
-                    qw.eq("fuid_charge",uid);
-                    break;
+//                case GOVERNOR:
+//                    qw.lt("fstatus",0);
+//                    qw.eq("fuid_charge",uid);
+//                    break;
                 case ADMINISTRATIVE:
                     qw.between("fstatus",5,6);
                     break;
-                default:
-                    break;
-            }
-        }
-        else if(ArtsVision.equals(Judge.NO.getCode())){
-            switch (Role.getByCode(rid)){
-                case MANAGE:
+                case GM:
                     qw.gt("fstatus",2);
-                    qw.eq("fuid_manager",uid);
-                    break;
-                case GOVERNOR:
-                    qw.gt("fstatus",0);
-                    qw.eq("fuid_charge",uid);
-                    break;
-                case ADMINISTRATIVE:
-                    qw.eq("fstatus",9);
-                    qw.ne("ftype",3);
-                    qw.ne("ftype",7);
                     break;
                 default:
                     break;
-
             }
-        }
+//        }
+//        else if(ArtsVision.equals(Judge.NO.getCode())){ 广空
+//            switch (Role.getByCode(rid)){
+//                case MANAGE:
+//                    qw.gt("fstatus",2);
+//                    qw.eq("fuid_manager",uid);
+//                    break;
+////                case GOVERNOR:
+////                    qw.gt("fstatus",0);
+////                    qw.eq("fuid_charge",uid);
+////                    break;
+//                case ADMINISTRATIVE:
+//                    qw.eq("fstatus",9);
+//                    qw.ne("ftype",3);
+//                    qw.ne("ftype",7);
+//                    break;
+//                default:
+//                    break;
+//            }
+//        }
 
         List list = flowMapper.selectList(qw);
         List<FlowVO> listtwo = getFlowVOInfo(list);
@@ -316,7 +318,9 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
                         flow.setFstatus(Fstatus.STAFFINGAREFUSE.getCode());
                         flow.setFrid(flowApproval.getFuidManager());
                     }
-
+                }else if(flowApproval.getFstatus().equals(Fstatus.STAFFINGAREFUSE.getCode())){//行政部门意见
+//                    flow.setFstatus(Fstatus.MANAGERREAD.getCode());
+                    flow.setManagerRead(Judge.NO.getCode()); //已读
                 }
 //                break;
 //        }
@@ -375,7 +379,9 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
             qw.eq("fuid_manager",uid);
             qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
             qw.or();
-            qw.eq("frid",uid);
+            qw.eq("frid",uid);//发送给处理人
+            qw.eq("manager_read",Judge.YES.getCode());//未读
+
 //            qw.eq("frid",Role.MANAGE.getCode());
         }else if(rid == Role.ADMINISTRATIVE.getCode()){
 //            qw.eq("fuid_staffing",uid);

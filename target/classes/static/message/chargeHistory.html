@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>代办消息</title>
+    <title>历史办理消息</title>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
 
 
-    <link rel="stylesheet" href="../use/css/bootstrap-material-datetimepicker.css" />
+    <link rel="stylesheet" href="../use/css/bootstrap-material-datetimepicker.css"/>
     <link rel="stylesheet" type="text/css" href="../use/css/default.css">
     <link rel="stylesheet" href="../use/css/common.css">
     <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -22,14 +22,15 @@
     <script type="text/javascript" src="../myjs/httpData.config.js"></script>
 </head>
 <style type="text/css">
-    .flowpath:hover{
+    .flowpath:hover {
         background: #2aabd2;
     }
 
-    .flow:hover{
+    .flow:hover {
         background: #2aabd2;
     }
-    .flowbox{
+
+    .flowbox {
         display: none;
     }
 </style>
@@ -46,9 +47,9 @@
                 <h4><b id="title">历史办理记录</b></h4></div>
         </div>
         <!--<div class="row" style="height: 35px;box-shadow: 0px 0px 2px rgba(0,0,0,0.2);">-->
-            <!--<ul class="list-group" style="height: 35px ;text-align: center;line-height: 35px">-->
-                <!--<li class="list-group-item">代办申请</li>-->
-            <!--</ul>-->
+        <!--<ul class="list-group" style="height: 35px ;text-align: center;line-height: 35px">-->
+        <!--<li class="list-group-item">代办申请</li>-->
+        <!--</ul>-->
         <!--</div>-->
     </div>
 
@@ -169,7 +170,6 @@
 <script>
 
 
-
     var chargeList;
     //缓存获取当前用户信息 , 并得到他的角色
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
@@ -179,39 +179,39 @@
 
     //查询需要办理的信息
     function selectBacklog() {
-        let showdata ='';
+        let showdata = '';
         $.ajax({
-            url: pageDesignControl_HOST  + "flow/selectChargeHistory?uid="+loginObj.users.uid+"&rid="+loginObj.role.rid+"&ArtsVision="+loginObj.department.ArtsVision,
+            url: pageDesignControl_HOST + "flow/selectChargeHistory?uid=" + loginObj.users.uid + "&rid=" + loginObj.role.rtype + "&ArtsVision=" + loginObj.department.ArtsVision,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',
             async: false,
-            success: function(res) {
-                chargeList =res.msg;
-                if(res.msg!=null){
-                    $.each(res.msg,function (index,value) {
+            success: function (res) {
+                chargeList = res.msg;
+                if (res.msg != "") {
+                    $.each(res.msg, function (index, value) {
                         showdata +=
                             // '<a href="chargeSkip.html?fid='+value.fid+'&ftype='+value.ftype+'">\n' +
-                            '<a href="javascript:history.go(-1)" onclick="selectFlowId('+value.fid+')">'+
+                            '<a href="javascript:void(0)" onclick="selectFlowId(' + value.fid + ')">' +
                             '            <div class="row flow"  style="border-bottom: 1px solid gainsboro">\n' +
                             '                <div class="col-xs-12" style="line-height: 20px">\n' +
                             '                    <span style="background: red;width: 5px;height: 5px;border-radius: 50%;display: inline-block;">' +
-                            '</span>' +value.uusername+'__'+flowType(value.ftype)+
+                            '</span>' + value.uusername + '__' + flowType(value.ftype) +
                             '                </div>\n' +
                             '                <div class="col-xs-12" style="line-height: 20px;text-align: right">\n' +
-                            value.fapplyTime+
+                            value.fapplyTime +
                             '                </div>\n' +
                             '            </div>\n' +
                             '        </a>';
                     })
                     $("#in_chargeHelp").html(showdata);
-                }else{
+                } else {
                     alert("暂时无需要处理的信息")
                 }
-                alert(JSON.stringify(chargeList));
-                alert(chargeList[0].ftype);
+                // alert(JSON.stringify(chargeList));
+                // alert(chargeList[0].ftype);
             },
-            error: function(){
+            error: function () {
                 alert("网络异常，请重试");
             }
         });
@@ -220,14 +220,14 @@
     /**
      * 财务付款申请页面
      */
-    function financePayFlow(e,desc) {
-        let financePayFlowHtml='';
-        financePayFlowHtml='<div class="container-fluid">\n' +
+    function financePayFlow(e, desc) {
+        let financePayFlowHtml = '';
+        financePayFlowHtml = '<div class="container-fluid">\n' +
             '    <!--头部-->\n' +
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -245,7 +245,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                        float: right;" id="otName">' + e.uusername + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -262,7 +262,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                        float: right;"  id="otSection">' + e.dname + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -274,7 +274,7 @@
             '                申请日期\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">' + e.fapplyTime + '</span>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -305,7 +305,7 @@
             '                承办事项\n' +
             '            </div>\n' +
             '            <div class="col-xs-12" style="padding: 0px">\n' +
-            '<pre style="border: 1px solid black">'+e.fapplyReason+'</pre>'+
+            '<pre style="border: 1px solid black">' + e.fapplyReason + '</pre>' +
             '            </div>\n' +
             '            <div class="col-xs-12">\n' +
             '                <b style="font-size: 3px">注：此项应写明承办事项,付款形式，收款账户等详细信息。</b>\n' +
@@ -317,15 +317,16 @@
             '    </div>';
         return financePayFlowHtml;
     }
+
     //外出申请页面 需修改
-    function gooutFlow(e,desc) {
-        let gooutFlowHtml='';
-        gooutFlowHtml='<div class="container-fluid">\n' +
+    function gooutFlow(e, desc) {
+        let gooutFlowHtml = '';
+        gooutFlowHtml = '<div class="container-fluid">\n' +
             '    <!--头部-->\n' +
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -343,7 +344,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                        float: right;" id="otName">' + e.uusername + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -360,7 +361,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                        float: right;"  id="otSection">' + e.dname + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -440,15 +441,16 @@
             '    </div>';
         return gooutFlowHtml;
     }
+
     //出差申请页面
-    function onbusInessFlow(e,desc) {
-        let onbusInessFlowHtml='';
-        onbusInessFlowHtml='<div class="container-fluid">\n' +
+    function onbusInessFlow(e, desc) {
+        let onbusInessFlowHtml = '';
+        onbusInessFlowHtml = '<div class="container-fluid">\n' +
             '    <!--头部-->\n' +
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -466,7 +468,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                        float: right;" id="otName">' + e.uusername + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -483,7 +485,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                        float: right;"  id="otSection">' + e.dname + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -496,7 +498,7 @@
             '                申请日期\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">' + e.fapplyTime + '</span>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -518,7 +520,7 @@
             '                总人数\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" id="numProper">\n' +
-            getNumProper( e.onbusInessFlow.oifPeer) +
+            getNumProper(e.onbusInessFlow.oifPeer) +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -556,7 +558,7 @@
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
             '        <div class="row" style="height: 35px">\n' +
             '            <div class="col-xs-6" style="line-height: 30px">\n' +
-            leadTimeTwo(e.fstartTime,e.fendTime)+
+            leadTimeTwo(e.fstartTime, e.fendTime) +
             '            </div>\n' +
             '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px;text-align: right" id="duration">\n' +
             '            </div>\n' +
@@ -566,8 +568,8 @@
             '            <div class="col-xs-6" style="line-height: 30px">\n' +
             '                申请原因\n' +
             '            </div>\n' +
-            '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
-            '               <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
+            '            <div class="col-xs-12" style="padding: 0px">\n' +
+            '               <pre style="border: 1px solid black">' + e.fapplyReason + '</pre>' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
@@ -589,7 +591,7 @@
             '                接待单位\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            e.onbusInessFlow.oifHost+
+            e.onbusInessFlow.oifHost +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -618,15 +620,16 @@
             '    </div>';
         return onbusInessFlowHtml;
     }
+
     //加班申请页面
-    function overTime(e,desc) {
-        let overTime='';
-        overTime='<div class="container-fluid">\n' +
+    function overTime(e, desc) {
+        let overTime = '';
+        overTime = '<div class="container-fluid">\n' +
             '    <!--头部-->\n' +
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -645,7 +648,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                        float: right;" id="otName">' + e.uusername + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -662,7 +665,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                        float: right;"  id="otSection">' + e.dname + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -675,7 +678,7 @@
             '                申请日期\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">' + e.fapplyTime + '</span>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -686,7 +689,7 @@
             '                <span style="color: red;">*</span>加班时间段\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" >\n' +
-            overtimeType(e.fleaveType)+
+            overtimeType(e.fleaveType) +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -698,7 +701,7 @@
             '                申请开始\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
-            e.fstartTime+
+            e.fstartTime +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -716,7 +719,7 @@
             '                申请时长\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px;text-align: right" id="duration">\n' +
-            leadTimeTwo(e.fstartTime,e.fendTime)+
+            leadTimeTwo(e.fstartTime, e.fendTime) +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -724,22 +727,23 @@
             '            <div class="col-xs-6" style="line-height: 30px">\n' +
             '                申请原因\n' +
             '            </div>\n' +
-            '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
-            '               <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
+            '            <div class="col-xs-12" style="padding: 0px">\n' +
+            '               <pre style="border: 1px solid black">' + e.fapplyReason + '</pre>' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
             '    </div>';
         return overTime;
     }
+
     //印章使用页面
-    function sealuseFlow(e,desc) {
-        let sealuseFlow='';
-        sealuseFlow='   <!--头部-->\n' +
+    function sealuseFlow(e, desc) {
+        let sealuseFlow = '';
+        sealuseFlow = '   <!--头部-->\n' +
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -757,7 +761,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                        float: right;" id="otName">' + e.uusername + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -774,7 +778,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;"  id="otSection">'+e.dname+'</span>\n' +
+            '                        float: right;"  id="otSection">' + e.dname + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -786,7 +790,7 @@
             '                申请日期\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fstartTime+'</span>\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">' + e.fstartTime + '</span>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -816,8 +820,8 @@
             '           <div class="col-xs-6" style="line-height: 30px">\n' +
             '               盖章内容\n' +
             '           </div>\n' +
-            '           <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
-            '             <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
+            '           <div class="col-xs-12" style="padding: 0px">\n' +
+            '             <pre style="border: 1px solid black">' + e.fapplyReason + '</pre>' +
             '           </div>\n' +
             '       </div>\n' +
             '       <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
@@ -825,15 +829,16 @@
             '   </div>';
         return sealuseFlow;
     }
+
     //招待申请页面
-    function serveFlow(e,desc) {
-        let serveFlowHtml='';
-        serveFlowHtml='<div class="container-fluid">\n' +
+    function serveFlow(e, desc) {
+        let serveFlowHtml = '';
+        serveFlowHtml = '<div class="container-fluid">\n' +
             '    <!--头部-->\n' +
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -851,7 +856,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;" id="otName">'+e.uusername+'</span>\n' +
+            '                        float: right;" id="otName">' + e.uusername + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -887,7 +892,7 @@
             '                客户人数\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            e.serveFlow.sfNum+
+            e.serveFlow.sfNum +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -898,7 +903,7 @@
             '                主要联系人\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            e.serveFlow.sfLinkman+
+            e.serveFlow.sfLinkman +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -910,7 +915,7 @@
             '                联系电话\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            e.serveFlow.sfPhone+
+            e.serveFlow.sfPhone +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -921,7 +926,7 @@
             '                参与人员\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            e.serveFlow.sfPlayers+
+            e.serveFlow.sfPlayers +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -932,7 +937,7 @@
             '                预计费用\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            e.serveFlow.sfEstimatedCost+
+            e.serveFlow.sfEstimatedCost +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -948,7 +953,7 @@
             '                        border-radius: 30px;\n' +
             '                        background: ghostwhite;\n' +
             '                        text-align: center;\n' +
-            '                        float: right;" id="otSection">'+e.dname+'</span>\n' +
+            '                        float: right;" id="otSection">' + e.dname + '</span>\n' +
             '                </div>\n' +
             '            </div>\n' +
             '        </div>\n' +
@@ -961,7 +966,7 @@
             '                申请日期\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">' + e.fapplyTime + '</span>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -972,7 +977,7 @@
             '                实际费用\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            e.serveFlow.sfActualCosts+
+            e.serveFlow.sfActualCosts +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -985,7 +990,7 @@
             '                招待日期\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
-            e.fstartTime+
+            e.fstartTime +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -994,7 +999,7 @@
             '                招待原因\n' +
             '            </div>\n' +
             '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
-            '              <pre style="border: 1px solid black">'+e.fapplyReason+'</pre> ' +
+            '              <pre style="border: 1px solid black">' + e.fapplyReason + '</pre> ' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
@@ -1004,27 +1009,27 @@
     }
 
     //申请显示查看(分类型)
-    function flowStatusSelect(e,desc) {
-        let flowStatusSelect='';
-        if(e.ftype==ftypeFlow.FINANCEPAY.code){
-            flowStatusSelect+=financePayFlow(e,desc);
-        }else if(e.ftype==ftypeFlow.GOOUT.code){
-            flowStatusSelect+=gooutFlow(e,desc);
-        }else if(e.ftype==ftypeFlow.ONBUSINESS.code){
-            flowStatusSelect+=onbusInessFlow(e,desc);
-        }else if(e.ftype==ftypeFlow.OVERTIME.code){
-            flowStatusSelect+=overTime(e,desc);
-        }else if(e.ftype==ftypeFlow.SEALUSE.code){
-            flowStatusSelect+=sealuseFlow(e,desc);
-        }else if(e.ftype==ftypeFlow.SERVE.code){
+    function flowStatusSelect(e, desc) {
+        let flowStatusSelect = '';
+        if (e.ftype == ftypeFlow.FINANCEPAY.code) {
+            flowStatusSelect += financePayFlow(e, desc);
+        } else if (e.ftype == ftypeFlow.GOOUT.code) {
+            flowStatusSelect += gooutFlow(e, desc);
+        } else if (e.ftype == ftypeFlow.ONBUSINESS.code) {
+            flowStatusSelect += onbusInessFlow(e, desc);
+        } else if (e.ftype == ftypeFlow.OVERTIME.code) {
+            flowStatusSelect += overTime(e, desc);
+        } else if (e.ftype == ftypeFlow.SEALUSE.code) {
+            flowStatusSelect += sealuseFlow(e, desc);
+        } else if (e.ftype == ftypeFlow.SERVE.code) {
             alert("业务招待查看")
-            flowStatusSelect+=serveFlow(e,desc);
+            flowStatusSelect += serveFlow(e, desc);
         }
-        flowStatusSelect +=flowStatus(e);
-        flowStatusSelect += ' <!--底部-->\n' +
-            '    <div class="container navbar-fixed-bottom">\n' +
-            '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
-            '    </div></div>';;
+        flowStatusSelect += flowStatus(e);
+        // flowStatusSelect += ' <!--底部-->\n' +
+        //     '    <div class="container navbar-fixed-bottom">\n' +
+        //     '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
+        //     '    </div></div>';
         return flowStatusSelect;
 
     }
@@ -1032,11 +1037,11 @@
     /**
      * 申请类型进入页面
      */
-    function  flowTypeHtml(e){
-        let flowTypeHtml='';
-        let desc='';
-        if(e.ftype==ftypeFlow.LEAVE.code){
-            flowTypeHtml +='<div class="container-fluid">\n' +
+    function flowTypeHtml(e) {
+        let flowTypeHtml = '';
+        let desc = '';
+        if (e.ftype == ftypeFlow.LEAVE.code) {
+            flowTypeHtml += '<div class="container-fluid">\n' +
                 '    <!--头部-->\n' +
                 '    <div class="container navbar-fixed-top" style="background: white">\n' +
                 '        <div class="row">\n' +
@@ -1055,7 +1060,7 @@
                 '            </div>\n' +
                 '            <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
                 '            <div class="col-xs-12" style="padding-top: 10px">\n' +
-                e.uusername+'_'+ftypeFlow.LEAVE.desc+
+                e.uusername + '_' + ftypeFlow.LEAVE.desc +
                 '            </div>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
@@ -1071,7 +1076,7 @@
                 '                        border-radius: 30px;\n' +
                 '                        background: ghostwhite;\n' +
                 '                        text-align: right;\n' +
-                '                        float: right;">'+e.fapplyTime+'</span>\n' +
+                '                        float: right;">' + e.fapplyTime + '</span>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
@@ -1105,7 +1110,7 @@
                 '                        border-radius: 30px;\n' +
                 '                        background: ghostwhite;\n' +
                 '                        text-align: center;\n' +
-                '                        float: right;">'+e.uusername+'</span>\n' +
+                '                        float: right;">' + e.uusername + '</span>\n' +
                 '                </div>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
@@ -1117,7 +1122,7 @@
                 '                申请日期\n' +
                 '            </div>\n' +
                 '            <div class="col-xs-6">\n' +
-                '                <span style="float: right;text-align: right" >'+e.fstartTime+'</span>\n' +
+                '                <span style="float: right;text-align: right" >' + e.fstartTime + '</span>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -1129,7 +1134,7 @@
                 '                休假类型\n' +
                 '            </div>\n' +
                 '            <div class="col-xs-6" >\n' +
-                +e.fleaveType+
+                +e.fleaveType +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -1151,7 +1156,7 @@
                 '                请假开始\n' +
                 '            </div>\n' +
                 '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
-                e.fstartTime+
+                e.fstartTime +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -1160,7 +1165,7 @@
                 '                请假结束\n' +
                 '            </div>\n' +
                 '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
-                e.fendTime+
+                e.fendTime +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -1178,7 +1183,7 @@
                 '                请假事由\n' +
                 '            </div>\n' +
                 '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
-                '                <textarea class="form-control" style="height: 120px">'+e.fapplyReason+'</textarea>\n' +
+                '                <textarea class="form-control" style="height: 120px">' + e.fapplyReason + '</textarea>\n' +
                 '            </div>\n' +
                 '        </div>\n' +
                 '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
@@ -1197,150 +1202,346 @@
                 '            </div>\n' +
                 '        </div>\n' +
                 '    </div>\n' +
-                '    <!--审批-->\n' ;
-            flowTypeHtml +=flowStatus(e);
-            flowTypeHtml += ' <!--底部-->\n' +
-                '    <div class="container navbar-fixed-bottom">\n' +
-                '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
-                '    </div></div>';
+                '    <!--审批-->\n';
+            flowTypeHtml += flowStatus(e);
+            // flowTypeHtml += ' <!--底部-->\n' +
+            //     '    <div class="container navbar-fixed-bottom">\n' +
+            //     '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
+            //     '    </div></div>';
             // desc=ftypeFlow.LEAVE.desc;
-        }
-        else if(e.ftype==ftypeFlow.OVERTIME.code){
+        } else if (e.ftype == ftypeFlow.OVERTIME.code) {
             alert("进入加班申请")
             desc = ftypeFlow.OVERTIME.desc;
-            flowTypeHtml=flowStatusSelect(e,desc)
-        }else if(e.ftype==ftypeFlow.FINANCEPAY.code){
+            flowTypeHtml = flowStatusSelect(e, desc)
+        } else if (e.ftype == ftypeFlow.FINANCEPAY.code) {
             alert("进入财务付款申请")
             desc = ftypeFlow.FINANCEPAY.desc;
-            flowTypeHtml=flowStatusSelect(e,desc)
-        }else if(e.ftype==ftypeFlow.GOOUT.code){
+            flowTypeHtml = flowStatusSelect(e, desc)
+        } else if (e.ftype == ftypeFlow.GOOUT.code) {
             alert("进入外出申请")
             desc = ftypeFlow.GOOUT.desc;
-            flowTypeHtml=flowStatusSelect(e,desc)
-        }else if(e.ftype==ftypeFlow.SEALUSE.code){
+            flowTypeHtml = flowStatusSelect(e, desc)
+        } else if (e.ftype == ftypeFlow.SEALUSE.code) {
             alert("进入印章使用是申请")
             desc = ftypeFlow.SEALUSE.desc;
-            flowTypeHtml=flowStatusSelect(e,desc)
-        }else if(e.ftype==ftypeFlow.SERVE.code){
+            flowTypeHtml = flowStatusSelect(e, desc)
+        } else if (e.ftype == ftypeFlow.SERVE.code) {
             alert("进入业务招待申请")
             desc = ftypeFlow.SERVE.desc;
-            flowTypeHtml=flowStatusSelect(e,desc)
-        }else if(e.ftype==ftypeFlow.ONBUSINESS.code){
+            flowTypeHtml = flowStatusSelect(e, desc)
+        } else if (e.ftype == ftypeFlow.ONBUSINESS.code) {
             alert("进入出差申请")
             desc = ftypeFlow.ONBUSINESS.desc;
-            flowTypeHtml=flowStatusSelect(e,desc)
+            flowTypeHtml = flowStatusSelect(e, desc)
         }
 
         return flowTypeHtml;
     }
+
     //审批显示信息
-    function flowStatus(e){
-        let fstatusHtml= '';
-        if()
-        if(e.fstatus==fstatusFlow.UNTREATED.code){
-            fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
-                '    <div class="row">\n' +
-                '        <div class="col-xs-12" >\n' +
-                '            部门主管审批\n' +
-                '        </div>\n' +
-                '        <div class="col-xs-12">\n' +
-                '            <div class="row">\n' +
-                '                <div class="col-xs-12 " >\n' +
-                '                    <select class="form-control" id="idea" style="border: 0px">\n' +
-                '                        <option value="0">同意</option>\n' +
-                '                        <option value="1">拒绝</option>\n' +
-                '                    </select>\n' +
-                '                </div>\n' +
-                '                <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                '                    <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
-                '                </div>\n' +
-                '\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </div>\n' +
-                '</div>';
-        }else  if(e.fstatus==fstatusFlow.CHARGEPASS.code){
-            fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                部门主管审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">同意</div>\n' +
-                '                    <div class="col-xs-12" style="text-align: right">'+e.fuidChargeHand+' 主管名'+'</div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '\n' +
-                '        </div>\n' +
-                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                总经理审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">\n' +
-                '                        <select class="form-control" id="idea" style="border: 0px">\n' +
-                '                            <option value="0">同意</option>\n' +
-                '                            <option value="1">拒绝</option>\n' +
-                '                        </select>\n' +
-                '                    </div>\n' +
-                '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                '                        <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
-                '                    </div>\n' +
-                '\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '    </div>';
-        }else  if(e.fstatus==fstatusFlow.MANAGERPASS.code){
-            fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                部门主管审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">同意</div>\n' +
-                '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '\n' +
-                '        </div>\n' +
-                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                总经理审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">同意</div>\n' +
-                '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                '        <div class="row">\n' +
-                '            <div class="col-xs-12">\n' +
-                '                考勤员审批\n' +
-                '            </div>\n' +
-                '            <div class="col-xs-12">\n' +
-                '                <div class="row">\n' +
-                '                    <div class="col-xs-12">\n' +
-                '                        <select class="form-control" id="idea" style="border: 0px">\n' +
-                '                            <option value="0">确认</option>\n' +
-                '                        </select>\n' +
-                '                    </div>\n' +
-                '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
-                '                    </div>\n' +
-                '\n' +
-                '                </div>\n' +
-                '            </div>\n' +
-                '        </div>\n' +
-                '\n' +
-                '    </div>';
+    function flowStatus(e) {
+        let fstatusHtml = '';
+        alert("所属公司"+e.fstatus);
+        if (e.artsVision == yesOrNo.YES.code) {
+            if(e.fstatus==fstatusFlow.UNTREATED.code){ //待审批
+                fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">'+fstatusFlow.UNTREATED.desc+'</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                行政部门确认\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">\n' +
+                    '                        待确认\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '\n' +
+                    '    </div>';
+            }
+            else  if(e.fstatus==fstatusFlow.MANAGERPASS.code){ //主管审批通过
+                fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.chargeHand+' 主管名</div>'+
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                行政部门确认\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">\n' +
+                    '                        待确认\n' +
+                    '                    </div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '\n' +
+                    '    </div>';
+            }
+            else  if(e.fstatus==fstatusFlow.MANAGERREFUSE.code){ //主管审批拒绝
+                fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">拒绝</div>\n' +
+                    '                       <div class="col-xs-12">\n' +
+                    '<pre style="border: 1px solid black">'+e.fuidManagerRefuse+'</pre>'+
+                    '                        </div>'+
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' 经理名</div>'+
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '\n' +
+                    '    </div>';
+            }
+            else  if(e.fstatus==fstatusFlow.STAFFINGAFFIRM.code){ //人事确认
+                fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' 主管名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                行政部门确认\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">已确认</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidStaffingHand+' 人事名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '\n' +
+                    '    </div>';
+            }
+            else  if(e.fstatus==fstatusFlow.STAFFINGREFUSE.code){
+                fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' 主管名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                行政部门确认\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">行政部门建议</div>\n' +
+                    '                       <div class="col-xs-12">\n' +
+                                                '<pre style="border: 1px solid black">'+e.fuidStaffingRefuse+'</pre>'+
+                    '                        </div>'+
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidStaffingHand+' 人事名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '\n' +
+                    '    </div>';
+                alert("gaqgr噶·")
+            }
+        }
+        else if (e.artsVision == yesOrNo.NO.code) {
+            if (e.fstatus == fstatusFlow.UNTREATED.code) {
+                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+                    '    <div class="row">\n' +
+                    '        <div class="col-xs-12" >\n' +
+                    '            部门主管审批\n' +
+                    '        </div>\n' +
+                    '        <div class="col-xs-12">\n' +
+                    '            <div class="row">\n' +
+                    '                <div class="col-xs-12 " >\n' +
+                    '                    <select class="form-control" id="idea" style="border: 0px">\n' +
+                    '                        <option value="0">同意</option>\n' +
+                    '                        <option value="1">拒绝</option>\n' +
+                    '                    </select>\n' +
+                    '                </div>\n' +
+                    '                <div class="col-xs-12" id="opinion" style="display: none">\n' +
+                    '                    <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
+                    '                </div>\n' +
+                    '\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '    </div>\n' +
+                    '</div>';
+            }
+            else if (e.fstatus == fstatusFlow.CHARGEPASS.code) {
+                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                部门主管审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">' + e.fuidChargeHand + ' 主管名' + '</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">\n' +
+                    '                        <select class="form-control" id="idea" style="border: 0px">\n' +
+                    '                            <option value="0">同意</option>\n' +
+                    '                            <option value="1">拒绝</option>\n' +
+                    '                        </select>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
+                    '                        <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
+                    '                    </div>\n' +
+                    '\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '    </div>';
+            }
+            else if (e.fstatus == fstatusFlow.MANAGERPASS.code) {
+                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                部门主管审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                考勤员审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">\n' +
+                    '                        <select class="form-control" id="idea" style="border: 0px">\n' +
+                    '                            <option value="0">确认</option>\n' +
+                    '                        </select>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
+                    '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
+                    '                    </div>\n' +
+                    '\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '\n' +
+                    '    </div>';
+            }
+            else if (e.fstatus == fstatusFlow.STAFFINGREFUSE.code) {
+                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                部门主管审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                总经理审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                考勤员审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">\n' +
+                    '                        <select class="form-control" id="idea" style="border: 0px">\n' +
+                    '                            <option value="0">确认</option>\n' +
+                    '                        </select>\n' +
+                    '                    </div>\n' +
+                    '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
+                    '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
+                    '                    </div>\n' +
+                    '\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '        </div>\n' +
+                    '\n' +
+                    '    </div>';
+            }
         }
         return fstatusHtml;
     }
@@ -1348,33 +1549,33 @@
     /**
      *  进入审批后台
      */
-    function fuidCharge(e,r) {
-        let status=$("#idea").val();
-        let hand=$("#hand").val();
-        let flow={
-            "hand" : hand,
-            "status" : status,
-            "fstatus" :e,
-            "fid":r,
-            "ArtsVision":0 //所属公司
+    function fuidCharge(e, r) {
+        let status = $("#idea").val();
+        let hand = $("#hand").val();
+        let flow = {
+            "hand": hand,
+            "status": status,
+            "fstatus": e,
+            "fid": r,
+            "ArtsVision": 0 //所属公司
         }
         alert(JSON.stringify(flow));
         $.ajax({
-            url: pageDesignControl_HOST  + "flow/fuidCharge",
+            url: pageDesignControl_HOST + "flow/fuidCharge",
             type: "post",
             dataType: "json",
-            data:JSON.stringify(flow),
+            data: JSON.stringify(flow),
             contentType: 'application/json; charset=UTF-8',
             async: false,
-            success: function(res) {
-                if(res!=0){
+            success: function (res) {
+                if (res != 0) {
                     alert("已审批");
                     window.location.href("#")
-                }else{
+                } else {
                     alert("数据异常，请重新操作")
                 }
             },
-            error: function(){
+            error: function () {
                 alert("网络异常，请重试");
             }
         });
@@ -1387,23 +1588,20 @@
     function selectFlowId(fid) {
         let index;
         let chargeListOne;
-        let showdata ='';
+        let showdata = '';
 
-        $.each(chargeList,function (i,v) {
-            if(fid==v.fid){
+        $.each(chargeList, function (i, v) {
+            if (fid == v.fid) {
                 index = i;
                 return index;
             }
         })
-        chargeListOne=chargeList[index];
+        chargeListOne = chargeList[index];
         alert(JSON.stringify(chargeList[index]));
-        showdata=flowTypeHtml(chargeListOne);
+        showdata = flowTypeHtml(chargeListOne);
         $("body").html(showdata);
         selectLeaveAll(chargeListOne.uid);
     }
-
-
-
 
 
     //显示拒绝框

@@ -57,6 +57,21 @@ public class FlowController  {
         return msg;
     }
 
+//    /**
+//     * 总经理获取记录
+//     * @param rtype
+//     * @return
+//     */
+//    @ResponseBody
+//    @RequestMapping("selectAllFlow")
+//    public  ReturnMsg selectAllFlow(@RequestParam("rtype") Integer rtype){
+//        ReturnMsg msg =new ReturnMsg();
+//        List<Flow> list = iFlowService.list();
+//
+//        return msg;
+//    }
+
+
     /**
      * 根据id查询历史请假记录
      * @param uid  uid
@@ -167,7 +182,7 @@ public class FlowController  {
 
     /**
      * 流程审批
-     * @param flowApproval
+     * @param flowApproval    添加人事id
      * @return
      */
     @ResponseBody

@@ -11,7 +11,8 @@ var fstatusFlow = {
     MANAGERPASS:{code:3,desc:"经理审批通过"},
     MANAGERREFUSE:{code:4,desc:"经理审批拒绝"},
     STAFFINGAFFIRM:{code:5,desc:"人事确认"},
-    STAFFINGREFUSE:{code:6,desc:"人事反馈"}
+    STAFFINGREFUSE:{code:6,desc:"人事反馈"},
+
 }
 // 申请类型
 var ftypeFlow = {

@@ -226,7 +226,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -324,7 +324,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -447,7 +447,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -739,7 +739,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -816,7 +816,7 @@
             '           <div class="col-xs-6" style="line-height: 30px">\n' +
             '               盖章内容\n' +
             '           </div>\n' +
-            '           <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
+            '           <div class="col-xs-12" style="padding: 0px">\n' +
             '             <pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
             '           </div>\n' +
             '       </div>\n' +
@@ -833,7 +833,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -993,13 +993,13 @@
             '            <div class="col-xs-6" style="line-height: 30px">\n' +
             '                招待原因\n' +
             '            </div>\n' +
-            '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
+            '            <div class="col-xs-12" style="padding: 0px">\n' +
             '              <pre style="border: 1px solid black">'+e.fapplyReason+'</pre> ' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
             '    </div>';
-        alert("业务招待啊")
+
         return serveFlowHtml;
     }
 
@@ -1022,10 +1022,18 @@
             flowStatusSelect+=serveFlow(e,desc);
         }
         flowStatusSelect +=flowStatus(e);
-        flowStatusSelect += ' <!--底部-->\n' +
-            '    <div class="container navbar-fixed-bottom">\n' +
-            '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
-            '    </div></div>';
+        if(e.fstatus==fstatusFlow.STAFFINGREFUSE.code){
+            flowStatusSelect += ' <!--底部-->\n' +
+                '    <div class="container navbar-fixed-bottom">\n' +
+                '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">已读</button>\n' +
+                '    </div></div>';
+        }else {
+            flowStatusSelect += ' <!--底部-->\n' +
+                '    <div class="container navbar-fixed-bottom">\n' +
+                '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
+                '    </div></div>';
+        }
+
         return flowStatusSelect;
 
     }
@@ -1200,10 +1208,18 @@
                 '    </div>\n' +
                 '    <!--审批-->\n' ;
             flowTypeHtml +=flowStatus(e);
-            flowTypeHtml += ' <!--底部-->\n' +
-                '    <div class="container navbar-fixed-bottom">\n' +
-                '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
-                '    </div></div>';
+            if(e.fstatus==fstatusFlow.STAFFINGREFUSE.code){
+                flowTypeHtml += ' <!--底部-->\n' +
+                    '    <div class="container navbar-fixed-bottom">\n' +
+                    '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">已读</button>\n' +
+                    '    </div></div>';
+            }else {
+                flowTypeHtml += ' <!--底部-->\n' +
+                    '    <div class="container navbar-fixed-bottom">\n' +
+                    '        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="fuidCharge('+e.fstatus+','+e.fid+')">立即办理</button>\n' +
+                    '    </div></div>';
+            }
+
             // desc=ftypeFlow.LEAVE.desc;
         }
         else if(e.ftype==ftypeFlow.OVERTIME.code){
@@ -1260,7 +1276,8 @@
                 '        </div>\n' +
                 '    </div>\n' +
                 '</div>';
-        }else  if(e.fstatus==fstatusFlow.CHARGEPASS.code){
+        }
+        else  if(e.fstatus==fstatusFlow.CHARGEPASS.code){
             fstatusHtml+='<div class="container" style="padding-bottom: 70px">\n' ;
                     if(e.artsVision==yesOrNo.NO.code){
                         fstatusHtml+=    '        <div class="row">\n' +
@@ -1298,7 +1315,8 @@
                 '            </div>\n' +
                 '        </div>\n' +
                 '    </div>';
-        }else  if(e.fstatus==fstatusFlow.MANAGERPASS.code){
+        }
+        else  if(e.fstatus==fstatusFlow.MANAGERPASS.code){
             fstatusHtml +='<div class="container" style="padding-bottom: 70px">\n';
             if(e.artsVision==yesOrNo.NO.code){
                 fstatusHtml+=  '        <div class="row">\n' +
@@ -1349,7 +1367,8 @@
                 '        </div>\n' +
                 '\n' +
                 '    </div>';
-        }else if(e.fstatus==fstatusFlow.MANAGERPASS.code){
+        }
+        else if(e.fstatus==fstatusFlow.MANAGERPASS.code){
             fstatusHtml='<div class="container" style="padding-bottom: 70px">\n' +
                 '        <div class="row">\n' +
                 '            <div class="col-xs-12">\n' +
@@ -1371,6 +1390,55 @@
                 '\n' +
                 '    </div>';
         }
+        else if(e.fstatus==fstatusFlow.STAFFINGREFUSE.code){
+            fstatusHtml+='<div class="container" style="padding-bottom: 70px">\n' ;
+            if(e.artsVision==yesOrNo.NO.code){
+                fstatusHtml+=    '        <div class="row">\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                部门主管审批\n' +
+                    '            </div>\n' +
+                    '            <div class="col-xs-12">\n' +
+                    '                <div class="row">\n' +
+                    '                    <div class="col-xs-12">同意</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidChargeHand+' 主管名'+'</div>\n' +
+                    '                </div>\n' +
+                    '            </div>\n' +
+                    '\n' +
+                    '        </div>\n' +
+                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' ;
+
+            }
+            fstatusHtml+= '        <div class="row">\n' +
+                '            <div class="col-xs-12">\n' +
+                '                总经理审批\n' +
+                '            </div>\n' +
+                '            <div class="col-xs-12">\n' +
+                '                <div class="row">\n' +
+                '                    <div class="col-xs-12">同意</div>\n' +
+                '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                '                </div>\n' +
+                '            </div>\n' +
+                '        </div>\n' +
+                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+                '        <div class="row">\n' +
+                '            <div class="col-xs-12">\n' +
+                '                行政部门反馈\n' +
+                '            </div>\n' +
+                '            <div class="col-xs-12">\n' +
+                '                <div class="row">\n' +
+                '                    <div class="col-xs-12">意见反馈</div>\n' +
+                '                       <div class="col-xs-12">\n' +
+                '                            <textarea class="form-control" style="height: 120px" readonly="readonly">\n' +
+                e.fuidStaffingRefuse+
+                '                            </textarea>\n' +
+                '                        </div>'+
+                '                    <div class="col-xs-12" style="text-align: right">'+e.fuidStaffingHand+' 处理人</div>'+
+                '                </div>\n' +
+                '            </div>\n' +
+                '\n' +
+                '        </div>\n' +
+                '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n';
+        }
         return fstatusHtml;
     }
 
@@ -1386,7 +1454,8 @@
             "fstatus" :e,
             "fid":r,
             "ArtsVision":e,//所属公司
-            "fuidManager":loginObj.users.fuidManager
+            "fuidManager":loginObj.users.fuidManager,
+            "uid" :loginObj.users.uid
         }
         alert(JSON.stringify(flow));
         $.ajax({
@@ -1440,6 +1509,8 @@
     $(document).on("change", "#idea", function () {
         if ($("#idea").val() == 1) {
             $("#opinion").show();
+        }else {
+            $("#opinion").hide();
         }
     })
 
