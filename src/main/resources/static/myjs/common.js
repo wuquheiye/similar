@@ -42,8 +42,6 @@ function login() {
             } else {
                 alert(msg.statusMsg)
             }
-            let aa=window.sessionStorage.getItem("login");
-            alert(aa)
             window.location.href = pageDesignControl_HOST + "use/index.html";
         }
     });

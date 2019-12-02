@@ -270,16 +270,12 @@ public class PersonInfomation {
 
     private String pfamilyfamilyname2;
 
-    private String pfamilyfamilyname3;
-
     /**
      * 家庭成员年龄
      */
     private String pfamilyfamilyage1;
 
     private String pfamilyfamilyage2;
-
-    private String pfamilyfamilyage3;
 
     /**
      * 家庭成员工作单位
@@ -288,8 +284,6 @@ public class PersonInfomation {
 
     private String pfamilyfamilyunit2;
 
-    private String pfamilyfamilyunit3;
-
     /**
      * 家庭成员职位
      */
@@ -297,16 +291,12 @@ public class PersonInfomation {
 
     private String pfamilyfamilypost2;
 
-    private String pfamilyfamilypost3;
-
     /**
      * 家庭成员联系电话
      */
     private String pfamilyfamilynumber1;
 
     private String pfamilyfamilynumber2;
-
-    private String pfamilyfamilynumber3;
 
     /**
      * 应急联系人

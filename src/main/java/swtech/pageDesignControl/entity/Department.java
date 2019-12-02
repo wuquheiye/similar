@@ -35,5 +35,8 @@ public class Department {
      */
     private String dcreateTime;
 
-
+    /**
+     * 所属公司
+     */
+    private String artsVision;
 }

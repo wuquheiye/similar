@@ -181,7 +181,8 @@
                 </div>
             </div>
         </div>
-        <div id="usersRoleEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="usersRoleEdit" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -231,6 +232,9 @@
                         <th class="text-center">
                             部门名称
                         </th>
+                        <th class="text-center">
+                            所属公司
+                        </th>
                         <th class="text-center organizationHeaderOrganizationClick">
                             创建时间
                         </th>
@@ -266,6 +270,15 @@
                             <label for="dname" class="col-sm-2 control-label">*部门名称：</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="dname" placeholder="请输入部门名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ArtsVision" class="col-sm-2 control-label">*所属公司：</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="artsVision">
+                                    <option value="0">广州利捷有限公司</option>
+                                    <option value="1">广州利捷总公司</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -345,9 +358,12 @@
                             <div class="col-sm-10">
                                 <select class="form-control" id="rtype">
                                     <option value="2">员工</option>
+                                    <option value="5">财务</option>
                                     <option value="1">人事</option>
                                     <option value="3">主管</option>
                                     <option value="4">经理</option>
+                                    <option value="6">总经理</option>
+                                    <option value="7">立捷总经理</option>
                                 </select>
                             </div>
                         </div>
@@ -363,7 +379,8 @@
                 </div>
             </div>
         </div>
-        <div id="rolePermission" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div id="rolePermission" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+             aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -451,7 +468,8 @@
                         <div class="form-group">
                             <label for="ptype" class="col-sm-2 control-label">*权限类型：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="ptype" placeholder="请输入权限类型" disabled="true ">
+                                <input type="text" class="form-control" id="ptype" placeholder="请输入权限类型"
+                                       disabled="true ">
                             </div>
                         </div>
                         <div class="form-group">
@@ -773,51 +791,51 @@
                             </thead>
                             <tbody>
                             <tr>
-                                <td><input type="text" class="" placeholder="" style="width:60px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:60px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
-                                <td><input type="text" class="" placeholder="" style="width:20px;"></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
+                                <td><input type="text" class="" placeholder=""></td>
                             </tr>
 
                             </tbody>
@@ -841,7 +859,8 @@
                     个人档案名称：
                     <div class="form-group">
                         <label class="sr-only" for="personInfomationManageName">个人档案名称：</label>
-                        <input type="text" class="form-control" id="personInfomationManageName" placeholder="请输入个人档案名称：">
+                        <input type="text" class="form-control" id="personInfomationManageName"
+                               placeholder="请输入个人档案名称：">
                     </div>
                     <button type="button" class="btn btn-default" id="personInfomationManageSearch">搜索</button>
                     <button type="button" class="btn btn-default" id="personInfomationManageClean">重置</button>
@@ -856,10 +875,22 @@
                     <thead>
                     <tr>
                         <th class="text-center">
-                            个人档案名称
+                            姓名
                         </th>
                         <th class="text-center">
-                            个人档案职位
+                            部门
+                        </th>
+                        <th class="text-center">
+                            岗位
+                        </th>
+                        <th class="text-center">
+                            性别
+                        </th>
+                        <th class="text-center">
+                            民族
+                        </th>
+                        <th class="text-center">
+                            电话号码
                         </th>
                         <th class="text-center">操作</th>
                     </tr>
@@ -877,452 +908,470 @@
                 </div>
             </div>
         </div>
-<!--        <div class="personInfomationManage hidden rightManageDiv">-->
-<!--            <div>-->
-<!--                <form class="form-inline" role="form">-->
-<!--                    姓名：-->
-<!--                    <div class="form-group">-->
-<!--                        <label class="sr-only" for="pname">姓名：</label>-->
-<!--                        <input type="text" class="form-control" id="pname" placeholder="请输入姓名：">-->
-<!--                    </div>-->
-<!--                    <button type="button" class="btn btn-default">搜索</button>-->
-<!--                    <button type="button" class="btn btn-default" onclick="userManageClean()">重置</button>-->
-<!--                </form>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <button type="button" class="btn btn-success manageEdit">增加</button>-->
-<!--                <input type="hidden" class="personInfomationManageEdit">-->
-<!--                <button type="button" class="btn btn-info">删除</button>-->
-<!--                <input type="hidden" class="personInfomationManageEdit">-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <table class="table table-bordered">-->
-<!--                    <caption>新员工入职登记表</caption>-->
-<!--                    <thead>-->
-<!--                    <tr>-->
-<!--                        <td>部门：</td>-->
-<!--                        <td>IT部</td>-->
-<!--                        <td>岗位：</td>-->
-<!--                        <td>java开发</td>-->
-<!--                        <td colspan="2">填表日期:</td>-->
-<!--                        <td colspan="2">2019年10月22日</td>-->
-<!--                    </tr>-->
-<!--                    </thead>-->
-<!--                    <tbody>-->
-<!--                    <tr>-->
-<!--                        <td>姓名</td>-->
-<!--                        <td>李鸿智</td>-->
-<!--                        <td>性别</td>-->
-<!--                        <td>男</td>-->
-<!--                        <td>民族</td>-->
-<!--                        <td colspan="2">汉</td>-->
-<!--                        <td rowspan="4"><img src=" http://img.wanyx.com/softImg/soft/1650_s.jpg"/></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>婚姻状态</td>-->
-<!--                        <td>未婚</td>-->
-<!--                        <td>政治面貌</td>-->
-<!--                        <td>群众</td>-->
-<!--                        <td>出生年月</td>-->
-<!--                        <td colspan="2">1996/1/29</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>最高学历</td>-->
-<!--                        <td>本科</td>-->
-<!--                        <td>专业</td>-->
-<!--                        <td>材料成型及控制工程</td>-->
-<!--                        <td>毕业学校</td>-->
-<!--                        <td colspan="2">长沙学院</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>毕业时间</td>-->
-<!--                        <td>2017-6</td>-->
-<!--                        <td>学位</td>-->
-<!--                        <td>学士</td>-->
-<!--                        <td>职称</td>-->
-<!--                        <td colspan="2">无</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>电话号码</td>-->
-<!--                        <td colspan="3">15274935036</td>-->
-<!--                        <td>入职时间</td>-->
-<!--                        <td colspan="3">2017-6</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>身份证地址</td>-->
-<!--                        <td colspan="3">湖南省邵阳市北塔区资园社区</td>-->
-<!--                        <td>身份证号码</td>-->
-<!--                        <td colspan="3">430511299601292019</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>银行卡账号</td>-->
-<!--                        <td colspan="3">621785 7500028503958</td>-->
-<!--                        <td>银行卡开户行</td>-->
-<!--                        <td colspan="3">中国银行</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td rowspan="4">教育经历</td>-->
-<!--                        <td>起止时间</td>-->
-<!--                        <td colspan="2">学校</td>-->
-<!--                        <td colspan="2">专业</td>-->
-<!--                        <td>所获学位</td>-->
-<!--                        <td>所获证书</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>2013/9/1-2017/9</td>-->
-<!--                        <td colspan="2">长沙学院</td>-->
-<!--                        <td colspan="2">材料成型及控制工程</td>-->
-<!--                        <td>学士</td>-->
-<!--                        <td>毕业证</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td></td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td></td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td colspan="2">专业资格证书</td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                        <td colspan="2">获取资格时间</td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td colspan="2">专业技能</td>-->
-<!--                        <td>CAD<input type="checkbox"></td>-->
-<!--                        <td>PS<input type="checkbox"></td>-->
-<!--                        <td>3DMAX<input type="checkbox"></td>-->
-<!--                        <td>天正建筑<input type="checkbox"></td>-->
-<!--                        <td colspan="2">其他<input type="checkbox"></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td rowspan="4">工作经历</td>-->
-<!--                        <td>起止时间</td>-->
-<!--                        <td colspan="2">工作单位</td>-->
-<!--                        <td>工作岗位</td>-->
-<!--                        <td>薪资水平</td>-->
-<!--                        <td>离职原因</td>-->
-<!--                        <td>证明人及电话</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>2018/10-2019/8</td>-->
-<!--                        <td colspan="2">广州大为大健康有限公司</td>-->
-<!--                        <td>java开发</td>-->
-<!--                        <td>4000</td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td></td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td></td>-->
-<!--                        <td colspan="2"></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                        <td></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td rowspan="3">家庭成员</td>-->
-<!--                        <td>姓名</td>-->
-<!--                        <td>年龄</td>-->
-<!--                        <td colspan="3">工作单位</td>-->
-<!--                        <td>职位</td>-->
-<!--                        <td>联系电话</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>李想明</td>-->
-<!--                        <td>52</td>-->
-<!--                        <td colspan="3">无</td>-->
-<!--                        <td></td>-->
-<!--                        <td>13087266721</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td>李想明</td>-->
-<!--                        <td>52</td>-->
-<!--                        <td colspan="3">无</td>-->
-<!--                        <td></td>-->
-<!--                        <td>13087266721</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td colspan="2">应急联系人</td>-->
-<!--                        <td colspan="2">李想明</td>-->
-<!--                        <td colspan="2">联系电话</td>-->
-<!--                        <td colspan="2">13087266721</td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td colspan="2">向公司提供的资料</td>-->
-<!--                        <td>身份证<input type="checkbox"></td>-->
-<!--                        <td>银行卡<input type="checkbox"></td>-->
-<!--                        <td>学历<input type="checkbox"></td>-->
-<!--                        <td colspan="3">其他<input type="checkbox"></td>-->
-<!--                    </tr>-->
-<!--                    <tr>-->
-<!--                        <td colspan="2">是否有离职证明文件</td>-->
-<!--                        <td>是<input type="checkbox"></td>-->
-<!--                        <td>否<input type="checkbox"></td>-->
-<!--                        <td>是否有犯罪记录<input type="checkbox"></td>-->
-<!--                        <td>是<input type="checkbox"></td>-->
-<!--                        <td>否<input type="checkbox"></td>-->
-<!--                    </tr>-->
-<!--                    </tbody>-->
-<!--                </table>-->
-<!--                <div>-->
-<!--                    <div>-->
-<!--                        均是真实和准确的,如有虚假信息，本人愿意承担相应责任。本人也同意在与广州利捷航空科技有限公司劳动合同有效期内，始终遵守公司工作纪律、商业道德和诚信的原则。如有违反，公司将有权随时终止相关的雇用合同及追究相应责任。-->
-<!--                    </div>-->
-<!--                    <div>-->
-<!--                        <div>签名：</div>-->
-<!--                        <div> 日期：2019/10/22</div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                <ul class="pagination">-->
-<!--                    <li><a href="#">&laquo;</a></li>-->
-<!--                    <li><a href="#">1</a></li>-->
-<!--                    <li><a href="#">2</a></li>-->
-<!--                    <li><a href="#">3</a></li>-->
-<!--                    <li><a href="#">4</a></li>-->
-<!--                    <li><a href="#">5</a></li>-->
-<!--                    <li><a href="#">&raquo;</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--            <div>-->
-<!--                第 1 到 2 条，共 2 条记录。-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div class="personInfomationManage hidden rightManageDiv">-->
+        <!--            <div>-->
+        <!--                <form class="form-inline" role="form">-->
+        <!--                    姓名：-->
+        <!--                    <div class="form-group">-->
+        <!--                        <label class="sr-only" for="pname">姓名：</label>-->
+        <!--                        <input type="text" class="form-control" id="pname" placeholder="请输入姓名：">-->
+        <!--                    </div>-->
+        <!--                    <button type="button" class="btn btn-default">搜索</button>-->
+        <!--                    <button type="button" class="btn btn-default" onclick="userManageClean()">重置</button>-->
+        <!--                </form>-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--                <button type="button" class="btn btn-success manageEdit">增加</button>-->
+        <!--                <input type="hidden" class="personInfomationManageEdit">-->
+        <!--                <button type="button" class="btn btn-info">删除</button>-->
+        <!--                <input type="hidden" class="personInfomationManageEdit">-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--                <table class="table table-bordered">-->
+        <!--                    <caption>新员工入职登记表</caption>-->
+        <!--                    <thead>-->
+        <!--                    <tr>-->
+        <!--                        <td>部门：</td>-->
+        <!--                        <td>IT部</td>-->
+        <!--                        <td>岗位：</td>-->
+        <!--                        <td>java开发</td>-->
+        <!--                        <td colspan="2">填表日期:</td>-->
+        <!--                        <td colspan="2">2019年10月22日</td>-->
+        <!--                    </tr>-->
+        <!--                    </thead>-->
+        <!--                    <tbody>-->
+        <!--                    <tr>-->
+        <!--                        <td>姓名</td>-->
+        <!--                        <td>李鸿智</td>-->
+        <!--                        <td>性别</td>-->
+        <!--                        <td>男</td>-->
+        <!--                        <td>民族</td>-->
+        <!--                        <td colspan="2">汉</td>-->
+        <!--                        <td rowspan="4"><img src=" http://img.wanyx.com/softImg/soft/1650_s.jpg"/></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>婚姻状态</td>-->
+        <!--                        <td>未婚</td>-->
+        <!--                        <td>政治面貌</td>-->
+        <!--                        <td>群众</td>-->
+        <!--                        <td>出生年月</td>-->
+        <!--                        <td colspan="2">1996/1/29</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>最高学历</td>-->
+        <!--                        <td>本科</td>-->
+        <!--                        <td>专业</td>-->
+        <!--                        <td>材料成型及控制工程</td>-->
+        <!--                        <td>毕业学校</td>-->
+        <!--                        <td colspan="2">长沙学院</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>毕业时间</td>-->
+        <!--                        <td>2017-6</td>-->
+        <!--                        <td>学位</td>-->
+        <!--                        <td>学士</td>-->
+        <!--                        <td>职称</td>-->
+        <!--                        <td colspan="2">无</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>电话号码</td>-->
+        <!--                        <td colspan="3">15274935036</td>-->
+        <!--                        <td>入职时间</td>-->
+        <!--                        <td colspan="3">2017-6</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>身份证地址</td>-->
+        <!--                        <td colspan="3">湖南省邵阳市北塔区资园社区</td>-->
+        <!--                        <td>身份证号码</td>-->
+        <!--                        <td colspan="3">430511299601292019</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>银行卡账号</td>-->
+        <!--                        <td colspan="3">621785 7500028503958</td>-->
+        <!--                        <td>银行卡开户行</td>-->
+        <!--                        <td colspan="3">中国银行</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td rowspan="4">教育经历</td>-->
+        <!--                        <td>起止时间</td>-->
+        <!--                        <td colspan="2">学校</td>-->
+        <!--                        <td colspan="2">专业</td>-->
+        <!--                        <td>所获学位</td>-->
+        <!--                        <td>所获证书</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>2013/9/1-2017/9</td>-->
+        <!--                        <td colspan="2">长沙学院</td>-->
+        <!--                        <td colspan="2">材料成型及控制工程</td>-->
+        <!--                        <td>学士</td>-->
+        <!--                        <td>毕业证</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td></td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td></td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td colspan="2">专业资格证书</td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                        <td colspan="2">获取资格时间</td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td colspan="2">专业技能</td>-->
+        <!--                        <td>CAD<input type="checkbox"></td>-->
+        <!--                        <td>PS<input type="checkbox"></td>-->
+        <!--                        <td>3DMAX<input type="checkbox"></td>-->
+        <!--                        <td>天正建筑<input type="checkbox"></td>-->
+        <!--                        <td colspan="2">其他<input type="checkbox"></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td rowspan="4">工作经历</td>-->
+        <!--                        <td>起止时间</td>-->
+        <!--                        <td colspan="2">工作单位</td>-->
+        <!--                        <td>工作岗位</td>-->
+        <!--                        <td>薪资水平</td>-->
+        <!--                        <td>离职原因</td>-->
+        <!--                        <td>证明人及电话</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>2018/10-2019/8</td>-->
+        <!--                        <td colspan="2">广州大为大健康有限公司</td>-->
+        <!--                        <td>java开发</td>-->
+        <!--                        <td>4000</td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td></td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td></td>-->
+        <!--                        <td colspan="2"></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                        <td></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td rowspan="3">家庭成员</td>-->
+        <!--                        <td>姓名</td>-->
+        <!--                        <td>年龄</td>-->
+        <!--                        <td colspan="3">工作单位</td>-->
+        <!--                        <td>职位</td>-->
+        <!--                        <td>联系电话</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>李想明</td>-->
+        <!--                        <td>52</td>-->
+        <!--                        <td colspan="3">无</td>-->
+        <!--                        <td></td>-->
+        <!--                        <td>13087266721</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td>李想明</td>-->
+        <!--                        <td>52</td>-->
+        <!--                        <td colspan="3">无</td>-->
+        <!--                        <td></td>-->
+        <!--                        <td>13087266721</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td colspan="2">应急联系人</td>-->
+        <!--                        <td colspan="2">李想明</td>-->
+        <!--                        <td colspan="2">联系电话</td>-->
+        <!--                        <td colspan="2">13087266721</td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td colspan="2">向公司提供的资料</td>-->
+        <!--                        <td>身份证<input type="checkbox"></td>-->
+        <!--                        <td>银行卡<input type="checkbox"></td>-->
+        <!--                        <td>学历<input type="checkbox"></td>-->
+        <!--                        <td colspan="3">其他<input type="checkbox"></td>-->
+        <!--                    </tr>-->
+        <!--                    <tr>-->
+        <!--                        <td colspan="2">是否有离职证明文件</td>-->
+        <!--                        <td>是<input type="checkbox"></td>-->
+        <!--                        <td>否<input type="checkbox"></td>-->
+        <!--                        <td>是否有犯罪记录<input type="checkbox"></td>-->
+        <!--                        <td>是<input type="checkbox"></td>-->
+        <!--                        <td>否<input type="checkbox"></td>-->
+        <!--                    </tr>-->
+        <!--                    </tbody>-->
+        <!--                </table>-->
+        <!--                <div>-->
+        <!--                    <div>-->
+        <!--                        均是真实和准确的,如有虚假信息，本人愿意承担相应责任。本人也同意在与广州利捷航空科技有限公司劳动合同有效期内，始终遵守公司工作纪律、商业道德和诚信的原则。如有违反，公司将有权随时终止相关的雇用合同及追究相应责任。-->
+        <!--                    </div>-->
+        <!--                    <div>-->
+        <!--                        <div>签名：</div>-->
+        <!--                        <div> 日期：2019/10/22</div>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--                <ul class="pagination">-->
+        <!--                    <li><a href="#">&laquo;</a></li>-->
+        <!--                    <li><a href="#">1</a></li>-->
+        <!--                    <li><a href="#">2</a></li>-->
+        <!--                    <li><a href="#">3</a></li>-->
+        <!--                    <li><a href="#">4</a></li>-->
+        <!--                    <li><a href="#">5</a></li>-->
+        <!--                    <li><a href="#">&raquo;</a></li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+        <!--            <div>-->
+        <!--                第 1 到 2 条，共 2 条记录。-->
+        <!--            </div>-->
+        <!--        </div>-->
 
-<!--        <div class="personInfomationManageEdit hidden rightManageDiv">-->
-<!--            <div class="container containerTop">-->
-<!--                <div class="row">-->
-<!--                    <div class="col-xs-3">-->
-<!--                        <button type="button" class="btn btn-info" value="true">返回</button>-->
-<!--                    </div>-->
-<!--                    <div class="col-xs-6 text-center">-->
-<!--                        编辑个人信息-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row form-horizontal">-->
-<!--                    <table class="table table-bordered">-->
-<!--                        <caption>新员工入职登记表</caption>-->
-<!--                        <thead>-->
-<!--                        <tr>-->
-<!--                            <td>部门：</td>-->
-<!--                            <td>IT部</td>-->
-<!--                            <td>岗位：</td>-->
-<!--                            <td>java开发</td>-->
-<!--                            <td colspan="2">填表日期:</td>-->
-<!--                            <td colspan="2">2019年10月22日</td>-->
-<!--                        </tr>-->
-<!--                        </thead>-->
-<!--                        <tbody>-->
-<!--                        <tr>-->
-<!--                            <td>姓名</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>性别</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>民族</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td rowspan="4"><img src=" http://img.wanyx.com/softImg/soft/1650_s.jpg"/></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>婚姻状态</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>政治面貌</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>出生年月</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>最高学历</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>专业</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>毕业学校</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>毕业时间</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>学位</td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>职称</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>电话号码</td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>入职时间</td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>身份证地址</td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>身份证号码</td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td>银行卡账号</td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td>银行卡开户行</td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td rowspan="4">教育经历</td>-->
-<!--                            <td>起止时间</td>-->
-<!--                            <td colspan="2">学校</td>-->
-<!--                            <td colspan="2">专业</td>-->
-<!--                            <td>所获学位</td>-->
-<!--                            <td>所获证书</td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td colspan="2">专业资格证书</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2">获取资格时间</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td colspan="2">专业技能</td>-->
-<!--                            <td>CAD<input type="checkbox"></td>-->
-<!--                            <td>PS<input type="checkbox"></td>-->
-<!--                            <td>3DMAX<input type="checkbox"></td>-->
-<!--                            <td>天正建筑<input type="checkbox"></td>-->
-<!--                            <td colspan="2">其他<input type="checkbox"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td rowspan="4">工作经历</td>-->
-<!--                            <td>起止时间</td>-->
-<!--                            <td colspan="2">工作单位</td>-->
-<!--                            <td>工作岗位</td>-->
-<!--                            <td>薪资水平</td>-->
-<!--                            <td>离职原因</td>-->
-<!--                            <td>证明人及电话</td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td rowspan="3">家庭成员</td>-->
-<!--                            <td>姓名</td>-->
-<!--                            <td>年龄</td>-->
-<!--                            <td colspan="3">工作单位</td>-->
-<!--                            <td>职位</td>-->
-<!--                            <td>联系电话</td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="3"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                            <td><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td colspan="2">应急联系人</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                            <td colspan="2">联系电话</td>-->
-<!--                            <td colspan="2"><input type="text" class="" placeholder=""></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td colspan="2">向公司提供的资料</td>-->
-<!--                            <td>身份证<input type="checkbox"></td>-->
-<!--                            <td>银行卡<input type="checkbox"></td>-->
-<!--                            <td>学历<input type="checkbox"></td>-->
-<!--                            <td colspan="3">其他<input type="checkbox"></td>-->
-<!--                        </tr>-->
-<!--                        <tr>-->
-<!--                            <td colspan="2">是否有离职证明文件</td>-->
-<!--                            <td>是<input type="checkbox"></td>-->
-<!--                            <td>否<input type="checkbox"></td>-->
-<!--                            <td>是否有犯罪记录<input type="checkbox"></td>-->
-<!--                            <td>是<input type="checkbox"></td>-->
-<!--                            <td>否<input type="checkbox"></td>-->
-<!--                        </tr>-->
-<!--                        </tbody>-->
-<!--                    </table>-->
-<!--                    <div>-->
-<!--                        <div>-->
-<!--                            均是真实和准确的,如有虚假信息，本人愿意承担相应责任。本人也同意在与广州利捷航空科技有限公司劳动合同有效期内，始终遵守公司工作纪律、商业道德和诚信的原则。如有违反，公司将有权随时终止相关的雇用合同及追究相应责任。-->
-<!--                        </div>-->
-<!--                        <div>-->
-<!--                            <div>签名：</div>-->
-<!--                            <div> 日期：2019/10/22</div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="row">-->
-<!--                    <div class="form-group">-->
-<!--                        <div class="col-sm-offset-2 col-sm-10">-->
-<!--                            <button type="button" class="btn btn-default">保存</button>-->
-<!--                            <button type="button" class="btn btn-default">返回</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <div class="personInfomationManageEdit hidden rightManageDiv">
+            <div class="container containerTop">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-info personInfomationManageBack" value="true">返回</button>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        编辑个人信息
+                    </div>
+                </div>
+                <div class="row form-horizontal">
+                    <form role="form">
+                        <div class="form-group">
+                            <label for="uid">选择所属用户</label>
+                            <select class="form-control" id="uid">
+                                <!--                                <option>1</option>-->
+                                <!--                                <option>2</option>-->
+                                <!--                                <option>3</option>-->
+                                <!--                                <option>4</option>-->
+                                <!--                                <option>5</option>-->
+                            </select>
+                        </div>
+                    </form>
+                    <table class="table table-bordered" id="personInfomationManageEditTable">
+                        <caption>新员工入职登记表</caption>
+                        <thead>
+                        <tr>
+                            <td>部门：</td>
+                            <td><input type="text" class="" placeholder="" id="pdepartment"></td>
+                            <td>岗位：</td>
+                            <td><input type="text" class="" placeholder="" id="pposition"></td>
+                            <td colspan="2">填表日期:</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pcreatedate"></td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>姓名</td>
+                            <td><input type="text" class="" placeholder="" id="personInfomationname"></td>
+                            <td>性别</td>
+                            <td><input type="text" class="" placeholder="" id="psex"></td>
+                            <td>民族</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pnation"></td>
+                            <td rowspan="4"><img src=" http://img.wanyx.com/softImg/soft/1650_s.jpg" id="pimg"/></td>
+                        </tr>
+                        <tr>
+                            <td>婚姻状态</td>
+                            <td><input type="text" class="" placeholder="" id="pmarriage"></td>
+                            <td>政治面貌</td>
+                            <td><input type="text" class="" placeholder="" id="ppolitics"></td>
+                            <td>出生年月</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pbirthday"></td>
+                        </tr>
+                        <tr>
+                            <td>最高学历</td>
+                            <td><input type="text" class="" placeholder="" id="pacademic"></td>
+                            <td>专业</td>
+                            <td><input type="text" class="" placeholder="" id="pmajor"></td>
+                            <td>毕业学校</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pschool"></td>
+                        </tr>
+                        <tr>
+                            <td>毕业时间</td>
+                            <td><input type="text" class="" placeholder="" id="pgraduationdate"></td>
+                            <td>学位</td>
+                            <td><input type="text" class="" placeholder="" id="pdegree"></td>
+                            <td>职称</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pprofessional"></td>
+                        </tr>
+                        <tr>
+                            <td>电话号码</td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="ptelephonenumber"></td>
+                            <td>入职时间</td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="phiredate"></td>
+                        </tr>
+                        <tr>
+                            <td>身份证地址</td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="paddress"></td>
+                            <td>身份证号码</td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="pidcard"></td>
+                        </tr>
+                        <tr>
+                            <td>银行卡账号</td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="pbankaccount"></td>
+                            <td>银行卡开户行</td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="popenbank"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">教育经历</td>
+                            <td>起止时间</td>
+                            <td colspan="2">学校</td>
+                            <td colspan="2">专业</td>
+                            <td>所获学位</td>
+                            <td>所获证书</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="peducationdate1"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="peducationschool1"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="peducationmajor1"></td>
+                            <td><input type="text" class="" placeholder="" id="peducationdegree1"></td>
+                            <td><input type="text" class="" placeholder="" id="peducationcertificate1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="peducationdate2"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="peducationschool2"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="peducationmajor2"></td>
+                            <td><input type="text" class="" placeholder="" id="peducationdegree2"></td>
+                            <td><input type="text" class="" placeholder="" id="peducationcertificate2"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="peducationdate3"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="peducationschool3"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="peducationmajor3"></td>
+                            <td><input type="text" class="" placeholder="" id="peducationdegree3"></td>
+                            <td><input type="text" class="" placeholder="" id="peducationcertificate3"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">专业资格证书</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pqualification"></td>
+                            <td colspan="2">获取资格时间</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pqualificationdate"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">专业技能</td>
+                            <td>CAD<input type="checkbox" id="pprofessionalcad"></td>
+                            <td>PS<input type="checkbox" id="pprofessionalps"></td>
+                            <td>3DMAX<input type="checkbox" id="pprofessional3dmax"></td>
+                            <td>天正建筑<input type="checkbox" id="pprofessionaltarch"></td>
+                            <td colspan="2">其他<input type="checkbox" id="pprofessionalother"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">工作经历</td>
+                            <td>起止时间</td>
+                            <td colspan="2">工作单位</td>
+                            <td>工作岗位</td>
+                            <td>薪资水平</td>
+                            <td>离职原因</td>
+                            <td>证明人及电话</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedate1"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pexperienceunit1"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencepost1"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencepay1"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedimission1"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedimissionnumber1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedate2"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pexperienceunit2"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencepost2"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencepay2"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedimission2"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedimissionnumber2"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedate3"></td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pexperienceunit3"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencepost3"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencepay3"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedimission3"></td>
+                            <td><input type="text" class="" placeholder="" id="pexperiencedimissionnumber3"></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">家庭成员</td>
+                            <td>姓名</td>
+                            <td>年龄</td>
+                            <td colspan="3">工作单位</td>
+                            <td>职位</td>
+                            <td>联系电话</td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilyname1"></td>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilyage1"></td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="pfamilyfamilyunit1"></td>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilypost1"></td>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilynumber1"></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilyname2"></td>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilyage2"></td>
+                            <td colspan="3"><input type="text" class="" placeholder="" id="pfamilyfamilyunit2"></td>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilypost2"></td>
+                            <td><input type="text" class="" placeholder="" id="pfamilyfamilynumber2"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">应急联系人</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pemergencycontactname"></td>
+                            <td colspan="2">联系电话</td>
+                            <td colspan="2"><input type="text" class="" placeholder="" id="pemergencycontactnumber">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">向公司提供的资料</td>
+                            <td>身份证<input type="checkbox" id="pinformationid"></td>
+                            <td>银行卡<input type="checkbox" id="pinformationbank"></td>
+                            <td>学历<input type="checkbox" id="pinformationeducation"></td>
+                            <td colspan="3">其他<input type="checkbox" id="pinformationother"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">是否有离职证明文件</td>
+                            <td>是<input type="radio" name="pemploymentseparation" id="pemploymentseparation1"
+                                        class="true" checked></td>
+                            <td>否<input type="radio" name="pemploymentseparation" id="pemploymentseparation2"
+                                        class="true"></td>
+                            <td>是否有犯罪记录</td>
+                            <td>否<input type="radio" name="pcriminalrecord" id="pcriminalrecord1" class="false" checked>
+                            </td>
+                            <td>是<input type="radio" name="pcriminalrecord" id="pcriminalrecord2" class="false"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div>
+                        <div>
+                            均是真实和准确的,如有虚假信息，本人愿意承担相应责任。本人也同意在与广州利捷航空科技有限公司劳动合同有效期内，始终遵守公司工作纪律、商业道德和诚信的原则。如有违反，公司将有权随时终止相关的雇用合同及追究相应责任。
+                        </div>
+                        <div>
+                            <div>签名：</div>
+                            <div> 日期：2019/10/22</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default PersonInfomation" id="savePersonInfomation">
+                                保存
+                            </button>
+                            <button type="button" class="btn btn-default personInfomationManageBack">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--复制结束-->
     </div>
 </div>
