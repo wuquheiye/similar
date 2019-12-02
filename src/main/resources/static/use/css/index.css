@@ -12,7 +12,7 @@
 /*.container{*/
 /*    width: 100%;*/
 /*}*/
-/*!* 公共底部end *!*/
+/*!* 公共底部end */
 
 
 /* 公共start */
@@ -92,8 +92,8 @@ time, mark, audio, video, input, button, textarea,select{
 }
 /* 组织组织树*/
 .organizationHeaderOrganization .organizationHeaderOrganizationLi , .organizationHeaderOrganizationLabel{
-    height: 40px;
-    line-height: 40px;
+    height: 62px;
+    line-height: 20px;
 }
 .organizationHeaderOrganization .organizationHeaderOrganizationLi{
     /*

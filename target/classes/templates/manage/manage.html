@@ -232,6 +232,9 @@
                         <th class="text-center">
                             部门名称
                         </th>
+                        <th class="text-center">
+                            所属公司
+                        </th>
                         <th class="text-center organizationHeaderOrganizationClick">
                             创建时间
                         </th>
@@ -267,6 +270,15 @@
                             <label for="dname" class="col-sm-2 control-label">*部门名称：</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="dname" placeholder="请输入部门名称">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ArtsVision" class="col-sm-2 control-label">*所属公司：</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="artsVision">
+                                    <option value="0">广州利捷有限公司</option>
+                                    <option value="1">广州利捷总公司</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -351,6 +363,7 @@
                                     <option value="3">主管</option>
                                     <option value="4">经理</option>
                                     <option value="6">总经理</option>
+                                    <option value="7">立捷总经理</option>
                                 </select>
                             </div>
                         </div>
@@ -1140,11 +1153,11 @@
                         <div class="form-group">
                             <label for="uid">选择所属用户</label>
                             <select class="form-control" id="uid">
-<!--                                <option>1</option>-->
-<!--                                <option>2</option>-->
-<!--                                <option>3</option>-->
-<!--                                <option>4</option>-->
-<!--                                <option>5</option>-->
+                                <!--                                <option>1</option>-->
+                                <!--                                <option>2</option>-->
+                                <!--                                <option>3</option>-->
+                                <!--                                <option>4</option>-->
+                                <!--                                <option>5</option>-->
                             </select>
                         </div>
                     </form>
@@ -1326,10 +1339,13 @@
                         </tr>
                         <tr>
                             <td colspan="2">是否有离职证明文件</td>
-                            <td>是<input type="radio" name="pemploymentseparation" id="pemploymentseparation1" class="true" checked></td>
-                            <td>否<input type="radio" name="pemploymentseparation" id="pemploymentseparation2" class="true"></td>
+                            <td>是<input type="radio" name="pemploymentseparation" id="pemploymentseparation1"
+                                        class="true" checked></td>
+                            <td>否<input type="radio" name="pemploymentseparation" id="pemploymentseparation2"
+                                        class="true"></td>
                             <td>是否有犯罪记录</td>
-                            <td>否<input type="radio" name="pcriminalrecord" id="pcriminalrecord1" class="false" checked></td>
+                            <td>否<input type="radio" name="pcriminalrecord" id="pcriminalrecord1" class="false" checked>
+                            </td>
                             <td>是<input type="radio" name="pcriminalrecord" id="pcriminalrecord2" class="false"></td>
                         </tr>
                         </tbody>
@@ -1347,7 +1363,9 @@
                 <div class="row">
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="button" class="btn btn-default PersonInfomation" id="savePersonInfomation">保存</button>
+                            <button type="button" class="btn btn-default PersonInfomation" id="savePersonInfomation">
+                                保存
+                            </button>
                             <button type="button" class="btn btn-default personInfomationManageBack">返回</button>
                         </div>
                     </div>

@@ -1033,10 +1033,12 @@ function getDepartment() {
         contentType: 'application/json',
         dataType: 'json',
         data: {"did": did},
+        async: false,
         success: function (msg) {
             if (msg.status == 200) {
                 departmentDname = msg.msg.dname;
                 $(".departmentManageEdit #dname").val(msg.msg.dname);
+                $(".departmentManageEdit #artsVision").val(msg.msg.artsVision);
             }
         }
     });
@@ -1074,6 +1076,7 @@ function isDnameHendiadysDepartment(dname) {
 function updateDepartment() {
     var did = departmentManageId;
     var dname = $(".departmentManageEdit #dname").val();
+    var artsVision = $(".departmentManageEdit #artsVision").val();
     if (!dname) {
         alert("权限名称不能为空");
     } else if (isDnameHendiadysDepartment(dname) && departmentDname != dname) {
@@ -1084,7 +1087,7 @@ function updateDepartment() {
             type: 'Get',
             contentType: 'application/json',
             dataType: 'json',
-            data: {"dname": dname, "did": did},
+            data: {"dname": dname, "did": did,"artsVision":artsVision},
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
@@ -1099,6 +1102,7 @@ function updateDepartment() {
  */
 function saveDepartment() {
     var dname = $(".departmentManageEdit #dname").val();
+    var artsVision = $(".departmentManageEdit #artsVision").val();
     if (!dname) {
         alert("权限名称不能为空");
     } else if (isDnameHendiadysDepartment(dname)) {
@@ -1109,7 +1113,7 @@ function saveDepartment() {
             type: 'Get',
             contentType: 'application/json',
             dataType: 'json',
-            data: {"dname": dname},
+            data: {"dname": dname,"artsVision":artsVision},
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
@@ -1160,6 +1164,7 @@ function getDepartmentList(page) {
                         '<input type="hidden" class="' + msg.msg[i].did + '" />' +
                         '</td>' +
                         '<td class="text-center">' + msg.msg[i].dcreateTime + '</td>' +
+                        '<td class="text-center">' + (msg.msg[i].artsVision == 0?"广州利捷有限公司":"广州利捷总公司") + '</td>' +
                         '<td class="text-center">' +
                         '<button type="button" class="btn btn-info delete" >删除</button>' +
                         '<input type="hidden" class="' + msg.msg[i].did + '" />' +
