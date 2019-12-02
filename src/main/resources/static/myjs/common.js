@@ -37,11 +37,13 @@ function login() {
             if (msg.statusMsg == "登陆成功") {
                 window.sessionStorage.removeItem("login");
                window.sessionStorage.setItem("login", JSON.stringify(msg.msg));
-               window.sessionStorage.getItem("login");
+
                 // alert(lastname)
             } else {
                 alert(msg.statusMsg)
             }
+            let aa=window.sessionStorage.getItem("login");
+            alert(aa)
             window.location.href = pageDesignControl_HOST + "use/index.html";
         }
     });
