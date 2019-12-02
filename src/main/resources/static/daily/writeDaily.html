@@ -34,13 +34,13 @@
                                                   aria-hidden="true"></span></h4></a>
             </div>
             <div class="col-xs-8" style="text-align: center">
-                <h4><b id="title">日报</b></h4></div>
+                <h4><b id="title">日志</b></h4></div>
         </div>
     </div>
     <div class="container" style="padding-top: 80px;padding-bottom: 80px;">
         <div class="row">
             <div class="col-xs-12">
-                <b>今日完成工作</b>
+                <b>今日工作进行</b>
             </div>
             <div class="col-xs-12">
                 <textarea  id="jnowTask" class="form-control" class="textarea" style='overflow-y: hidden;
@@ -50,18 +50,9 @@
                 </textarea>
             </div>
 
+
             <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
-                <b>未完成工作</b>
-            </div>
-            <div class="col-xs-12">
-                <textarea id="jundoneTask" class="form-control" class="textarea" style='overflow-y: hidden;
-                            border: 0px;padding:0px;line-height: 30px;height:35px'
-                          onpropertychange="this.style.height = this.scrollHeight + 'px';"
-                          oninput="this.style.height = this.scrollHeight + 'px';" onclink="textareasend();">
-                </textarea>
-            </div>
-            <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
-                <b>明日计划</b>
+                <b>计划安排</b>
             </div>
             <div class="col-xs-12">
                 <textarea id="jtomorrowTask" class="form-control" class="textarea" style='overflow-y: hidden;
@@ -77,6 +68,16 @@
             <select class="form-control" style="border: 0px" id="pid">
 
             </select>
+            <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
+                <b>建议提醒</b>
+            </div>
+            <div class="col-xs-12">
+            <textarea id="jundoneTask" class="form-control" class="textarea" style='overflow-y: hidden;
+                        border: 0px;padding:0px;line-height: 30px;height:35px'
+                      onpropertychange="this.style.height = this.scrollHeight + 'px';"
+                      oninput="this.style.height = this.scrollHeight + 'px';" onclink="textareasend();">
+            </textarea>
+            </div>
         </div>
         </div>
 <!--        <div class="row" style="border-top: 10px solid gainsboro;padding-top: 10px;margin-top: 10px">-->
