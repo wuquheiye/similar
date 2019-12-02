@@ -56,7 +56,7 @@ public class JournalServiceImpl extends ServiceImpl<JournalMapper, Journal> impl
 
         String sidtwo=String.valueOf(journal.getFuidManager());
         WebSocketServer.sendInfo(JSONObject.fromObject(map).toString(),sid);
-        WebSocketServer.sendInfo(JSONObject.fromObject(map).toString(),sidtwo);
+        WebSocketServer.sendInfo(JSONObject.fromObject(map).toString(),"33");//主管
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("日志录入成功");

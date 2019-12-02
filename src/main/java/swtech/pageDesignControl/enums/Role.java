@@ -7,6 +7,8 @@ import swtech.pageDesignControl.common.exception.ServiceException;
 @AllArgsConstructor
 @Getter
 public enum Role implements BaseEnum<Integer>{
+    GM(6,"总经理"),
+    FINANCE(5,"财务"),
     MANAGE(4,"经理"),
     GOVERNOR(3,"主管"),
     ADMINISTRATIVE(1,"人事"),

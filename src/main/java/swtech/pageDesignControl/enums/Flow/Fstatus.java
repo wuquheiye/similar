@@ -15,6 +15,7 @@ public enum  Fstatus implements BaseEnum<Integer> {
     MANAGERREFUSE(4,"经理审批拒绝"),
     STAFFINGAFFIRM(5,"行政部门已确认"),
     STAFFINGAREFUSE(6,"行政部门拒绝");
+
     private Integer code;
     private String desc;
 

@@ -114,12 +114,31 @@ public class Flow implements Serializable {
      * 获取确认人事id
      */
     private Integer fuidStaffing;
+    /**
+     * 人事意见反馈
+     */
+    private String fuidStaffingRefuse;
 
     /**
      * 人事确认时间
      */
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private String fuidStaffingHand;
+
+    /**
+     * 获取确认财务id
+     */
+    private Integer fuidFinance;
+    /**
+     * 财务意见反馈
+     */
+    private String fuidFinanceRefuse;
+
+    /**
+     * 财务确认时间
+     */
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+    private String fuidFinanceHand;
 
     /**
      * 申请人
@@ -142,8 +161,13 @@ public class Flow implements Serializable {
     private Integer frid;
 
     /**
-     * 所属部门
+     * 所属公司
      */
     private Integer artsVision;
+
+    /**
+     * 已读，未读
+     */
+    private Integer managerRead;
 
 }

@@ -102,7 +102,8 @@ public class ProjectController {
             if(uid != null){
                 qw.eq("uid",uid);
             }
-            List list = iProjectService.list(qw);
+//            List list = iProjectService.list(qw);
+            List list = iProjectService.list();
             if(list ==null)throw new ServiceException("列表为空,无数据");
             msg.setStatus("200");
             msg.setStatusMsg("历史记录获取成功");
@@ -159,6 +160,24 @@ public class ProjectController {
             msg.setMsg(e.getMessage());
         }
         return  msg;
+    }
+
+
+    @ResponseBody
+    @RequestMapping("/selectAllProject")
+    public ReturnMsg selectAllProject(@RequestParam("uid")Integer uid){
+        ReturnMsg msg =new ReturnMsg();
+        if(uid==null)throw  new ServiceException("参数uid不能为空");
+        String peam=","+uid+",";
+        QueryWrapper qw = new QueryWrapper();
+        qw.isNull("pend_time");
+        qw.like("pteam",peam);
+        List<Project> list = iProjectService.list(qw);
+        if(list ==null)throw new ServiceException("列表为空,无数据");
+        msg.setStatus("200");
+        msg.setStatusMsg("所有项目获取成功");
+        msg.setMsg(list);
+        return msg;
     }
 
 }
