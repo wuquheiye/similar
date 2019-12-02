@@ -399,27 +399,27 @@
             // desc=ftypeFlow.LEAVE.desc;
         }
         else if(e.ftype==ftypeFlow.OVERTIME.code){
-            alert("进入加班申请")
+            // alert("进入加班申请")
             desc = ftypeFlow.OVERTIME.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.FINANCEPAY.code){
-            alert("进入财务付款申请")
+            // alert("进入财务付款申请")
             desc = ftypeFlow.FINANCEPAY.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.GOOUT.code){
-            alert("进入外出申请")
+            // alert("进入外出申请")
             desc = ftypeFlow.GOOUT.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.SEALUSE.code){
-            alert("进入印章使用是申请")
+            // alert("进入印章使用是申请")
             desc = ftypeFlow.SEALUSE.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.SERVE.code){
-            alert("进入业务招待申请")
+            // alert("进入业务招待申请")
             desc = ftypeFlow.SERVE.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.ONBUSINESS.code){
-            alert("进入出差申请")
+            // alert("进入出差申请")
             desc = ftypeFlow.ONBUSINESS.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }
@@ -437,7 +437,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                 <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -535,7 +535,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                 <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -658,7 +658,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                 <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -836,7 +836,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                 <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -949,7 +949,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                 <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -1043,7 +1043,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="../use/feature.html"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                 <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -1239,12 +1239,12 @@
     //审批显示信息
     function flowStatus(e) {
         let fstatusHtml='';
-        alert("审批显示")
+        // alert("审批显示")
         if(e.ftype==ftypeFlow.OVERTIME.code){//加班申请
-            alert("jiabn")
+            // alert("jiabn")
             fstatusHtml=zxq(e);
         }else if(e.ftype==ftypeFlow.SEALUSE.code){//印章使用申请
-            alert("进入印章使用")
+            // alert("进入印章使用")
             fstatusHtml=zxq(e);
         }else if(e.ftype==ftypeFlow.LEAVE.code){//请假申请
             fstatusHtml=zzxq(e);
@@ -1280,7 +1280,7 @@
     function  zxq(e) {
         let fstatusHtml='';
         if(e.artsVision==yesOrNo.YES.code){ //利捷
-            alert("审核")
+            // alert("审核")
             if(e.fstatus==fstatusFlow.UNTREATED.code){ //待审批
                 fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
                     '        <div class="row">\n' +
@@ -1362,7 +1362,7 @@
                     '    </div>';
             }
             else  if(e.fstatus==fstatusFlow.STAFFINGAFFIRM.code || e.fstatus==fstatusFlow.STAFFINGREFUSE.code){ //人事确认
-                alert("印章")
+                // alert("印章")
                 fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-xs-12">\n' +
@@ -1474,7 +1474,7 @@
                     '    </div>';
             }
             else  if(e.fstatus==fstatusFlow.STAFFINGAFFIRM.code || e.fstatus==fstatusFlow.STAFFINGREFUSE.code){ //人事确认
-                alert("印章")
+                // alert("印章")
                 fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-xs-12">\n' +
@@ -1506,7 +1506,7 @@
 
         }
 
-        alert("fafafa"+fstatusHtml);
+        // alert("fafafa"+fstatusHtml);
         return fstatusHtml;
     }
 
@@ -1780,7 +1780,7 @@
             "fstatus" :e,
             "fid":r
         }
-        alert(JSON.stringify(flow));
+        // alert(JSON.stringify(flow));
         // $.ajax({
         //     url: pageDesignControl_HOST  + "flow/fuidCharge",
         //     type: "post",
@@ -1817,7 +1817,7 @@
             }
         })
         chargeListOne=chargeList[index];
-        alert(JSON.stringify(chargeList[index]));
+        // alert(JSON.stringify(chargeList[index]));
         showdata=flowTypeHtml(chargeListOne);
         $("body").html(showdata);
         selectLeaveAll(chargeListOne.uid);

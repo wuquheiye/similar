@@ -683,7 +683,7 @@
             let sid="";
             sid='ws://localhost:43008/websocket/'+loginObj.users.uid;
             websocket = new WebSocket(sid);
-            // websocket = new WebSocket(JSON.stringify(websoc));
+            websocketthree = new WebSocket("ws://localhost:43008/websocket/0");
             websockettwo = new WebSocket("ws://localhost:43008/websocket/3");
         }
 
@@ -706,6 +706,11 @@
             setMessageInnerHTML("WebSocket连接发生错误");
 
         };
+    websocketthree.onerror = function () {
+
+        setMessageInnerHTML("WebSocket连接发生错误");
+
+    };
 
 
         //连接成功建立的回调方法
@@ -715,6 +720,9 @@
         websockettwo.onopen = function (event) {
             setMessageInnerHTML("WebSocket连接成功");
         }
+    websocketthree.onopen = function (event) {
+        setMessageInnerHTML("WebSocket连接成功");
+    }
 
 
         //接收到消息的回调方法
@@ -722,16 +730,25 @@
         websocket.onmessage = function (event) {
             console.log("转event前"+event);
             console.log("转event后"+JSON.stringify(event));
-            alert("进入socket")
+            // alert("进入socket")
             if(event.data != "连接成功"){
                 getSocket(event.data);
             }
 
         }
+    websocketthree.onmessage = function (event) {
+        console.log("转event前"+event);
+        console.log("转event后"+JSON.stringify(event));
+        // alert("进入socket")
+        if(event.data != "连接成功"){
+            getSocket(event.data);
+        }
+
+    }
         websockettwo.onmessage = function (event) {
             console.log("转event前"+event);
             console.log("转event后"+JSON.stringify(event));
-            alert("进入socket")
+            // alert("进入socket")
             if(event.data != "连接成功"){
                 if(parseInt($("#chargeMessage").text())<99 && parseInt($("#chargeMessage").text())>0){
                     let chargeMessageNum=parseInt($("#chargeMessage").text())+1;

@@ -71,7 +71,8 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(leave.getFstartTime()==null){
             leave.setFstartTime(LocalDateTime.of(2000,10,10,0,00));
         }
-        switch (Judge.getByCode(leave.getArtsVision())){
+        //暂时默认 0 leave.getArtsVision()
+        switch (Judge.getByCode(0)){
             case YES:  //利捷
                 leave.setFstatus(Fstatus.CHARGEPASS.getCode());
                 break;

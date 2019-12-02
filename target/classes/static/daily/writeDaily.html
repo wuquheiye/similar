@@ -29,7 +29,7 @@
     <div class="container navbar-fixed-top" style="background: white;border-bottom: 2px solid gainsboro">
         <div class="row">
             <div class="col-xs-2">
-                <a href="../use/index.html?publicBottomImages=publicBottomOrganization">
+                <a href="/use/index.html?publicBottomImages=publicBottomInformation">
                 <h4><span class="glyphicon glyphicon-menu-left"
                                                   aria-hidden="true"></span></h4></a>
             </div>
@@ -146,6 +146,7 @@
                         showdata += '<option value=' + value.pid + '>' + value.pname + '</option>\n';
                     })
                 }
+                $("#pid").html(showdata);
             },
             error: function(){
                 alert("网络信号不好，请重试");
@@ -224,7 +225,7 @@
         let jnowTask = $("#jnowTask").val();
         let jundoneTask = $("#jundoneTask").val();
         let jtomorrowTask = $("#jtomorrowTask").val();
-        // let pid = $("#pid").val();
+        let pid = $("#pid").val();
         let nowtime= getCurrentDate();
 
         let journal = {

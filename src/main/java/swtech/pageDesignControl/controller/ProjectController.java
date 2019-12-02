@@ -102,7 +102,8 @@ public class ProjectController {
             if(uid != null){
                 qw.eq("uid",uid);
             }
-            List list = iProjectService.list(qw);
+//            List list = iProjectService.list(qw);
+            List list = iProjectService.list();
             if(list ==null)throw new ServiceException("列表为空,无数据");
             msg.setStatus("200");
             msg.setStatusMsg("历史记录获取成功");

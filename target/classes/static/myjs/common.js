@@ -35,13 +35,14 @@ function login() {
         },
         success: function (msg) {
             if (msg.statusMsg == "登陆成功") {
-                sessionStorage.setItem("login", JSON.stringify(msg.msg));
-                var lastname = sessionStorage.getItem("login");
-                alert(lastname)
-                window.location.href = pageDesignControl_HOST + "use/index.html";
+                window.sessionStorage.removeItem("login");
+               window.sessionStorage.setItem("login", JSON.stringify(msg.msg));
+               window.sessionStorage.getItem("login");
+                // alert(lastname)
             } else {
                 alert(msg.statusMsg)
             }
+            window.location.href = pageDesignControl_HOST + "use/index.html";
         }
     });
 }

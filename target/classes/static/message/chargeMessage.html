@@ -226,7 +226,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href=""><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -324,7 +324,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href=""><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -447,7 +447,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href=""><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -626,7 +626,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="#"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href=""><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -739,7 +739,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href=""><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -833,7 +833,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href=""><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -1223,27 +1223,27 @@
             // desc=ftypeFlow.LEAVE.desc;
         }
         else if(e.ftype==ftypeFlow.OVERTIME.code){
-            alert("进入加班申请")
+            // alert("进入加班申请")
             desc = ftypeFlow.OVERTIME.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.FINANCEPAY.code){
-            alert("进入财务付款申请")
+            // alert("进入财务付款申请")
             desc = ftypeFlow.FINANCEPAY.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.GOOUT.code){
-            alert("进入外出申请")
+            // alert("进入外出申请")
             desc = ftypeFlow.GOOUT.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.SEALUSE.code){
-            alert("进入印章使用是申请")
+            // alert("进入印章使用是申请")
             desc = ftypeFlow.SEALUSE.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.SERVE.code){
-            alert("进入业务招待申请")
+            // alert("进入业务招待申请")
             desc = ftypeFlow.SERVE.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }else if(e.ftype==ftypeFlow.ONBUSINESS.code){
-            alert("进入出差申请")
+            // alert("进入出差申请")
             desc = ftypeFlow.ONBUSINESS.desc;
             flowTypeHtml=flowStatusSelect(e,desc)
         }
@@ -1252,7 +1252,7 @@
     }
     //审批显示信息
     function flowStatus(e) {
-        alert("所属部门"+e.artsVision);
+        // alert("所属部门"+e.artsVision);
         let fstatusHtml='';
         if(e.fstatus==fstatusFlow.UNTREATED.code){
             fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
@@ -1457,7 +1457,7 @@
             "fuidManager":loginObj.users.fuidManager,
             "uid" :loginObj.users.uid
         }
-        alert(JSON.stringify(flow));
+        // alert(JSON.stringify(flow));
         $.ajax({
             url: pageDesignControl_HOST  + "flow/fuidCharge",
             type: "post",
@@ -1495,7 +1495,7 @@
             }
         })
         chargeListOne=chargeList[index];
-        alert(JSON.stringify(chargeList[index]));
+        // alert(JSON.stringify(chargeList[index]));
         showdata=flowTypeHtml(chargeListOne);
         $("body").html(showdata);
         selectLeaveAll(chargeListOne.uid);
