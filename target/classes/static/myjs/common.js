@@ -34,7 +34,7 @@ function login() {
             "upassword": $("#loginUpassword").val()
         },
         success: function (msg) {
-            if (msg.status == "200") {
+            if (msg.statusMsg == "登陆成功") {
                 sessionStorage.setItem("login", JSON.stringify(msg.msg));
                 var lastname = sessionStorage.getItem("login");
                 alert(lastname)
