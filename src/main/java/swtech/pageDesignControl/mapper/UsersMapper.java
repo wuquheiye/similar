@@ -66,4 +66,12 @@ public interface UsersMapper extends BaseMapper<Users> {
      * @return
      */
     int updateUustate(@Param("uid") int uid, @Param("ustate") int ustate);
+
+    /**
+     * 根据角色id查询所有的用户
+     *
+     * @param rid
+     * @return
+     */
+    List<Users> selectUsersByRid(@Param("rid") int rid);
 }

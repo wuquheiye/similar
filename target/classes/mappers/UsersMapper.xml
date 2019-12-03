@@ -35,4 +35,11 @@
         UPDATE users SET ustate = #{ustate}
         WHERE uid = #{uid}
     </update>
+
+    <select id="selectUsersByRid" resultType="swtech.pageDesignControl.entity.Users">
+        select u.* from users u
+        join user_role ur on ur.uid = u.uid
+        join role r on ur.rid = r.rid
+        where r.rid = #{rid}
+    </select>
 </mapper>

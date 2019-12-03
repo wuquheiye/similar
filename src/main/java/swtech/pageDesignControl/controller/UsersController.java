@@ -205,5 +205,29 @@ public class UsersController {
         log.info(String.valueOf(msg));
         return msg;
     }
+
+    @ResponseBody
+    @GetMapping("/manage/users/selectusersbyrid")
+    public ReturnMsg selectUsersByRid(@RequestParam("rid") int rid) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            List<Users> usersList = iUsersService.selectUsersByRid(rid);
+            if (usersList != null) {
+                msg.setStatus("200");
+                msg.setStatusMsg("根据角色ID获取用户成功");
+                msg.setMsg(usersList);
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("根据角色ID获取用户失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("根据角色ID获取用户异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
 }
 

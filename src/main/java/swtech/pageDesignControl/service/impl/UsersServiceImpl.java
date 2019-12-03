@@ -166,4 +166,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         }
         return permissions;
     }
+
+    @Override
+    public List<Users> selectUsersByRid(int rid) {
+        return usersMapper.selectUsersByRid(rid);
+    }
 }

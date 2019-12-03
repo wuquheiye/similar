@@ -1,26 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="测试">
+    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/financePayFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/financePayFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/leave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/serveFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/serveFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/UsersTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/UsersTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/UsersMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/UsersMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/UsersTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UsersMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/UsersMapper.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -49,10 +41,37 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/index.js">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="365">
+              <caret line="75" column="56" lean-forward="true" selection-start-line="69" selection-start-column="4" selection-end-line="75" selection-end-column="56" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/UsersTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="129" column="50" selection-start-line="129" selection-start-column="50" selection-end-line="129" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="66" column="14" lean-forward="true" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -60,48 +79,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/use/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1000">
-              <caret line="289" column="66" selection-start-line="289" selection-start-column="66" selection-end-line="289" selection-end-column="66" />
+            <state relative-caret-position="3715">
+              <caret line="171" column="49" selection-start-line="171" selection-start-column="49" selection-end-line="171" selection-end-column="49" />
               <folding>
-                <element signature="n#style#0;n#li#7;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#b#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#b#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#b#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="e#5295#5296#0" expanded="true" />
+                <element signature="e#5328#5329#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/use/css/index.css">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="250">
-              <caret line="19" column="1" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="7" />
+            <state relative-caret-position="726">
+              <caret line="225" column="40" selection-start-line="225" selection-start-column="40" selection-end-line="225" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -132,12 +124,16 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" />
-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/use/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/use/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/static/myjs/index.js" />
+        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java" />
+        <option value="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/UsersTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" />
       </list>
     </option>
   </component>
@@ -151,10 +147,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-299" />
-    <option name="y" value="221" />
+    <option name="x" value="-661" />
+    <option name="y" value="151" />
     <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectId" id="1TeDY36tPDigLZepnXWMMLM7jbF" />
   <component name="ProjectLevelVcsManager">
@@ -216,6 +212,33 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
+              <item name="entity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
+              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
+              <item name="enums" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
+              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
+              <item name="mapper" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
+              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
               <item name="service" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -223,6 +246,16 @@
               <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="impl" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
+              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -231,7 +264,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="mappers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
@@ -240,17 +273,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="manage" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="manage" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
@@ -278,16 +300,6 @@
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
               <item name="use" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="use" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -296,23 +308,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="swtech" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie_bg" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-              <item name="swtech" type="462c0819:PsiDirectoryNode" />
-              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -393,15 +388,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DateUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.common.utils.DateUtil" />
-      <module name="li_jie_bg" />
+    <configuration name="UsersTest.selectUsersByRid" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="swtech-service-pageDesign-control" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="swtech.pageDesignControl.common.utils.*" />
+          <option name="PATTERN" value="swtech.pageDesignControl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
+      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.UsersTest" />
+      <option name="METHOD_NAME" value="selectUsersByRid" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -435,18 +433,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.CodeGenerator" />
-      <item itemvalue="Application.DateUtil" />
       <item itemvalue="Application.Base64Util" />
       <item itemvalue="Spring Boot.RunApplication " />
       <item itemvalue="Spring Boot.RunApplication" />
+      <item itemvalue="JUnit.UsersTest.selectUsersByRid" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Spring Boot.RunApplication" />
+        <item itemvalue="JUnit.UsersTest.selectUsersByRid" />
         <item itemvalue="Spring Boot.RunApplication " />
         <item itemvalue="Application.Base64Util" />
         <item itemvalue="Application.CodeGenerator" />
-        <item itemvalue="Application.DateUtil" />
       </list>
     </recent_temporary>
   </component>
@@ -492,7 +490,7 @@
       <workItem from="1574987273295" duration="26443000" />
       <workItem from="1575246435025" duration="17300000" />
       <workItem from="1575333882362" duration="1622000" />
-      <workItem from="1575338740632" duration="5146000" />
+      <workItem from="1575338740632" duration="6850000" />
     </task>
     <task id="LOCAL-00004" summary="项目管理ok">
       <created>1574330254965</created>
@@ -571,19 +569,17 @@
       <option name="project" value="LOCAL" />
       <updated>1575273957517</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="前端界面权限控制">
+      <created>1575344097633</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1575344097633</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.18 at 16h 00m 30s.xml">
-      <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ShiroWebApplicationTests_(1) - 2019.11.18 at 16h 02m 45s.xml">
-      <configuration name="ShiroWebApplicationTests (1)" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.18 at 16h 03m 12s.xml">
-      <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
-    </history-entry>
     <history-entry file="ShiroWebApplicationTests_contextLoads - 2019.11.18 at 16h 05m 30s.xml">
       <configuration name="ShiroWebApplicationTests.contextLoads" configurationId="JUnit" />
     </history-entry>
@@ -605,9 +601,18 @@
     <history-entry file="ShiroWebApplicationTests_Users1 - 2019.11.18 at 18h 04m 38s.xml">
       <configuration name="ShiroWebApplicationTests.Users1" configurationId="JUnit" />
     </history-entry>
+    <history-entry file="UsersTest_selectUsersByRid - 2019.12.03 at 14h 05m 28s.xml">
+      <configuration name="UsersTest.selectUsersByRid" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UsersTest_selectUsersByRid - 2019.12.03 at 14h 06m 08s.xml">
+      <configuration name="UsersTest.selectUsersByRid" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="UsersTest_selectUsersByRid - 2019.12.03 at 14h 06m 49s.xml">
+      <configuration name="UsersTest.selectUsersByRid" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5146000" />
+    <option name="totallyTimeSpent" value="6850000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -619,7 +624,7 @@
       <window_info id="UI Designer" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Web" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Spring" />
       <window_info anchor="bottom" id="Terminal" />
@@ -631,7 +636,7 @@
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3991323" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -728,7 +733,8 @@
     <MESSAGE value="流程审批" />
     <MESSAGE value="人事反馈测试" />
     <MESSAGE value="测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试" />
+    <MESSAGE value="前端界面权限控制" />
+    <option name="LAST_COMMIT_MESSAGE" value="前端界面权限控制" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -843,20 +849,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="16" selection-start-line="16" selection-end-line="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="614">
-          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="426">
-          <caret line="189" column="12" selection-start-line="189" selection-start-column="12" selection-end-line="189" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -1103,24 +1095,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="346">
-          <caret line="75" column="13" selection-start-line="75" selection-start-column="13" selection-end-line="75" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/use/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1000">
-          <caret line="289" column="66" selection-start-line="289" selection-start-column="66" selection-end-line="289" selection-end-column="66" />
+        <state relative-caret-position="1439">
+          <caret line="289" column="104" selection-start-line="289" selection-start-column="92" selection-end-line="289" selection-end-column="104" />
           <folding>
             <element signature="n#style#0;n#li#7;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
@@ -1146,5 +1124,148 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="17" column="93" lean-forward="true" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/Role.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="43" column="4" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mappers/UsersMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="40" column="43" lean-forward="true" selection-start-line="40" selection-start-column="43" selection-end-line="40" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/UsersTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="129" column="50" selection-start-line="129" selection-start-column="50" selection-end-line="129" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/UsersMapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="75" column="56" lean-forward="true" selection-start-line="69" selection-start-column="4" selection-end-line="75" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="66" column="14" lean-forward="true" selection-start-line="66" selection-start-column="14" selection-end-line="66" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3715">
+          <caret line="171" column="49" selection-start-line="171" selection-start-column="49" selection-end-line="171" selection-end-column="49" />
+          <folding>
+            <element signature="e#5295#5296#0" expanded="true" />
+            <element signature="e#5328#5329#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="726">
+          <caret line="225" column="40" selection-start-line="225" selection-start-column="40" selection-end-line="225" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>swtech-service-pageDesign-control</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>

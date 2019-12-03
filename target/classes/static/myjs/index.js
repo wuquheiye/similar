@@ -13,7 +13,6 @@ $(function () {
             "uusername": uusername
         },
         success: function (msg) {
-            console.log(msg.msg.length)
             for (var i = 0; i < msg.msg.length; i++) {
                 if(msg.msg[i].ppermission!="" && msg.msg[i].ppermission!=" "){
                     $("#"+msg.msg[i].ppermission.replace("//s/g", "")).removeClass("hidden");
