@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swtech.pageDesignControl.mapper.UpdateProjectMapper">
+    <resultMap id="BaseResultMap" type="swtech.pageDesignControl.entity.UpdateProject" >
+        <id column="up_id" property="upId" jdbcType="INTEGER" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
+        <result column="up_progress" property="upProgress" jdbcType="INTEGER" />
+        <result column="up_time" property="upTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="swtech.pageDesignControl.entity.UpdateProject" extends="BaseResultMap" >
+        <result column="up_describe" property="upDescribe" jdbcType="LONGVARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    up_id, pid, up_progress, up_time
+  </sql>
+    <sql id="Blob_Column_List" >
+    up_describe
+  </sql>
+</mapper>

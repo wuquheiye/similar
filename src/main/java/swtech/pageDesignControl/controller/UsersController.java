@@ -181,5 +181,27 @@ public class UsersController {
         return msg;
     }
 
+    @ResponseBody
+    @GetMapping("/manage/users/getpermission")
+    public ReturnMsg getPermission(@RequestParam("uusername") String uusername) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            List<String> permissionList = iUsersService.getPermission(uusername);
+            if (permissionList != null) {
+                msg.setStatus("200");
+                msg.setStatusMsg("获取用户权限成功");
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("获取用户权限失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("获取用户权限异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
 }
 

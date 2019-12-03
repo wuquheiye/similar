@@ -1437,12 +1437,18 @@ function getRtype(rtype) {
         return "主管";
     } else if (rtype == 4) {
         return "经理";
+    }else if (rtype == 5) {
+        return "财务";
+    }else if (rtype == 6) {
+        return "总经理";
+    }else if (rtype == 7) {
+        return "立捷总经理";
     } else {
         return "未分配";
     }
 }
 
-/**
+ /**
  * 生成角色列表
  */
 function getRoleList(page) {

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swtech.pageDesignControl.mapper.UserRoleMapper">
+    <select id="getRoleByUserId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT r.rid from users u
+        join user_role ur on u.uid = ur.uid
+        join role r on r.rid = ur.rid
+        where u.uid = #{uid}
+    </select>
+
+    <delete id="deleteByUserId" parameterType="java.lang.Integer">
+        delete from user_role WHERE uid = #{uid}
+    </delete>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.Integer">
+        delete from user_role WHERE rid = #{rid}
+    </delete>
+</mapper>

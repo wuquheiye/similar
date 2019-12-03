@@ -1,20 +1,21 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" th:href="@{/bootstrop/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/use/css/index.css}">
     <!--jq-->
     <script type="text/javascript" charset="utf-8" src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
     <!--bootstrap 样式-->
-    <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.min.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../myjs/common.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../publicBottom/js/publicBottom.js"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/bootstrop/js/bootstrap.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/bootstrop/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/myjs/httpData.config.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/myjs/common.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/publicBottom/js/publicBottom.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/myjs/index.js}"></script>
     <script src="https://at.alicdn.com/t/font_1502544_j8yf3v34uai.js"></script>
 </head><!-- 在头部引入bootstrap的css包与js包 -->
 <style type="text/css">
@@ -58,7 +59,7 @@
             <div class="row" >
                 <div class="col-xs-12" style="text-align: center;">
                     <ul class="list-group row" >
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="createProject">
                             <a href="projectManagement.html?status=1">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-danchuchuangjianxiangmu"></use>
@@ -67,7 +68,7 @@
                                 创建项目
                             </div>   </a>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="updateProject">
                             <a href="./updateManagement.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-gengxinxiangmujinzhan"></use>
@@ -77,7 +78,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px" >
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="writediary">
                             <a href="../daily/writeDaily.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-xierizhi"></use>
@@ -87,7 +88,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="leaveRequest">
                             <a href="../flow/leave.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-qingjiashenqing"></use>
@@ -97,7 +98,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="applicationOvertime">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-add-overtime"></use>
                             </svg>
@@ -105,7 +106,7 @@
                                 加班申请
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="businessReception">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-yewuzhaodai"></use>
                             </svg>
@@ -113,7 +114,7 @@
                                 业务招待申请
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="goOut">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-waichushenqingxpx"></use>
                             </svg>
@@ -121,7 +122,7 @@
                                 外出申请
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="travelRequest">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-waichushenqing"></use>
                             </svg>
@@ -129,7 +130,7 @@
                                 出差申请
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="sealUse">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-yinzhangshiyongshenqing"></use>
                             </svg>
@@ -137,7 +138,7 @@
                                 印章使用申请
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="paymentApplication">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-caiwufukuan"></use>
                             </svg>
@@ -145,7 +146,7 @@
                                 财务付款申请
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="profiling">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-caiwufukuan"></use>
                             </svg>
@@ -153,7 +154,7 @@
                                 档案录入
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="workAttendance">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-caiwufukuan"></use>
                             </svg>
@@ -161,10 +162,7 @@
                                 考勤录入
                             </div>
                         </li>
-
-
                     </ul>
-
                 </div>
             </div>
         </div>
@@ -175,30 +173,30 @@
             <div class="container">
             <div class="row">
                 <div class="col-xs-12 text-center" style="font-size:20px;height:40px;line-height:40px;">
-                   功能
+                   动态
                 </div>
             </div>
         </div>
             <div class="row">
                 <div class="col-xs-12" style="text-align: center;">
                     <ul class="list-group row" >
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="applyCheck">
                             <a href="../flow/flowPath.html">
-                                <img src="./image/流程管理.png" height="50px" width="50px">
+                                <img th:src="@{/use/image/流程管理.png}" height="50px" width="50px">
                                 <div class="row" style="padding-top: 10px">
                                     申请查看
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px" >
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="viewProject">
                             <a href="projectManagement.html">
-                                <img src="./image/项目管理.png" height="50px" width="50px">
+                                <img th:src="@{/use/image/项目管理.png}" height="50px" width="50px">
                                 <div class="row" style="padding-top: 10px">
                                     查看项目
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="viewLog">
                             <a href="../daily/daily.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-ziyuanxhdpi"></use>
@@ -208,8 +206,7 @@
                                 </div>
                             </a>
                         </li>
-
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="CheckAttendance">
                             <a href="../checkingin/checkingin.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-ic_kaoqinbiao"></use>
@@ -219,8 +216,7 @@
                                 </div>
                             </a>
                         </li>
-
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="systemMessages">
                             <div style="position: relative">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
                                     <use xlink:href="#icon-ic_kaoqinbiao"></use>
@@ -231,7 +227,7 @@
                                 系统消息
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="backlogInformation">
                             <a href="../flow/flowPath.html">
                             <div style="position: relative">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
@@ -242,7 +238,7 @@
                             <div class="row" style="padding-top: 10px">
                                 待办信息
                             </div></a></li>
-                        <li class="list-group-item col-xs-3" style="border: 0px">
+                        <li class="list-group-item col-xs-3" style="border: 0px" id="staffLibrary">
                             <!--<a href="../checkingin/checkingin.html">-->
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-tushuguan"></use>
@@ -252,9 +248,7 @@
                                 </div>
                             <!--</a>-->
                         </li>
-
                     </ul>
-
                 </div>
             </div>
         </div>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>新建流程</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
+    <!--fileinputcss-->
+    <link href="https://cdn.bootcss.com/bootstrap-fileinput/4.3.3/css/fileinput.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../use/css/common.css">
+
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.js"></script>
+    <script src="https://at.alicdn.com/t/font_1502544_6qxgh0ec3xu.js"></script>
+    <!--fileinput JS-->
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.3/js/fileinput.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap-fileinput/4.3.5/js/locales/zh.min.js "></script>
+</head>
+<style type="text/css">
+
+    #parallelogram {
+        width: 30px;
+        height: 35px;
+        color:#fff;
+        font-size:12px;
+        background: #ff4510;
+        position: absolute;
+        top:0px;
+        right:0px;
+    }
+    .search{
+        width:200px;
+        text-align:center;
+        margin:0px auto;
+        position: absolute;
+        top: 50%;
+        margin-top: -16px;
+        margin-left: 40%;
+    }
+    .search span{
+        cursor: pointer;
+    }
+    .roomfont{
+        text-align: center;
+        bottom: 50px;
+    }
+    /**
+    心形
+    */
+    .heart{
+        width:10px;
+        height:20px;
+        position:relative;
+        /* relative(相对定位) 对象不可层叠、不脱离文档流，
+        参考自身静态位置通过 top,bottom,left,right 定位，并且可以通过z-index进行层次分级 */
+    }
+    /* after 伪元素在元素之前添加内容*/
+    .heart:before{
+        content:" ";
+        border-radius:10px 10px 0 0;/* 正方形的内切圆的半径等于正方形边长的一半 */
+        width:8px; height:12px;/* 长方形 */
+        background:#ff4510;
+        -moz-transform: rotate(-45deg);/* 逆时针旋转45°*/
+        -ms-transform: rotate(-45deg);
+        -o-transform: rotate(-45deg);
+        -webkit-transform: rotate(-45deg);
+        position:absolute;/* absolute(绝对定位) 脱离文档流，通过 top,bottom,left,right 定位 */
+        left:60px;
+        bottom:2px;
+    }
+
+    /* after 伪元素在元素之后添加内容*/
+    .heart:after{
+        content:" ";
+        width:8px; height:12px;
+        background:#ff4510;
+        border-radius:10px 10px 0 0;
+        -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        -webkit-transform: rotate(45deg);
+        position:absolute;
+        left:64px;bottom:2px;
+    }
+</style>
+<body>
+<div class="form-group" id="upload">
+    <input id="myFile" name="myFile" type="file" multiple>
+</div>
+<input type="submit" value="提交" id="button" class="btn btn-primary">
+
+</body>
+<script type="text/javascript">
+    var picture_size;
+    var filedname;
+    var fileCount;
+    var i=0;
+    var file=new Array();
+    var FileInput = function () {
+        var oFile = new Object();
+
+        //初始化fileinput控件（第一次初始化）
+        oFile.Init = function (ctrlName, uploadUrl) {
+            var control = $('#' + ctrlName);
+            //初始化上传控件的样式
+            control.fileinput({
+                language: 'zh', //设置语言
+                uploadUrl: uploadUrl, //上传的地址
+                allowedFileExtensions: ['jpg', 'gif', 'png','jpeg','bmp'],//接收的文件后缀
+                //showUploadedThumbs:false,
+                // uploadClass: 'hidden',
+                uploadLabel: "上传",//设置上传按钮的汉字
+                initialCaption: "请上传商家logo",//文本框初始话value
+//			initialPreview:[ '<img src='/hotelSystem\files/' class='file-preview-image' alt='Desert' title='Desert'>',],预览图片
+                showUpload: false, //是否显示上传按钮
+                showCaption: true,//是否显示标题
+                browseClass: "btn btn-info", //按钮样式
+                dropZoneEnabled: false,//是否显示拖拽区域
+                showRemove: false,//是否显示移除
+                //minImageWidth: 150, //图片的最小宽度
+                //minImageHeight: 150,//图片的最小高度
+                //maxImageWidth: 150,//图片的最大宽度
+                //maxImageHeight: 150,//图片的最大高度
+                maxFileSize: 2048*4,//单位为kb，如果为0表示不限制文件大小
+                maxFileCount: 5, //表示允许同时上传的最大文件个数
+                minFileCount: 0,
+                enctype: 'multipart/form-data',
+                validateInitialCount: true,//有效初始化计数
+                previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+                msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+                fileActionSettings : {
+                    showUpload: false,//是否显示上传小图标
+                    //owRemove: false//是否显示删除小图标
+                },
+                //将文件名中间的-替换成_  回调函数
+                slugCallback : function(filename) {
+                    return filename.replace('(', '_').replace(']', '_');
+                }
+                //File对象--files
+            }).on("filebatchselected", function(event, files) {
+                //将选中的文件加入
+                //console.log("files:"+typeof(files[0]));
+                picture_size = files.length;
+//			fileCount = $('#myFile').fileinput('getFilesCount');
+                //对每个新的对象重新创建一个对象存放
+                if(picture_size>0){
+                    file[parseInt(picture_size-1)]=$("#myFile")[0].files[0];
+                }
+                //将多个file放入list
+                //console.log("file:"+file.length);
+                //name ---value
+                console.log($('#myFile')[0].files[0]);
+                //console.log($('#myFile')[0].files);
+                //  console.log("picture_size:"+picture_size);
+                //将上传的文件对象传给全局变量，用以处理为字符串
+                filedname=files;
+                $(".kv-file-content").mouseenter(function() {
+                    $(this).find("img").css('opacity','0.5').show();
+                    $(this).append('<span id="parallelogram">设为封面</span>');
+                });
+                $(".kv-file-content").mouseleave(function() {
+                    $(this).find("img").css('opacity','1');
+                    $("#parallelogram").remove();
+                });
+                $(".kv-file-content").click(function() {
+                    if(!$(".file-preview-thumbnails").hasClass(".heart")){
+                        //删除其他的兄弟样式
+                        $(".file-preview-thumbnails").find(".heart").remove();
+                        $(this).append('<span class="heart"></span>');
+                    }
+                    return;
+                });
+            }).on("fileuploaded", function (event, data, previewId, index) {
+                //导入文件上传完成之后的事件
+                //对文件的删除事件
+                var datas = data.response;
+            }).fileinput("enable");//enable作用：destroy并重新初始化fileinput插件后，插件会处于disable状态
+        }
+        return oFile;
+    };
+
+
+    $(function () {
+        //0.初始化fileinput
+        var oFileInput = new FileInput();
+        //这里的后台连接被拦截，只用通过点击事件，才能跳转
+        oFileInput.Init("myFile", "/hotelSystem/rooms/addRoom");
+        $("#button").click(function(){
+            doUpload();
+        });
+    });
+    function doUpload() {
+        //图片验证
+        var formData = new FormData();
+        //判断有几个文件
+        var filename="";
+        //拼接字符串
+        for(i=parseInt(picture_size)-1;i>-1;i--){
+            filename+=filedname[i].name+",";
+        }
+//		console.log(picture_size-1);
+        //将最后的拼接符去掉
+        filename=filename.substring(0,filename.lastIndexOf(","));
+        //查找封面标记，如果没有，默认第一张
+        if($(".heart").length>0){
+            //将封面传给后台
+            var arr=filename.split(",");
+            //多次增加图片，是先进先出，所以必须调换顺序
+            arr.sort();
+            //获取选中的图片属性title
+//			console.log($(".heart").prev("img").attr("title"));
+            var title=$(".heart").prev("img").attr("title");
+            for(var i=0;i<arr.length;i++){
+                if(arr[i]==title){
+                    formData.append('fileimage',arr[i]);
+                }
+            }
+        }else{
+            var arr=filename.split(",");
+            arr.reverse();
+            formData.append('fileimage',arr[0]);
+        }
+        //将前台取到的值全部发送给后台
+        if(file.length>=2){
+            for(var j=0;j<parseInt(picture_size);j++){
+                formData.append('file',file[parseInt(j)]);
+            }
+        }else{
+            for(var j=0;j<parseInt(picture_size);j++){
+                formData.append('file', $("#myFile")[0].files[parseInt(j)]);  //添加图片信息的参数
+            }
+        }
+        //formData.append('text1',$("input[name='text1'").val());//添加表单参数
+        formData.append('filename',filename);
+        $.ajax({
+            url: '/hotelSystem/rooms/addRoom',
+            type: 'POST',
+            data: formData,
+            async: true,
+            cache: false, //禁止缓存
+            contentType: false,
+            processData: false,
+            success: function (XMLHttpRequest) {
+                //通过回调函数重定向
+                if(XMLHttpRequest=="add"){
+                    layer.msg("添加成功！");
+                    setTimeout(function () {
+                        window.location.href="http://localhost:8080/hotelSystem/admin/backstage3.jsp?";
+                    }, 1000);
+                }else if(XMLHttpRequest=="no"){
+                    $("#denglu").hide();
+                    layer.msg("添加失败！");
+                    setTimeout(function () {
+                        window.location.href="http://localhost:8080/hotelSystem/admin/backstage3.jsp";
+                    }, 1000);
+                }
+                console.log(XMLHttpRequest);
+            },
+            error: function (returndata) {
+                layer.msg("未知错误！");
+            }
+        });
+    }
+
+</script>
+</html>
