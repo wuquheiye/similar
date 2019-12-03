@@ -154,15 +154,15 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     }
 
     @Override
-    public List<String> getPermission(String uusername) {
-        List<String> permissions = new ArrayList<>();
+    public List<Permission> getPermission(String uusername) {
+        List<Permission> permissions = new ArrayList<>();
         Role role = roleMapper.getRoleByUsername(uusername);
         if (role == null) {
             return null;
         }
         List<Permission> permissionList = permissionMapper.getPermissionByRoleName(role.getRname());
         for (Permission permission : permissionList) {
-            permissions.add(permission.getPname());
+            permissions.add(permission);
         }
         return permissions;
     }

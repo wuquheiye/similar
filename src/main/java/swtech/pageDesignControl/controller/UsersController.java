@@ -7,6 +7,7 @@ import swtech.pageDesignControl.common.utils.DateUtil;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.vo.ReturnMsgPage;
 import swtech.pageDesignControl.common.vo.UsersVO;
+import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.service.IUsersService;
 
@@ -186,10 +187,11 @@ public class UsersController {
     public ReturnMsg getPermission(@RequestParam("uusername") String uusername) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            List<String> permissionList = iUsersService.getPermission(uusername);
+            List<Permission> permissionList = iUsersService.getPermission(uusername);
             if (permissionList != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("获取用户权限成功");
+                msg.setMsg(permissionList);
             } else {
                 msg.setStatus("202");
                 msg.setStatusMsg("获取用户权限失败");

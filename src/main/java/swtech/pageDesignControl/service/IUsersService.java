@@ -3,6 +3,7 @@ package swtech.pageDesignControl.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.common.vo.LoginVO;
+import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.entity.Users;
 
 import java.util.List;
@@ -56,5 +57,5 @@ public interface IUsersService extends IService<Users> {
      * @param uusername
      * @return
      */
-    List<String> getPermission(String uusername);
+    List<Permission> getPermission(String uusername);
 }

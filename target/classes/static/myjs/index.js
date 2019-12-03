@@ -1,20 +1,24 @@
+/**
+ * 权限控制显示隐藏
+ */
 $(function () {
-    alert(1)
-    /**
-     * 权限控制显示隐藏
-     */
-    console.log(JSON.stringify(sessionStorage.getItem("login").users.uusername));
-    // $.ajax({
-    //     url: pageDesignControl_HOST + 'manage/users/getpermission',
-    //     type: 'get',
-    //     contentType: 'application/json',
-    //     dataType: 'json',
-    //     data: {
-    //         "uusername": sessionStorage.getItem("login").users.uusername
-    //     },
-    //     success: function (result) {
-    //         console.log(result)
-    //         alert(result.result);
-    //     }
-    // });
+    var login = JSON.parse(sessionStorage.getItem('login'));
+    var uusername = login.users.uusername;
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/users/getpermission',
+        type: 'get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {
+            "uusername": uusername
+        },
+        success: function (msg) {
+            console.log(msg.msg.length)
+            for (var i = 0; i < msg.msg.length; i++) {
+                if(msg.msg[i].ppermission!="" && msg.msg[i].ppermission!=" "){
+                    $("#"+msg.msg[i].ppermission.replace("//s/g", "")).removeClass("hidden");
+                }
+            }
+        }
+    });
 })
