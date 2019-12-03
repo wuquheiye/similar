@@ -49,4 +49,12 @@ public interface IUsersService extends IService<Users> {
      * @return
      */
     boolean updateUustate(int uid, int ustate);
+
+    /**
+     * 根据用户名获取所有的权限
+     *
+     * @param uusername
+     * @return
+     */
+    List<String> getPermission(String uusername);
 }

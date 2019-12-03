@@ -3,18 +3,17 @@ package swtech.pageDesignControl.service.impl;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.common.vo.*;
 import swtech.pageDesignControl.entity.Department;
+import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.entity.Role;
 import swtech.pageDesignControl.entity.Users;
-import swtech.pageDesignControl.mapper.DepartmentMapper;
-import swtech.pageDesignControl.mapper.RoleMapper;
-import swtech.pageDesignControl.mapper.UserRoleMapper;
-import swtech.pageDesignControl.mapper.UsersMapper;
+import swtech.pageDesignControl.mapper.*;
 import swtech.pageDesignControl.service.IUsersService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -39,6 +38,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
 
     @Resource
     private RoleMapper roleMapper;
+
+    @Resource
+    private PermissionMapper permissionMapper;
 
     @Override
     public LoginVO getLoginVO(String uusername) {
@@ -149,5 +151,19 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<String> getPermission(String uusername) {
+        List<String> permissions = new ArrayList<>();
+        Role role = roleMapper.getRoleByUsername(uusername);
+        if (role == null) {
+            return null;
+        }
+        List<Permission> permissionList = permissionMapper.getPermissionByRoleName(role.getRname());
+        for (Permission permission : permissionList) {
+            permissions.add(permission.getPname());
+        }
+        return permissions;
     }
 }
