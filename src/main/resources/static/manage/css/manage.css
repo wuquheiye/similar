@@ -1,3 +1,6 @@
+.personInfomationManageEdit td input{
+    width: 100%;
+}
 /* 右侧左上按钮上下10px */
 .rightManageDiv {
     padding-top: 10px;
