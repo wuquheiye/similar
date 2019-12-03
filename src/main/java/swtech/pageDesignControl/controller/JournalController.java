@@ -15,7 +15,9 @@ import swtech.pageDesignControl.common.vo.PageVO;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.vo.ReturnMsgPage;
 import swtech.pageDesignControl.entity.Journal;
+import swtech.pageDesignControl.entity.Project;
 import swtech.pageDesignControl.service.IJournalService;
+import swtech.pageDesignControl.service.IProjectService;
 
 import javax.annotation.Resource;
 import javax.sql.rowset.serial.SerialException;
@@ -38,6 +40,8 @@ public class JournalController{
     @Resource
     private IJournalService iJournalService;
 
+    @Resource
+    private IProjectService iProjectService;
 
     /**
      * 根距uid获取当前主管部下的日志信息
@@ -111,4 +115,7 @@ public class JournalController{
         }
         return msg;
     }
+
+
+
 }

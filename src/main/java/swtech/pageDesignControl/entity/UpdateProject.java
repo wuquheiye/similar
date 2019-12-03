@@ -47,5 +47,10 @@ public class UpdateProject  {
      */
     private String upTime;
 
+    /**
+     * 项目名
+     */
+    private String pname;
+
 
 }

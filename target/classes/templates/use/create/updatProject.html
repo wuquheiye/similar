@@ -66,15 +66,14 @@
         <!--</div>-->
         <hr style="margin-top: 10px;margin-bottom: 10px;height: 5px;width: 100%;background: #F4F4F4">
         <div class="row" style="height: 34px;">
-            <a data-toggle="modal" href="../publicBottom.html" data-target="#modal" rel="noopener noreferrer">
+<!--            <a data-toggle="modal" href="../publicBottom.html" data-target="#modal" rel="noopener noreferrer">-->
                 <div class="col-xs-4" style="height:34px;line-height: 34px;padding: 0px">项目团队</div>
                 <div class="col-xs-8" style="line-height: 34px;padding-left: 0px" id="team"  >
                     <span  th:text="${project.pteam}">
-
                     </span>
 
                 </div>
-            </a>
+<!--            </a>-->
         </div>
         <hr style="margin-top: 10px;margin-bottom: 10px;height: 5px;width: 100%;background: #F4F4F4">
         <div class="row" >
@@ -133,7 +132,7 @@
     let pid = $("#tit").attr("value");
     //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
-    alert(pid);
+    // alert(pid);
     function updateProject() {
         let uid =loginObj.users.uusername;
         let pid = $("#tit").attr("value");
@@ -147,13 +146,14 @@
 
         let data ={
             "project":{
-                "pid" : pid,
-                "pname" : pname,
-                "pstartTime" : pstart_time,
-                "pteam" : pteam
+                "pid" : pid
+                // "pname" : pname,
+                // "pstartTime" : pstart_time,
+                // "pteam" : pteam
             },
             "updateProject" :{
                 "pid" : pid,
+                "pname" : pname,
                 "upDescribe" : upDescribe,
                 "upTime" : getCurrentTime(),
                 "upProgress" : upProgress

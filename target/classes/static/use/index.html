@@ -15,7 +15,10 @@
     <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../myjs/common.js"></script>
     <script type="text/javascript" charset="utf-8" src="../publicBottom/js/publicBottom.js"></script>
+
     <script src="https://at.alicdn.com/t/font_1502544_rthj4rd15fl.js"></script>
+    <!--    全局配置文件-->
+    <script type="text/javascript" src="../myjs/httpData.config.js"></script>
 </head><!-- 在头部引入bootstrap的css包与js包 -->
 <style type="text/css">
     .modal-dialog{
@@ -638,6 +641,59 @@
     }]
 
     var datashow='';
+    
+    $(function () {
+        selectProjectJournal()
+    })
+
+    //查询所有项目和日志信息
+    function selectProjectJournal() {
+        let showdata='';
+        $.ajax({
+            url: pageDesignControl_HOST + "project/selectProjectJournal",
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(res!=""){
+                    $.each(res.msg,function (index,value) {
+                        if(typeof(value.jid) == "number"){
+                            showdata +='<a href="../daily/dailyinfo.html" style="color: black"><div class="row" style="position: relative">\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            <b style="font-size: 16px;">'+value.uusername+'的日报</b>\n' +
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            日志详情:\n' + value.jnowTask+
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n'
+                                +value.jcreateTime+
+                                '                        </div>\n' +
+                                '                    </div></a>';
+                        }
+                        else if(typeof (value.upId) == "number"){
+                            showdata += '<a href="/project/selectUpByUpId/'+value.upId+'" style="color: black"><div class="row" style="position: relative">\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            <b style="font-size: 16px;">'+value.pname+'+项目进度</b>\n' +
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+value.upProgress+'%">'+value.upProgress+'%</div>'+
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
+                                value.upTime
+                            '                        </div>\n' +
+                            '                    </div></a>';
+                        }
+                    })
+
+                }
+                $("#pushServer").html(showdata);
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
+    }
 
     //模拟数据
     // let defultnum = 30;

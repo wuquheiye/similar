@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import swtech.pageDesignControl.common.exception.ServiceException;
 import swtech.pageDesignControl.common.vo.ProjectAndScheduleVO;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
+import swtech.pageDesignControl.entity.Journal;
 import swtech.pageDesignControl.entity.Project;
 import swtech.pageDesignControl.entity.UpdateProject;
 import swtech.pageDesignControl.service.IProjectService;
@@ -41,6 +42,11 @@ public class ProjectController {
 
     @Resource
     private IProjectService iProjectService;
+
+    @Resource
+    private IUpdateProjectService iUpdateProjectService;
+
+
 
     /**
      * 根据pid获取相关信息
@@ -163,6 +169,11 @@ public class ProjectController {
     }
 
 
+    /**
+     * 查询当前用户参与过的项目信息
+     * @param uid
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/selectAllProject")
     public ReturnMsg selectAllProject(@RequestParam("uid")Integer uid){
@@ -178,6 +189,46 @@ public class ProjectController {
         msg.setStatusMsg("所有项目获取成功");
         msg.setMsg(list);
         return msg;
+    }
+
+    /**
+     * 查询所有项目和日志信息
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("selectProjectJournal")
+    public ReturnMsg  selectProjectJournal(){
+        ReturnMsg msg =new ReturnMsg();
+            try {
+                msg = iProjectService.selectProjectJournal();
+            }catch (Exception e){
+                e.printStackTrace();
+                log.info(e.getMessage());
+                msg.setStatus("201");
+                msg.setStatusMsg("查询所有项目和日志信息失败");
+                msg.setMsg(e.getMessage());
+            }
+        return msg;
+    }
+
+    /**
+     *
+     * @param upId
+     * @return
+     */
+
+    @GetMapping("selectUpByUpId")
+    public String selectUpByUpId(@PathVariable("upId") Integer upId,Model model){
+        if(upId==null)throw new ServiceException("参数不能为空");
+        UpdateProject byId = iUpdateProjectService.getById(upId);
+        Project byId1 = iProjectService.getById(byId.getPid());
+        model.addAttribute("updateProject",byId);
+        model.addAttribute("project",byId1);
+        if(byId!=null){
+            return "./use/create/selectUp";
+        }else {
+            return "./use/403";
+        }
     }
 
 }
