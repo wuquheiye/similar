@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>财务付款申请</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
+    <link rel="stylesheet" href="../use/css/common.css">
+
+    <link rel="stylesheet" href="../use/css/bootstrap-material-datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="../use/css/default.css">
+    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.js"></script>
+    <script type="text/javascript" src="https://cdn.bootcss.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <!--日期控件-->
+    <script type="text/javascript" src="../use/js/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="../use/js/bootstrap-material-datetimepicker.js"></script>
+    <script type="text/javascript" src="../myjs/httpData.config.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <!--头部-->
+    <div class="container navbar-fixed-top" style="background: white">
+        <div class="row">
+            <div class="col-xs-2">
+                <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"
+                                                        aria-hidden="true"></span></h4></a>
+            </div>
+            <div class="col-xs-8" style="text-align: center">
+                <h4><b id="title">财务付款申请</b></h4></div>
+        </div>
+    </div>
+    <!--<div class="container" style="padding-top: 55px">-->
+    <!--<div class="row">-->
+    <!--<div class="col-xs-12">-->
+    <!--流程标题-->
+    <!--</div>-->
+    <!--<hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">-->
+    <!--<div class="col-xs-12" style="padding-top: 10px" id="otTitle">-->
+    <!--貂蝉_加班-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">-->
+
+    <div class="container" style="padding-top: 55px">
+        <div class="row">
+            <div class="col-xs-6">
+                承办人
+            </div>
+            <div class="col-xs-6">
+                <div>
+                        <span style="width: 85px;
+                        border-radius: 30px;
+                        background: ghostwhite;
+                        text-align: center;
+                        float: right;" id="otName">貂蝉</span>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                承办部门
+            </div>
+            <div class="col-xs-6">
+                <div>
+                        <span style="width: 85px;
+                        border-radius: 30px;
+                        background: ghostwhite;
+                        text-align: center;
+                        float: right;"  id="otSection">研发部</span>
+                </div>
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                申请日期
+            </div>
+            <div class="col-xs-6">
+                <span style="float: right;text-align: right" id="defuletTime"></span>
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6">
+                开支金额
+            </div>
+            <div class="col-xs-6">
+                <input type="text"  id="fchange" style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="请填写金额">
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
+    </div>
+    <div class="container">
+        <div class="row" style="height: 35px">
+            <div class="col-xs-6" style="line-height: 30px">
+                承办时间
+            </div>
+            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">
+                <input type="text" id="date-start" style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="Date">
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">
+        <div class="row" >
+            <div class="col-xs-6" style="line-height: 30px">
+                承办事项
+            </div>
+            <div class="col-xs-12" style="height: 130px;padding: 0px">
+                <textarea class="form-control"
+                          style="height: 120px" id="fapplyReason"
+               >
+
+                </textarea>
+            </div>
+            <div class="col-xs-12">
+                <b style="font-size: 3px">注：此项应写明承办事项,付款形式，收款账户等详细信息。</b>
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">
+
+
+    </div>
+
+    <!--审批-->
+    <div class="container" style="padding-bottom: 70px">
+<!--        <div class="row">-->
+<!--            <div class="col-xs-6">-->
+<!--                主管审批-->
+<!--            </div>-->
+<!--            <div class="col-xs-6">-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">-->
+        <div class="row">
+            <div class="col-xs-6">
+                领导审批
+            </div>
+            <div class="col-xs-6">
+
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">
+        <div class="row">
+            <div class="col-xs-6">
+                财务付款确认
+            </div>
+            <div class="col-xs-6">
+
+            </div>
+        </div>
+        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">
+    </div>
+    <!--底部-->
+    <div class="container navbar-fixed-bottom" >
+        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="commitflow()">提交申请</button>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="../myjs/common.js"></script>
+
+<script>
+
+    //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
+    var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
+
+    $(function () {
+        $("#otTitle").text(loginObj.users.uusername+"_加班");
+        $("#otSection").text(loginObj.department.dname);
+        $("#otName").text(loginObj.users.uusername);
+        $("#defuletTime").text(getCurrentTime().split(" ")[0]);
+    })
+
+    /**
+     * 录入请假申请
+     */
+    function commitflow() {
+        let ftype= ftypeFlow.FINANCEPAY.code;
+        let fapplyTime = $("#defuletTime").text();
+        // let fleaveType = $("#fleaveType").val();//获取请假类型
+        let fstartTime = $("#date-start").val();
+        // let fendTime = $("#date-end").val();
+        let fapplyReason = $("#fapplyReason").val();
+        let fchange = $("#fchange").val();
+        let leaveflow={
+            "ftype" : ftype,
+            "uid" :loginObj.users.uid,
+            // "fleaveType":fleaveType,
+            "fapplyTime" : fapplyTime,
+            "fstartTime":fstartTime,
+            // "fendTime" :　fendTime,
+            "fapplyReason":fapplyReason,
+            "uusername":loginObj.users.uusername,
+            "dname":loginObj.department.dname,
+            "fuidCharge" :loginObj.users.fuidCharge,
+            "fuidManager":loginObj.users.fuidManager,
+            "fchange" : fchange,
+            "artsVision":loginObj.department.ArtsVision
+        }
+
+        alert(JSON.stringify(leaveflow))
+        $.ajax({
+            url: pageDesignControl_HOST + "flow/leaveInsert",
+            type: "post",
+            dataType: "json",
+            data:JSON.stringify(leaveflow),
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(res.msg==true){
+                    alert("申请已发出")
+                }else{
+                    alert("申请发出失败");
+                }
+            },
+            error: function(){
+                alert("网络信号不好，请重试");
+            }
+
+        })
+
+    }
+
+
+    // $("#date-start").change(function () {
+    //     // alert($("#date-end").val())
+    //     if($("#date-end").val()!=''){
+    //         // alert("val:"+$(this).val());
+    //         let leadtime=leadTimeTwo($(this).val(),$("#date-end").val());
+    //         $("#duration").text(leadtime);
+    //     }
+    //
+    // })
+    // $("#date-end").change(function () {
+    //     // alert($("#date-start").val())
+    //     if($("#date-start").val()!=''){
+    //         // alert("val:"+$(this).val());
+    //         let leadtime=leadTimeTwo($("#date-start").val(),$(this).val());
+    //         $("#duration").text(leadtime);
+    //     }
+    //
+    // })
+
+    // 日期插件
+    $(document).ready(function() {
+        $('#date').bootstrapMaterialDatePicker({
+            time: true
+        });
+        $('#date_end').bootstrapMaterialDatePicker({
+            time: true
+        });
+
+        $('#time').bootstrapMaterialDatePicker
+        ({
+            date: false,
+            shortTime: true,
+            format: 'HH:mm'
+        });
+
+        $('#date-format').bootstrapMaterialDatePicker
+        ({
+            format: 'dddd DD MMMM YYYY - HH:mm'
+        });
+        $('#date-fr').bootstrapMaterialDatePicker
+        ({
+            format: 'DD/MM/YYYY HH:mm',
+            lang: 'fr',
+            weekStart: 1,
+            cancelText : 'ANNULER'
+        });
+
+        $('#date-end').bootstrapMaterialDatePicker
+        ({
+            weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+        });
+        $('#date-start').bootstrapMaterialDatePicker
+        ({
+            weekStart: 0, format: 'DD/MM/YYYY HH:mm'
+        }).on('change', function(e, date)
+        {
+            $('#date-end').bootstrapMaterialDatePicker('setMinDate', date);
+        });
+
+        $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
+
+        $.material.init()
+    });
+</script>
+</html>

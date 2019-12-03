@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swtech.pageDesignControl.mapper.UsersMapper">
+    <select id="findUsersByName" resultType="swtech.pageDesignControl.entity.Users" parameterType="java.lang.String">
+        SELECT * from users where uusername = #{username}
+    </select>
+
+    <select id="findUsersByDepartmentAndRole" resultType="swtech.pageDesignControl.entity.Users">
+        select * from users u
+        join user_role ur on ur.uid = u.uid
+        join role r on ur.rid = r.rid
+        join department d on u.did = d.did
+        where d.did = #{did} and r.rtype = #{rtype}
+    </select>
+
+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.common.vo.UsersVO"
+            parameterType="swtech.pageDesignControl.entity.Users">
+        SELECT * FROM users where 1=1
+        <if test="users!=null and users.uusername!='' and users.uusername!='null'">
+            and uusername like concat('%',#{users.uusername},'%')
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM users
+    </select>
+
+    <update id="updateDepartmentToNull" parameterType="java.lang.Integer">
+        UPDATE users SET did = 0
+        WHERE did = #{did}
+    </update>
+
+    <update id="updateUustate" parameterType="java.lang.Integer">
+        UPDATE users SET ustate = #{ustate}
+        WHERE uid = #{uid}
+    </update>
+</mapper>

@@ -2,27 +2,393 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e2c5ec1-ddd5-4b26-ac0a-f3816f2c183d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/test-classes/swtech/pageDesignControl/UsersTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/DepartmentTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/PermissionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/PersonInfomationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/RolePermissionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/RoleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/UserRoleTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/UsersTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/static/myjs/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/file/test.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/generatorConfig.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/logback-spring.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/DepartmentMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/FlowMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/JournalMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/OnbusInessFlowMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/PermissionMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/PersonInfomationMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/ProjectMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/RoleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/RolePermissionMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/ServeFlowMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/UpdateProjectMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/UserRoleMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/mappers/UsersMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/sqlMapGeneractor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap-theme.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap-theme.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap-theme.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap-theme.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/fonts/glyphicons-halflings-regular.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/fonts/glyphicons-halflings-regular.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/fonts/glyphicons-halflings-regular.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/fonts/glyphicons-halflings-regular.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/fonts/glyphicons-halflings-regular.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/js/bootstrap.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/js/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/bootstrop/js/npm.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/checkingin/checkingin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/daily/daily.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/daily/dailyinfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/daily/text.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/daily/writeDaily.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/backlog.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/financePayFlow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/flowPath.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/gooutFlow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/leave.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/leaveCheck.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/myLeave.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/onbusInessFlow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/overTimeFlow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/sealuseFlow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/flow/serveFlow.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/jquery/jquery.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/manage/css/manage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/manage/js/manage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/message/chargeHistory.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/message/chargeMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/message/chargeSkip.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/message/systemMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/myjs/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/myjs/httpData.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/myjs/paging.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/organization/css/organization.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/css/publicBottom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomApplyBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomApplyRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomInformationBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomInformationRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomMyBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomMyRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomNewBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomNewRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomOrganizationBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images - 副本/publicBottomOrganizationRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/dynamicBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/dynamicRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/functionBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/functionRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/head.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/header.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/myBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/myRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/organizationBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/organizationRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomApplyBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomApplyRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomInformationBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomInformationRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomMyBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomMyRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomNewBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomNewRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomOrganizationBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/images/publicBottomOrganizationRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/publicBottom/js/publicBottom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/approval.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/create/createProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/create/updatProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/css/bootstrap-material-datetimepicker.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/css/common.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/css/default.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/css/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/css/login.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/css/material.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/css/publicBottom/publicBottom.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/feature.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/image/日报.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/image/流程管理.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/image/项目管理.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/js/bootstrap-material-datetimepicker.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/js/jquery-2.1.1.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/js/material.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/js/moment-with-locales.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/projectManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/publicBottom.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/updatProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/updateManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/static/use/use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/RunApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/configs/MybatisPlusConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/exception/EnumNotFindException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/exception/GlobalException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/exception/ServiceException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/Base64Util.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/CodeGenerator$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/CodeGenerator$2.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/CodeGenerator.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/DateUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/EnumUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/ExcelUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/GetMessageCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/HttpClientUtils.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/JsonUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/MyX509TrustManager.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/QRCode.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/utils/UploadUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/CodeMsg.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/ExcelParam.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/FlowApproval.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/FlowOnbusIness.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/FlowVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/LoginUsersVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/LoginVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/PageVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/PermissionVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/ProjectAndScheduleVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/ProjectUpVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/ReturnMsg.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/ReturnMsgPage.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/vo/UsersVO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/websocket/WebSocketConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/websocket/WebSocketServer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/common/websocket/WebsocketServerTwo.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/config/ShiroConfiguration.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/AdminController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/DepartmentController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/FlowController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/JournalController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/LoginController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/PermissionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/PersonInfomationController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/ProjectController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/RoleController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/RolePermissionController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/UpdateProjectController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/UserRoleController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/controller/UsersController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Department.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Flow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Journal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Member.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/OnbusInessFlow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Permission.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/PersonInfomation.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Project.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Role.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/RolePermission.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/ServeFlow.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/UpdateProject.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/UserRole.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/entity/Users.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/BaseEnum.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/Flow/Fstatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/Flow/Ftype.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/Judge.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/MaritalStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/PoliticsStatus$OverseasExperience.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/PoliticsStatus.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/enums/Role.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/DepartmentMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/FlowMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/JournalMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/OnbusInessFlowMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/PermissionMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/PersonInfomationMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/ProjectMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/RoleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/RolePermissionMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/ServeFlowMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/UpdateProjectMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/UserRoleMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/mapper/UsersMapper.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/realm/CustomRealm.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IDepartmentService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IFlowService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IJournalService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IPermissionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IPersonInfomationService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IProjectService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IRolePermissionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IRoleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IUpdateProjectService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IUserRoleService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/IUsersService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/DepartmentServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl$1.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/JournalServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/PermissionServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/PersonInfomationServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/ProjectServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/RolePermissionServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/RoleServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/UpdateProjectServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/UserRoleServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/swtech/pageDesignControl/service/impl/UsersServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/checkingin/checkingin.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/daily/daily.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/daily/dailyinfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/daily/text.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/daily/writeDaily.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/flow/backlog.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/flow/flowPath.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/flow/leave.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/flow/leaveCheck.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/flow/myLeave.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/manage/manage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/myjs/common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/organization/groupDetails.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/organization/organization.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/organization/personalDetails.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/publicBottom/publicBottom.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/publicBottom/publicMain.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/403.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/approval.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/create/createProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/create/selectProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/create/updatProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/feature.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/projectManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/publicBottom.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/updatProject.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/updateManagement.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/classes/templates/use/use.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/HikariCP-3.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/alipay-sdk-java-3.4.27.ALL.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/apiguardian-api-1.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/aspectjweaver-1.9.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/attoparser-2.0.5.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/classmate-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-beanutils-1.8.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-codec-1.11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-collections-3.2.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-collections4-4.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-fileupload-1.3.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-io-2.4.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-lang-2.5.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-lang3-3.8.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/commons-logging-1.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/core-3.3.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/curvesapi-1.04.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/dom4j-1.6.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/druid-1.1.18.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/druid-spring-boot-starter-1.1.18.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/ezmorph-1.0.6.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/fastjson-1.2.58.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/freemarker-2.3.29.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/hamcrest-core-1.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/hibernate-validator-6.0.17.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/httpclient-4.5.10.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/httpcore-4.4.11.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-annotations-2.9.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-core-2.9.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-databind-2.9.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jdk8-2.9.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-datatype-jsr310-2.9.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jackson-module-parameter-names-2.9.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jai-imageio-core-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/javase-3.3.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/javax.annotation-api-1.3.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jboss-logging-3.3.2.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jcommander-1.72.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/json-20160810.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/json-lib-2.4-jdk15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jsqlparser-1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/jul-to-slf4j-1.7.26.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/junit-4.12.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/junit-jupiter-api-5.6.0-M1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/junit-platform-commons-1.3.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-api-2.11.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-core-2.11.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-jul-2.11.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-slf4j-impl-2.11.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/log4j-to-slf4j-2.11.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/logback-classic-1.2.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/logback-core-1.2.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-3.5.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-plus-3.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-plus-annotation-3.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-plus-boot-starter-3.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-plus-core-3.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-plus-extension-3.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-plus-generator-3.1.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-spring-2.0.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-spring-boot-autoconfigure-2.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mybatis-spring-boot-starter-2.1.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/mysql-connector-java-5.1.38.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/opentest4j-1.2.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/poi-3.15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/poi-ooxml-3.15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/poi-ooxml-schemas-3.15.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-cache-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-config-core-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-config-ogdl-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-core-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-crypto-cipher-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-crypto-core-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-crypto-hash-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-event-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-lang-1.4.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-spring-1.3.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/shiro-web-1.3.2.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.26.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/snakeyaml-1.23.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-aop-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-beans-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-autoconfigure-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-jdbc-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-json-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-log4j2-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-logging-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-thymeleaf-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-tomcat-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-starter-web-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-boot-test-2.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-context-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-core-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-expression-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-jcl-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-jdbc-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-tx-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-web-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-webmvc-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/spring-websocket-5.1.8.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/stax-api-1.0.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/testng-7.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-3.0.11.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-extras-java8time-3.0.4.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/thymeleaf-spring5-3.0.11.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-core-9.0.21.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-el-9.0.21.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/tomcat-embed-websocket-9.0.21.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/unbescape-1.1.6.RELEASE.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/validation-api-2.0.1.Final.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/velocity-engine-core-2.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/xml-apis-1.4.01.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/swtech-service-pageDesign-control-0.0.1-SNAPSHOT/WEB-INF/lib/xmlbeans-2.6.0.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/RunApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/RunApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/UsersController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IUsersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/UsersServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/manage/js/manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/manage/js/manage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/manage/js/manage.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/manage/js/manage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/httpData.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/RunApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/RunApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/UsersController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IUsersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IUsersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/UsersServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/UsersServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/li_jie_bg.kotlin_module" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="$PROJECT_DIR$/out/" />
@@ -52,67 +418,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/common.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="373">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/use/login.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/use/login.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/index.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="125">
@@ -121,30 +426,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/daily/writeDaily.html">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/use/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="67" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
+            <state relative-caret-position="321">
+              <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -227,6 +513,13 @@
                 <element signature="n#style#0;n#div#1;n#li#4;n#ul#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#1;n#li#4;n#ul#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#1;n#div#1;n#li#4;n#ul#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#b#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -377,9 +670,9 @@
       <select />
     </treeState>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="263" />
-    <option name="y" value="80" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="455" />
+    <option name="y" value="15" />
     <option name="width" value="1394" />
     <option name="height" value="907" />
   </component>
@@ -422,99 +715,6 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="impl" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="static" type="462c0819:PsiDirectoryNode" />
-              <item name="myjs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="publicBottom" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="use" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="swtech-service-pageDesign-control" type="b2602c69:ProjectViewProjectNode" />
-              <item name="li_jie" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="pageDesignControl" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -697,7 +897,7 @@
       <workItem from="1575246361818" duration="5666000" />
       <workItem from="1575257210696" duration="2049000" />
       <workItem from="1575259346552" duration="10338000" />
-      <workItem from="1575332637111" duration="227000" />
+      <workItem from="1575332637111" duration="725000" />
     </task>
     <task id="LOCAL-00003" summary="a">
       <created>1574296112092</created>
@@ -755,7 +955,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575255904173</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="在做个人考勤页面">
+      <created>1575333091795</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1575333091795</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -791,12 +998,12 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215364000" />
+    <option name="totallyTimeSpent" value="215864000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="89" y="76" width="1394" height="907" extended-state="0" />
+    <frame x="249" y="441" width="1394" height="907" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.36806595" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.36806595" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -807,7 +1014,7 @@
       <window_info anchor="bottom" id="Messages" order="0" weight="0.3264642" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.4978678" visible="true" weight="0.25743854" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.4978678" visible="true" weight="0.25743854" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.46445498" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -1262,9 +1469,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="39" selection-start-line="39" selection-end-line="39" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/static/use/login.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="231">
           <caret line="15" column="55" selection-start-line="15" selection-start-column="55" selection-end-line="15" selection-end-column="55" />
         </state>
       </provider>
@@ -1272,10 +1531,23 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/use/login.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/daily/writeDaily.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="125">
+          <caret line="5" column="78" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/use/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="14" column="67" selection-start-line="14" selection-start-column="67" selection-end-line="14" selection-end-column="67" />
+        <state relative-caret-position="321">
+          <caret line="15" column="46" lean-forward="true" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1358,72 +1630,14 @@
             <element signature="n#style#0;n#div#1;n#li#4;n#ul#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#1;n#li#4;n#ul#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#div#1;n#li#4;n#ul#0;n#li#0;n#ul#0;n#li#1;n#ul#0;n#div#0;n#div#1;n#div#2;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#b#0;n#div#0;n#div#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#a#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/daily/writeDaily.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/httpData.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#svg#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#div#0;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a#1;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#hr#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/static/myjs/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="5" column="78" selection-start-line="5" selection-start-column="78" selection-end-line="5" selection-end-column="78" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swtech.pageDesignControl.mapper.RolePermissionMapper">
+    <select id="getPermissionByRoleId" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT p.pid from role r
+        join role_permission rp on rp.rid = r.rid
+        join permission p on rp.pid = p.pid
+        where r.rid = #{rid}
+    </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into role_permission (rid,pid)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            ( #{item.rid},#{item.pid})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByRoleId" parameterType="java.lang.Integer">
+        delete from role_permission WHERE rid = #{rid}
+    </delete>
+
+    <delete id="deleteByPermissionId" parameterType="java.lang.Integer">
+        delete from role_permission WHERE pid = #{pid}
+    </delete>
+</mapper>

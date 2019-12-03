@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swtech.pageDesignControl.mapper.PersonInfomationMapper">
+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.PersonInfomation"
+            parameterType="swtech.pageDesignControl.entity.PersonInfomation">
+        SELECT * FROM person_infomation where 1=1
+        <if test="personInfomation!=null and personInfomation.pname!='' and personInfomation.pname!='null'">
+            and pname like concat('%',#{personInfomation.pname},'%')
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="int">
+        SELECT count(*) FROM person_infomation
+    </select>
+</mapper>

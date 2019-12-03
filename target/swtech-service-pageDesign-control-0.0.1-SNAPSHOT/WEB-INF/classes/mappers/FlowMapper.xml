@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swtech.pageDesignControl.mapper.FlowMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="swtech.pageDesignControl.entity.Flow" >
+        <id column="fid" property="fid" jdbcType="INTEGER" />
+        <result column="ftype" property="ftype" jdbcType="INTEGER" />
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="fapply_time" property="fapplyTime" jdbcType="TIMESTAMP" />
+        <result column="fleave_type" property="fleaveType" jdbcType="INTEGER" />
+        <result column="fstart_time" property="fstartTime" jdbcType="TIMESTAMP" />
+        <result column="fend_time" property="fendTime" jdbcType="TIMESTAMP" />
+        <result column="fstatus" property="fstatus" jdbcType="INTEGER" />
+        <result column="fuid_charge" property="fuidCharge" jdbcType="INTEGER" />
+        <result column="fuid_charge_hand" property="fuidChargeHand" jdbcType="TIMESTAMP" />
+        <result column="fuid_manager" property="fuidManager" jdbcType="INTEGER" />
+        <result column="fuid_manager_hand" property="fuidManagerHand" jdbcType="TIMESTAMP" />
+        <result column="fuid_staffing" property="fuidStaffing" jdbcType="INTEGER" />
+        <result column="fuid_staffing_hand" property="fuidStaffingHand" jdbcType="TIMESTAMP" />
+        <result column="uusername" property="uusername" jdbcType="VARCHAR" />
+        <result column="dname" property="dname" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="ResultMapWithBLOBs" type="swtech.pageDesignControl.entity.Flow" extends="BaseResultMap" >
+        <result column="fapply_reason" property="fapplyReason" jdbcType="LONGVARCHAR" />
+        <result column="fuid_charge_refuse" property="fuidChargeRefuse" jdbcType="LONGVARCHAR" />
+        <result column="fuid_manager_refuse" property="fuidManagerRefuse" jdbcType="LONGVARCHAR" />
+        <association property="onbusInessFlow" javaType="swtech.pageDesignControl.entity.OnbusInessFlow">
+            <id column="oif_id" property="oifId" jdbcType="INTEGER" />
+            <result column="fid" property="fid" jdbcType="INTEGER" />
+            <result column="oif_peer" property="oifPeer" jdbcType="VARCHAR" />
+            <result column="oif_site" property="oifSite" jdbcType="VARCHAR" />
+            <result column="oif_if_vehicle" property="oifIfVehicle" jdbcType="INTEGER" />
+            <result column="oif_if_putup" property="oifIfPutup" jdbcType="INTEGER" />
+            <result column="oif_if_board" property="oifIfBoard" jdbcType="INTEGER" />
+            <result column="oif_host" property="oifHost" jdbcType="VARCHAR" />
+            <result column="oif_ftype" property="oifFtype" jdbcType="INTEGER" />
+        </association>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+    fid, ftype, uid, fapply_time, fleave_type, fstart_time, fend_time, fstatus, fuid_charge,
+    fuid_charge_hand, fuid_manager, fuid_manager_hand, fuid_staffing, fuid_staffing_hand,uusername,dname
+  </sql>
+    <sql id="Blob_Column_List" >
+    fapply_reason, fuid_charge_refuse, fuid_manager_refuse
+  </sql>
+
+    <select id="selectByUid" resultType="swtech.pageDesignControl.common.vo.FlowVO" parameterType="java.lang.Integer">
+        SELECT * FROM flow where uid = #{uid}
+    </select>
+
+</mapper>
