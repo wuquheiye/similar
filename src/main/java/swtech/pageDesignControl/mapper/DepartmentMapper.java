@@ -31,4 +31,5 @@ public interface DepartmentMapper extends BaseMapper<Department> {
      * @return
      */
     int selectCount();
+
 }

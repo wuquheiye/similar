@@ -42,4 +42,22 @@
         join role r on ur.rid = r.rid
         where r.rid = #{rid}
     </select>
+
+    <select id="findUsersByName" resultType="swtech.pageDesignControl.entity.Users" parameterType="java.lang.String">
+        SELECT * from users where uusername = #{username}
+    </select>
+
+    <select id="getAllCompany" resultType="String">
+        select DISTINCT arts_vision from department
+    </select>
+
+    <select id="getAllDepartmentByCompany" resultType="swtech.pageDesignControl.entity.Department"
+            parameterType="String">
+        select * from department where arts_vision = #{artsVision}
+    </select>
+
+    <select id="getAllUsersByDepartment" resultType="swtech.pageDesignControl.entity.Users"
+            parameterType="Integer">
+       select * from users where did = #{did}
+    </select>
 </mapper>

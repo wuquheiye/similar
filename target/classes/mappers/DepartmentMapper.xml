@@ -9,8 +9,4 @@
         </if>
         LIMIT #{pageStart},#{pageSize}
     </select>
-
-    <select id="selectCount" resultType="int">
-        SELECT count(*) FROM department
-    </select>
 </mapper>
