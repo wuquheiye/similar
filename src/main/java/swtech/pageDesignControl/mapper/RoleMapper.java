@@ -3,6 +3,7 @@ package swtech.pageDesignControl.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import swtech.pageDesignControl.entity.Role;
+import swtech.pageDesignControl.entity.Users;
 
 import java.util.List;
 
@@ -39,4 +40,6 @@ public interface RoleMapper extends BaseMapper<Role> {
      * @return
      */
     int selectCount();
+
+
 }

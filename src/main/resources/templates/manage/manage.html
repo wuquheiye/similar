@@ -1153,11 +1153,6 @@
                         <div class="form-group">
                             <label for="uid">选择所属用户</label>
                             <select class="form-control" id="uid">
-                                <!--                                <option>1</option>-->
-                                <!--                                <option>2</option>-->
-                                <!--                                <option>3</option>-->
-                                <!--                                <option>4</option>-->
-                                <!--                                <option>5</option>-->
                             </select>
                         </div>
                     </form>
@@ -1181,7 +1176,11 @@
                             <td><input type="text" class="" placeholder="" id="psex"></td>
                             <td>民族</td>
                             <td colspan="2"><input type="text" class="" placeholder="" id="pnation"></td>
-                            <td rowspan="4"><img src=" http://img.wanyx.com/softImg/soft/1650_s.jpg" id="pimg"/></td>
+                            <td rowspan="4">
+                                <input type="file" id="img_upload" />
+                                <div id="img_area">
+                                </div>
+                            </td>
                         </tr>
                         <tr>
                             <td>婚姻状态</td>
@@ -1343,7 +1342,7 @@
                                         class="true" checked></td>
                             <td>否<input type="radio" name="pemploymentseparation" id="pemploymentseparation2"
                                         class="true"></td>
-                            <td>是否有犯罪记录</td>
+                            <td colspan="2">是否有犯罪记录</td>
                             <td>否<input type="radio" name="pcriminalrecord" id="pcriminalrecord1" class="false" checked>
                             </td>
                             <td>是<input type="radio" name="pcriminalrecord" id="pcriminalrecord2" class="false"></td>

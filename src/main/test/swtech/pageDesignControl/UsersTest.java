@@ -6,6 +6,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.common.utils.DateUtil;
 import swtech.pageDesignControl.common.vo.UsersVO;
+import swtech.pageDesignControl.entity.Department;
+import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IUsersService;
@@ -120,7 +122,31 @@ public class UsersTest {
 
     @Test
     public void getPermission() {
-        List<String> users = iUsersService.getPermission("立捷总经理");
+        List<Permission> users = iUsersService.getPermission("立捷总经理");
+        System.out.println(users);
+    }
+
+    @Test
+    public void selectUsersByRid() {
+        List<Users> users = usersMapper.selectUsersByRid(33);
+        System.out.println(users);
+    }
+
+    @Test
+    public void getAllCompany() {
+        List<String> users = usersMapper.getAllCompany();
+        System.out.println(users);
+    }
+
+    @Test
+    public void getAllDepartmentByCompany() {
+        List<Department> users = usersMapper.getAllDepartmentByCompany("1");
+        System.out.println(users);
+    }
+
+    @Test
+    public void getAllUsersByDepartment() {
+        List<Users> users = usersMapper.getAllUsersByDepartment(1);
         System.out.println(users);
     }
 }

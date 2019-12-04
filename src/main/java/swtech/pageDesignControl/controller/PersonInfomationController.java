@@ -71,8 +71,8 @@ public class PersonInfomationController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/personinfomation/updatebyid")
-    public ReturnMsg updateById(PersonInfomation personInfomation) {
+    @RequestMapping("/manage/personinfomation/updatebyid")
+    public ReturnMsg updateById(@RequestBody PersonInfomation personInfomation) {
         ReturnMsg msg = new ReturnMsg();
         try {
             boolean isTrue = iPersonInfomationService.updateById(personInfomation);

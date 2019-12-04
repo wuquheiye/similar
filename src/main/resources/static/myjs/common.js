@@ -36,13 +36,13 @@ function login() {
         success: function (msg) {
             if (msg.statusMsg == "登陆成功") {
                 window.sessionStorage.removeItem("login");
-               window.sessionStorage.setItem("login", JSON.stringify(msg.msg));
-
-                // alert(lastname)
+                window.sessionStorage.setItem("login", JSON.stringify(msg.msg));
+                // var loginUser = JSON.parse(sessionStorage.getItem('login'));
+                // console.log(loginUser.users.uusername)
+                window.location.href = pageDesignControl_HOST + "use/index.html";
             } else {
                 alert(msg.statusMsg)
             }
-            window.location.href = pageDesignControl_HOST + "use/index.html";
         }
     });
 }
@@ -558,15 +558,15 @@ function selectLeaveAll(uid) {
  * 加班时间段
  */
 function overtimeType(e) {
-    let desc='';
+    let desc = '';
     // alert("overtimeTypeS.WORKDAY.code"+overtimeTypeS.WORKDAY.code)
     // alert("e"+e)
-    if(e==overtimeTypeS.WORKDAY.code){
-        desc=overtimeTypeS.WORKDAY.desc;
-    }else if(e==overtimeTypeS.WEEKEND.code){
-        desc=overtimeTypeS.WEEKEND.code;
-    }else if(e==overtimeTypeS.HOLIDAYS.code){
-        desc=overtimeTypeS.HOLIDAYS.desc;
+    if (e == overtimeTypeS.WORKDAY.code) {
+        desc = overtimeTypeS.WORKDAY.desc;
+    } else if (e == overtimeTypeS.WEEKEND.code) {
+        desc = overtimeTypeS.WEEKEND.code;
+    } else if (e == overtimeTypeS.HOLIDAYS.code) {
+        desc = overtimeTypeS.HOLIDAYS.desc;
     }
     return desc;
 }
@@ -574,8 +574,8 @@ function overtimeType(e) {
 /**
  * 获取总人数
  */
-function  getNumProper(e) {
-    let numProper=e.split(",").length;
+function getNumProper(e) {
+    let numProper = e.split(",").length;
     return numProper;
 }
 
@@ -583,10 +583,10 @@ function  getNumProper(e) {
  * yes or no
  */
 function yesOrNofun(e) {
-    let desc='';
-    if(e==yesOrNo.YES.code){
-        desc=yesOrNo.YES.desc;
-    }else if(e==yesOrNo.NO.code){
+    let desc = '';
+    if (e == yesOrNo.YES.code) {
+        desc = yesOrNo.YES.desc;
+    } else if (e == yesOrNo.NO.code) {
         desc = yesOrNo.NO.desc;
     }
     return desc;
@@ -596,16 +596,16 @@ function yesOrNofun(e) {
  * 印章使用
  */
 function sealsUseDesc(e) {
-    let desc ='';
-    if(e==sealsUseType.COMPANYSEAL.code){
+    let desc = '';
+    if (e == sealsUseType.COMPANYSEAL.code) {
         desc = sealsUseType.COMPANYSEAL.desc;
-    }else if(e==sealsUseType.ELSESEAL.code){
+    } else if (e == sealsUseType.ELSESEAL.code) {
         desc = sealsUseType.ELSESEAL.desc;
-    }else if(e==sealsUseType.FINANCESEAL.code){
+    } else if (e == sealsUseType.FINANCESEAL.code) {
         desc = sealsUseType.FINANCESEAL.desc;
-    }else if(e==sealsUseType.LEGALPERSONSEAL.code){
+    } else if (e == sealsUseType.LEGALPERSONSEAL.code) {
         desc = sealsUseType.LEGALPERSONSEAL.desc;
-    }else if(e==sealsUseType.PACTSEAL.code){
+    } else if (e == sealsUseType.PACTSEAL.code) {
         desc = sealsUseType.PACTSEAL.desc;
     }
     return desc;

@@ -5,6 +5,31 @@ var personInfomationManageId = 0;
 var personInfomationPname = "";
 $(function () {
     /**
+     * 图片改变事件
+     */
+    window.onload = function () {
+        var img_upload = document.getElementById("img_upload");
+        var img_area = document.getElementById("img_area");
+        img_upload.addEventListener('change', readFile, false);
+    }
+
+    /**
+     * 将图片转换为Base64
+     */
+    function readFile() {
+        var file = this.files[0];//这里是抓取到上传的对象。
+        if (!/image\/\w+/.test(file.type)) {
+            alert("请选择正确格式");
+            return false;
+        }
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function () {
+            img_area.innerHTML = '<img id="pimg" src="' + this.result + '"/>';
+        }
+    }
+
+    /**
      * 左侧显示隐藏并获取个人档案列表
      */
     $(".manageLeft").on("click", "#personInfomationManage", function () {
@@ -109,10 +134,98 @@ function getPersonInfomation() {
         contentType: 'application/json',
         dataType: 'json',
         data: {"pid": pid},
+        async: false,
         success: function (msg) {
             if (msg.status == 200) {
                 personInfomationPname = msg.msg.pname;
+                $("#img_area").html('<img id="pimg" src="'+msg.msg.pimg+'"/>') ;
                 $(".personInfomationManageEdit #pname").val(msg.msg.pname);
+                $(".personInfomationManageEdit #uid option:selected").val(msg.msg.uid);
+                $(".personInfomationManageEdit #pdepartment").val(msg.msg.pdepartment);
+                $(".personInfomationManageEdit #pposition").val(msg.msg.pposition);
+                $(".personInfomationManageEdit #pcreatedate").val(msg.msg.pcreatedate);
+                $(".personInfomationManageEdit #personInfomationname").val(msg.msg.pname);
+                $(".personInfomationManageEdit #psex").val(msg.msg.psex);
+                $(".personInfomationManageEdit #pnation").val(msg.msg.pnation);
+                $(".personInfomationManageEdit #pmarriage").val(msg.msg.pmarriage);
+                $(".personInfomationManageEdit #ppolitics").val(msg.msg.ppolitics);
+                $(".personInfomationManageEdit #pbirthday").val(msg.msg.pbirthday);
+                $(".personInfomationManageEdit #pacademic").val(msg.msg.pacademic);
+                $(".personInfomationManageEdit #pmajor").val(msg.msg.pmajor);
+                $(".personInfomationManageEdit #pschool").val(msg.msg.pschool);
+                $(".personInfomationManageEdit #pgraduationdate").val(msg.msg.pgraduationdate);
+                $(".personInfomationManageEdit #pdegree").val(msg.msg.pdegree);
+                $(".personInfomationManageEdit #pprofessional").val(msg.msg.pprofessional);
+                $(".personInfomationManageEdit #ptelephonenumber").val(msg.msg.ptelephonenumber);
+                $(".personInfomationManageEdit #phiredate").val(msg.msg.phiredate);
+                $(".personInfomationManageEdit #paddress").val(msg.msg.paddress);
+                $(".personInfomationManageEdit #pidcard").val(msg.msg.pidcard);
+                $(".personInfomationManageEdit #pbankaccount").val(msg.msg.pbankaccount);
+                $(".personInfomationManageEdit #popenbank").val(msg.msg.popenbank);
+                $(".personInfomationManageEdit #peducationdate1").val(msg.msg.peducationdate1);
+                $(".personInfomationManageEdit #peducationdate2").val(msg.msg.peducationdate2);
+                $(".personInfomationManageEdit #peducationdate3").val(msg.msg.peducationdate3);
+                $(".personInfomationManageEdit #peducationschool1").val(msg.msg.peducationschool1);
+                $(".personInfomationManageEdit #peducationschool2").val(msg.msg.peducationschool2);
+                $(".personInfomationManageEdit #peducationschool3").val(msg.msg.peducationschool3);
+                $(".personInfomationManageEdit #peducationmajor1").val(msg.msg.peducationmajor1);
+                $(".personInfomationManageEdit #peducationmajor2").val(msg.msg.peducationmajor2);
+                $(".personInfomationManageEdit #peducationmajor3").val(msg.msg.peducationmajor3);
+                $(".personInfomationManageEdit #peducationdegree1").val(msg.msg.peducationdegree1);
+                $(".personInfomationManageEdit #peducationdegree2").val(msg.msg.peducationdegree2);
+                $(".personInfomationManageEdit #peducationdegree3").val(msg.msg.peducationdegree3);
+                $(".personInfomationManageEdit #peducationcertificate1").val(msg.msg.peducationcertificate1);
+                $(".personInfomationManageEdit #peducationcertificate2").val(msg.msg.peducationcertificate2);
+                $(".personInfomationManageEdit #peducationcertificate3").val(msg.msg.peducationcertificate3);
+                $(".personInfomationManageEdit #pqualification").val(msg.msg.pqualification);
+                $(".personInfomationManageEdit #pqualificationdate").val(msg.msg.pqualificationdate);
+                $('.personInfomationManageEdit #pprofessionalcad').attr('checked', msg.msg.pprofessionalcad);
+                $('.personInfomationManageEdit #pprofessionalps').attr('checked', msg.msg.pprofessionalps);
+                $('.personInfomationManageEdit #pprofessional3dmax').attr('checked', msg.msg.pprofessional3dmax);
+                $('.personInfomationManageEdit #pprofessionaltarch').attr('checked', msg.msg.pprofessionaltarch);
+                $('.personInfomationManageEdit #pprofessionalother').attr('checked', msg.msg.pprofessionalother);
+                $(".personInfomationManageEdit #pexperiencedate1").val(msg.msg.pexperiencedate1);
+                $(".personInfomationManageEdit #pexperiencedate2").val(msg.msg.pexperiencedate2);
+                $(".personInfomationManageEdit #pexperiencedate3").val(msg.msg.pexperiencedate3);
+                $(".personInfomationManageEdit #pexperienceunit1").val(msg.msg.pexperienceunit1);
+                $(".personInfomationManageEdit #pexperienceunit2").val(msg.msg.pexperienceunit2);
+                $(".personInfomationManageEdit #pexperienceunit3").val(msg.msg.pexperienceunit3);
+                $(".personInfomationManageEdit #pexperiencepost1").val(msg.msg.pexperiencepost1);
+                $(".personInfomationManageEdit #pexperiencepost2").val(msg.msg.pexperiencepost2);
+                $(".personInfomationManageEdit #pexperiencepost3").val(msg.msg.pexperiencepost3);
+                $(".personInfomationManageEdit #pexperiencepay1").val(msg.msg.pexperiencepay1);
+                $(".personInfomationManageEdit #pexperiencepay2").val(msg.msg.pexperiencepay2);
+                $(".personInfomationManageEdit #pexperiencepay3").val(msg.msg.pexperiencepay3);
+                $(".personInfomationManageEdit #pexperiencedimission1").val(msg.msg.pexperiencedimission1);
+                $(".personInfomationManageEdit #pexperiencedimission2").val(msg.msg.pexperiencedimission2);
+                $(".personInfomationManageEdit #pexperiencedimission3").val(msg.msg.pexperiencedimission3);
+                $(".personInfomationManageEdit #pexperiencedimissionnumber1").val(msg.msg.pexperiencedimissionnumber1);
+                $(".personInfomationManageEdit #pexperiencedimissionnumber2").val(msg.msg.pexperiencedimissionnumber2);
+                $(".personInfomationManageEdit #pexperiencedimissionnumber3").val(msg.msg.pexperiencedimissionnumber3);
+                $(".personInfomationManageEdit #pfamilyfamilyname1").val(msg.msg.pfamilyfamilyname1);
+                $(".personInfomationManageEdit #pfamilyfamilyname2").val(msg.msg.pfamilyfamilyname2);
+                $(".personInfomationManageEdit #pfamilyfamilyname3").val(msg.msg.pfamilyfamilyname3);
+                $(".personInfomationManageEdit #pfamilyfamilyage1").val(msg.msg.pfamilyfamilyage1);
+                $(".personInfomationManageEdit #pfamilyfamilyage2").val(msg.msg.pfamilyfamilyage2);
+                $(".personInfomationManageEdit #pfamilyfamilyage3").val(msg.msg.pfamilyfamilyage3);
+                $(".personInfomationManageEdit #pfamilyfamilyunit1").val(msg.msg.pfamilyfamilyunit1);
+                $(".personInfomationManageEdit #pfamilyfamilyunit2").val(msg.msg.pfamilyfamilyunit2);
+                $(".personInfomationManageEdit #pfamilyfamilyunit3").val(msg.msg.pfamilyfamilyunit3);
+                $(".personInfomationManageEdit #pfamilyfamilypost1").val(msg.msg.pfamilyfamilypost1);
+                $(".personInfomationManageEdit #pfamilyfamilypost2").val(msg.msg.pfamilyfamilypost2);
+                $(".personInfomationManageEdit #pfamilyfamilypost3").val(msg.msg.pfamilyfamilypost3);
+                $(".personInfomationManageEdit #pfamilyfamilynumber1").val(msg.msg.pfamilyfamilynumber1);
+                $(".personInfomationManageEdit #pfamilyfamilynumber2").val(msg.msg.pfamilyfamilynumber2);
+                $(".personInfomationManageEdit #pfamilyfamilynumber3").val(msg.msg.pfamilyfamilynumber3);
+                $(".personInfomationManageEdit #pemergencycontactname").val(msg.msg.pemergencycontactname);
+                $(".personInfomationManageEdit #pemergencycontactnumber").val(msg.msg.pemergencycontactnumber);
+                $(".personInfomationManageEdit #pinformationid").attr('checked', msg.msg.pinformationid);
+                $(".personInfomationManageEdit #pinformationbank").attr('checked', msg.msg.pinformationbank);
+                $(".personInfomationManageEdit #pinformationeducation").attr('checked', msg.msg.pinformationeducation);
+                $(".personInfomationManageEdit #pinformationother").attr('checked', msg.msg.pinformationother);
+                $("input[name='pemploymentseparation'][id = " + msg.msg.pemploymentseparation + "]").prop("checked", "checked");
+                $("input[name='pcriminalrecord'][id = " + msg.msg.pcriminalrecord + "]").prop("checked", "checked");
+                $(".personInfomationManageEdit #uid").val(msg.msg.uid);
             }
         }
     });
@@ -175,43 +288,21 @@ function isPnameHendiadysPersonInfomation(uid) {
 function updatePersonInfomation() {
     var pid = personInfomationManageId;
     var personInfomation = $(".personInfomationManageEdit #personInfomationname").val();
+    var pimg = $("#img_area #pimg").attr("src");
     if (!personInfomation) {
         alert("个人档案名称不能为空");
-    } else if (isPnameHendiadysPersonInfomation($(".personInfomationManageEdit #uid option:selected").val()) && personInfomationUid != $(".personInfomationManageEdit #uid option:selected").val()) {
+    } else if (isPnameHendiadysPersonInfomation($(".personInfomationManageEdit #uid option:selected").val()) && personInfomationPname != $(".personInfomationManageEdit #personInfomationname").val()) {
         alert("个人档案名称不能重复");
     } else {
         $.ajax({
             url: pageDesignControl_HOST + 'manage/personinfomation/updatebyid',
-            type: 'Get',
-            contentType: 'application/json',
-            dataType: 'json',
-            data: {"personInfomationname": personInfomationname, "pid": pid},
-            success: function (msg) {
-                if (msg.status == 200) {
-                    alert("更改成功")
-                }
-            }
-        });
-    }
-}
-
-/**
- * 添加个人档案
- */
-function savePersonInfomation() {
-    var personInfomationname = $(".personInfomationManageEdit #personInfomationname").val();
-    if (!personInfomationname) {
-        alert("个人档案名称不能为空");
-    } else if (isPnameHendiadysPersonInfomation($(".personInfomationManageEdit #uid option:selected").val())) {
-        alert("个人档案名称所属用户不能重复");
-    } else {
-        $.ajax({
-            url: pageDesignControl_HOST + 'manage/personinfomation/save',
             type: 'Post',
             contentType: 'application/json',
             dataType: 'json',
             data: JSON.stringify({
-                'uid':  $(".personInfomationManageEdit #uid option:selected").val(),
+                "pid": pid,
+                'pimg': pimg,
+                'uid': $(".personInfomationManageEdit #uid option:selected").val(),
                 'pdepartment': $(".personInfomationManageEdit #pdepartment").val(),
                 'pposition': $(".personInfomationManageEdit #pposition").val(),
                 'pcreatedate': $(".personInfomationManageEdit #pcreatedate").val(),
@@ -227,7 +318,6 @@ function savePersonInfomation() {
                 'pgraduationdate': $(".personInfomationManageEdit #pgraduationdate").val(),
                 'pdegree': $(".personInfomationManageEdit #pdegree").val(),
                 'pprofessional': $(".personInfomationManageEdit #pprofessional").val(),
-                'pimg': $(".personInfomationManageEdit #pimg").val(),
                 'ptelephonenumber': $(".personInfomationManageEdit #ptelephonenumber").val(),
                 'phiredate': $(".personInfomationManageEdit #phiredate").val(),
                 'paddress': $(".personInfomationManageEdit #paddress").val(),
@@ -295,13 +385,131 @@ function savePersonInfomation() {
                 'pinformationbank': $(".personInfomationManageEdit #pinformationbank").prop('checked'),
                 'pinformationeducation': $(".personInfomationManageEdit #pinformationeducation").prop('checked'),
                 'pinformationother': $(".personInfomationManageEdit #pinformationother").prop('checked'),
-                'pemploymentseparation': $("input[name='pemploymentseparation']:checked").attr("class"),
-                'pcriminalrecord': $("input[name='pcriminalrecord']:checked").attr("class"),
+                'pemploymentseparation': $("input[name='pemploymentseparation']:checked").attr("id"),
+                'pcriminalrecord': $("input[name='pcriminalrecord']:checked").attr("id"),
+                'uid': $(".personInfomationManageEdit #uid").val(),
+            }),
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("更改成功")
+                }else{
+                    alert(msg.statusMsg)
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 添加个人档案
+ */
+function savePersonInfomation() {
+    var personInfomationname = $(".personInfomationManageEdit #personInfomationname").val();
+    var pimg = $("#img_area img").attr("src");
+    if (!personInfomationname) {
+        alert("个人档案名称不能为空");
+    } else if (isPnameHendiadysPersonInfomation($(".personInfomationManageEdit #uid option:selected").val())) {
+        alert("个人档案名称所属用户不能重复");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/personinfomation/save',
+            type: 'Post',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: JSON.stringify({
+                'pimg': pimg,
+                'uid': $(".personInfomationManageEdit #uid option:selected").val(),
+                'pdepartment': $(".personInfomationManageEdit #pdepartment").val(),
+                'pposition': $(".personInfomationManageEdit #pposition").val(),
+                'pcreatedate': $(".personInfomationManageEdit #pcreatedate").val(),
+                'pname': $(".personInfomationManageEdit #personInfomationname").val(),
+                'psex': $(".personInfomationManageEdit #psex").val(),
+                'pnation': $(".personInfomationManageEdit #pnation").val(),
+                'pmarriage': $(".personInfomationManageEdit #pmarriage").val(),
+                'ppolitics': $(".personInfomationManageEdit #ppolitics").val(),
+                'pbirthday': $(".personInfomationManageEdit #pbirthday").val(),
+                'pacademic': $(".personInfomationManageEdit #pacademic").val(),
+                'pmajor': $(".personInfomationManageEdit #pmajor").val(),
+                'pschool': $(".personInfomationManageEdit #pschool").val(),
+                'pgraduationdate': $(".personInfomationManageEdit #pgraduationdate").val(),
+                'pdegree': $(".personInfomationManageEdit #pdegree").val(),
+                'pprofessional': $(".personInfomationManageEdit #pprofessional").val(),
+                'ptelephonenumber': $(".personInfomationManageEdit #ptelephonenumber").val(),
+                'phiredate': $(".personInfomationManageEdit #phiredate").val(),
+                'paddress': $(".personInfomationManageEdit #paddress").val(),
+                'pidcard': $(".personInfomationManageEdit #pidcard").val(),
+                'pbankaccount': $(".personInfomationManageEdit #pbankaccount").val(),
+                'popenbank': $(".personInfomationManageEdit #popenbank").val(),
+                'peducationdate1': $(".personInfomationManageEdit #peducationdate1").val(),
+                'peducationdate2': $(".personInfomationManageEdit #peducationdate2").val(),
+                'peducationdate3': $(".personInfomationManageEdit #peducationdate3").val(),
+                'peducationschool1': $(".personInfomationManageEdit #peducationschool1").val(),
+                'peducationschool2': $(".personInfomationManageEdit #peducationschool2").val(),
+                'peducationschool3': $(".personInfomationManageEdit #peducationschool3").val(),
+                'peducationmajor1': $(".personInfomationManageEdit #peducationmajor1").val(),
+                'peducationmajor2': $(".personInfomationManageEdit #peducationmajor2").val(),
+                'peducationmajor3': $(".personInfomationManageEdit #peducationmajor3").val(),
+                'peducationdegree1': $(".personInfomationManageEdit #peducationdegree1").val(),
+                'peducationdegree2': $(".personInfomationManageEdit #peducationdegree2").val(),
+                'peducationdegree3': $(".personInfomationManageEdit #peducationdegree3").val(),
+                'peducationcertificate1': $(".personInfomationManageEdit #peducationcertificate1").val(),
+                'peducationcertificate2': $(".personInfomationManageEdit #peducationcertificate2").val(),
+                'peducationcertificate3': $(".personInfomationManageEdit #peducationcertificate3").val(),
+                'pqualification': $(".personInfomationManageEdit #pqualification").val(),
+                'pqualificationdate': $(".personInfomationManageEdit #pqualificationdate").val(),
+                'pprofessionalcad': $('.personInfomationManageEdit #pprofessionalcad').prop('checked'),
+                'pprofessionalps': $('.personInfomationManageEdit #pprofessionalps').prop('checked'),
+                'pprofessional3dmax': $('.personInfomationManageEdit #pprofessional3dmax').prop('checked'),
+                'pprofessionaltarch': $('.personInfomationManageEdit #pprofessionaltarch').prop('checked'),
+                'pprofessionalother': $('.personInfomationManageEdit #pprofessionalother').prop('checked'),
+                'pexperiencedate1': $(".personInfomationManageEdit #pexperiencedate1").val(),
+                'pexperiencedate2': $(".personInfomationManageEdit #pexperiencedate2").val(),
+                'pexperiencedate3': $(".personInfomationManageEdit #pexperiencedate3").val(),
+                'pexperienceunit1': $(".personInfomationManageEdit #pexperienceunit1").val(),
+                'pexperienceunit2': $(".personInfomationManageEdit #pexperienceunit2").val(),
+                'pexperienceunit3': $(".personInfomationManageEdit #pexperienceunit3").val(),
+                'pexperiencepost1': $(".personInfomationManageEdit #pexperiencepost1").val(),
+                'pexperiencepost2': $(".personInfomationManageEdit #pexperiencepost2").val(),
+                'pexperiencepost3': $(".personInfomationManageEdit #pexperiencepost3").val(),
+                'pexperiencepay1': $(".personInfomationManageEdit #pexperiencepay1").val(),
+                'pexperiencepay2': $(".personInfomationManageEdit #pexperiencepay2").val(),
+                'pexperiencepay3': $(".personInfomationManageEdit #pexperiencepay3").val(),
+                'pexperiencedimission1': $(".personInfomationManageEdit #pexperiencedimission1").val(),
+                'pexperiencedimission2': $(".personInfomationManageEdit #pexperiencedimission2").val(),
+                'pexperiencedimission3': $(".personInfomationManageEdit #pexperiencedimission3").val(),
+                'pexperiencedimissionnumber1': $(".personInfomationManageEdit #pexperiencedimissionnumber1").val(),
+                'pexperiencedimissionnumber2': $(".personInfomationManageEdit #pexperiencedimissionnumber2").val(),
+                'pexperiencedimissionnumber3': $(".personInfomationManageEdit #pexperiencedimissionnumber3").val(),
+                'pfamilyfamilyname1': $(".personInfomationManageEdit #pfamilyfamilyname1").val(),
+                'pfamilyfamilyname2': $(".personInfomationManageEdit #pfamilyfamilyname2").val(),
+                'pfamilyfamilyname3': $(".personInfomationManageEdit #pfamilyfamilyname3").val(),
+                'pfamilyfamilyage1': $(".personInfomationManageEdit #pfamilyfamilyage1").val(),
+                'pfamilyfamilyage2': $(".personInfomationManageEdit #pfamilyfamilyage2").val(),
+                'pfamilyfamilyage3': $(".personInfomationManageEdit #pfamilyfamilyage3").val(),
+                'pfamilyfamilyunit1': $(".personInfomationManageEdit #pfamilyfamilyunit1").val(),
+                'pfamilyfamilyunit2': $(".personInfomationManageEdit #pfamilyfamilyunit2").val(),
+                'pfamilyfamilyunit3': $(".personInfomationManageEdit #pfamilyfamilyunit3").val(),
+                'pfamilyfamilypost1': $(".personInfomationManageEdit #pfamilyfamilypost1").val(),
+                'pfamilyfamilypost2': $(".personInfomationManageEdit #pfamilyfamilypost2").val(),
+                'pfamilyfamilypost3': $(".personInfomationManageEdit #pfamilyfamilypost3").val(),
+                'pfamilyfamilynumber1': $(".personInfomationManageEdit #pfamilyfamilynumber1").val(),
+                'pfamilyfamilynumber2': $(".personInfomationManageEdit #pfamilyfamilynumber2").val(),
+                'pfamilyfamilynumber3': $(".personInfomationManageEdit #pfamilyfamilynumber3").val(),
+                'pemergencycontactname': $(".personInfomationManageEdit #pemergencycontactname").val(),
+                'pemergencycontactnumber': $(".personInfomationManageEdit #pemergencycontactnumber").val(),
+                'pinformationid': $(".personInfomationManageEdit #pinformationid").prop('checked'),
+                'pinformationbank': $(".personInfomationManageEdit #pinformationbank").prop('checked'),
+                'pinformationeducation': $(".personInfomationManageEdit #pinformationeducation").prop('checked'),
+                'pinformationother': $(".personInfomationManageEdit #pinformationother").prop('checked'),
+                'pemploymentseparation': $("input[name='pemploymentseparation']:checked").attr("id"),
+                'pcriminalrecord': $("input[name='pcriminalrecord']:checked").attr("id"),
                 'uid': $(".personInfomationManageEdit #uid").val(),
             }),
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -322,6 +530,8 @@ function removePersonInfomation(pid) {
             if (msg.status == 200) {
                 getPersonInfomationList(1);
                 alert("删除成功")
+            }else{
+                alert(msg.statusMsg)
             }
         }
     });
@@ -355,8 +565,6 @@ function getPersonInfomationList(page) {
                         '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
                         '<button type="button" class="btn btn-warning manageEdit personInfomationManageUpdate">修改</button>' +
                         '<input type="hidden" class="personInfomationManageEdit">' +
-                        '<button type="button" class="btn btn-warning manageEdit personInfomationManageUpdate">查看详情</button>' +
-                        '<input type="hidden" class="' + msg.msg[i].pid + '" />' +
                         '</td>' +
                         '</tr>'
                 }
@@ -614,6 +822,8 @@ function updateUsers() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -638,6 +848,8 @@ function updateUustate(uid, ustate) {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -697,6 +909,8 @@ function saveUsers() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -719,6 +933,8 @@ function removeUsers(uid) {
                 if (msg.status == 200) {
                     getUsersList(1);
                     alert("删除成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -1087,10 +1303,12 @@ function updateDepartment() {
             type: 'Get',
             contentType: 'application/json',
             dataType: 'json',
-            data: {"dname": dname, "did": did,"artsVision":artsVision},
+            data: {"dname": dname, "did": did, "artsVision": artsVision},
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -1113,10 +1331,12 @@ function saveDepartment() {
             type: 'Get',
             contentType: 'application/json',
             dataType: 'json',
-            data: {"dname": dname,"artsVision":artsVision},
+            data: {"dname": dname, "artsVision": artsVision},
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -1137,6 +1357,8 @@ function removeDepartment(did) {
             if (msg.status == 200) {
                 getDepartmentList(1);
                 alert("删除成功")
+            }else{
+                alert(msg.statusMsg)
             }
         }
     });
@@ -1164,7 +1386,7 @@ function getDepartmentList(page) {
                         '<input type="hidden" class="' + msg.msg[i].did + '" />' +
                         '</td>' +
                         '<td class="text-center">' + msg.msg[i].dcreateTime + '</td>' +
-                        '<td class="text-center">' + (msg.msg[i].artsVision == 0?"广州利捷有限公司":"广州利捷总公司") + '</td>' +
+                        '<td class="text-center">' + (msg.msg[i].artsVision == 0 ? "广州利捷有限公司" : "广州利捷总公司") + '</td>' +
                         '<td class="text-center">' +
                         '<button type="button" class="btn btn-info delete" >删除</button>' +
                         '<input type="hidden" class="' + msg.msg[i].did + '" />' +
@@ -1351,6 +1573,8 @@ function updateRole() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -1377,6 +1601,8 @@ function saveRole() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -1423,6 +1649,8 @@ function removeRole(rid) {
             if (msg.status == 200) {
                 getRoleList(1);
                 alert("删除成功")
+            }else{
+                alert(msg.statusMsg)
             }
         }
     });
@@ -1437,18 +1665,18 @@ function getRtype(rtype) {
         return "主管";
     } else if (rtype == 4) {
         return "经理";
-    }else if (rtype == 5) {
+    } else if (rtype == 5) {
         return "财务";
-    }else if (rtype == 6) {
+    } else if (rtype == 6) {
         return "总经理";
-    }else if (rtype == 7) {
+    } else if (rtype == 7) {
         return "立捷总经理";
     } else {
         return "未分配";
     }
 }
 
- /**
+/**
  * 生成角色列表
  */
 function getRoleList(page) {
@@ -1658,7 +1886,6 @@ $(function () {
                         }
                     });
                 }
-                alert("修改成功")
             }
         });
     });
@@ -1808,6 +2035,8 @@ function updatePermission() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -1837,6 +2066,8 @@ function savePermission() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
+                }else{
+                    alert(msg.statusMsg)
                 }
             }
         });
@@ -1857,6 +2088,8 @@ function removePermission(pid) {
             if (msg.status == 200) {
                 getPermissionList();
                 alert("删除成功")
+            }else{
+                alert(msg.statusMsg)
             }
         }
     });
