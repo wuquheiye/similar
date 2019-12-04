@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.entity.PersonInfomation;
+import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.PersonInfomationMapper;
 import swtech.pageDesignControl.service.impl.PersonInfomationServiceImpl;
 
@@ -48,5 +49,11 @@ public class PersonInfomationTest {
         personInfomation.setPname("1");
         boolean num = personInfomationService.save(personInfomation);
         System.out.println(num);
+    }
+
+    @Test
+    public void selectUsersByRid() {
+        PersonInfomation users = personInfomationMapper.selectByUid(33);
+        System.out.println(users);
     }
 }

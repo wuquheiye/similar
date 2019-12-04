@@ -43,18 +43,18 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     private PermissionMapper permissionMapper;
 
     @Override
-    public LoginVO getLoginVO(String uusername) {
-        if ("".equals(uusername)) {
+    public LoginVO getLoginVO(String utelephonenumber) {
+        if ("".equals(utelephonenumber)) {
             return null;
         }
         LoginVO loginVO = new LoginVO();
         // 根据用户名查询实体类
-        Users users = usersMapper.findUsersByName(uusername);
+        Users users = usersMapper.findUsersByUtelephonenumber(utelephonenumber);
         if (users == null) {
             return null;
         }
         // 根据用户名查询角色
-        Role role = roleMapper.getRoleByUsername(uusername);
+        Role role = roleMapper.getRoleByUtelephonenumber(utelephonenumber);
         // 根据用户部门id查询部门
         Department department = departmentMapper.selectById(users.getDid());
         int fuidCharge = 0;
@@ -154,9 +154,9 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     }
 
     @Override
-    public List<Permission> getPermission(String uusername) {
+    public List<Permission> getPermission(String utelephonenumber) {
         List<Permission> permissions = new ArrayList<>();
-        Role role = roleMapper.getRoleByUsername(uusername);
+        Role role = roleMapper.getRoleByUtelephonenumber(utelephonenumber);
         if (role == null) {
             return null;
         }
@@ -170,5 +170,31 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     @Override
     public List<Users> selectUsersByRid() {
         return usersMapper.selectUsersByRid();
+    }
+
+    @Override
+    public List<CompanyVO> getAllCompanyInformation() {
+        List<CompanyVO> companyVOList = new ArrayList<>();
+        CompanyVO companyVO0 = new CompanyVO();
+        companyVO0.setCompanyVOId(0);
+        companyVO0.setCompanyVOName("利捷航空分公司");
+        List<DepartmentVO> departmentVOList = usersMapper.getAllDepartmentByCompany(0);
+        for (DepartmentVO departmentVO : departmentVOList) {
+            List<UsersVO> usersList = usersMapper.getAllUsersByDepartment(departmentVO.getDid());
+            departmentVO.setUsersListVO(usersList);
+        }
+        companyVO0.setDepartmentVOList(departmentVOList);
+        CompanyVO companyVO1 = new CompanyVO();
+        companyVO1.setCompanyVOId(1);
+        companyVO1.setCompanyVOName("广州航空总公司");
+        departmentVOList = usersMapper.getAllDepartmentByCompany(1);
+        for (DepartmentVO departmentVO : departmentVOList) {
+            List<UsersVO> usersList = usersMapper.getAllUsersByDepartment(departmentVO.getDid());
+            departmentVO.setUsersListVO(usersList);
+        }
+        companyVO1.setDepartmentVOList(departmentVOList);
+        companyVOList.add(companyVO1);
+        companyVOList.add(companyVO0);
+        return companyVOList;
     }
 }

@@ -1,8 +1,8 @@
 package swtech.pageDesignControl.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import swtech.pageDesignControl.common.vo.DepartmentVO;
 import swtech.pageDesignControl.common.vo.UsersVO;
-import swtech.pageDesignControl.entity.Department;
 import swtech.pageDesignControl.entity.Users;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
@@ -20,10 +20,10 @@ public interface UsersMapper extends BaseMapper<Users> {
     /**
      * 通过用户名获取信息shiro
      *
-     * @param username
+     * @param utelephonenumber
      * @return
      */
-    Users findUsersByName(String username);
+    Users findUsersByUtelephonenumber(String utelephonenumber);
 
     /**
      * 通过部门和角色查询用户
@@ -83,19 +83,12 @@ public interface UsersMapper extends BaseMapper<Users> {
     List<Users> selectGM(@Param("rtype") Integer rtype);
 
     /**
-     * 获取所有公司名称
-     *
-     * @return
-     */
-    List<String> getAllCompany();
-
-    /**
      * 通过公司获取所属部门
      *
      * @param artsVision
      * @return
      */
-    List<Department> getAllDepartmentByCompany(@Param("artsVision")String artsVision);
+    List<DepartmentVO> getAllDepartmentByCompany(@Param("artsVision")Integer artsVision);
 
     /**
      * 通过部门获取所有员工
@@ -103,5 +96,5 @@ public interface UsersMapper extends BaseMapper<Users> {
      * @param did
      * @return
      */
-    List<Users> getAllUsersByDepartment(int did);
+    List<UsersVO> getAllUsersByDepartment(int did);
 }

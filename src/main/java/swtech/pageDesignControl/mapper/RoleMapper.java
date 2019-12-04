@@ -19,10 +19,10 @@ public interface RoleMapper extends BaseMapper<Role> {
     /**
      * 通过用户名查询角色shiro
      *
-     * @param username
+     * @param utelephonenumber
      * @return
      */
-    Role getRoleByUsername(String username);
+    Role getRoleByUtelephonenumber(String utelephonenumber);
 
     /**
      * 分页查询

@@ -13,7 +13,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author 袁君选
@@ -56,7 +56,7 @@ public class PersonInfomationServiceImpl extends ServiceImpl<PersonInfomationMap
 
     @Transactional
     @Override
-    public PersonInfomation  getById(Serializable pid) {
+    public PersonInfomation getById(Serializable pid) {
         return personInfomationMapper.selectById(pid);
     }
 
@@ -71,5 +71,10 @@ public class PersonInfomationServiceImpl extends ServiceImpl<PersonInfomationMap
     @Override
     public int selectCount() {
         return personInfomationMapper.selectCount();
+    }
+
+    @Override
+    public PersonInfomation selectByUid(int uid) {
+        return personInfomationMapper.selectByUid(uid);
     }
 }

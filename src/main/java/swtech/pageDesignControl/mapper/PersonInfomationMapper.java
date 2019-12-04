@@ -33,4 +33,11 @@ public interface PersonInfomationMapper extends BaseMapper<PersonInfomation> {
      */
     int selectCount();
 
+    /**
+     * 通过用户ID查询个人档案
+     *
+     * @param uid
+     * @return
+     */
+    PersonInfomation selectByUid(@Param("uid") int uid);
 }

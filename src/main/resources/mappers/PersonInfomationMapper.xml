@@ -13,4 +13,8 @@
     <select id="selectCount" resultType="int">
         SELECT count(*) FROM person_infomation
     </select>
+
+    <select id="selectByUid" resultType="swtech.pageDesignControl.entity.PersonInfomation">
+         SELECT * FROM person_infomation where uid = #{uid}
+    </select>
 </mapper>

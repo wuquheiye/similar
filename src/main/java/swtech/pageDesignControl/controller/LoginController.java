@@ -62,13 +62,13 @@ public class LoginController {
     @ResponseBody
     public ReturnMsg doLogin(Users users) {
         Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken(users.getUusername(), users.getUpassword());
+        UsernamePasswordToken token = new UsernamePasswordToken(users.getUtelephonenumber(), users.getUpassword());
         ReturnMsg msg = new ReturnMsg();
         try {
             //主体提交登录请求到SecurityManager
             subject.login(token);
             // 缓存到shiro
-            LoginVO loginUser = iUsersService.getLoginVO(users.getUusername());
+            LoginVO loginUser = iUsersService.getLoginVO(users.getUtelephonenumber());
             subject.getSession().setAttribute("loginUser", loginUser);
             LoginVO login = (LoginVO) SecurityUtils.getSubject().getSession().getAttribute("loginUser");
             msg.setStatus("200");
