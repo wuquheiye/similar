@@ -38,5 +38,5 @@ public class Department {
     /**
      * 所属公司
      */
-    private String artsVision;
+    private int artsVision;
 }

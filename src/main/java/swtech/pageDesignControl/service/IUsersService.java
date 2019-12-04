@@ -66,5 +66,5 @@ public interface IUsersService extends IService<Users> {
      * @param rid
      * @return
      */
-    List<Users> selectUsersByRid(int rid);
+    List<Users> selectUsersByRid();
 }

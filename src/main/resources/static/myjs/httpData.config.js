@@ -14,6 +14,16 @@ var fstatusFlow = {
     STAFFINGREFUSE:{code:6,desc:"人事反馈"},
 
 }
+
+var roleType={
+    GM:{code:6,desc:"总经理"},
+    FINANCE:{code:5,desc:"财务"},
+    MANAGE:{code:4,desc:"经理"},
+    GOVERNOR:{code:3,desc:"主管"},
+    ADMINISTRATIVE:{code:1,desc:"人事"},
+    EMPLOYEES:{code:2,desc:"职工"}
+}
+
 // 申请类型
 var ftypeFlow = {
     LEAVE: {code: 1, desc: "请假申请"},

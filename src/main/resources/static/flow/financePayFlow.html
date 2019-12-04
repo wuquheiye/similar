@@ -148,9 +148,7 @@
             </div>
             <div class="col-xs-12" style="line-height: 35px">
                 <select class="form-control" id="fuidManager" style="border: 0px">
-                    <option value="0">选择推送领导</option>
-                    <option value="1">同意</option>
-                    <option value="2">拒绝</option>
+
                 </select>
             </div>
         </div>
@@ -173,7 +171,11 @@
         $("#otSection").text(loginObj.department.dname);
         $("#otName").text(loginObj.users.uusername);
         $("#defuletTime").text(getCurrentTime().split(" ")[0]);
+
+        selectusersbyrid()
     })
+
+
 
     /**
      * 录入请假申请
@@ -202,7 +204,7 @@
             "uusername":loginObj.users.uusername,
             "dname":loginObj.department.dname,
             // "fuidCharge" :loginObj.users.fuidCharge,
-            "fuidManager":loginObj.users.fuidManager,
+            "fuidManager":fuidManager,
             "fchange" : fchange
             // "artsVision":loginObj.department.ArtsVision
         }

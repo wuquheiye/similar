@@ -275,9 +275,9 @@
                 "fapplyReason": fapplyReason,
                 "uusername": loginObj.users.uusername,
                 "dname": loginObj.department.dname,
-                "fuidCharge": loginObj.users.fuidCharge,
-                "fuidManager": loginObj.users.fuidManager,
-                "artsVision":loginObj.department.ArtsVision
+                // "fuidCharge": loginObj.users.fuidCharge,
+                // "fuidManager": roleType.GM.code,
+                // "artsVision":loginObj.department.ArtsVision
             },
             "serveFlow" : {
                 "sfSite":sfSite,
@@ -292,7 +292,7 @@
 
         }
 
-        alert(JSON.stringify(leaveflow))
+        // alert(JSON.stringify(leaveflow))
         $.ajax({
             url: pageDesignControl_HOST + "flow/onbusInessInsert",
             type: "post",

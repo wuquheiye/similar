@@ -222,9 +222,7 @@
             </div>
             <div class="col-xs-12" style="line-height: 35px">
                 <select class="form-control" id="idea" style="border: 0px">
-                    <option value="0">选择推送领导</option>
-                    <option value="1">同意</option>
-                    <option value="2">拒绝</option>
+
                 </select>
             </div>
         </div>
@@ -246,6 +244,7 @@
         // $("#otTitle").text(loginObj.users.uusername+"_加班");
         $("#otSection").text(loginObj.department.dname);
         $("#otName").text(loginObj.users.uusername);
+        selectusersbyrid()
     })
     $("#oifPeer").change(function () {
         let numProper=$("#oifPeer").val().split(",").length;
@@ -280,9 +279,9 @@
                 "fapplyReason":fapplyReason,
                 "uusername":loginObj.users.uusername,
                 "dname":loginObj.department.dname,
-                "fuidCharge" :loginObj.users.fuidCharge,
-                "fuidManager":loginObj.users.fuidManager,
-                "artsVision":loginObj.department.ArtsVision
+                // "fuidCharge" :loginObj.users.fuidCharge,
+                "fuidManager":fuidManager,
+                // "artsVision":loginObj.department.ArtsVision
             },
             "onbusInessFlow":{
                 "oifPeer":oifPeer,//同行人

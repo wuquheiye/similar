@@ -611,4 +611,31 @@ function sealsUseDesc(e) {
     return desc;
 }
 
+/**
+ * 获取全部经理和利捷总经理
+ */
+function selectusersbyrid() {
+    $.ajax({
+        url: pageDesignControl_HOST + "manage/users/selectusersbyrid",
+        type: "get",
+        dataType: "json",
+        // data: JSON.stringify(leaveflow),
+        contentType: 'application/json; charset=UTF-8',
+        async: false,
+        success: function (res) {
+            let showdata='';
+            showdata+='<option value="0">选择推送领导</option>\n' ;
+            if(res.msg!=""){
+                $.each(res.msg,function (index,value) {
+                    showdata+=' <option value="'+value.uid+'">'+value.uusername+'</option>';
+                })
+            }
+            $("#fuidManager").html(showdata);
+        },
+        error:function () {
+            alert("网络异常")
+        }
+    })
+}
+
 // 袁君选end

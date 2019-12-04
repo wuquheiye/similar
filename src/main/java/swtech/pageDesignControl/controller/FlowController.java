@@ -41,8 +41,8 @@ public class FlowController  {
     @ResponseBody
     @GetMapping("/selectChargeHistory")
     public  ReturnMsg selectChargeHistory(@RequestParam("uid") Integer uid ,
-                                          @RequestParam("rid") Integer rid,
-                                          @RequestParam("ArtsVision") Integer ArtsVision){
+                                          @RequestParam("rtype") Integer rid,
+                                          @RequestParam("artsVision") Integer ArtsVision){
         ReturnMsg msg = new ReturnMsg();
         try {
             msg = iFlowService.selectChargeHistory(uid, rid, ArtsVision);

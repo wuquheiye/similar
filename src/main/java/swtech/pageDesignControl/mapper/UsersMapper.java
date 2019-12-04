@@ -71,10 +71,16 @@ public interface UsersMapper extends BaseMapper<Users> {
     /**
      * 根据角色id查询所有的用户
      *
-     * @param rid
+     * @param rtype
      * @return
      */
-    List<Users> selectUsersByRid(@Param("rid") int rid);
+    List<Users> selectUsersByRid();
+
+    /**
+     * yjx
+     * 获取总经理uid
+     */
+    List<Users> selectGM(@Param("rtype") Integer rtype);
 
     /**
      * 获取所有公司名称

@@ -197,6 +197,7 @@
         $("#otSection").text(loginObj.department.dname);
         $("#otName").text(loginObj.users.uusername);
         $("#defuletTime").text(getCurrentTime().split(" ")[0]);
+        selectusersbyrid()
     })
 
     /**
@@ -219,9 +220,9 @@
             "fapplyReason":fapplyReason,
             "uusername":loginObj.users.uusername,
             "dname":loginObj.department.dname,
-            "fuidCharge" :loginObj.users.fuidCharge,
-            "fuidManager":loginObj.users.fuidManager,
-            "artsVision":loginObj.department.ArtsVision
+            // "fuidCharge" :loginObj.users.fuidCharge,
+            "fuidManager":fuidManager,
+            // "artsVision":loginObj.department.ArtsVision
         }
 
         alert(JSON.stringify(leaveflow))
