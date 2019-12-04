@@ -66,4 +66,20 @@ public class UsersVO {
      * 部门
      */
     private Department department;
+
+    /**
+     * id
+     */
+    @TableId(value = "rid", type = IdType.AUTO)
+    private Integer rid;
+
+    /**
+     * 角色名
+     */
+    private String rname;
+
+    /**
+     * 角色等级（1人事,2员工,3主管,4经理,5总经理）
+     */
+    private int rtype;
 }

@@ -1,5 +1,6 @@
 package swtech.pageDesignControl.service;
 
+import org.apache.ibatis.annotations.Param;
 import swtech.pageDesignControl.entity.PersonInfomation;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -7,7 +8,7 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author 袁君选
@@ -32,4 +33,11 @@ public interface IPersonInfomationService extends IService<PersonInfomation> {
      */
     int selectCount();
 
+    /**
+     * 通过用户ID查询个人档案
+     *
+     * @param uid
+     * @return
+     */
+    PersonInfomation selectByUid(int uid);
 }

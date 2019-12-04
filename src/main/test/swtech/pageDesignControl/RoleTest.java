@@ -20,7 +20,7 @@ public class RoleTest {
 
     @Test
     public void getRoleByUsername() {
-        Role role = roleMapper.getRoleByUsername("admin");
+        Role role = roleMapper.getRoleByUtelephonenumber("admin");
         System.out.println(role);
     }
 }

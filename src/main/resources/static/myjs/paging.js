@@ -173,7 +173,7 @@
 		changePage: function() {
 			var ele = this;
 			console.debug(ele);
-			ele.element.on('click', 'a', function() {
+			ele.element.on('click', 'manage.html', function() {
 				var currentPage = parseInt(ele.option.currentPage);
 				var totalpage = parseInt(ele.option.totalPage);
 				var ss = $(this).html();

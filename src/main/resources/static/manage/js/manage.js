@@ -42,7 +42,7 @@ $(function () {
     /**
      * 点击分页
      */
-    $("#personInfomationManagePageDiv").on("click", "a", function () {
+    $("#personInfomationManagePageDiv").on("click", "personInfomation.css", function () {
         getPersonInfomationList($(this).text());
     });
 
@@ -140,7 +140,7 @@ function getPersonInfomation() {
                 personInfomationPname = msg.msg.pname;
                 $("#img_area").html('<img id="pimg" src="'+msg.msg.pimg+'"/>') ;
                 $(".personInfomationManageEdit #pname").val(msg.msg.pname);
-                $(".personInfomationManageEdit #uid option:selected").val(msg.msg.uid);
+                $(".personInfomationManageEdit #uid").val(msg.msg.uid);
                 $(".personInfomationManageEdit #pdepartment").val(msg.msg.pdepartment);
                 $(".personInfomationManageEdit #pposition").val(msg.msg.pposition);
                 $(".personInfomationManageEdit #pcreatedate").val(msg.msg.pcreatedate);
@@ -625,7 +625,7 @@ $(function () {
     /**
      * 点击分页
      */
-    $("#usersManagePageDiv").on("click", "a", function () {
+    $("#usersManagePageDiv").on("click", "personInfomation.css", function () {
         getUsersList($(this).text());
     });
 
@@ -1159,7 +1159,7 @@ $(function () {
     /**
      * 点击分页
      */
-    $("#departmentManagePageDiv").on("click", "a", function () {
+    $("#departmentManagePageDiv").on("click", "personInfomation.css", function () {
         getDepartmentList($(this).text());
     });
 
@@ -1452,7 +1452,7 @@ $(function () {
     /**
      * 点击分页
      */
-    $("#roleManagePageDiv").on("click", "a", function () {
+    $("#roleManagePageDiv").on("click", "personInfomation.css", function () {
         getRoleList($(this).text());
     });
 

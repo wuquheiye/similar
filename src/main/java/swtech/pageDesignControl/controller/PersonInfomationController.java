@@ -150,4 +150,28 @@ public class PersonInfomationController {
         log.info(String.valueOf(msg));
         return msg;
     }
+
+    @ResponseBody
+    @GetMapping("/manage/personinfomation/selectbyuid")
+    public ReturnMsg selectByUid(@RequestParam("uid") int uid) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            PersonInfomation personInfomation = iPersonInfomationService.selectByUid(uid);
+            if (personInfomation != null) {
+                msg.setStatus("200");
+                msg.setStatusMsg("通过用户ID查询单个个人档案成功");
+                msg.setMsg(personInfomation);
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("通过用户ID查询单个个人档案失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("通过用户ID查询单个个人档案异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
 }

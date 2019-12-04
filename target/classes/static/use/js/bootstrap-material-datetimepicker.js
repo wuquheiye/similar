@@ -276,15 +276,15 @@
 		{
 			this._attachEvent(this.$dtpElement.find('.dtp-btn-cancel'), 'click', this._onCancelClick.bind(this));
 			this._attachEvent(this.$dtpElement.find('.dtp-btn-ok'), 'click', this._onOKClick.bind(this));
-			this._attachEvent(this.$dtpElement.find('a.dtp-select-month-before'), 'click', this._onMonthBeforeClick.bind(this));
-			this._attachEvent(this.$dtpElement.find('a.dtp-select-month-after'), 'click', this._onMonthAfterClick.bind(this));
-			this._attachEvent(this.$dtpElement.find('a.dtp-select-year-before'), 'click', this._onYearBeforeClick.bind(this));
-			this._attachEvent(this.$dtpElement.find('a.dtp-select-year-after'), 'click', this._onYearAfterClick.bind(this));
+			this._attachEvent(this.$dtpElement.find('manage.html.dtp-select-month-before'), 'click', this._onMonthBeforeClick.bind(this));
+			this._attachEvent(this.$dtpElement.find('manage.html.dtp-select-month-after'), 'click', this._onMonthAfterClick.bind(this));
+			this._attachEvent(this.$dtpElement.find('manage.html.dtp-select-year-before'), 'click', this._onYearBeforeClick.bind(this));
+			this._attachEvent(this.$dtpElement.find('manage.html.dtp-select-year-after'), 'click', this._onYearAfterClick.bind(this));
 		},
 		initMeridienButtons: function()
 		{
-			this.$dtpElement.find('a.dtp-meridien-am').off('click').on('click', this._onSelectAM.bind(this));
-			this.$dtpElement.find('a.dtp-meridien-pm').off('click').on('click', this._onSelectPM.bind(this));
+			this.$dtpElement.find('manage.html.dtp-meridien-am').off('click').on('click', this._onSelectAM.bind(this));
+			this.$dtpElement.find('manage.html.dtp-meridien-pm').off('click').on('click', this._onSelectPM.bind(this));
 		},
 		initDate: function(d)
 		{
@@ -300,10 +300,10 @@
 			{
 				var _template = this.constructHTMLCalendar(_date, _calendar);
 
-				this.$dtpElement.find('a.dtp-select-day').off('click');
+				this.$dtpElement.find('manage.html.dtp-select-day').off('click');
 				this.$dtpElement.find('.dtp-picker-calendar').html(_template);
 
-				this.$dtpElement.find('a.dtp-select-day').on('click', this._onSelectDate.bind(this));
+				this.$dtpElement.find('manage.html.dtp-select-day').on('click', this._onSelectDate.bind(this));
 
 				this.toggleButtons(_date);
 			}
@@ -336,11 +336,11 @@
 
 			if(this.currentDate.hour() < 12)
 			{
-				this.$dtpElement.find('a.dtp-meridien-am').click();
+				this.$dtpElement.find('manage.html.dtp-meridien-am').click();
 			}
 			else
 			{
-				this.$dtpElement.find('a.dtp-meridien-pm').click();
+				this.$dtpElement.find('manage.html.dtp-meridien-pm').click();
 			}
 
 			var pL = this.$dtpElement.find('.dtp-picker-clock').parent().parent().css('paddingLeft').replace('px', '');
@@ -373,7 +373,7 @@
       			hours.push(hour);
     		}
 
-    		this.$dtpElement.find('a.dtp-select-hour').off('click');
+    		this.$dtpElement.find('manage.html.dtp-select-hour').off('click');
 
     		this.$dtpElement.find('.dtp-picker-clock').html(hours);
     		this.toggleTime(true);
@@ -392,11 +392,11 @@
 
 			if(this.currentDate.hour() < 12)
 			{
-				this.$dtpElement.find('a.dtp-meridien-am').click();
+				this.$dtpElement.find('manage.html.dtp-meridien-am').click();
 			}
 			else
 			{
-				this.$dtpElement.find('a.dtp-meridien-pm').click();
+				this.$dtpElement.find('manage.html.dtp-meridien-pm').click();
 			}
 
 			this.$dtpElement.find('.dtp-picker-calendar').addClass('hidden');
@@ -435,7 +435,7 @@
       			minutes.push(minute);
     		}
 
-			this.$dtpElement.find('a.dtp-select-minute').off('click');
+			this.$dtpElement.find('manage.html.dtp-select-minute').off('click');
 
     		this.$dtpElement.find('.dtp-picker-clock').html(minutes);
     		this.toggleTime(false);
@@ -713,7 +713,7 @@
 		},
 		isPM: function()
 		{
-			return this.$dtpElement.find('a.dtp-meridien-pm').hasClass('selected');
+			return this.$dtpElement.find('manage.html.dtp-meridien-pm').hasClass('selected');
 		},
 		setElementValue: function()
 		{
@@ -734,20 +734,20 @@
 
 				if(!this.isAfterMinDate(startOfMonth, false, false))
 				{
-					this.$dtpElement.find('a.dtp-select-month-before').addClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-month-before').addClass('invisible');
 				}
 				else
 				{
-					this.$dtpElement.find('a.dtp-select-month-before').removeClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-month-before').removeClass('invisible');
 				}
 
 				if(!this.isBeforeMaxDate(endOfMonth, false, false))
 				{
-					this.$dtpElement.find('a.dtp-select-month-after').addClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-month-after').addClass('invisible');
 				}
 				else
 				{
-					this.$dtpElement.find('a.dtp-select-month-after').removeClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-month-after').removeClass('invisible');
 				}
 
 				var startOfYear = moment(date).locale(this.params.lang).startOf('year');
@@ -755,20 +755,20 @@
 
 				if(!this.isAfterMinDate(startOfYear, false, false))
 				{
-					this.$dtpElement.find('a.dtp-select-year-before').addClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-year-before').addClass('invisible');
 				}
 				else
 				{
-					this.$dtpElement.find('a.dtp-select-year-before').removeClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-year-before').removeClass('invisible');
 				}
 
 				if(!this.isBeforeMaxDate(endOfYear, false, false))
 				{
-					this.$dtpElement.find('a.dtp-select-year-after').addClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-year-after').addClass('invisible');
 				}
 				else
 				{
-					this.$dtpElement.find('a.dtp-select-year-after').removeClass('invisible');
+					this.$dtpElement.find('manage.html.dtp-select-year-after').removeClass('invisible');
 				}
 			}
 		},
@@ -776,13 +776,13 @@
 		{
 			if(isHours)
 			{
-				this.$dtpElement.find('a.dtp-select-hour').removeClass('disabled');
-				this.$dtpElement.find('a.dtp-select-hour').removeProp('disabled');
-				this.$dtpElement.find('a.dtp-select-hour').off('click');
+				this.$dtpElement.find('manage.html.dtp-select-hour').removeClass('disabled');
+				this.$dtpElement.find('manage.html.dtp-select-hour').removeProp('disabled');
+				this.$dtpElement.find('manage.html.dtp-select-hour').off('click');
 
 				var _self = this;
 
-				this.$dtpElement.find('a.dtp-select-hour').each(function()
+				this.$dtpElement.find('manage.html.dtp-select-hour').each(function()
 				{
 					var _hour = $(this).data('hour');
 
@@ -802,13 +802,13 @@
 			}
 			else
 			{
-				this.$dtpElement.find('a.dtp-select-minute').removeClass('disabled');
-				this.$dtpElement.find('a.dtp-select-minute').removeProp('disabled');
-				this.$dtpElement.find('a.dtp-select-minute').off('click');
+				this.$dtpElement.find('manage.html.dtp-select-minute').removeClass('disabled');
+				this.$dtpElement.find('manage.html.dtp-select-minute').removeProp('disabled');
+				this.$dtpElement.find('manage.html.dtp-select-minute').off('click');
 
 				var _self = this;
 
-				this.$dtpElement.find('a.dtp-select-minute').each(function()
+				this.$dtpElement.find('manage.html.dtp-select-minute').each(function()
 				{
 					var _minute = $(this).data('minute');
 
@@ -951,14 +951,14 @@
 		},
 		_onSelectDate: function(e)
 		{
-			this.$dtpElement.find('a.dtp-select-day').removeClass('selected');
+			this.$dtpElement.find('manage.html.dtp-select-day').removeClass('selected');
 			$(e.currentTarget).addClass('selected');
 
 			this.selectDate($(e.currentTarget).parent().data("date"));
 		},
 		_onSelectHour: function(e)
 		{
-			this.$dtpElement.find('a.dtp-select-hour').removeClass('selected');
+			this.$dtpElement.find('manage.html.dtp-select-hour').removeClass('selected');
 			$(e.currentTarget).addClass('selected');
 
 			var dataHour = parseInt($(e.currentTarget).data('hour'));
@@ -972,7 +972,7 @@
 		},
 		_onSelectMinute: function(e)
 		{
-			this.$dtpElement.find('a.dtp-select-minute').removeClass('selected');
+			this.$dtpElement.find('manage.html.dtp-select-minute').removeClass('selected');
 			$(e.currentTarget).addClass('selected');
 
 			this.currentDate.minute(parseInt($(e.currentTarget).data('minute')));

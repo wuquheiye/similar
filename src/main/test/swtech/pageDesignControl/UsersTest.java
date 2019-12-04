@@ -5,6 +5,7 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.common.utils.DateUtil;
+import swtech.pageDesignControl.common.vo.DepartmentVO;
 import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.entity.Department;
 import swtech.pageDesignControl.entity.Permission;
@@ -110,7 +111,7 @@ public class UsersTest {
 
     @Test
     public void findUsersByName() {
-        Users users = usersMapper.findUsersByName("2");
+        Users users = usersMapper.findUsersByUtelephonenumber("2");
         System.out.println(users);
     }
 
@@ -133,20 +134,14 @@ public class UsersTest {
     }
 
     @Test
-    public void getAllCompany() {
-        List<String> users = usersMapper.getAllCompany();
-        System.out.println(users);
-    }
-
-    @Test
     public void getAllDepartmentByCompany() {
-        List<Department> users = usersMapper.getAllDepartmentByCompany("1");
+        List<DepartmentVO> users = usersMapper.getAllDepartmentByCompany(1);
         System.out.println(users);
     }
 
     @Test
     public void getAllUsersByDepartment() {
-        List<Users> users = usersMapper.getAllUsersByDepartment(1);
+        List<UsersVO> users = usersMapper.getAllUsersByDepartment(1);
         System.out.println(users);
     }
 }
