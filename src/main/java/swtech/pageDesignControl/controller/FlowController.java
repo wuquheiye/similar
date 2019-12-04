@@ -201,4 +201,27 @@ public class FlowController  {
         return msg;
     }
 
+
+    /**
+     * 查询当前用户代办消息num
+     * @param uid
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("selectMessageNum")
+    public ReturnMsg selectMessageNum(@RequestParam("uid") Integer uid,@RequestParam("rtype") Integer rid){
+        ReturnMsg msg =new ReturnMsg();
+        try {
+            msg = iFlowService.selectMessageNum(uid, rid);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("查询当前用户代办消息num失败");
+            msg.setMsg(e.getMessage());
+        }
+
+        return msg;
+    }
+
 }

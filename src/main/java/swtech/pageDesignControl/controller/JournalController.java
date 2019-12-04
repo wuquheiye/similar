@@ -48,8 +48,23 @@ public class JournalController{
      * @param uid
      * @return
      */
-    public ReturnMsg selectByCharge(@RequestParam("uid") Integer uid){
+    @GetMapping("/selectByCharge")
+    @ResponseBody
+    public ReturnMsg selectByCharge(
+            @RequestParam("uid") Integer uid,
+                                    @RequestParam("rtype")Integer rtype
+    ){
         ReturnMsg msg = new ReturnMsg();
+        try {
+            msg = iJournalService.selectByCharge(uid, rtype);
+        }catch (Exception e){
+            e.printStackTrace();
+            log.info(e.getMessage());
+            msg.setStatus("201");
+            msg.setStatusMsg("根距uid获取当前主管部下的日志信息失败");
+            msg.setMsg(e.getMessage());
+        }
+
         return msg;
     }
 
@@ -67,9 +82,33 @@ public class JournalController{
          return  "./daily/dailyinfo.html";
      }
 
-
     /**
      * 查看当前用户的所有日志信息
+     * @return
+     */
+    @ResponseBody
+    @GetMapping("/selectJournalNow")
+    public ReturnMsg selectJournalNow(@RequestParam("uid") Integer uid){
+        QueryWrapper qw  = new QueryWrapper();
+        qw.eq("uid",uid);
+        qw.orderByDesc("jid");
+        ReturnMsg msg = new ReturnMsg();
+        List list = iJournalService.list(qw);
+
+        if(list!=null){
+            msg.setStatus("200");
+            msg.setStatusMsg("查询日志成功");
+            msg.setMsg(list);
+        }else {
+            msg.setStatus("201");
+            msg.setStatusMsg("查询日志成功");
+            msg.setMsg("查询当前用户日志为空");
+        }
+        return  msg;
+    }
+
+    /**
+     * 查看当前用户的所有日志信息(分页)
      * @return
      */
     @ResponseBody
@@ -115,6 +154,9 @@ public class JournalController{
         }
         return msg;
     }
+
+
+
 
 
 

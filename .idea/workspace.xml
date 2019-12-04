@@ -2,41 +2,44 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/utils/ComparatorTime.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectUp.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/META-INF/li_jie_bg.kotlin_module" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/utils/ComparatorTime.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/templates/use/create/selectUp.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/common/vo/JournalVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/FlowController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/JournalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/JournalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/ProjectController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/UpdateProject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/entity/UpdateProject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IProjectService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/ProjectServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/approval.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/approval.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Flow/Fstatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/enums/Flow/Fstatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/JournalMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/mapper/JournalMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IFlowService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IJournalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IJournalService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/JournalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/JournalServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/JournalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/JournalMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/daily/daily.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/daily/daily.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/daily/dailyinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/daily/writeDaily.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/daily/writeDaily.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/financePayFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/financePayFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/flowPath.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/flowPath.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/projectManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/projectManagement.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectProject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/create/updatProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/create/updatProject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/DepartmentTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/swtech/pageDesignControl/DepartmentTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/financePayFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/financePayFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/leave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/serveFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/serveFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/approval.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/approval.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/daily/dailyinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/JournalMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/JournalMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/daily/daily.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/daily/daily.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/daily/dailyinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/daily/writeDaily.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/daily/writeDaily.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/flowPath.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/flowPath.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/projectManagement.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/projectManagement.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/FlowController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/JournalController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/JournalController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/UpdateProject.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/entity/UpdateProject.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IProjectService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IProjectService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/ProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/ProjectServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/create/selectProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/create/selectProject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/create/updatProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/create/updatProject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Flow/Fstatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/enums/Flow/Fstatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/JournalMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/mapper/JournalMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IFlowService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IJournalService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/IJournalService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/JournalServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/JournalServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/daily/dailyinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/create/selectUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/create/selectUp.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -67,8 +70,8 @@
         <option value="Arquillian JUnit Test Class" />
         <option value="JavaScript File" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -205,8 +208,8 @@
       <item itemvalue="Application.CodeGenerator" />
       <item itemvalue="Application.DateUtil" />
       <item itemvalue="Application.Base64Util" />
-      <item itemvalue="Spring Boot.RunApplication " />
       <item itemvalue="Application.ComparatorTime" />
+      <item itemvalue="Spring Boot.RunApplication " />
     </list>
     <recent_temporary>
       <list>
@@ -259,7 +262,10 @@
       <workItem from="1574901097910" duration="27732000" />
       <workItem from="1574987273295" duration="26443000" />
       <workItem from="1575246435025" duration="17300000" />
-      <workItem from="1575333882362" duration="16304000" />
+      <workItem from="1575333882362" duration="23194000" />
+      <workItem from="1575419379787" duration="5472000" />
+      <workItem from="1575425754392" duration="1769000" />
+      <workItem from="1575427543995" duration="6210000" />
     </task>
     <task id="LOCAL-00004" summary="项目管理ok">
       <created>1574330254965</created>
@@ -345,7 +351,28 @@
       <option name="project" value="LOCAL" />
       <updated>1575335770264</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="动态展示">
+      <created>1575357635699</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1575357635699</updated>
+    </task>
+    <task id="LOCAL-00017" summary="selectByCharge">
+      <created>1575428024366</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1575428024366</updated>
+    </task>
+    <task id="LOCAL-00018" summary="selectByCharge">
+      <created>1575428075175</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1575428075175</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -405,7 +432,9 @@
     <MESSAGE value="流程审批" />
     <MESSAGE value="人事反馈测试" />
     <MESSAGE value="测试" />
-    <option name="LAST_COMMIT_MESSAGE" value="测试" />
+    <MESSAGE value="动态展示" />
+    <MESSAGE value="selectByCharge" />
+    <option name="LAST_COMMIT_MESSAGE" value="selectByCharge" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

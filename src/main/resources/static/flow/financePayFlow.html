@@ -147,7 +147,7 @@
                 将申请推送给领导审批
             </div>
             <div class="col-xs-12" style="line-height: 35px">
-                <select class="form-control" id="idea" style="border: 0px">
+                <select class="form-control" id="fuidManager" style="border: 0px">
                     <option value="0">选择推送领导</option>
                     <option value="1">同意</option>
                     <option value="2">拒绝</option>
@@ -186,6 +186,11 @@
         // let fendTime = $("#date-end").val();
         let fapplyReason = $("#fapplyReason").val();
         let fchange = $("#fchange").val();
+        let fuidManager =$("#fuidManager").val();
+        if(fuidManager==0){
+            alert("请选择将申请推送给哪位领导");
+            return false;
+        }
         let leaveflow={
             "ftype" : ftype,
             "uid" :loginObj.users.uid,
@@ -196,13 +201,13 @@
             "fapplyReason":fapplyReason,
             "uusername":loginObj.users.uusername,
             "dname":loginObj.department.dname,
-            "fuidCharge" :loginObj.users.fuidCharge,
+            // "fuidCharge" :loginObj.users.fuidCharge,
             "fuidManager":loginObj.users.fuidManager,
-            "fchange" : fchange,
-            "artsVision":loginObj.department.ArtsVision
+            "fchange" : fchange
+            // "artsVision":loginObj.department.ArtsVision
         }
 
-        alert(JSON.stringify(leaveflow))
+        // alert(JSON.stringify(leaveflow))
         $.ajax({
             url: pageDesignControl_HOST + "flow/leaveInsert",
             type: "post",

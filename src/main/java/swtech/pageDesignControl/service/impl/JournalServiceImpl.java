@@ -1,13 +1,16 @@
 package swtech.pageDesignControl.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.common.exception.ServiceException;
+import swtech.pageDesignControl.common.vo.JournalVO;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.websocket.WebSocketServer;
 import swtech.pageDesignControl.entity.Journal;
 import swtech.pageDesignControl.entity.Users;
+import swtech.pageDesignControl.enums.Role;
 import swtech.pageDesignControl.mapper.JournalMapper;
 import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IJournalService;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,6 +64,31 @@ public class JournalServiceImpl extends ServiceImpl<JournalMapper, Journal> impl
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("日志录入成功");
+        return msg;
+    }
+
+    @Override
+    @Transactional
+    public ReturnMsg selectByCharge(Integer uid,Integer rtype) {
+        if(uid==null)throw new ServiceException("uid不能为空");
+        if(rtype==null) throw  new ServiceException("rtype不能为空");
+        ReturnMsg msg = new ReturnMsg();
+        QueryWrapper qw = new QueryWrapper();
+        List<JournalVO> journalVOS = journalMapper.selectByCharge(uid, rtype);
+//        switch (Role.getByCode(rtype)){
+//            case GOVERNOR:
+//                qw.eq("fuid_Charge",uid);
+//                break;
+//            case MANAGE:
+//                qw.("");
+//                break;
+//            case GM:
+//                qw.eq();
+//                break;
+//        }
+        msg.setStatus("200");
+        msg.setMsg(journalVOS);
+        msg.setStatusMsg("查询当前用户获取日志信息成功");
         return msg;
     }
 }

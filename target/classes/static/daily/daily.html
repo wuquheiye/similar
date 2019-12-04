@@ -39,10 +39,10 @@
 <!--            <div class="col-xs-3 base" style="color:#2aabd2;border-bottom: 2px solid #2aabd2;" id="allLog">-->
 <!--                全部-->
 <!--            </div>-->
-            <div class="col-xs-3 base" id="myLog">
+            <div class="col-xs-3 base" id="myLog" onclick="myLogCli()">
                 我发出的
             </div>
-            <div class="col-xs-3 base" id="myTeamLog">
+            <div class="col-xs-3 base" id="myTeamLog" onclick="myTeamLogCli()">
                 我的团队
             </div>
             <div class="col-xs-3 base" >
@@ -55,24 +55,24 @@
 
 
     <!--内容  写日报-->
-    <div class="container" style="padding-top: 80px; display: none" id="writeLogIn">
-          <div class="row">
-              <a href="writeDaily.html">
-              <div class="col-xs-12 flowpath" style="line-height: 40px ">
-                  <b>日报</b>
-              </div></a>
-              <a href="writeDaily.html">
-              <div class="col-xs-12 flowpath" style="line-height: 40px ">
-                  <a href="writeDaily.html"> <b>周报</b></a>
-              </div>
-              </a>
-              <a href="writeDaily.html">
-              <div class="col-xs-12 flowpath" style="line-height: 40px ">
-                  <a href="writeDaily.html"> <b>月报</b></a>
-              </div>
-              </a>
-          </div>
-    </div>
+<!--    <div class="container" style="padding-top: 80px; display: none" id="writeLogIn">-->
+<!--          <div class="row">-->
+<!--              <a href="writeDaily.html">-->
+<!--              <div class="col-xs-12 flowpath" style="line-height: 40px ">-->
+<!--                  <b>日报</b>-->
+<!--              </div></a>-->
+<!--              <a href="writeDaily.html">-->
+<!--              <div class="col-xs-12 flowpath" style="line-height: 40px ">-->
+<!--                  <a href="writeDaily.html"> <b>周报</b></a>-->
+<!--              </div>-->
+<!--              </a>-->
+<!--              <a href="writeDaily.html">-->
+<!--              <div class="col-xs-12 flowpath" style="line-height: 40px ">-->
+<!--                  <a href="writeDaily.html"> <b>月报</b></a>-->
+<!--              </div>-->
+<!--              </a>-->
+<!--          </div>-->
+<!--    </div>-->
 
     <!--内容  查看日志-->
 
@@ -97,7 +97,7 @@
 <!--        </div>-->
 <!--    </div>-->
 
-    <div class="container">
+    <div class="container" style="padding-top: 80px">
         <!--数据表格区-->
         <div class="row" id="declareTempCardView">
 
@@ -213,75 +213,197 @@
 
         var b={background:'black'};
 
+        selectJournalNow();
 
-        selectJournalAll(loginObj.users.uid,1,2);
-        $(".pagination").Paging({
-            classStyle:a,//a标签样式的对象,也可以不定义使用默认值
-            backClass:b,//选中的页数的背景，也可以不定义使用默认值
-            isFirst:true,   //首页按钮是否显示
-            isPre:true,     //下一页按钮是否显示
-            showRecordNum:2, // 一页列表数量
-            totalNum:total,   // 总列表数量
-            showNum:function(data1,data2){
-                // alert(data1+","+data2);
-                selectJournalAll(1,data1,data2);
-            }
-        });
+        // selectJournalAll(loginObj.users.uid,1,2);
+        // $(".pagination").Paging({
+        //     classStyle:a,//a标签样式的对象,也可以不定义使用默认值
+        //     backClass:b,//选中的页数的背景，也可以不定义使用默认值
+        //     isFirst:true,   //首页按钮是否显示
+        //     isPre:true,     //下一页按钮是否显示
+        //     showRecordNum:2, // 一页列表数量
+        //     totalNum:total,   // 总列表数量
+        //     showNum:function(data1,data2){
+        //         // alert(data1+","+data2);
+        //         selectJournalAll(1,data1,data2);
+        //     }
+        // });
 
     });
 
-    function selectJournalAll(uid,current,size) {
-        let pageVo={
-            "journal" : {
-                "uid":uid,
-                "pid":2
-            },
-            "page" :{
-                "size" : size,
-                "current" : current
-            }
+    //连续点击
+    $("#declareTempCardView").on("click",".getNameAndRole",function () {
+        if ($(this).next('.projectInfo').css('display') == 'none') {
+            $(this).children('.iconUp')
+                .children('.icon')
+                .html("<use xlink:href='#icon-chebaba-xialakuangjiantou'></use>");
+            $(this).next('.projectInfo').slideDown();
+        } else {
+            $(this).children('.iconUp')
+                .children('.icon')
+                .html("<use xlink:href='#icon-arrow-right'></use>");
+            $(this).next('.projectInfo').slideUp();
         }
-        let showdata ='';
 
+    })
+
+    //我的团队
+    function myTeamLogCli() {
+        selectByCharge();
+    }
+
+    //w我发出的
+    function myLogCli() {
+        selectJournalNow();
+    }
+
+    //当前用户
+    function selectJournalNow() {
+        let selectJournalNow='';
         $.ajax({
-            url:  pageDesignControl_HOST+"journal/selectJournalAll",
-            type: "post",
+            url: "http://127.0.0.1:43008/journal/selectJournalNow?uid="+loginObj.users.uid,
+            type: "get",
             dataType: "json",
-            data:JSON.stringify(pageVo),
             contentType: 'application/json; charset=UTF-8',
             async: false,
-            success: function(res) {
-                total = res.msg.total;
-                if(res!=null){
-                    $.each(res.msg.records,function (index,value) {
-                        showdata+='<a href="/journal/selectJournal/'+value.jid+'" >\n' +
-                            '                    <div class="row" style="margin-bottom: 3px;padding-bottom: 2px;">\n' +
-                            '                        <div class="col-xs-2">\n' +
-                            '                        <span style="border-radius: 50%; background: #2aabd2;color: white;width: 40px;height: 40px;display: block;\n' +
-                            '                                    line-height: 40px;\n' +
-                            '                                    text-align: center;">\n'
-                            +value.uusername+
-                            '                        </span>\n' +
-                            '                        </div>\n' +
-                            '                        <div class="col-xs-8" style="padding: 0px">\n' +
-                            '                            <div class="row">\n' +
-                            '                                <div class="col-xs-12"><span style="font-size: 10px">所属项目：'+value.pid+'</span></div>\n' +
-                            '                                <div class="col-xs-12" style="color: grey;font-size: 10px" >'+value.jcreateTime+'</div>\n' +
-                            '                            </div>\n' +
-                            '                        </div>\n' +
-                            '                    </div>\n' +
-                            '                </a>';
+            success: function (res) {
+                if(res.msg!=""){
+                    selectJournalNow+
+                    '<div class="row projectInfo" style="display: none">\n' ;
+                    $.each(res.msg,function (index,value) {
+                        selectJournalNow+=
+                            '                <a href="journal/selectJournal/'+value.jid+'">\n' +
+                            '                    <div class="col-xs-12 "\n' +
+                            '                         style="line-height: 35px;\n' +
+                            '                             height: 35px;padding-top:3px;padding-bottom: 2px;\n' +
+                            '                             border: 2px solid whitesmoke"><b>\n' +
+                            value.jcreateTime +
+                            '                   </b> </div>\n' +
+                            '                </a>\n';
+
                     })
-                    $("#declareTempCardView").html(showdata);
-                }else{
-                    alert("查询失败，请确认条件")
+                    selectJournalNow+='            </div>';
+
                 }
+                $("#declareTempCardView").html(selectJournalNow);
             },
-            error: function(){
+            error: function () {
                 alert("网络异常");
             }
         });
     }
+
+    //查询数据库selectByCharge
+    function selectByCharge(){
+        let myTeamLogCli='';
+        $.ajax({
+            url: "http://127.0.0.1:43008/journal/selectByCharge?uid="+34+"&rtype="+4,
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function (res) {
+                if(res.msg!=""){
+                    selectByChargeData=res.msg;
+                    $.each(res.msg,function (index,value) {
+                        myTeamLogCli+='<div class="row getNameAndRole" style="margin-bottom: 3px;\n' +
+                            '                        padding-bottom: 2px;height: 40px;\n' +
+                            '                        line-height: 40px;">\n' +
+                            '                <div class="col-xs-3" style="padding: 0px;margin: 0px;margin-left: 10px">\n' +
+                            '                        <span style="border-radius: 50%; background: #2aabd2;color: white;width: 40px;height: 40px;display: block;\n' +
+                            '                               line-height: 40px;\n' +
+                            '                               text-align: center;">'+value.uusername+'</span>\n' +
+                            '                </div>\n' +
+                            '                <div class="col-xs-4" style="padding: 0px;margin: 0px">\n' +
+                            '                    <div class="row">\n' +
+                            '                        <div class="col-xs-12">'+value.uid+'</div>\n' +
+                            '                    </div>\n' +
+                            '                </div>\n' +
+                            '                <div class="col-xs-4  iconUp" style="padding:0px;margin:0px;text-align: right;height: 40px">\n' +
+                            '                    <svg class="icon" aria-hidden="true" style="width: 30px;height: 40px;line-height: 40px">\n' +
+                            '                        <use xlink:href="#icon-arrow-right"></use>\n' +
+                            '                    </svg>\n' +
+                            '                </div>\n' +
+                            '            </div>'+
+                            '<div class="row projectInfo" style="display: none">\n' ;
+                        $.each(value.journalList,function (i,v) {
+                            myTeamLogCli+=
+                                '                <a href="/journal/selectJournal/'+v.jid+'">\n' +
+                                '                    <div class="col-xs-12 "\n' +
+                                '                         style="line-height: 35px;\n' +
+                                '                             height: 35px;padding-top:3px;padding-bottom: 2px;\n' +
+                                '                             border: 2px solid whitesmoke"><b>\n' +
+                                v.jcreateTime +
+                                '                   </b> </div>\n' +
+                                '                </a>\n';
+
+                        })
+                        myTeamLogCli+='            </div>';
+                    })
+                }else{
+
+                }
+                $("#declareTempCardView").html(myTeamLogCli);
+            },
+            error: function () {
+                alert("网络异常");
+            }
+        });
+    }
+
+    // //分页显示
+    // function selectJournalAll(uid,current,size) {
+    //     let pageVo={
+    //         "journal" : {
+    //             "uid":uid,
+    //             "pid":2
+    //         },
+    //         "page" :{
+    //             "size" : size,
+    //             "current" : current
+    //         }
+    //     }
+    //     let showdata ='';
+    //
+    //     $.ajax({
+    //         url:  pageDesignControl_HOST+"journal/selectJournalAll",
+    //         type: "post",
+    //         dataType: "json",
+    //         data:JSON.stringify(pageVo),
+    //         contentType: 'application/json; charset=UTF-8',
+    //         async: false,
+    //         success: function(res) {
+    //             total = res.msg.total;
+    //             if(res!=null){
+    //                 $.each(res.msg.records,function (index,value) {
+    //                     showdata+='<a href="/journal/selectJournal/'+value.jid+'" >\n' +
+    //                         '                    <div class="row" style="margin-bottom: 3px;padding-bottom: 2px;">\n' +
+    //                         '                        <div class="col-xs-2">\n' +
+    //                         '                        <span style="border-radius: 50%; background: #2aabd2;color: white;width: 40px;height: 40px;display: block;\n' +
+    //                         '                                    line-height: 40px;\n' +
+    //                         '                                    text-align: center;">\n'
+    //                         +value.uusername+
+    //                         '                        </span>\n' +
+    //                         '                        </div>\n' +
+    //                         '                        <div class="col-xs-8" style="padding: 0px">\n' +
+    //                         '                            <div class="row">\n' +
+    //                         '                                <div class="col-xs-12"><span style="font-size: 10px">所属项目：'+value.pid+'</span></div>\n' +
+    //                         '                                <div class="col-xs-12" style="color: grey;font-size: 10px" >'+value.jcreateTime+'</div>\n' +
+    //                         '                            </div>\n' +
+    //                         '                        </div>\n' +
+    //                         '                    </div>\n' +
+    //                         '                </a>';
+    //                 })
+    //                 $("#declareTempCardView").html(showdata);
+    //             }else{
+    //                 alert("查询失败，请确认条件")
+    //             }
+    //         },
+    //         error: function(){
+    //             alert("网络异常");
+    //         }
+    //     });
+    // }
 
     /**
      *

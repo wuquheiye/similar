@@ -264,7 +264,7 @@
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
                                     <use xlink:href="#icon-ic_kaoqinbiao"></use>
                                 </svg>
-                                <span class="badge" style="position: absolute;top: 39px;margin-left: -15px;background: red" id="systemMessage">10</span>
+                                <span class="badge" style="display:none;position: absolute;top: 39px;margin-left: -15px;background: red" id="systemMessage">10</span>
                             </div>
                             <div class="row" style="padding-top: 10px">
                                 系统消息
@@ -276,7 +276,7 @@
                                     <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
                                         <use xlink:href="#icon-xiaoxi-copy"></use>
                                     </svg>
-                                    <span class="badge" style="position: absolute;top: 39px;margin-left: -15px;background: red" id="chargeMessage">10</span>
+                                    <span class="badge" style="display: none;position: absolute;top: 39px;margin-left: -15px;background: red" id="chargeMessage">10</span>
                                 </div>
                                 <div class="row" style="padding-top: 10px">
                                     待办信息
@@ -625,26 +625,48 @@
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
 
 
-    var analogInformation = [{
-        one:{ //项目
-            projectName : "项目名",
-            createTime : '',
-            createProper : "创建人",
-            projectSchedule : 40
-        }
-    },{
-        two:{//日志
-            createProper: "日志创建人",
-            createTime: '',
-            desc:"嘎婆阿达....",
-        }
-    }]
+    // var analogInformation = [{
+    //     one:{ //项目
+    //         projectName : "项目名",
+    //         createTime : '',
+    //         createProper : "创建人",
+    //         projectSchedule : 40
+    //     }
+    // },{
+    //     two:{//日志
+    //         createProper: "日志创建人",
+    //         createTime: '',
+    //         desc:"嘎婆阿达....",
+    //     }
+    // }]
 
     var datashow='';
     
     $(function () {
         selectProjectJournal()
+        selectMessageNum()
     })
+
+
+    //查询当前用户代办消息num
+    function selectMessageNum() {
+        $.ajax({
+            url: pageDesignControl_HOST + "flow/selectMessageNum?uid="+loginObj.users.uid+"&rtype="+loginObj.role.rtype,
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(typeof(res.msg)=='number'){
+                    $("#chargeMessage").show();
+                    $("#chargeMessage").text(res.msg);
+                }
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
+    }
 
     //查询所有项目和日志信息
     function selectProjectJournal() {
@@ -659,7 +681,7 @@
                 if(res!=""){
                     $.each(res.msg,function (index,value) {
                         if(typeof(value.jid) == "number"){
-                            showdata +='<a href="../daily/dailyinfo.html" style="color: black"><div class="row" style="position: relative">\n' +
+                            showdata +='<a href="/journal/selectJournal/'+value.jid+'" style="color: black"><div class="row" style="position: relative">\n' +
                                 '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
                                 '                            <b style="font-size: 16px;">'+value.uusername+'的日报</b>\n' +
                                 '                        </div>\n' +

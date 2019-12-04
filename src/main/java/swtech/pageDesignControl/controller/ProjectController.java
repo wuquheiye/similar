@@ -217,7 +217,7 @@ public class ProjectController {
      * @return
      */
 
-    @GetMapping("selectUpByUpId")
+    @GetMapping("selectUpByUpId/{upId}")
     public String selectUpByUpId(@PathVariable("upId") Integer upId,Model model){
         if(upId==null)throw new ServiceException("参数不能为空");
         UpdateProject byId = iUpdateProjectService.getById(upId);
@@ -230,5 +230,4 @@ public class ProjectController {
             return "./use/403";
         }
     }
-
 }

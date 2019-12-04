@@ -16,4 +16,6 @@ import java.io.IOException;
  */
 public interface IJournalService extends IService<Journal> {
     ReturnMsg insertJournal(Journal journal) throws IOException;
+    ReturnMsg selectByCharge(Integer uid,Integer rtype);
+
 }

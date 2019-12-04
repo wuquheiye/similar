@@ -36,12 +36,7 @@
                <pre th:text="${journal.jnowTask}"></pre>
             </div>
 
-            <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
-                <b>未完成工作</b>
-            </div>
-            <div class="col-xs-12">
-               <pre th:text="${journal.jundoneTask}"></pre>
-            </div>
+
             <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
                 <b>明日计划</b>
             </div>
@@ -52,6 +47,12 @@
                 <b>项目所属</b>
             </div>
             <div class="col-xs-12" style="text-align: right" th:text="${journal.pid}">
+            </div>
+            <div class="col-xs-12" style="border-top: 2px solid #F4F4F4;padding-top: 10px">
+                <b>意见提醒</b>
+            </div>
+            <div class="col-xs-12">
+                <pre th:text="${journal.jundoneTask}"></pre>
             </div>
         </div>
 <!--        图片-->

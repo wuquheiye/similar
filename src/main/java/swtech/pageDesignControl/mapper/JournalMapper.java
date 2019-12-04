@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface JournalMapper extends BaseMapper<Journal> {
 
-    List<JournalVO> selectByCharge();
+    List<JournalVO> selectByCharge(Integer uid,Integer rtype);
 
 }

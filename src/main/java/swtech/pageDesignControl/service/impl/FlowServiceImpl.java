@@ -243,6 +243,32 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         return msg;
     }
 
+    @Override
+    @Transactional
+    public ReturnMsg selectMessageNum(Integer uid, Integer rid) {
+        if(uid == null) throw  new ServiceException("用户uid为空");
+        if(rid == null) throw  new ServiceException("角色rid(rtype)为空");
+        ReturnMsg msg =new ReturnMsg();
+        QueryWrapper qw=new QueryWrapper();
+        if(rid!=Role.EMPLOYEES.getCode()){
+            if(rid==Role.GOVERNOR.getCode()){
+                qw.eq("fuid_manager",uid);
+            }else if(rid==Role.ADMINISTRATIVE.getCode()){
+                qw.eq("fuid_staffing",uid);
+            }else if(rid==Role.FINANCE.getCode()){
+                qw.eq("fuid_finance",uid);
+            }else {
+                qw.eq("fuid_manager",uid);
+            }
+        }
+        qw.ne("fstatus",Fstatus.OVER);
+        Integer integer = flowMapper.selectCount(qw);
+        msg.setStatus("200");
+        msg.setMsg(integer);
+        msg.setStatusMsg("查询当前用户代办消息num成功");
+        return msg;
+    }
+
 
     @Transactional
     @Override
