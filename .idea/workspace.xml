@@ -2,7 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/common/vo/JournalVO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/leave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/onbusInessFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/onbusInessFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/overTimeFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/sealuseFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/js/bootstrap-material-datetimepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/js/bootstrap-material-datetimepicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/js/moment-with-locales.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/js/moment-with-locales.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/daily/dailyinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectUp.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/leave.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/use/js/bootstrap-material-datetimepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/js/bootstrap-material-datetimepicker.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/use/js/moment-with-locales.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/js/moment-with-locales.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/daily/dailyinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/create/selectUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/create/selectUp.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +88,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="Arquillian JUnit4" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.Arquillian JUnit4" value="" />
     <property name="create.test.in.the.same.root" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/static/use/js" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -77,15 +99,15 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\static\use\js" />
       <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\java\swtech\pageDesignControl\common\utils" />
       <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\static\message" />
       <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\static\flow" />
       <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\static" />
-      <recent name="D:\IntelliJ IDEA 2019.2.4\IntelliJPrpject\li_jie_bg\src\main\resources\static\myjs" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -365,7 +387,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575506421535</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="代码合并2019、12、5">
+      <created>1575508207080</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1575508207080</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -431,6 +460,56 @@
             </State>
           </value>
         </entry>
+        <entry key="2">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="3">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -443,6 +522,8 @@
     <option name="OPEN_TABS">
       <set>
         <option value="1" />
+        <option value="2" />
+        <option value="3" />
       </set>
     </option>
   </component>
