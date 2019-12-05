@@ -41,8 +41,8 @@ $(function () {
     $(".attendanceManage").on("click", ".delete", function () {
         var r = confirm("是否删除!");
         if (r == true) {
-            var did = $(this).next().attr("class");
-            removeAttendance(did);
+            var aid = $(this).next().attr("class");
+            removeAttendance(aid);
         }
     });
 
@@ -89,7 +89,7 @@ $(function () {
     /**
      * 点击返回
      */
-    $(".manageRight").on("click", ".AttendanceManageBack", function () {
+    $(".manageRight").on("click", ".attendanceManageBack", function () {
         $(".manageRight .attendanceManage").removeClass("hidden");
         $(".manageRight").children(".attendanceManageEdit").addClass("hidden");
         getAttendanceList(1);
@@ -100,13 +100,13 @@ $(function () {
  * 获取单个考勤
  */
 function getAttendance() {
-    var did = attendanceManageId;
+    var aid = attendanceManageId;
     $.ajax({
         url: pageDesignControl_HOST + '/manage/attendance/getbyid',
         type: 'Get',
         contentType: 'application/json',
         dataType: 'json',
-        data: {"did": did},
+        data: {"aid": aid},
         async: false,
         success: function (msg) {
             if (msg.status == 200) {
@@ -145,10 +145,10 @@ function isDnameHendiadysAttendance(dname) {
 }
 
 /**
- * 更改部门
+ * 更改考勤
  */
 function updateAttendance() {
-    var did = attendanceManageId;
+    var aid = attendanceManageId;
     var dname = $(".attendanceManageEdit #dname").val();
     var artsVision = $(".attendanceManageEdit #artsVision").val();
     if (!dname) {
@@ -161,7 +161,7 @@ function updateAttendance() {
             type: 'Get',
             contentType: 'application/json',
             dataType: 'json',
-            data: {"dname": dname, "did": did, "artsVision": artsVision},
+            data: {"dname": dname, "aid": aid, "artsVision": artsVision},
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
@@ -174,7 +174,7 @@ function updateAttendance() {
 }
 
 /**
- * 添加部门
+ * 添加考勤
  */
 function saveAttendance() {
     var dname = $(".attendanceManageEdit #dname").val();
@@ -202,15 +202,15 @@ function saveAttendance() {
 }
 
 /**
- * 删除单个部门
+ * 删除单个考勤
  */
-function removeAttendance(did) {
+function removeAttendance(aid) {
     $.ajax({
         url: pageDesignControl_HOST + 'manage/attendance/removebyid',
         type: 'Get',
         contentType: 'application/json',
         dataType: 'json',
-        data: {"did": did},
+        data: {"aid": aid},
         success: function (msg) {
             if (msg.status == 200) {
                 getAttendanceList(1);
@@ -223,7 +223,7 @@ function removeAttendance(did) {
 }
 
 /**
- * 获取部门列表
+ * 获取考勤列表
  */
 function getAttendanceList(page) {
     var aname = $("#attendanceManageName").val();
@@ -239,30 +239,30 @@ function getAttendanceList(page) {
                 var attendanceListStr = "";
                 for (var i = 0; i < msg.msg.length; i++) {
                     attendanceListStr += '<tr>' +
-                        '<th id="adepartment">' + msg.msg[i].adepartment + '</th>' +
-                        '<th id="aname">' + msg.msg[i].aname + '</th>' +
-                        '<th id="aattendanceDays">' + msg.msg[i].aattendanceDays + '</th>' +
-                        '<th id="aworkOvertimeDays">' + msg.msg[i].aworkOvertimeDays + '</th>' +
-                        '<th id="aleavePersonalAffairs">' + msg.msg[i].aleavePersonalAffairs + '</th>' +
-                        '<th id="asickLeave">' + msg.msg[i].asickLeave + '</th>' +
-                        '<th id="aannualLeave">' + msg.msg[i].aannualLeave + '</th>' +
-                        '<th id="aforVacation">' + msg.msg[i].aforVacation + '</th>' +
-                        '<th id="atolerance">' + msg.msg[i].atolerance + '</th>' +
-                        '<th id="amaleInjuryLeave">' + msg.msg[i].amaleInjuryLeave + '</th>' +
-                        '<th id="afuneralLeave">' + msg.msg[i].afuneralLeave + '</th>' +
-                        '<th id="aantenatalExamination">' + msg.msg[i].aantenatalExamination + '</th>' +
-                        '<th id="abreastfeedingLeave">' + msg.msg[i].abreastfeedingLeave + '</th>' +
-                        '<th id="amaternityLeave">' + msg.msg[i].amaternityLeave + '</th>' +
-                        '<th id="afamilyPlanningLeave">' + msg.msg[i].afamilyPlanningLeave + '</th>' +
-                        '<th id="acareLeave">' + msg.msg[i].acareLeave + '</th>' +
-                        '<th id="amarriageLeave">' + msg.msg[i].amarriageLeave + '</th>' +
-                        '<th id="aotherLeave">' + msg.msg[i].aotherLeave + '</th>' +
-                        '<th id="atotalLeave">' + msg.msg[i].atotalLeave + '</th>' +
-                        '<th id="atardy">' + msg.msg[i].atardy + '</th>' +
-                        '<th id="aleaveEarly">' + msg.msg[i].aleaveEarly + '</th>' +
-                        '<th id="absenteeism">' + msg.msg[i].absenteeism + '</th>' +
-                        '<th id="remark">' + msg.msg[i].remark + '</th>' +
-                        '<td class="text-center">' +
+                        '<th>' + msg.msg[i].adepartment + '</th>' +
+                        '<th>' + msg.msg[i].aname + '</th>' +
+                        '<th>' + msg.msg[i].aattendanceDays + '</th>' +
+                        '<th>' + msg.msg[i].aworkOvertimeDays + '</th>' +
+                        '<th>' + msg.msg[i].aleavePersonalAffairs + '</th>' +
+                        '<th>' + msg.msg[i].asickLeave + '</th>' +
+                        '<th>' + msg.msg[i].aannualLeave + '</th>' +
+                        '<th>' + msg.msg[i].aforVacation + '</th>' +
+                        '<th>' + msg.msg[i].atolerance + '</th>' +
+                        '<th>' + msg.msg[i].amaleInjuryLeave + '</th>' +
+                        '<th>' + msg.msg[i].afuneralLeave + '</th>' +
+                        '<th>' + msg.msg[i].aantenatalExamination + '</th>' +
+                        '<th>' + msg.msg[i].abreastfeedingLeave + '</th>' +
+                        '<th>' + msg.msg[i].amaternityLeave + '</th>' +
+                        '<th>' + msg.msg[i].afamilyPlanningLeave + '</th>' +
+                        '<th>' + msg.msg[i].acareLeave + '</th>' +
+                        '<th>' + msg.msg[i].amarriageLeave + '</th>' +
+                        '<th>' + msg.msg[i].aotherLeave + '</th>' +
+                        '<th>' + msg.msg[i].atotalLeave + '</th>' +
+                        '<th>' + msg.msg[i].atardy + '</th>' +
+                        '<th>' + msg.msg[i].aleaveEarly + '</th>' +
+                        '<th>' + msg.msg[i].absenteeism + '</th>' +
+                        '<th>' + msg.msg[i].remark + '</th>' +
+                        '<td>' +
                         '<button type="button" class="btn btn-info delete" >删除</button>' +
                         '<input type="hidden" class="' + msg.msg[i].aid + '" />' +
                         '<button type="button" class="btn btn-warning manageEdit attendanceManageUpdate">修改</button>' +
@@ -305,7 +305,7 @@ function getAttendanceList(page) {
 }
 
 /**
- * 部门end
+ * 考勤end
  */
 
 /**
@@ -1095,7 +1095,7 @@ function getUsers() {
             if (msg.status == 200) {
                 usersUusername = msg.msg.uusername;
                 $(".usersManageEdit #uusername").val(msg.msg.uusername);
-                $(".usersManageEdit #did").val(msg.msg.did);
+                $(".usersManageEdit #aid").val(msg.msg.did);
                 $(".usersManageEdit #utelephonenumber").val(msg.msg.utelephonenumber);
                 $(".usersManageEdit #upassword").val(msg.msg.upassword);
             }
