@@ -1,31 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/leave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/onbusInessFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/onbusInessFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/overTimeFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/sealuseFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/js/bootstrap-material-datetimepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/js/bootstrap-material-datetimepicker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/js/moment-with-locales.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/js/moment-with-locales.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/daily/dailyinfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/create/selectUp.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/leave.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/leave.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/onbusInessFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/js/bootstrap-material-datetimepicker.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/js/bootstrap-material-datetimepicker.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/js/moment-with-locales.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/js/moment-with-locales.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/daily/dailyinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/daily/dailyinfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/create/selectUp.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/create/selectUp.html" afterDir="false" />
-    </list>
+    <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -394,7 +370,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575508207080</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="修改动态，日期插件">
+      <created>1575513890974</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1575513890974</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -541,7 +524,8 @@
     <MESSAGE value="日志查看" />
     <MESSAGE value="历史记录查看" />
     <MESSAGE value="代码合并2019、12、5" />
-    <option name="LAST_COMMIT_MESSAGE" value="代码合并2019、12、5" />
+    <MESSAGE value="修改动态，日期插件" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改动态，日期插件" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
