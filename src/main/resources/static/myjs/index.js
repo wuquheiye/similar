@@ -3,14 +3,14 @@
  */
 $(function () {
     var login = JSON.parse(sessionStorage.getItem('login'));
-    var uusername = login.users.uusername;
+    var utelephonenumber = login.users.utelephonenumber;
     $.ajax({
         url: pageDesignControl_HOST + 'manage/users/getpermission',
         type: 'get',
         contentType: 'application/json',
         dataType: 'json',
         data: {
-            "uusername": uusername
+            "utelephonenumber": utelephonenumber
         },
         success: function (msg) {
             for (var i = 0; i < msg.msg.length; i++) {

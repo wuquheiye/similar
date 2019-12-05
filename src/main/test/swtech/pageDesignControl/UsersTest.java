@@ -128,12 +128,6 @@ public class UsersTest {
     }
 
     @Test
-    public void selectUsersByRid() {
-        List<Users> users = usersMapper.selectUsersByRid(33);
-        System.out.println(users);
-    }
-
-    @Test
     public void getAllDepartmentByCompany() {
         List<DepartmentVO> users = usersMapper.getAllDepartmentByCompany(1);
         System.out.println(users);

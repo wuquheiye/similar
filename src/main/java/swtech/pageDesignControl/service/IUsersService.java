@@ -2,6 +2,7 @@ package swtech.pageDesignControl.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
+import swtech.pageDesignControl.common.vo.CompanyVO;
 import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.common.vo.LoginVO;
 import swtech.pageDesignControl.entity.Permission;
@@ -55,16 +56,17 @@ public interface IUsersService extends IService<Users> {
     /**
      * 根据用户名获取所有的权限
      *
-     * @param uusername
+     * @param utelephonenumber
      * @return
      */
-    List<Permission> getPermission(String uusername);
+    List<Permission> getPermission(String utelephonenumber);
 
     /**
      * 根据角色id查询所有的用户
      *
-     * @param rid
      * @return
      */
     List<Users> selectUsersByRid();
+
+    List<CompanyVO> getAllCompanyInformation();
 }
