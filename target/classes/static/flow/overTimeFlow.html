@@ -174,7 +174,7 @@
         $("#otSection").text(loginObj.department.dname);
         $("#otName").text(loginObj.users.uusername);
         $("#defuletTime").text(getCurrentTime().split(" ")[0]);
-        // selectusersbyrid()
+        selectusersbyrid()
     })
 
     /**
@@ -190,7 +190,7 @@
         let leaveflow={
             "ftype" : ftype,
             "uid" :loginObj.users.uid,
-            // "fleaveType":fleaveType,
+            "fleaveType":fleaveType,
             "fapplyTime" : fapplyTime,
             "fstartTime":fstartTime,
             "fendTime" :　fendTime,
