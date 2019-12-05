@@ -38,6 +38,11 @@ public class AdminController {
         return "use/403";
     }
 
+    @RequestMapping("/organization")
+    public String organization(){
+        return "organization/organization";
+    }
+
 //
 //
 //    @RequiresRoles("user")

@@ -8,7 +8,6 @@
 $(function () {
     $(".publicBottomOrganization").on("click", ".clickToPersondetail", function () {
         var personInfomationManageId = $(this).children("input").val();
-        alert(personInfomationManageId);
         window.location.href = "./personInfomation.html?personInfomationManageId="+personInfomationManageId;
     });
 })
@@ -55,6 +54,7 @@ $(function () {
                             str +=
                                 '<li class="organizationHeaderOrganizationLi clickToPersondetail">' +
                                 '<input type="hidden" value="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" />'+
+                                // '<input type="checkbox" class="getallname" id="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" value="'+ msg.msg[i].departmentVOList[j].usersListVO[k].rname + '"> '+
                                 '<div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>' +
                                 '<div class="" style="float:left;">' +
                                 '<div style="padding-top: 8px;font-size: 16px;">' +
@@ -155,23 +155,23 @@ $(function () {
 /**
  * 组织顶部点击变色和显示隐藏
  */
-$(function () {
-    $(".centerContain").on("click", ".organizationHeaderLi", function () {
-        if (!$(this).is('.active')) {
-            $(".centerContain .organizationCenter").addClass("hidden");
-            $("." + $(this).attr("id")).removeClass("hidden");
-            $(".centerContain .organizationHeaderLi").removeClass("active");
-            $(this).addClass("active");
-        }
-    });
-})
+// $(function () {
+//     $(".centerContain").on("click", ".organizationHeaderLi", function () {
+//         if (!$(this).is('.active')) {
+//             $(".centerContain .organizationCenter").addClass("hidden");
+//             $("." + $(this).attr("id")).removeClass("hidden");
+//             $(".centerContain .organizationHeaderLi").removeClass("active");
+//             $(this).addClass("active");
+//         }
+//     });
+// })
 
 /**
  * 袁君选
  * 获取监听值
  * 根据name值监听
  */
-$(".organizationHeaderOrganization").on("click", ".getallname", function () {
+$("html").on("change", ".getallname", function () {
     if ($(this).is(':checked')) {
         var showdata = '<button type="button" class="btn btn-primary button"  id="bun_' + $(this).attr("id") + '" value=' + this.value + '>' + this.value + '</button>';
         $("#getname").append(showdata);

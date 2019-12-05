@@ -3,7 +3,7 @@
 <mapper namespace="swtech.pageDesignControl.mapper.AttendanceMapper">
     <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Attendance"
             parameterType="swtech.pageDesignControl.entity.Attendance">
-        SELECT * FROM attendance
+        SELECT * FROM attendance where 1=1
         LIMIT #{pageStart},#{pageSize}
     </select>
 
