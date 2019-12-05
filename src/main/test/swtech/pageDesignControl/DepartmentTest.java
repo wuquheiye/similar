@@ -20,8 +20,6 @@ public class DepartmentTest {
     @Resource
     private DepartmentMapper departmentMapper;
 
-
-   
     @Test
     public void insert() {
         Department department = new Department();

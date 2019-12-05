@@ -63,6 +63,7 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         loginUsersVO.setUid(users.getUid());
         loginUsersVO.setDid(users.getDid());
         loginUsersVO.setUusername(users.getUusername());
+        loginUsersVO.setUtelephonenumber(users.getUtelephonenumber());
         // 查询本部门主管
         List<Users> chargeUser = usersMapper.findUsersByDepartmentAndRole(users.getDid(), 3);
         // 查询本部门经理

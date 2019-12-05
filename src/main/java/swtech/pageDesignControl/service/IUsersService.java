@@ -56,14 +56,14 @@ public interface IUsersService extends IService<Users> {
     /**
      * 根据用户名获取所有的权限
      *
-     * @param uusername
+     * @param utelephonenumber
      * @return
      */
-    List<Permission> getPermission(String uusername);
+    List<Permission> getPermission(String utelephonenumber);
 
     /**
      * 根据角色id查询所有的用户
-     * @param
+     *
      * @return
      */
     List<Users> selectUsersByRid();

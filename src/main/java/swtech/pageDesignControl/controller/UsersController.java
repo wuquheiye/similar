@@ -185,10 +185,10 @@ public class UsersController {
 
     @ResponseBody
     @GetMapping("/manage/users/getpermission")
-    public ReturnMsg getPermission(@RequestParam("uusername") String uusername) {
+    public ReturnMsg getPermission(@RequestParam("utelephonenumber") String utelephonenumber) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            List<Permission> permissionList = iUsersService.getPermission(uusername);
+            List<Permission> permissionList = iUsersService.getPermission(utelephonenumber);
             if (permissionList != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("获取用户权限成功");
@@ -206,10 +206,6 @@ public class UsersController {
         log.info(String.valueOf(msg));
         return msg;
     }
-
-
-
-
 
     /**
      * 获取所有经理和利捷总经理
