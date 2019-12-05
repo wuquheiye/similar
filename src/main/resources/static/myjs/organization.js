@@ -54,7 +54,7 @@ $(function () {
                         for (var k = 0; k < msg.msg[i].departmentVOList[j].usersListVO.length; k++) {
                             str +=
                                 '<li class="organizationHeaderOrganizationLi clickToPersondetail">' +
-                                '<input type="hidden" value="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" />'+
+                                '<input type="checkbox" class="getallname" valuekey="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" id="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" value="'+ msg.msg[i].departmentVOList[j].usersListVO[k].rname + '"> '+
                                 '<input type="checkbox" class="getallname" id="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" value="'+ msg.msg[i].departmentVOList[j].usersListVO[k].rname + '"> '+
                                 '<div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>' +
                                 '<div class="" style="float:left;">' +
