@@ -1,6 +1,7 @@
 package swtech.pageDesignControl.mapper;
 
 import org.apache.ibatis.annotations.Param;
+import swtech.pageDesignControl.common.vo.CompanyVO;
 import swtech.pageDesignControl.common.vo.DepartmentVO;
 import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.entity.Users;
@@ -97,4 +98,6 @@ public interface UsersMapper extends BaseMapper<Users> {
      * @return
      */
     List<UsersVO> getAllUsersByDepartment(int did);
+
+    List<CompanyVO> getAllCompanyInformation();
 }
