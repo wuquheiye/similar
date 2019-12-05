@@ -221,7 +221,7 @@
                 将申请推送给领导审批
             </div>
             <div class="col-xs-12" style="line-height: 35px">
-                <select class="form-control" id="idea" style="border: 0px">
+                <select class="form-control" id="fuidManager" style="border: 0px">
 
                 </select>
             </div>
@@ -244,8 +244,10 @@
         // $("#otTitle").text(loginObj.users.uusername+"_加班");
         $("#otSection").text(loginObj.department.dname);
         $("#otName").text(loginObj.users.uusername);
+        $("#defuletTime").text(getCurrentTime().split(" ")[0]);
         selectusersbyrid()
     })
+
     $("#oifPeer").change(function () {
         let numProper=$("#oifPeer").val().split(",").length;
         $("#numProper").text(numProper);
@@ -293,7 +295,7 @@
             }
         }
 
-        alert(JSON.stringify(leaveflow))
+        // alert(JSON.stringify(leaveflow))
         $.ajax({
             url: pageDesignControl_HOST + "flow/onbusInessInsert",
             type: "post",
@@ -315,13 +317,7 @@
         })
 
     }
-    $(function () {
-        $("#defuletTime").text(getCurrentTime().split(" ")[0]);
-        //获取选择时间
 
-
-        // leadTime()
-    })
 
     $("#date-start").change(function () {
         // alert($("#date-end").val())

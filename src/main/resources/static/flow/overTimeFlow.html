@@ -150,7 +150,7 @@
                 将申请推送给领导审批
             </div>
             <div class="col-xs-12" style="line-height: 35px">
-                <select class="form-control" id="idea" style="border: 0px">
+                <select class="form-control" id="fuidManager" style="border: 0px">
 
                 </select>
             </div>
@@ -183,14 +183,14 @@
     function commitflow() {
         let ftype= ftypeFlow.OVERTIME.code;
         let fapplyTime = $("#defuletTime").text();
-        let fleaveType = $("#fleaveType").val();//获取请假类型
+        let fleaveType = $("#fleaveType").val();//获取加班类型
         let fstartTime = $("#date-start").val();
         let fendTime = $("#date-end").val();
         let fapplyReason = $("#fapplyReason").val();
         let leaveflow={
             "ftype" : ftype,
             "uid" :loginObj.users.uid,
-            // "fleaveType":fleaveType,
+            "fleaveType":fleaveType,
             "fapplyTime" : fapplyTime,
             "fstartTime":fstartTime,
             "fendTime" :　fendTime,
@@ -202,7 +202,7 @@
             // "artsVision":loginObj.department.ArtsVision
         }
 
-        alert(JSON.stringify(leaveflow))
+        // alert(JSON.stringify(leaveflow))
         $.ajax({
             url: pageDesignControl_HOST + "flow/leaveInsert",
             type: "post",
@@ -287,7 +287,7 @@
 
         $('#min-date').bootstrapMaterialDatePicker({ format : 'DD/MM/YYYY HH:mm', minDate : new Date() });
 
-        $.material.init()
+        $.material.init();
     });
 </script>
 </html>

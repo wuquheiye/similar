@@ -19,6 +19,8 @@
     <script type="text/javascript" charset="utf-8" src="../myjs/index.js"></script>
     <script type="text/javascript" charset="utf-8" src="../myjs/public.js"></script>
     <script src="https://at.alicdn.com/t/font_1502544_rthj4rd15fl.js"></script>
+    <!--    全局配置文件-->
+    <script type="text/javascript" src="../myjs/httpData.config.js"></script>
 </head><!-- 在头部引入bootstrap的css包与js包 -->
 <style type="text/css">
     .modal-dialog {
@@ -267,8 +269,8 @@
                                     <use xlink:href="#icon-ic_kaoqinbiao"></use>
                                 </svg>
                                 <span class="badge"
-                                      style="position: absolute;top: 39px;margin-left: -15px;background: red"
-                                      id="systemMessage">10</span>
+                                      style="display:none;position: absolute;top: 39px;margin-left: -15px;background: red"
+                                      id="systemMessage"></span>
                             </div>
                             <div class="row" style="padding-top: 10px">
                                 系统消息
@@ -281,8 +283,8 @@
                                         <use xlink:href="#icon-xiaoxi-copy"></use>
                                     </svg>
                                     <span class="badge"
-                                          style="position: absolute;top: 39px;margin-left: -15px;background: red"
-                                          id="chargeMessage">10</span>
+                                          style="display: none;position: absolute;top: 39px;margin-left: -15px;background: red"
+                                          id="chargeMessage"></span>
                                 </div>
                                 <div class="row" style="padding-top: 10px">
                                     待办信息
@@ -482,23 +484,93 @@
     //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
 
-
-    var analogInformation = [{
-        one: { //项目
-            projectName: "项目名",
-            createTime: '',
-            createProper: "创建人",
-            projectSchedule: 40
-        }
-    }, {
-        two: {//日志
-            createProper: "日志创建人",
-            createTime: '',
-            desc: "嘎婆阿达....",
-        }
-    }]
-
     var datashow = '';
+
+
+    $(function () {
+        selectProjectJournal()
+        selectMessageNum()
+    })
+
+    //查询当前用户代办消息num
+    function selectMessageNum() {
+        $.ajax({
+            url: pageDesignControl_HOST + "flow/selectMessageNum?uid="+loginObj.users.uid+"&rtype="+loginObj.role.rtype,
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(typeof(res.msg)=='number'){
+                    $("#chargeMessage").text(res.msg);
+                    if($("#chargeMessage").text()!=0){
+                        $("#chargeMessage").show();
+                    }
+                }
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
+    }
+
+    $("#chargeMessage").change(function () {
+        alert($("#chargeMessage").text());
+        if($("#chargeMessage").text()!=0){
+            $("#chargeMessage").show();
+        }
+    })
+
+
+    //查询所有项目和日志信息
+    function selectProjectJournal() {
+        let showdata='';
+        $.ajax({
+            url: pageDesignControl_HOST + "project/selectProjectJournal",
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(res!=""){
+                    $.each(res.msg,function (index,value) {
+                        if(typeof(value.jid) == "number"){
+                            showdata +='<a href="/journal/selectJournal/'+value.jid+'" style="color: black"><div class="row" style="position: relative">\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            <b style="font-size: 16px;">'+value.uusername+'的日报</b>\n' +
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            日志详情:\n' + value.jnowTask+
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n'
+                                +value.jcreateTime+
+                                '                        </div>\n' +
+                                '                    </div></a>';
+                        }
+                        else if(typeof (value.upId) == "number"){
+                            showdata += '<a href="/project/selectUpByUpId/'+value.upId+'" style="color: black"><div class="row" style="position: relative">\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            <b style="font-size: 16px;">'+value.pname+'+项目进度</b>\n' +
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+value.upProgress+'%">'+value.upProgress+'%</div>'+
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
+                                value.upTime
+                            '                        </div>\n' +
+                            '                    </div></a>';
+                        }
+                    })
+
+                }
+                $("#pushServer").html(showdata);
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
+    }
+
 
     //模拟数据
     // let defultnum = 30;
