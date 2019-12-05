@@ -37,10 +37,17 @@
     </update>
 
     <select id="selectUsersByRid" resultType="swtech.pageDesignControl.entity.Users">
-        select u.* from users u
+        select u.uid,u.uusername from users u
         join user_role ur on ur.uid = u.uid
         join role r on ur.rid = r.rid
-        where r.rid = #{rid}
+        where r.rtype = 4 or r.rtype = 7
+    </select>
+
+    <select id="selectGM" resultType="swtech.pageDesignControl.entity.Users">
+        select u.uid,u.uusername from users u
+        join user_role ur on ur.uid = u.uid
+        join role r on ur.rid = r.rid
+        where r.rtype = #{rtype}
     </select>
 
     <select id="findUsersByName" resultType="swtech.pageDesignControl.entity.Users" parameterType="java.lang.String">
