@@ -269,8 +269,8 @@
                                     <use xlink:href="#icon-ic_kaoqinbiao"></use>
                                 </svg>
                                 <span class="badge"
-                                      style="position: absolute;top: 39px;margin-left: -15px;background: red"
-                                      id="systemMessage">10</span>
+                                      style="display:none;position: absolute;top: 39px;margin-left: -15px;background: red"
+                                      id="systemMessage"></span>
                             </div>
                             <div class="row" style="padding-top: 10px">
                                 系统消息
@@ -283,8 +283,8 @@
                                         <use xlink:href="#icon-xiaoxi-copy"></use>
                                     </svg>
                                     <span class="badge"
-                                          style="position: absolute;top: 39px;margin-left: -15px;background: red"
-                                          id="chargeMessage">10</span>
+                                          style="display: none;position: absolute;top: 39px;margin-left: -15px;background: red"
+                                          id="chargeMessage"></span>
                                 </div>
                                 <div class="row" style="padding-top: 10px">
                                     待办信息
@@ -465,7 +465,38 @@
 
     $(function () {
         selectProjectJournal()
+        selectMessageNum()
     })
+
+    //查询当前用户代办消息num
+    function selectMessageNum() {
+        $.ajax({
+            url: pageDesignControl_HOST + "flow/selectMessageNum?uid="+loginObj.users.uid+"&rtype="+loginObj.role.rtype,
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(typeof(res.msg)=='number'){
+                    $("#chargeMessage").text(res.msg);
+                    if($("#chargeMessage").text()!=0){
+                        $("#chargeMessage").show();
+                    }
+                }
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
+    }
+
+    $("#chargeMessage").change(function () {
+        alert($("#chargeMessage").text());
+        if($("#chargeMessage").text()!=0){
+            $("#chargeMessage").show();
+        }
+    })
+
 
     //查询所有项目和日志信息
     function selectProjectJournal() {

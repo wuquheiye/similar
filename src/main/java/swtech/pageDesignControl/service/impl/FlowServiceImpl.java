@@ -274,7 +274,7 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
                 qw.eq("fuid_manager",uid);
             }
         }
-        qw.ne("fstatus",Fstatus.OVER);
+        qw.ne("fstatus",Fstatus.OVER.getCode());
         Integer integer = flowMapper.selectCount(qw);
         msg.setStatus("200");
         msg.setMsg(integer);

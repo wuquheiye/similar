@@ -80,12 +80,12 @@
         <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row" data-target="#modal">
             <div class="col-xs-6">
                 同行人
             </div>
             <div class="col-xs-6">
-                <input type="text"  style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="请选择同行人">
+                <input type="text"  id="fchange" style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="请选择同行人">
             </div>
         </div>
         <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
@@ -177,6 +177,30 @@
             </div>
         </div>
     </div>
+    <!--模态框-->
+    <div class="modal" id="modal" style="width: 100%;height: 100%;padding: 0px">
+        <div class="modal-dialog" style="width: 100%;height: 100%;">
+            <div class="modal-content" style="width: 100%;height: 100%;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        模态框（Modal）标题
+                    </h4>
+                </div>
+                <div class="modal-body" id="">
+                    在这里添加一些文本
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="tijiao()">提交更改</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!--底部-->
     <div class="container navbar-fixed-bottom" >
         <button type="button" class="btn btn-primary btn-lg btn-block" onclick="commitflow()">提交申请</button>
@@ -189,6 +213,8 @@
 
     //缓存获取当前用户信息 , 并得到他的角色 loginObj.users.uid
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
+
+
 
     $(function () {
         $("#otTitle").text(loginObj.users.uusername+"_加班");
@@ -204,10 +230,12 @@
     function commitflow() {
         let ftype= ftypeFlow.GOOUT.code;
         let fapplyTime = $("#defuletTime").text();
-        let fleaveType = $("#fleaveType").val();//获取请假类型
+        // let fleaveType = $("#fleaveType").val();//获取请假类型
         let fstartTime = $("#date-start").val();
         let fendTime = $("#date-end").val();
         let fapplyReason = $("#fapplyReason").val();
+        let fchange = $("#fchange").val(); //通行人
+        let fuidManager=$("#fuidManager").val();
         let leaveflow={
             "ftype" : ftype,
             "uid" :loginObj.users.uid,
