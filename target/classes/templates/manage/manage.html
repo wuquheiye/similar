@@ -490,21 +490,21 @@
                 </div>
             </div>
         </div>
-        <div class="attendanceManage rightManageDiv">
+        <div class="attendanceManage hidden rightManageDiv">
             <div>
                 <form class="form-inline" role="form">
                     姓名：
                     <div class="form-group">
-                        <label class="sr-only" for="name">姓名：</label>
-                        <input type="text" class="form-control" id="userManageName" placeholder="请输入姓名名称：">
+                        <label class="sr-only" for="attendanceManageName">姓名：</label>
+                        <input type="text" class="form-control" id="attendanceManageName" placeholder="请输入姓名名称：">
                     </div>
                     年月
                     <div class="form-group">
-                        <input type="text" id="userManageDateBegin" class="form-control floating-label"
+                        <input type="text" id="attendanceManageDateBegin" class="form-control floating-label"
                                placeholder="请选择年月：">
                     </div>
                     <button type="button" class="btn btn-default">搜索</button>
-                    <button type="button" class="btn btn-default" onclick="userManageClean()">重置</button>
+                    <button type="button" class="btn btn-default" onclick="attendanceManageClean()">重置</button>
                 </form>
             </div>
             <div>
@@ -512,7 +512,6 @@
                 <input type="hidden" class="attendanceManageEdit">
                 <button type="button" class="btn btn-info">删除</button>
                 <input type="hidden" class="attendanceManageEdit">
-                <input type="file">
             </div>
             <div>
                 <table class="table table-bordered">
@@ -521,37 +520,6 @@
                     <tr>
                         <th>部门</th>
                         <th>姓名</th>
-                        <th>1一</th>
-                        <th>2二</th>
-                        <th>3三</th>
-                        <th>4四</th>
-                        <th>5五</th>
-                        <th>6六</th>
-                        <th>7日</th>
-                        <th>8一</th>
-                        <th>9二</th>
-                        <th>10三</th>
-                        <th>11四</th>
-                        <th>12五</th>
-                        <th>13六</th>
-                        <th>14日</th>
-                        <th>15一</th>
-                        <th>16二</th>
-                        <th>17三</th>
-                        <th>18四</th>
-                        <th>19五</th>
-                        <th>20六</th>
-                        <th>21日</th>
-                        <th>22一</th>
-                        <th>23二</th>
-                        <th>24三</th>
-                        <th>25四</th>
-                        <th>26五</th>
-                        <th>27六</th>
-                        <th>28日</th>
-                        <th>29一</th>
-                        <th>30二</th>
-                        <th>31三</th>
                         <th>实际出勤天数</th>
                         <th>加班天数</th>
                         <th>事假</th>
@@ -573,149 +541,34 @@
                         <th>早退</th>
                         <th>旷工</th>
                         <th>备注</th>
+                        <th class="text-center">操作</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="attendanceManageTable">
                     <tr>
-                        <td>开发部</td>
-                        <td>张三</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>26</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>开发部</td>
-                        <td>李四</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>26</td>
-                        <td>0</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>开发部</td>
-                        <td>王五</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td></td>
-                        <td></td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>1</td>
-                        <td>26</td>
-                        <td>0</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>0</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <th id="adepartment">部门</th>
+                        <th id="aname">姓名</th>
+                        <th id="aattendanceDays">实际出勤天数</th>
+                        <th id="aworkOvertimeDays">加班天数</th>
+                        <th id="aleavePersonalAffairs">事假</th>
+                        <th id="asickLeave">病假</th>
+                        <th id="aannualLeave">年休假</th>
+                        <th id="aforVacation">补休假</th>
+                        <th id="atolerance">公差</th>
+                        <th id="amaleInjuryLeave">公伤假</th>
+                        <th id="afuneralLeave">丧假</th>
+                        <th id="aantenatalExamination">产前检查</th>
+                        <th id="abreastfeedingLeave">哺乳假</th>
+                        <th id="amaternityLeave">产假</th>
+                        <th id="afamilyPlanningLeave">计生假</th>
+                        <th id="acareLeave">看护假</th>
+                        <th id="amarriageLeave">婚假</th>
+                        <th id="aotherLeave">其他假</th>
+                        <th id="atotalLeave">合计</th>
+                        <th id="atardy">迟到</th>
+                        <th id="aleaveEarly">早退</th>
+                        <th id="absenteeism">旷工</th>
+                        <th id="remark">备注</th>
                     </tr>
                     </tbody>
                 </table>
@@ -1193,7 +1046,7 @@
                             <td>民族</td>
                             <td colspan="2"><input type="text" class="" placeholder="" id="pnation"></td>
                             <td rowspan="4">
-                                <input type="file" id="img_upload" />
+                                <input type="file" id="img_upload"/>
                                 <div id="img_area">
                                 </div>
                             </td>
