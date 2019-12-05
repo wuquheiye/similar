@@ -1,4 +1,314 @@
 /**
+ * 考勤start
+ */
+var attendanceManageId = 0;
+var attendanceDname = "";
+$(function () {
+    /**
+     * 左侧显示隐藏并获取考勤列表
+     */
+    $(".manageLeft").on("click", "#attendanceManage", function () {
+        $("#attendanceManageName").val("");
+        $(".manageRight .rightManageDiv").addClass("hidden");
+        $(".attendanceManage").removeClass("hidden");
+        getAttendanceList(1);
+    });
+
+    /**
+     * 点击分页
+     */
+    $("#attendanceManagePageDiv").on("click", "personInfomation.css", function () {
+        getAttendanceList($(this).text());
+    });
+
+    /**
+     * 清除
+     */
+    $(".attendanceManage").on("click", "#attendanceManageClean", function () {
+        $("#attendanceManageName").val("");
+    });
+
+    /**
+     * 查询
+     */
+    $(".attendanceManage").on("click", "#attendanceManageSearch", function () {
+        getAttendanceList(1)
+    });
+
+    /**
+     * 删除单个考勤
+     */
+    $(".attendanceManage").on("click", ".delete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            var did = $(this).next().attr("class");
+            removeAttendance(did);
+        }
+    });
+
+    /**
+     * 增加考勤
+     */
+    $(".attendanceManageEdit").on("click", "#saveAttendance", function () {
+        saveAttendance();
+    });
+
+    /**
+     * 更改考勤
+     */
+    $(".attendanceManageEdit").on("click", "#updateAttendance", function () {
+        updateAttendance();
+    });
+})
+
+/**
+ * 考勤管理
+ */
+$(function () {
+    /**
+     * 点击添加
+     */
+    $(".manageRight").on("click", ".attendanceManageAdd", function () {
+        $(".manageRight .attendanceManage").addClass("hidden");
+        $(".manageRight").children(".attendanceManageEdit").removeClass("hidden");
+        $(".Attendance").attr("id", "saveAttendance");
+        $(".attendanceManageEdit #dname").val("");
+    });
+
+    /**
+     * 点击更新
+     */
+    $(".manageRight").on("click", ".attendanceManageUpdate", function () {
+        attendanceManageId = $(this).prev().attr("class");
+        getAttendance();
+        $(".manageRight .attendanceManage").addClass("hidden");
+        $(".manageRight").children(".attendanceManageEdit").removeClass("hidden");
+        $(".Attendance").attr("id", "updateAttendance");
+    });
+
+    /**
+     * 点击返回
+     */
+    $(".manageRight").on("click", ".AttendanceManageBack", function () {
+        $(".manageRight .attendanceManage").removeClass("hidden");
+        $(".manageRight").children(".attendanceManageEdit").addClass("hidden");
+        getAttendanceList(1);
+    });
+})
+
+/**
+ * 获取单个考勤
+ */
+function getAttendance() {
+    var did = attendanceManageId;
+    $.ajax({
+        url: pageDesignControl_HOST + '/manage/attendance/getbyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"did": did},
+        async: false,
+        success: function (msg) {
+            if (msg.status == 200) {
+                attendanceDname = msg.msg.dname;
+                $(".attendanceManageEdit #dname").val(msg.msg.dname);
+                $(".attendanceManageEdit #artsVision").val(msg.msg.artsVision);
+            }
+        }
+    });
+}
+
+/**
+ * 判断用户是否重名
+ */
+function isDnameHendiadysAttendance(dname) {
+    var result = 0;
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/attendance/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"dname": "", "pageSize": 10000},
+        async: false,
+        success: function (msg) {
+            if (msg.status == 200) {
+                var attendanceList = msg.msg;
+                for (var i = 0; i < attendanceList.length; i++) {
+                    if (attendanceList[i].dname == dname) {
+                        result = 1;
+                    }
+                }
+            }
+        }
+    });
+    return result;
+}
+
+/**
+ * 更改部门
+ */
+function updateAttendance() {
+    var did = attendanceManageId;
+    var dname = $(".attendanceManageEdit #dname").val();
+    var artsVision = $(".attendanceManageEdit #artsVision").val();
+    if (!dname) {
+        alert("权限名称不能为空");
+    } else if (isDnameHendiadysAttendance(dname) && attendanceDname != dname) {
+        alert("权限名称不能重复");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/attendance/updatebyid',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {"dname": dname, "did": did, "artsVision": artsVision},
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("更改成功")
+                } else {
+                    alert(msg.statusMsg)
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 添加部门
+ */
+function saveAttendance() {
+    var dname = $(".attendanceManageEdit #dname").val();
+    var artsVision = $(".attendanceManageEdit #artsVision").val();
+    if (!dname) {
+        alert("权限名称不能为空");
+    } else if (isDnameHendiadysttendance(dname)) {
+        alert("权限名称不能重复");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/attendance/save',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {"dname": dname, "artsVision": artsVision},
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("添加成功")
+                } else {
+                    alert(msg.statusMsg)
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 删除单个部门
+ */
+function removeAttendance(did) {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/attendance/removebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"did": did},
+        success: function (msg) {
+            if (msg.status == 200) {
+                getAttendanceList(1);
+                alert("删除成功")
+            } else {
+                alert(msg.statusMsg)
+            }
+        }
+    });
+}
+
+/**
+ * 获取部门列表
+ */
+function getAttendanceList(page) {
+    var aname = $("#attendanceManageName").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/attendance/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"aname": aname, "page": page},
+        success: function (msg) {
+            if (msg.status == 200) {
+                // 添加列表
+                var attendanceListStr = "";
+                for (var i = 0; i < msg.msg.length; i++) {
+                    attendanceListStr += '<tr>' +
+                        '<th id="adepartment">' + msg.msg[i].adepartment + '</th>' +
+                        '<th id="aname">' + msg.msg[i].aname + '</th>' +
+                        '<th id="aattendanceDays">' + msg.msg[i].aattendanceDays + '</th>' +
+                        '<th id="aworkOvertimeDays">' + msg.msg[i].aworkOvertimeDays + '</th>' +
+                        '<th id="aleavePersonalAffairs">' + msg.msg[i].aleavePersonalAffairs + '</th>' +
+                        '<th id="asickLeave">' + msg.msg[i].asickLeave + '</th>' +
+                        '<th id="aannualLeave">' + msg.msg[i].aannualLeave + '</th>' +
+                        '<th id="aforVacation">' + msg.msg[i].aforVacation + '</th>' +
+                        '<th id="atolerance">' + msg.msg[i].atolerance + '</th>' +
+                        '<th id="amaleInjuryLeave">' + msg.msg[i].amaleInjuryLeave + '</th>' +
+                        '<th id="afuneralLeave">' + msg.msg[i].afuneralLeave + '</th>' +
+                        '<th id="aantenatalExamination">' + msg.msg[i].aantenatalExamination + '</th>' +
+                        '<th id="abreastfeedingLeave">' + msg.msg[i].abreastfeedingLeave + '</th>' +
+                        '<th id="amaternityLeave">' + msg.msg[i].amaternityLeave + '</th>' +
+                        '<th id="afamilyPlanningLeave">' + msg.msg[i].afamilyPlanningLeave + '</th>' +
+                        '<th id="acareLeave">' + msg.msg[i].acareLeave + '</th>' +
+                        '<th id="amarriageLeave">' + msg.msg[i].amarriageLeave + '</th>' +
+                        '<th id="aotherLeave">' + msg.msg[i].aotherLeave + '</th>' +
+                        '<th id="atotalLeave">' + msg.msg[i].atotalLeave + '</th>' +
+                        '<th id="atardy">' + msg.msg[i].atardy + '</th>' +
+                        '<th id="aleaveEarly">' + msg.msg[i].aleaveEarly + '</th>' +
+                        '<th id="absenteeism">' + msg.msg[i].absenteeism + '</th>' +
+                        '<th id="remark">' + msg.msg[i].remark + '</th>' +
+                        '<td class="text-center">' +
+                        '<button type="button" class="btn btn-info delete" >删除</button>' +
+                        '<input type="hidden" class="' + msg.msg[i].aid + '" />' +
+                        '<button type="button" class="btn btn-warning manageEdit attendanceManageUpdate">修改</button>' +
+                        '<input type="hidden" class="attendanceManageEdit">' +
+                        '</td>' +
+                        '</tr>'
+                }
+                $("#attendanceManageTable").empty();
+                $("#attendanceManageTable").append(attendanceListStr);
+                // 回显搜索名
+                $("#attendanceManageName").val(dname);
+                // 是否显示分页
+                if (msg.totalSize <= 10) {
+                    $("#attendanceManagePageDiv").addClass("hidden");
+                } else {
+                    $("#attendanceManagePageDiv").removeClass("hidden");
+                }
+                // 分页具体信息
+                var pageSpanStr = "第 " + msg.pageStart + " 条 到 " + (msg.pageEnd < msg.totalSize ? msg.pageEnd : msg.totalSize) + " 条 ，共 " + msg.totalSize + " 条记录, 当前第 " + msg.currentPage + "页";
+                $("#attendanceManagePageSpan").text(pageSpanStr);
+                var pageUlStr = "";
+                if (parseInt(msg.currentPage) - 2 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 2) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) - 1 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 1) + '</a></li>';
+                }
+                pageUlStr += '<li><a href="#">' + msg.currentPage + '</a></li>';
+                if (parseInt(msg.currentPage) + 1 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 1) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) + 2 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 2) + '</a></li>';
+                }
+                $("#attendanceManagePageUl").empty();
+                $("#attendanceManagePageUl").append(pageUlStr);
+            }
+        }
+    });
+}
+
+/**
+ * 部门end
+ */
+
+/**
  * 个人档案start
  */
 var personInfomationManageId = 0;
@@ -138,7 +448,7 @@ function getPersonInfomation() {
         success: function (msg) {
             if (msg.status == 200) {
                 personInfomationPname = msg.msg.pname;
-                $("#img_area").html('<img id="pimg" src="'+msg.msg.pimg+'"/>') ;
+                $("#img_area").html('<img id="pimg" src="' + msg.msg.pimg + '"/>');
                 $(".personInfomationManageEdit #pname").val(msg.msg.pname);
                 $(".personInfomationManageEdit #uid").val(msg.msg.uid);
                 $(".personInfomationManageEdit #pdepartment").val(msg.msg.pdepartment);
@@ -392,7 +702,7 @@ function updatePersonInfomation() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -508,7 +818,7 @@ function savePersonInfomation() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -530,7 +840,7 @@ function removePersonInfomation(pid) {
             if (msg.status == 200) {
                 getPersonInfomationList(1);
                 alert("删除成功")
-            }else{
+            } else {
                 alert(msg.statusMsg)
             }
         }
@@ -822,7 +1132,7 @@ function updateUsers() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -848,7 +1158,7 @@ function updateUustate(uid, ustate) {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -909,7 +1219,7 @@ function saveUsers() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -933,7 +1243,7 @@ function removeUsers(uid) {
                 if (msg.status == 200) {
                     getUsersList(1);
                     alert("删除成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -1127,10 +1437,10 @@ $(function () {
                     success: function (msg) {
                         if (msg.status == 200) {
                             getRoleByUserId(userRoleId);
+                            alert("修改成功")
                         }
                     }
                 });
-                alert("修改成功")
             }
         });
     });
@@ -1307,7 +1617,7 @@ function updateDepartment() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -1335,7 +1645,7 @@ function saveDepartment() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -1357,7 +1667,7 @@ function removeDepartment(did) {
             if (msg.status == 200) {
                 getDepartmentList(1);
                 alert("删除成功")
-            }else{
+            } else {
                 alert(msg.statusMsg)
             }
         }
@@ -1573,7 +1883,7 @@ function updateRole() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -1601,7 +1911,7 @@ function saveRole() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -1649,7 +1959,7 @@ function removeRole(rid) {
             if (msg.status == 200) {
                 getRoleList(1);
                 alert("删除成功")
-            }else{
+            } else {
                 alert(msg.statusMsg)
             }
         }
@@ -1882,6 +2192,7 @@ $(function () {
                         success: function (msg) {
                             if (msg.status == 200) {
                                 getPermissionByRoleId(rolePermissionId);
+                                alert("修改成功")
                             }
                         }
                     });
@@ -2035,7 +2346,7 @@ function updatePermission() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("更改成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -2066,7 +2377,7 @@ function savePermission() {
             success: function (msg) {
                 if (msg.status == 200) {
                     alert("添加成功")
-                }else{
+                } else {
                     alert(msg.statusMsg)
                 }
             }
@@ -2088,7 +2399,7 @@ function removePermission(pid) {
             if (msg.status == 200) {
                 getPermissionList();
                 alert("删除成功")
-            }else{
+            } else {
                 alert(msg.statusMsg)
             }
         }
