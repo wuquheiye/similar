@@ -2,23 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/organization/groupDetails.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/organization/personalDetails.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/FlowServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/overTimeFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/sealuseFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/create/createProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/create/createProject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/organization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/organization.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/overTimeFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/sealuseFlow.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/create/createProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/create/createProject.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/FlowServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/organization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/use/organization.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/login.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -416,7 +410,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575518240771</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="aa">
+      <created>1575528828979</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1575528828979</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -591,7 +592,8 @@
     <MESSAGE value="代码合并2019、12、5" />
     <MESSAGE value="修改动态，日期插件" />
     <MESSAGE value="错误" />
-    <option name="LAST_COMMIT_MESSAGE" value="错误" />
+    <MESSAGE value="aa" />
+    <option name="LAST_COMMIT_MESSAGE" value="aa" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
