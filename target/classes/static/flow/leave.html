@@ -199,9 +199,7 @@
                 </div>
                 <div class="col-xs-12" style="line-height: 35px">
                     <select class="form-control" id="idea" style="border: 0px">
-                        <option value="0">选择推送领导</option>
-                        <option value="1">同意</option>
-                        <option value="2">拒绝</option>
+
                     </select>
                 </div>
             </div>
@@ -224,7 +222,8 @@
         $("#defuletTime").text(getCurrentDate());
         //获取选择时间
         // $("#duration").text("");
-        selectLeaveAll();
+        // selectLeaveAll();
+        selectusersbyrid()
     })
     /**
      *  获取历史申请记录
@@ -282,9 +281,9 @@
             "fstartTime":fstartTime,
             "fendTime" :　fendTime,
             "fapplyReason":fapplyReason,
-            "fuidCharge" :loginObj.users.fuidCharge,
-            "fuidManager":loginObj.users.fuidManager,
-            "artsVision":loginObj.department.ArtsVision
+            // "fuidCharge" :loginObj.users.fuidCharge,
+            "fuidManager":fuidManager,
+            // "artsVision":loginObj.department.ArtsVision
         }
         alert(JSON.stringify(leaveflow))
         $.ajax({

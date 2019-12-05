@@ -168,8 +168,8 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
     }
 
     @Override
-    public List<Users> selectUsersByRid(int rid) {
-        return usersMapper.selectUsersByRid(rid);
+    public List<Users> selectUsersByRid() {
+        return usersMapper.selectUsersByRid();
     }
 
     @Override

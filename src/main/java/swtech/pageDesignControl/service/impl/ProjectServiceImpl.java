@@ -1,16 +1,21 @@
 package swtech.pageDesignControl.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
+import org.apache.ibatis.javassist.bytecode.Descriptor;
 import org.springframework.transaction.annotation.Transactional;
 import swtech.pageDesignControl.common.exception.ServiceException;
+import swtech.pageDesignControl.common.utils.ComparatorTime;
 import swtech.pageDesignControl.common.vo.ProjectAndScheduleVO;
 import swtech.pageDesignControl.common.vo.ReturnMsg;
 import swtech.pageDesignControl.common.websocket.WebSocketServer;
 import swtech.pageDesignControl.common.websocket.WebsocketServerTwo;
+import swtech.pageDesignControl.entity.Journal;
 import swtech.pageDesignControl.entity.Project;
 import swtech.pageDesignControl.entity.UpdateProject;
+import swtech.pageDesignControl.mapper.JournalMapper;
 import swtech.pageDesignControl.mapper.ProjectMapper;
 import swtech.pageDesignControl.mapper.UpdateProjectMapper;
 import swtech.pageDesignControl.service.IProjectService;
@@ -21,9 +26,7 @@ import javax.annotation.Resource;
 import javax.sql.rowset.serial.SerialException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.SimpleFormatter;
 
 /**
@@ -42,6 +45,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
     private  ProjectMapper projectMapper ;
     @Resource
     private UpdateProjectMapper updateProjectMapper;
+    @Resource
+    private JournalMapper journalMapper;
 
     @Override
     @Transactional
@@ -74,8 +79,8 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             System.out.println("当前时间"+simpleDateFormat.format(date));
             projectAndScheduleVO.getProject().setPendTime(simpleDateFormat.format(date));
+            int i1 = projectMapper.updateById(projectAndScheduleVO.getProject());
         }
-        int i1 = projectMapper.updateById(projectAndScheduleVO.getProject());
         int i = updateProjectMapper.insert(projectAndScheduleVO.getUpdateProject());
         if(i == 0) throw  new ServiceException("项目更新失败");
         WebSocketServer.sendInfo(
@@ -113,6 +118,43 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
         log.info(JSONObject.fromObject(map).toString());
         return map;
     }
+
+    @Override
+    @Transactional
+    public ReturnMsg selectProjectJournal() {
+        ReturnMsg msg =new ReturnMsg();
+        QueryWrapper qw = new QueryWrapper();
+//        List<Project> listProject1 = projectMapper.selectList(qw);
+        List<UpdateProject> listProject = updateProjectMapper.selectList(qw);
+        List<Journal> list1Journal = journalMapper.selectList(qw);
+        List list =new ArrayList();
+        Iterator project1=listProject.iterator();
+        while (project1.hasNext()){
+            list.add(project1.next());
+        }
+        Iterator journal = list1Journal.iterator();
+        while (journal.hasNext()){
+            list.add(journal.next());
+        }
+//        Iterator project = listProject1.iterator();
+//        while (project.hasNext()){
+//            list.add(project.next());
+//        }
+//        //排序前
+//        System.out.println("排序前："+new Gson().toJson(list));
+//        //排序后
+        ComparatorTime comparator=new ComparatorTime();
+        Collections.sort(list, comparator);
+//        System.out.println("正序："+new Gson().toJson(list));
+        //排序后逆序
+        Collections.reverse(list);
+//        System.out.println("逆序："+new Gson().toJson(list));
+        msg.setStatus("200");
+        msg.setMsg(list);
+        msg.setStatusMsg("查询所有项目和日志信息成功");
+        return msg;
+    }
+
 
 
 }

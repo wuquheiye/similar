@@ -1,22 +1,53 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="swtech.pageDesignControl.mapper.JournalMapper">
-    <resultMap id="BaseResultMap" type="swtech.pageDesignControl.entity.Journal">
-        <id column="jid" property="jid" jdbcType="INTEGER"/>
-        <result column="uid" property="uid" jdbcType="INTEGER"/>
-        <result column="pid" property="pid" jdbcType="INTEGER"/>
-        <result column="uusername" property="uusername" jdbcType="VARCHAR" />
-    </resultMap>
-    <resultMap id="ResultMapWithBLOBs" type="swtech.pageDesignControl.entity.Journal" extends="BaseResultMap">
-        <result column="jnow_task" property="jnowTask" jdbcType="LONGVARCHAR"/>
-        <result column="jtomorrow_task" property="jtomorrowTask" jdbcType="LONGVARCHAR"/>
-        <result column="jundone_task" property="jundoneTask" jdbcType="LONGVARCHAR"/>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="swtech.pageDesignControl.mapper.JournalMapper" >
+    <resultMap id="BaseResultMap" type="swtech.pageDesignControl.entity.Journal" >
+        <id column="jid" property="jid" jdbcType="INTEGER" />
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="pid" property="pid" jdbcType="INTEGER" />
         <result column="jcreate_time" property="jcreateTime" jdbcType="TIMESTAMP" />
+        <result column="uusername" property="uusername" jdbcType="VARCHAR" />
+        <result column="fuid_Manager" property="fuidManager" jdbcType="INTEGER" />
+        <result column="fuid_Charge" property="fuidCharge" jdbcType="INTEGER" />
     </resultMap>
-    <sql id="Base_Column_List">
-    jid, uid, pid
+    <resultMap id="ResultMapWithBLOBs" type="swtech.pageDesignControl.common.vo.JournalVO" extends="BaseResultMap" >
+        <result column="jnow_task" property="jnowTask" jdbcType="LONGVARCHAR" />
+        <result column="jtomorrow_task" property="jtomorrowTask" jdbcType="LONGVARCHAR" />
+        <result column="jundone_task" property="jundoneTask" jdbcType="LONGVARCHAR" />
+    </resultMap>
+
+    <resultMap id="BaseUserOne" type="swtech.pageDesignControl.common.vo.JournalVO">
+        <id column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="uusername" property="uusername" jdbcType="VARCHAR" />
+        <result column="upassword" property="upassword" jdbcType="VARCHAR" />
+        <result column="uinvitation_code" property="uinvitationCode" jdbcType="VARCHAR" />
+        <result column="did" property="did" jdbcType="INTEGER" />
+        <result column="utelephonenumber" property="utelephonenumber" jdbcType="VARCHAR" />
+        <result column="ucreationtime" property="ucreationtime" jdbcType="VARCHAR" />
+        <result column="ustate" property="ustate" jdbcType="VARCHAR" />
+        <collection property="journalList" ofType="swtech.pageDesignControl.entity.Journal" resultMap="BaseResultMap">
+        </collection>
+
+    </resultMap>
+
+
+
+    <sql id="Base_Column_List" >
+    jid, uid, pid, jcreate_time, uusername, fuid_Manager, fuid_Charge
   </sql>
-    <sql id="Blob_Column_List">
-    jnow_task, jtomorrow_task, jundone_task , jcreate_time
+    <sql id="Blob_Column_List" >
+    jnow_task, jtomorrow_task, jundone_task
   </sql>
+
+    <select id="selectByCharge" resultMap="BaseUserOne" >
+         SELECT * FROM users u
+            JOIN user_role ur ON u.uid = ur.uid
+            JOIN role r ON r.rid = ur.rid
+            JOIN journal j ON u.uid = j.uid
+        <if test="rtype==3">
+            where fuid_Charge=#{uid}
+        </if>
+        ORDER BY j.jid DESC
+    </select>
+
 </mapper>

@@ -15,16 +15,16 @@
     <script type="text/javascript" charset="utf-8" src="../bootstrop/js/bootstrap.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../myjs/common.js"></script>
     <script type="text/javascript" charset="utf-8" src="../publicBottom/js/publicBottom.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../myjs/httpData.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../myjs/index.js"></script>
+
     <script src="https://at.alicdn.com/t/font_1502544_rthj4rd15fl.js"></script>
+    <!--    全局配置文件-->
+    <script type="text/javascript" src="../myjs/httpData.config.js"></script>
 </head><!-- 在头部引入bootstrap的css包与js包 -->
 <style type="text/css">
-    .modal-dialog {
+    .modal-dialog{
         margin: 0px;
     }
-
-    .modal {
+    .modal{
         padding-left: 0px;
     }
 </style>
@@ -52,26 +52,25 @@
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
+        <div  class="container">
+            <div class="row" >
                 <div class="col-xs-12">
                     <!--常用应用-->
                 </div>
             </div>
-            <div class="row">
+            <div class="row" >
                 <div class="col-xs-12" style="text-align: center;">
-                    <ul class="list-group row">
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="createProject">
+                    <ul class="list-group row" >
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="./create/createProject.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-danchuchuangjianxiangmu"></use>
                                 </svg>
                                 <div class="row" style="padding-top: 10px">
                                     创建项目
-                                </div>
-                            </a>
+                                </div>   </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="updateProject">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="./updateManagement.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-gengxinxiangmujinzhan"></use>
@@ -81,7 +80,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="sealUse">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/sealuseFlow.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-yinzhangshiyongshenqing"></use>
@@ -91,7 +90,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="paymentApplication">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/financePayFlow.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-caiwufukuan"></use>
@@ -101,7 +100,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="businessReception">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/serveFlow.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-yewuzhaodai"></use>
@@ -111,7 +110,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="meetingNotice">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/serveFlow.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-huiyitongzhi"></use>
@@ -121,7 +120,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="writediary">
+                        <li class="list-group-item col-xs-3" style="border: 0px" >
                             <a href="../daily/writeDaily.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-xierizhi"></use>
@@ -133,7 +132,7 @@
                         </li>
 
 
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="leaveRequest">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/leave.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-qingjiashenqing"></use>
@@ -143,7 +142,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="applicationOvertime">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/overTimeFlow.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-add-overtime"></use>
@@ -154,7 +153,7 @@
                             </a>
                         </li>
 
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="goOut">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/gooutFlow.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-waichushenqingxpx"></use>
@@ -164,7 +163,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="travelRequest">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/onbusInessFlow.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-waichushenqing"></use>
@@ -175,7 +174,7 @@
                             </a>
                         </li>
 
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="profiling">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-caiwufukuan"></use>
                             </svg>
@@ -183,7 +182,7 @@
                                 档案录入
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="workAttendance">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-caiwufukuan"></use>
                             </svg>
@@ -201,7 +200,7 @@
         <!--<div class="container" style="background: #dbdbdb;height: 10px"></div>-->
     </div>
     <div class="publicBottomApply hidden center">
-        <div class="container">
+        <div  class="container">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 text-center" style="font-size:20px;height:40px;line-height:40px;">
@@ -211,8 +210,8 @@
             </div>
             <div class="row">
                 <div class="col-xs-12" style="text-align: center;">
-                    <ul class="list-group row">
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="applyCheck">
+                    <ul class="list-group row" >
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../flow/flowPath.html">
                                 <img src="./image/流程管理.png" height="50px" width="50px">
                                 <div class="row" style="padding-top: 10px">
@@ -220,7 +219,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="viewProject">
+                        <li class="list-group-item col-xs-3" style="border: 0px" >
                             <a href="projectManagement.html">
                                 <img src="./image/项目管理.png" height="50px" width="50px">
                                 <div class="row" style="padding-top: 10px">
@@ -228,7 +227,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="viewLog">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../daily/daily.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-ziyuanxhdpi"></use>
@@ -239,7 +238,7 @@
                             </a>
                         </li>
 
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="CheckAttendance">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../checkingin/checkingin.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-ic_kaoqinbiao"></use>
@@ -249,7 +248,7 @@
                                 </div>
                             </a>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="historicalApprovalRecord">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../message/chargeHistory.html">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                     <use xlink:href="#icon-xingzhuang"></use>
@@ -260,34 +259,29 @@
                             </a>
                         </li>
 
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="systemMessages">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <div style="position: relative">
                                 <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
                                     <use xlink:href="#icon-ic_kaoqinbiao"></use>
                                 </svg>
-                                <span class="badge"
-                                      style="position: absolute;top: 39px;margin-left: -15px;background: red"
-                                      id="systemMessage">10</span>
+                                <span class="badge" style="display:none;position: absolute;top: 39px;margin-left: -15px;background: red" id="systemMessage">10</span>
                             </div>
                             <div class="row" style="padding-top: 10px">
                                 系统消息
                             </div>
                         </li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="backlogInformation">
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <a href="../message/chargeMessage.html">
                                 <div style="position: relative">
                                     <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;">
                                         <use xlink:href="#icon-xiaoxi-copy"></use>
                                     </svg>
-                                    <span class="badge"
-                                          style="position: absolute;top: 39px;margin-left: -15px;background: red"
-                                          id="chargeMessage">10</span>
+                                    <span class="badge" style="display: none;position: absolute;top: 39px;margin-left: -15px;background: red" id="chargeMessage">10</span>
                                 </div>
                                 <div class="row" style="padding-top: 10px">
                                     待办信息
-                                </div>
-                            </a></li>
-                        <li class="list-group-item col-xs-3 hidden" style="border: 0px" id="staffLibrary">
+                                </div></a></li>
+                        <li class="list-group-item col-xs-3" style="border: 0px">
                             <!--<a href="../checkingin/checkingin.html">-->
                             <svg class="icon" aria-hidden="true" style="width: 50px;height: 50px;color: #2aabd2">
                                 <use xlink:href="#icon-tushuguan"></use>
@@ -327,11 +321,186 @@
                     通讯录
                 </div>
             </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default" aria-label="Left Align">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div><!-- /btn-group -->
+                        <input type="text" class="form-control" aria-label="..." placeholder="搜索">
+                    </div><!-- /input-group -->
+                </div>
+            </div>
         </div>
         <div class="organizationContain">
             <div class="organizationCenter organizationHeaderOrganization">
-                <!-- 组织列表 -->
-                <ul id="organizationHeaderOrganizationUiContain">
+                <ul>
+                    <li class="">
+                        <div class="organizationHeaderOrganizationClick" id="">
+                            <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                            利捷航空总公司
+                        </div>
+                        <ul class="organizationHeaderOrganizationUl">
+                            <li class="">
+                                <div class="organizationHeaderOrganizationClick" id="">
+                                    <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                                    行政部
+                                </div>
+                                <ul class="organizationHeaderOrganizationUl">
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="organizationHeaderOrganizationUl">
+                            <li class="">
+                                <div class="organizationHeaderOrganizationClick" id="">
+                                    <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                                    人事部
+                                </div>
+                                <ul class="organizationHeaderOrganizationUl">
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                        <div class="organizationHeaderOrganizationClick" id="">
+                            <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                            利捷航空分公司
+                        </div>
+                        <ul class="organizationHeaderOrganizationUl">
+                            <li class="">
+                                <div class="organizationHeaderOrganizationClick" id="">
+                                    <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                                    行政部
+                                </div>
+                                <ul class="organizationHeaderOrganizationUl">
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <ul class="organizationHeaderOrganizationUl">
+                            <li class="">
+                                <div class="organizationHeaderOrganizationClick" id="">
+                                    <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
+                                    人事部
+                                </div>
+                                <ul class="organizationHeaderOrganizationUl">
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                    <li class="organizationHeaderOrganizationLi clickToPersondetail">
+                                        <div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>
+                                        <div class="" style="float:left;">
+                                            <div style="padding-top: 8px;font-size: 16px;">王伟 [经理]</div>
+                                            <div style="font-size: 14px;color: #A9A9A9">15274935036</div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -344,12 +513,10 @@
             <div class="text-center">
                 <img src="../publicBottom/images/head.png" class="img-rounded" style="width:70px;padding-top:10px;">
             </div>
-            <div class="text-center"
-                 style="height:20px;line-height:20px;font-size:16px;margin-bottom:2px;color:#ffffff;margin-top:5px;">
-                人事部经理
+            <div class="text-center" style="height:20px;line-height:20px;font-size:16px;margin-bottom:2px;color:#ffffff;margin-top:5px;">
+                行政部经理
             </div>
-            <div class="text-center"
-                 style="height:20px;line-height:20px;font-size:14px;padding-bottom:45px;color:#ffffff">
+            <div class="text-center" style="height:20px;line-height:20px;font-size:14px;padding-bottom:45px;color:#ffffff">
                 15274935036
             </div>
         </div>
@@ -359,51 +526,67 @@
                 <tr style="height:50px;line-height:50px;">
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">姓名</td>
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">张三</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">
-                        <button type="button" class="btn btn-warning">修改</button>
-                    </td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-warning">修改</button></td>
                 </tr>
                 <tr style="height:35px;line-height:35px;">
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">职位</td>
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">经理</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">
-                        <button type="button" class="btn btn-warning">修改</button>
-                    </td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-warning">修改</button></td>
                 </tr>
                 <tr style="height:35px;line-height:35px;">
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">部门</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">人事部</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">
-                        <button type="button" class="btn btn-warning">修改</button>
-                    </td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">行政部</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-warning">修改</button></td>
+                </tr>
+                <tr style="height:35px;line-height:35px;">
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">入职时间</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">2017-06-12</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-warning">修改</button></td>
+                </tr>
+                <tr style="height:35px;line-height:35px;">
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">年假天数</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">5</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-warning">修改</button></td>
+                </tr>
+                <tr style="height:35px;line-height:35px;">
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">毕业时间</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">2007-06</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
+                </tr>
+                <tr style="height:35px;line-height:35px;">
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">政治面貌</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">群众</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
                 </tr>
                 <tr style="height:35px;line-height:35px;">
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">电话号码</td>
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">15274935036</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">
-                        <button type="button" class="btn btn-success">修改</button>
-                    </td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
+                </tr>
+                <tr style="height:35px;line-height:35px;">
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">电话号码</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">15274935036</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
                 </tr>
                 <tr style="height:35px;line-height:35px;">
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">微信</td>
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">15274935036</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">
-                        <button type="button" class="btn btn-success">修改</button>
-                    </td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
+                </tr>
+                <tr style="height:35px;line-height:35px;">
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">微信</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">15274935036</td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
                 </tr>
                 <tr style="height:35px;line-height:35px;">
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">QQ</td>
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">2325805996</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">
-                        <button type="button" class="btn btn-success">修改</button>
-                    </td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
                 </tr>
                 <tr style="height:35px;line-height:35px;">
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">邮箱</td>
                     <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">2325805996QQ.com</td>
-                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;">
-                        <button type="button" class="btn btn-success">修改</button>
-                    </td>
+                    <td style="height:50px;line-height:50px;margin:0;padding:0;text-align:center;"><button type="button" class="btn btn-success">修改</button></td>
                 </tr>
                 </tbody>
             </table>
@@ -416,26 +599,10 @@
     <nav class="navbar-fixed-bottom">
         <div class="container">
             <div class="row" style="background-color: #fff;padding-top:10px">
-                <div class="publicBottomColXs5 col-xs-4 center"><img src="../publicBottom/images/functionBlack.png"
-                                                                     class="publicBottomImages center-block"
-                                                                     id="publicBottomInformation"/>
-                    <div class="text-center">功能</div>
-                </div>
-                <div class="publicBottomColXs5 col-xs-4 center"><img src="../publicBottom/images/dynamicBlack.png"
-                                                                     class="publicBottomImages center-block"
-                                                                     id="publicBottomApply"/>
-                    <div class="text-center">动态</div>
-                </div>
-                <div class="publicBottomColXs5 col-xs-4 center"><img src="../publicBottom/images/organizationBlack.png"
-                                                                     class="publicBottomImages center-block"
-                                                                     id="publicBottomOrganization"/>
-                    <div class="text-center">通讯录</div>
-                </div>
-                <div class="publicBottomColXs5 col-xs-4 center"><img src="../publicBottom/images/myRed.png"
-                                                                     class="publicBottomImages center-block"
-                                                                     id="publicBottomMy"/>
-                    <div class="text-center">我</div>
-                </div>
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="../publicBottom/images/functionBlack.png" class="publicBottomImages center-block" id="publicBottomInformation"/><div class="text-center">功能</div></div>
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="../publicBottom/images/dynamicBlack.png" class="publicBottomImages center-block" id="publicBottomApply"/><div class="text-center">动态</div></div>
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="../publicBottom/images/organizationBlack.png" class="publicBottomImages center-block" id="publicBottomOrganization"/><div class="text-center">通讯录</div></div>
+                <div class="publicBottomColXs5 col-xs-4 center" ><img src="../publicBottom/images/myRed.png" class="publicBottomImages center-block" id="publicBottomMy"/><div class="text-center">我</div></div>
             </div>
         </div>
     </nav>
@@ -447,7 +614,7 @@
 <script>
     // var uid= 3;
     let status = window.location.href.split("=")[1];
-    if (status == 1) {
+    if(status==1){
         $(".centerContain .center").addClass("hidden");
         $(".publicBottomOrganization").removeClass("hidden");
         $("#dibu").hide();
@@ -458,22 +625,97 @@
     var loginObj = JSON.parse(window.sessionStorage.getItem("login"));
 
 
-    var analogInformation = [{
-        one: { //项目
-            projectName: "项目名",
-            createTime: '',
-            createProper: "创建人",
-            projectSchedule: 40
-        }
-    }, {
-        two: {//日志
-            createProper: "日志创建人",
-            createTime: '',
-            desc: "嘎婆阿达....",
-        }
-    }]
+    // var analogInformation = [{
+    //     one:{ //项目
+    //         projectName : "项目名",
+    //         createTime : '',
+    //         createProper : "创建人",
+    //         projectSchedule : 40
+    //     }
+    // },{
+    //     two:{//日志
+    //         createProper: "日志创建人",
+    //         createTime: '',
+    //         desc:"嘎婆阿达....",
+    //     }
+    // }]
 
-    var datashow = '';
+    var datashow='';
+    
+    $(function () {
+        selectProjectJournal()
+        selectMessageNum()
+    })
+
+
+    //查询当前用户代办消息num
+    function selectMessageNum() {
+        $.ajax({
+            url: pageDesignControl_HOST + "flow/selectMessageNum?uid="+loginObj.users.uid+"&rtype="+loginObj.role.rtype,
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(typeof(res.msg)=='number'){
+                    $("#chargeMessage").show();
+                    $("#chargeMessage").text(res.msg);
+                }
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
+    }
+
+    //查询所有项目和日志信息
+    function selectProjectJournal() {
+        let showdata='';
+        $.ajax({
+            url: pageDesignControl_HOST + "project/selectProjectJournal",
+            type: "get",
+            dataType: "json",
+            contentType: 'application/json; charset=UTF-8',
+            async: false,
+            success: function(res) {
+                if(res!=""){
+                    $.each(res.msg,function (index,value) {
+                        if(typeof(value.jid) == "number"){
+                            showdata +='<a href="/journal/selectJournal/'+value.jid+'" style="color: black"><div class="row" style="position: relative">\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            <b style="font-size: 16px;">'+value.uusername+'的日报</b>\n' +
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            日志详情:\n' + value.jnowTask+
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n'
+                                +value.jcreateTime+
+                                '                        </div>\n' +
+                                '                    </div></a>';
+                        }
+                        else if(typeof (value.upId) == "number"){
+                            showdata += '<a href="/project/selectUpByUpId/'+value.upId+'" style="color: black"><div class="row" style="position: relative">\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px;text-align: left">\n' +
+                                '                            <b style="font-size: 16px;">'+value.pname+'+项目进度</b>\n' +
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                                '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+value.upProgress+'%">'+value.upProgress+'%</div>'+
+                                '                        </div>\n' +
+                                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
+                                value.upTime
+                            '                        </div>\n' +
+                            '                    </div></a>';
+                        }
+                    })
+
+                }
+                $("#pushServer").html(showdata);
+            },
+            error: function(){
+                alert("网络异常，请重试");
+            }
+        });
+    }
 
     //模拟数据
     // let defultnum = 30;
@@ -523,35 +765,37 @@
     // },1000);
 
     //websocket实时通讯
-    var websocket = null;
+        var websocket = null;
 
-    //判断当前浏览器是否支持WebSocket
+        //判断当前浏览器是否支持WebSocket
 
-    if ('WebSocket' in window) {
-        let sid = "";
-        sid = 'ws://localhost:43008/websocket/' + loginObj.users.uid;
-        websocket = new WebSocket(sid);
-        websocketthree = new WebSocket("ws://localhost:43008/websocket/0");
-        websockettwo = new WebSocket("ws://localhost:43008/websocket/3");
-    } else {
+        if ('WebSocket' in window) {
+            let sid="";
+            sid='ws://localhost:43008/websocket/'+loginObj.users.uid;
+            websocket = new WebSocket(sid);
+            websocketthree = new WebSocket("ws://localhost:43008/websocket/0");
+            websockettwo = new WebSocket("ws://localhost:43008/websocket/3");
+        }
 
-        alert('Not support websocket')
+        else {
 
-    }
+            alert('Not support websocket')
+
+        }
 
 
-    //连接发生错误的回调方法
+        //连接发生错误的回调方法
 
-    websocket.onerror = function () {
+        websocket.onerror = function () {
 
-        setMessageInnerHTML("WebSocket连接发生错误");
+            setMessageInnerHTML("WebSocket连接发生错误");
 
-    };
-    websockettwo.onerror = function () {
+        };
+        websockettwo.onerror = function () {
 
-        setMessageInnerHTML("WebSocket连接发生错误");
+            setMessageInnerHTML("WebSocket连接发生错误");
 
-    };
+        };
     websocketthree.onerror = function () {
 
         setMessageInnerHTML("WebSocket连接发生错误");
@@ -559,165 +803,165 @@
     };
 
 
-    //连接成功建立的回调方法
-    websocket.onopen = function (event) {
-        setMessageInnerHTML("WebSocket连接成功");
-    }
-    websockettwo.onopen = function (event) {
-        setMessageInnerHTML("WebSocket连接成功");
-    }
+        //连接成功建立的回调方法
+        websocket.onopen = function (event) {
+            setMessageInnerHTML("WebSocket连接成功");
+        }
+        websockettwo.onopen = function (event) {
+            setMessageInnerHTML("WebSocket连接成功");
+        }
     websocketthree.onopen = function (event) {
         setMessageInnerHTML("WebSocket连接成功");
     }
 
 
-    //接收到消息的回调方法
+        //接收到消息的回调方法
 
-    websocket.onmessage = function (event) {
-        console.log("转event前" + event);
-        console.log("转event后" + JSON.stringify(event));
-        // alert("进入socket")
-        if (event.data != "连接成功") {
-            getSocket(event.data);
+        websocket.onmessage = function (event) {
+            console.log("转event前"+event);
+            console.log("转event后"+JSON.stringify(event));
+            // alert("进入socket")
+            if(event.data != "连接成功"){
+                getSocket(event.data);
+            }
+
         }
-
-    }
     websocketthree.onmessage = function (event) {
-        console.log("转event前" + event);
-        console.log("转event后" + JSON.stringify(event));
+        console.log("转event前"+event);
+        console.log("转event后"+JSON.stringify(event));
         // alert("进入socket")
-        if (event.data != "连接成功") {
+        if(event.data != "连接成功"){
             getSocket(event.data);
         }
 
     }
-    websockettwo.onmessage = function (event) {
-        console.log("转event前" + event);
-        console.log("转event后" + JSON.stringify(event));
-        // alert("进入socket")
-        if (event.data != "连接成功") {
-            if (parseInt($("#chargeMessage").text()) < 99 && parseInt($("#chargeMessage").text()) > 0) {
-                let chargeMessageNum = parseInt($("#chargeMessage").text()) + 1;
-                alert("代办信息" + chargeMessageNum);
-                $("#chargeMessage").text(chargeMessageNum);
+        websockettwo.onmessage = function (event) {
+            console.log("转event前"+event);
+            console.log("转event后"+JSON.stringify(event));
+            // alert("进入socket")
+            if(event.data != "连接成功"){
+                if(parseInt($("#chargeMessage").text())<99 && parseInt($("#chargeMessage").text())>0){
+                    let chargeMessageNum=parseInt($("#chargeMessage").text())+1;
+                    alert("代办信息"+chargeMessageNum);
+                    $("#chargeMessage").text(chargeMessageNum);
 
-            } else {
-                $("#chargeMessage").text(99);
+                }else {
+                    $("#chargeMessage").text(99);
+                }
+
+                // getSocket(event.data);
             }
 
-            // getSocket(event.data);
         }
 
-    }
+
+        //连接关闭的回调方法
+
+        websocket.onclose = function () {
+
+            setMessageInnerHTML("close");
+
+        }
+        websockettwo.onclose = function () {
+
+            setMessageInnerHTML("close");
+
+        }
 
 
-    //连接关闭的回调方法
+        //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
 
-    websocket.onclose = function () {
+        window.onbeforeunload = function () {
 
-        setMessageInnerHTML("close");
+            websocket.close();
+            websockettwo.close();
 
-    }
-    websockettwo.onclose = function () {
-
-        setMessageInnerHTML("close");
-
-    }
+        }
 
 
-    //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+        //将消息显示在网页上
 
-    window.onbeforeunload = function () {
-
-        websocket.close();
-        websockettwo.close();
-
-    }
-
-
-    //将消息显示在网页上
-
-    function getSocket(event) {
-        // alert(JSON.stringify(event))
-        console.log("转json前" + event);
-        // console.log("获取updateProject"+event.updateProject);
-        // // console.log("转json前获取upProgress"+event.updateProject.upProgress);
-        // console.log("转json后"+JSON.stringify(event));
-        // console.log("获取updateProject"+JSON.parse(event).updateProject);
-        // console.log("转json后获取upProgress"+JSON.parse(event).updateProject.upProgress);
-        //判斷接收的消息類型
-        // alert("event.journal"+event.journal);
-        if (JSON.parse(event).project != undefined) {
-            if (JSON.parse(event).updateProject != undefined) {
-                // alert("進入項目")
-                datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
-                    '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                    '                            <b style="font-size: 16px;">' + JSON.parse(event).project.pname + '</b>\n' +
+        function getSocket(event) {
+            // alert(JSON.stringify(event))
+            console.log("转json前"+event);
+            // console.log("获取updateProject"+event.updateProject);
+            // // console.log("转json前获取upProgress"+event.updateProject.upProgress);
+            // console.log("转json后"+JSON.stringify(event));
+            // console.log("获取updateProject"+JSON.parse(event).updateProject);
+            // console.log("转json后获取upProgress"+JSON.parse(event).updateProject.upProgress);
+            //判斷接收的消息類型
+            // alert("event.journal"+event.journal);
+            if(JSON.parse(event).project !=undefined){
+                if(JSON.parse(event). updateProject!=undefined){
+                    // alert("進入項目")
+                    datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
+                        '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                        '                            <b style="font-size: 16px;">'+JSON.parse(event).project.pname+'</b>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                        '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:'+JSON.parse(event).updateProject.upProgress+'%">'+JSON.parse(event).updateProject.upProgress+'%</div>'+
+                        '                        </div>\n' +
+                        '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
+                        JSON.parse(event).updateProject.upTime
                     '                        </div>\n' +
-                    '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                    '  <div class="progress-bar progress-bar-danger progress-bar-striped active" style="width:' + JSON.parse(event).updateProject.upProgress + '%">' + JSON.parse(event).updateProject.upProgress + '%</div>' +
+                    '                    </div></a>';
+                }else if (JSON.parse(event).updateProject == null){
+                    datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
+                        '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                        '                            <b style="font-size: 16px;">'+JSON.parse(event).project.uusername+"创建了："+JSON.parse(event).project.pname+'</b>\n' +
+                        '                        </div>\n' +
+                        '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                        '                            项目详情:\n' + JSON.parse(event).project.pdescribe+
+                        '                        </div>\n' +
+                        '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
+                        JSON.parse(event).project.pcreatTime
                     '                        </div>\n' +
-                    '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
-                    JSON.parse(event).updateProject.upTime
-                '                        </div>\n' +
-                '                    </div></a>';
-            } else if (JSON.parse(event).updateProject == null) {
-                datashow = '<a href="approval.html" style="color: black"><div class="row" style="position: relative">\n' +
-                    '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                    '                            <b style="font-size: 16px;">' + JSON.parse(event).project.uusername + "创建了：" + JSON.parse(event).project.pname + '</b>\n' +
-                    '                        </div>\n' +
-                    '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                    '                            项目详情:\n' + JSON.parse(event).project.pdescribe +
-                    '                        </div>\n' +
-                    '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n' +
-                    JSON.parse(event).project.pcreatTime
-                '                        </div>\n' +
-                '                    </div></a>';
+                    '                    </div></a>';
+                }
+
+            }else if(JSON.parse(event).journal!=undefined) {
+                // alert("進入日誌")
+                datashow='<a href="../daily/dailyinfo.html" style="color: black"><div class="row" style="position: relative">\n' +
+                            '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                            '                            <b style="font-size: 16px;">'+JSON.parse(event).users.uusername+'的日报</b>\n' +
+                            '                        </div>\n' +
+                            '                        <div class="col-xs-12" style="margin: 5px">\n' +
+                            '                            日志详情:\n' + JSON.parse(event).journal.jnowTask+
+                            '                        </div>\n' +
+                            '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n'
+                            +JSON.parse(event).journal.jcreateTime+
+                            '                        </div>\n' +
+                            '                    </div></a>';
             }
-
-        } else if (JSON.parse(event).journal != undefined) {
-            // alert("進入日誌")
-            datashow = '<a href="../daily/dailyinfo.html" style="color: black"><div class="row" style="position: relative">\n' +
-                '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                '                            <b style="font-size: 16px;">' + JSON.parse(event).users.uusername + '的日报</b>\n' +
-                '                        </div>\n' +
-                '                        <div class="col-xs-12" style="margin: 5px">\n' +
-                '                            日志详情:\n' + JSON.parse(event).journal.jnowTask +
-                '                        </div>\n' +
-                '                        <div class="col-xs-12" style="text-align: right;color: gainsboro">\n'
-                + JSON.parse(event).journal.jcreateTime +
-                '                        </div>\n' +
-                '                    </div></a>';
+            // alert(datashow);
+            $("#pushServer").prepend(datashow);
         }
-        // alert(datashow);
-        $("#pushServer").prepend(datashow);
-    }
 
 
-    function setMessageInnerHTML(innerHTML) {
+        function setMessageInnerHTML(innerHTML) {
 
-        // document.getElementById('message').innerHTML += innerHTML + '<br/>';
+            // document.getElementById('message').innerHTML += innerHTML + '<br/>';
 
-    }
-
-
-    //关闭连接
-
-    function closeWebSocket() {
-
-        websocket.close();
-
-    }
+        }
 
 
-    //发送消息
+        //关闭连接
 
-    function send() {
+        function closeWebSocket() {
 
-        var message = document.getElementById('text').value;
+            websocket.close();
 
-        websocket.send(message);
+        }
 
-    }
+
+        //发送消息
+
+        function send() {
+
+            var message = document.getElementById('text').value;
+
+            websocket.send(message);
+
+        }
 
 </script>

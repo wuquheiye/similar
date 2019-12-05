@@ -23,4 +23,6 @@ public interface IProjectService extends IService<Project> {
     ReturnMsg updateProject(ProjectAndScheduleVO projectAndScheduleVO) throws IOException;
 
     Map<String,Object> selectProjectByid(Integer pid);
+
+    ReturnMsg selectProjectJournal();
 }

@@ -34,4 +34,6 @@ public interface IFlowService extends IService<Flow> {
 
     ReturnMsg selectChargeHistory(Integer uid ,Integer rid,Integer ArtsVision);
 
+    ReturnMsg selectMessageNum(Integer uid,Integer rid);
+
 }

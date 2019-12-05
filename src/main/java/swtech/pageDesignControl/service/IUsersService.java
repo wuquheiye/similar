@@ -2,7 +2,6 @@ package swtech.pageDesignControl.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.apache.ibatis.annotations.Param;
-import swtech.pageDesignControl.common.vo.CompanyVO;
 import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.common.vo.LoginVO;
 import swtech.pageDesignControl.entity.Permission;
@@ -12,7 +11,7 @@ import java.util.List;
 
 /**
  * <p>
- * 服务类
+ *  服务类
  * </p>
  *
  * @author 李鸿智
@@ -67,12 +66,5 @@ public interface IUsersService extends IService<Users> {
      * @param rid
      * @return
      */
-    List<Users> selectUsersByRid(int rid);
-
-    /**
-     * 获取组织信息
-     *
-     * @return
-     */
-    List<CompanyVO> getAllCompanyInformation();
+    List<Users> selectUsersByRid();
 }

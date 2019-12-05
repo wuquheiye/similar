@@ -181,7 +181,7 @@
     function selectBacklog() {
         let showdata = '';
         $.ajax({
-            url: pageDesignControl_HOST + "flow/selectChargeHistory?uid=" + loginObj.users.uid + "&rid=" + loginObj.role.rtype + "&ArtsVision=" + loginObj.department.ArtsVision,
+            url: pageDesignControl_HOST + "flow/selectChargeHistory?uid=" + loginObj.users.uid + "&rtype=" + loginObj.role.rtype + "&artsVision=" + loginObj.department.artsVision,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',

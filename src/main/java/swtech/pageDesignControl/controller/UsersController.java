@@ -207,12 +207,20 @@ public class UsersController {
         return msg;
     }
 
+
+
+
+
+    /**
+     * 获取所有经理和利捷总经理
+     * @return
+     */
     @ResponseBody
     @GetMapping("/manage/users/selectusersbyrid")
-    public ReturnMsg selectUsersByRid(@RequestParam("rid") int rid) {
+    public ReturnMsg selectUsersByRid() {
         ReturnMsg msg = new ReturnMsg();
         try {
-            List<Users> usersList = iUsersService.selectUsersByRid(rid);
+            List<Users> usersList = iUsersService.selectUsersByRid();
             if (usersList != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("根据角色ID获取用户成功");

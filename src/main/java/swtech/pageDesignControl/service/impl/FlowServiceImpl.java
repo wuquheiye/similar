@@ -17,12 +17,14 @@ import swtech.pageDesignControl.common.websocket.WebSocketServer;
 import swtech.pageDesignControl.entity.Flow;
 import swtech.pageDesignControl.entity.OnbusInessFlow;
 import swtech.pageDesignControl.entity.ServeFlow;
+import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.enums.Flow.Fstatus;
 import swtech.pageDesignControl.enums.Judge;
 import swtech.pageDesignControl.enums.Role;
 import swtech.pageDesignControl.mapper.FlowMapper;
 import swtech.pageDesignControl.mapper.OnbusInessFlowMapper;
 import swtech.pageDesignControl.mapper.ServeFlowMapper;
+import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IFlowService;
 import swtech.pageDesignControl.enums.Flow.Ftype;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -57,6 +59,8 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
     private OnbusInessFlowMapper onbusInessFlowMapper;
     @Resource
     private ServeFlowMapper serveFlowMapper;
+    @Resource
+    private UsersMapper usersMapper;
 
 
     @Override
@@ -72,32 +76,32 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
             leave.setFstartTime(LocalDateTime.of(2000,10,10,0,00));
         }
         //暂时默认 0 leave.getArtsVision()
-        switch (Judge.getByCode(0)){
-            case YES:  //利捷
-                leave.setFstatus(Fstatus.CHARGEPASS.getCode());
-                break;
-            case NO: //广空
-                break;
-            default:
-                break;
-        }
+//        switch (Judge.getByCode(0)){
+//            case YES:  //利捷
+//                leave.setFstatus(Fstatus.CHARGEPASS.getCode());
+//                break;
+//            case NO: //广空
+//                break;
+//            default:
+//                break;
+//        }
         int insert = flowMapper.insert(leave);
         if(insert == 0) throw  new ServiceException("申请录入失败");
-        QueryWrapper qw = new QueryWrapper();
-        qw.eq("uid",leave.getUid());
-        String  sid;
-        //判断申请人是职工，还是主管
-        if(leave.getFuidCharge()==0){
-            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
-            sid=Integer.toString(leave.getFuidStaffing()) ;
-        }else {
-            qw.eq("fstatus", Fstatus.UNTREATED.getCode());
-            sid =Integer.toString(leave.getFuidCharge()) ;
-        }
-        List<Flow> list = flowMapper.selectList(qw);
-        JSONArray jsonArray = new JSONArray(list);
-
-        WebSocketServer.sendInfo(jsonArray.toString(),sid);
+//        QueryWrapper qw = new QueryWrapper();
+//        qw.eq("uid",leave.getUid());
+//        String  sid;
+//        //判断申请人是职工，还是主管
+//        if(leave.getFuidCharge()==0){
+//            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+//            sid=Integer.toString(leave.getFuidStaffing()) ;
+//        }else {
+//            qw.eq("fstatus", Fstatus.UNTREATED.getCode());
+//            sid =Integer.toString(leave.getFuidCharge()) ;
+//        }
+//        List<Flow> list = flowMapper.selectList(qw);
+//        JSONArray jsonArray = new JSONArray(list);
+//
+//        WebSocketServer.sendInfo(jsonArray.toString(),sid);
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("请假申请录入成功");
@@ -109,6 +113,12 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
     public ReturnMsg OnbusInessInsert(FlowOnbusIness flowOnbusIness) throws IOException {
         Flow leave = new Flow();
         leave=flowOnbusIness.getLeave();
+        //如果是业务招待，手动设置FuidManager
+        if(leave.getFtype().equals(Ftype.SERVE.getCode())){
+            List<Users> users = usersMapper.selectGM(Role.GM.getCode());
+            System.out.println("users.get(0).getUid()"+users.get(0).getUid());
+            leave.setFuidManager(users.get(0).getUid());
+        }
         ReturnMsg msg = new ReturnMsg();
         if(leave ==null) throw new ServiceException("申请参数为空");
 
@@ -119,15 +129,15 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(leave.getFstartTime()==null){
             leave.setFstartTime(LocalDateTime.of(2000,10,10,0,00));
         }
-        switch (Judge.getByCode(leave.getArtsVision())){
-            case YES:  //利捷
+//        switch (Judge.getByCode(leave.getArtsVision())){
+//            case YES:  //利捷
                 leave.setFstatus(Fstatus.CHARGEPASS.getCode());
-                break;
-            case NO: //广空
-                break;
-            default:
-                break;
-        }
+//                break;
+//            case NO: //广空
+//                break;
+//            default:
+//                break;
+//        }
         int insert = flowMapper.insert(leave);
         //        //根据请假类型进行业务
         if(leave.getFtype().equals(Ftype.ONBUSINESS.getCode())){
@@ -140,21 +150,21 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
             if(insert1==0) throw  new ServiceException("业务招待申请录入失败");
         }
         if(insert == 0) throw  new ServiceException("申请录入失败");
-        QueryWrapper qw = new QueryWrapper();
-        qw.eq("uid",leave.getUid());
-        String  sid;
-        //判断申请人是职工，还是主管
-        if(leave.getFuidCharge()==0){
-            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
-            sid=Integer.toString(leave.getFuidStaffing()) ;
-        }else {
-            qw.eq("fstatus", Fstatus.UNTREATED.getCode());
-            sid =Integer.toString(leave.getFuidCharge()) ;
-        }
-        List<Flow> list = flowMapper.selectList(qw);
-        JSONArray jsonArray = new JSONArray(list);
-
-        WebSocketServer.sendInfo(jsonArray.toString(),sid);
+//        QueryWrapper qw = new QueryWrapper();
+//        qw.eq("uid",leave.getUid());
+//        String  sid;
+//        //判断申请人是职工，还是主管
+//        if(leave.getFuidCharge()==0){
+//            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+//            sid=Integer.toString(leave.getFuidStaffing()) ;
+//        }else {
+//            qw.eq("fstatus", Fstatus.UNTREATED.getCode());
+//            sid =Integer.toString(leave.getFuidCharge()) ;
+//        }
+//        List<Flow> list = flowMapper.selectList(qw);
+//        JSONArray jsonArray = new JSONArray(list);
+//
+//        WebSocketServer.sendInfo(jsonArray.toString(),sid);
         msg.setStatus("200");
         msg.setMsg(insert);
         msg.setStatusMsg("请假申请录入成功");
@@ -208,6 +218,9 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
                 case ADMINISTRATIVE:
                     qw.between("fstatus",5,6);
                     break;
+                case FINANCE:
+                    qw.between("fstatus",Fstatus.FINANCE.getCode(),Fstatus.FINANCEREFUSE.getCode());
+                    break;
                 case GM:
                     qw.gt("fstatus",2);
                     break;
@@ -240,6 +253,32 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         msg.setStatus("200");
         msg.setMsg(listtwo);
         msg.setStatusMsg("获取当前人员历史审批记录成功");
+        return msg;
+    }
+
+    @Override
+    @Transactional
+    public ReturnMsg selectMessageNum(Integer uid, Integer rid) {
+        if(uid == null) throw  new ServiceException("用户uid为空");
+        if(rid == null) throw  new ServiceException("角色rid(rtype)为空");
+        ReturnMsg msg =new ReturnMsg();
+        QueryWrapper qw=new QueryWrapper();
+        if(rid!=Role.EMPLOYEES.getCode()){
+            if(rid==Role.GOVERNOR.getCode()){
+                qw.eq("fuid_manager",uid);
+            }else if(rid==Role.ADMINISTRATIVE.getCode()){
+                qw.eq("fuid_staffing",uid);
+            }else if(rid==Role.FINANCE.getCode()){
+                qw.eq("fuid_finance",uid);
+            }else {
+                qw.eq("fuid_manager",uid);
+            }
+        }
+        qw.ne("fstatus",Fstatus.OVER);
+        Integer integer = flowMapper.selectCount(qw);
+        msg.setStatus("200");
+        msg.setMsg(integer);
+        msg.setStatusMsg("查询当前用户代办消息num成功");
         return msg;
     }
 
@@ -376,19 +415,35 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
             qw.eq("fuid_charge",uid);
             qw.eq("fstatus",Fstatus.UNTREATED.getCode());
 //            qw.eq("frid",Role.GOVERNOR.getCode());
-        }else if(rid == Role.MANAGE.getCode()){
+        }
+        else if(rid == Role.MANAGE.getCode()){
             qw.eq("fuid_manager",uid);
             qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
             qw.or();
             qw.eq("frid",uid);//发送给处理人
             qw.eq("manager_read",Judge.YES.getCode());//未读
-
 //            qw.eq("frid",Role.MANAGE.getCode());
-        }else if(rid == Role.ADMINISTRATIVE.getCode()){
+        }
+        else if(rid == Role.GM.getCode()){
+            qw.eq("fuid_manager",uid);
+            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            qw.or();
+            qw.eq("frid",uid);//发送给处理人
+            qw.eq("manager_read",Judge.YES.getCode());//未读
+        }
+        else if(rid==Role.LJGM.getCode()){
+            qw.eq("fuid_manager",uid);
+            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            qw.or();
+            qw.eq("frid",uid);//发送给处理人
+            qw.eq("manager_read",Judge.YES.getCode());//未读
+        }
+        else if(rid == Role.ADMINISTRATIVE.getCode()){
 //            qw.eq("fuid_staffing",uid);
             qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
 //            qw.eq("frid",Role.ADMINISTRATIVE.getCode());
-        }else if(rid == Role.EMPLOYEES.getCode()){
+        }
+        else if(rid == Role.EMPLOYEES.getCode()){
             qw.eq("uid",uid);
         }
         List<Flow> list =flowMapper.selectList(qw);;
