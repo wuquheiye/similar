@@ -7,12 +7,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import swtech.pageDesignControl.common.utils.DateUtil;
 import swtech.pageDesignControl.common.vo.DepartmentVO;
 import swtech.pageDesignControl.common.vo.UsersVO;
-import swtech.pageDesignControl.entity.Department;
 import swtech.pageDesignControl.entity.Permission;
 import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.UsersMapper;
 import swtech.pageDesignControl.service.IUsersService;
-import swtech.pageDesignControl.service.impl.UsersServiceImpl;
 
 import javax.annotation.Resource;
 import java.util.List;

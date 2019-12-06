@@ -135,7 +135,7 @@ public class PersonInfomationController {
                 msg.setMsg(personInfomationList);
                 msg.setCurrentPage(page);
                 msg.setTotalSize(totalSize);
-                msg.setPageEnd(page * pageSize);
+                msg.setPageEnd(pageEnd);
             } else {
                 msg.setStatus("202");
                 msg.setStatusMsg("获取个人档案条件分页失败");

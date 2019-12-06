@@ -1,4 +1,559 @@
 /**
+ * 迟到start
+ */
+var tardyManageId = 0;
+$(function () {
+    /**
+     * 左侧显示隐藏并获取迟到列表
+     */
+    $(".manageLeft").on("click", "#tardyManage", function () {
+        $("#tardyManageName").val("");
+        $(".manageRight .rightManageDiv").addClass("hidden");
+        $(".tardyManage").removeClass("hidden");
+        getTardyList(1);
+    });
+
+    /**
+     * 点击分页
+     */
+    $("#tardyManagePageDiv").on("click", "a", function () {
+        getTardyList($(this).text());
+    });
+
+    /**
+     * 清除
+     */
+    $(".tardyManage").on("click", "#tardyManageClean", function () {
+        $("#tardyManageName").val("");
+        $("#tardyDate").val("");
+    });
+
+    /**
+     * 查询
+     */
+    $(".tardyManage").on("click", "#tardyManageSearch", function () {
+        getTardyList(1)
+    });
+
+    /**
+     * 删除单个迟到
+     */
+    $(".tardyManage").on("click", ".delete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            var tid = $(this).next().attr("class");
+            removeTardy(tid);
+        }
+    });
+
+    /**
+     * 增加迟到
+     */
+    $(".tardyManageEdit").on("click", "#saveTardy", function () {
+        saveTardy();
+    });
+
+    /**
+     * 更改迟到
+     */
+    $(".tardyManageEdit").on("click", "#updateTardy", function () {
+        updateTardy();
+    });
+})
+
+/**
+ * 迟到管理
+ */
+$(function () {
+    /**
+     * 点击添加
+     */
+    $(".manageRight").on("click", ".tardyManageAdd", function () {
+        $(".manageRight .tardyManage").addClass("hidden");
+        $(".manageRight").children(".tardyManageEdit").removeClass("hidden");
+        $(".Tardy").attr("id", "saveTardy");
+        $(".tardyManageEdit #tname").val("");
+    });
+
+    /**
+     * 点击更新
+     */
+    $(".manageRight").on("click", ".tardyManageUpdate", function () {
+        tardyManageId = $(this).prev().attr("class");
+        getTardy();
+        $(".manageRight .tardyManage").addClass("hidden");
+        $(".manageRight").children(".tardyManageEdit").removeClass("hidden");
+        $(".Tardy").attr("id", "updateTardy");
+    });
+
+    /**
+     * 点击返回
+     */
+    $(".manageRight").on("click", ".tardyManageBack", function () {
+        $(".manageRight .tardyManage").removeClass("hidden");
+        $(".manageRight").children(".tardyManageEdit").addClass("hidden");
+        getTardyList(1);
+    });
+})
+
+/**
+ * 获取单个迟到
+ */
+function getTardy() {
+    var tid = tardyManageId;
+    $.ajax({
+        url: pageDesignControl_HOST + '/manage/tardy/getbyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"tid": tid},
+        async: false,
+        success: function (msg) {
+            if (msg.status == 200) {
+                $(".tardyManageEdit #tardyDateEdit").val(msg.msg.date);
+                $(".tardyManageEdit #tname").val(msg.msg.tname);
+                $(".tardyManageEdit #tdate").val(msg.msg.tdate);
+            }
+        }
+    });
+}
+
+/**
+ * 更改迟到
+ */
+function updateTardy() {
+    var tid = tardyManageId;
+    var date = $(".tardyManageEdit #tardyDateEdit").val();
+    var tname = $(".tardyManageEdit #tname").val();
+    var tdate = $(".tardyManageEdit #tdate").val();
+    if (!tname) {
+        alert("迟到名称不能为空");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/tardy/updatebyid',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {
+                "date": date,
+                "tid": tid,
+                "tname": tname,
+                "tdate": tdate,
+            },
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("更改成功")
+                } else {
+                    alert(msg.statusMsg)
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 添加迟到
+ */
+function saveTardy() {
+    var date = $(".tardyManageEdit #tardyDateEdit").val();
+    var tname = $(".tardyManageEdit #tname").val();
+    var tdate = $(".tardyManageEdit #tdate").val();
+    if (!tname) {
+        alert("迟到名称不能为空");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/tardy/save',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {
+                "date": date, "tname": tname, "tdate": tdate
+            },
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("添加成功")
+                } else {
+                    alert(msg.statusMsg)
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 删除单个迟到
+ */
+function removeTardy(tid) {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/tardy/removebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"tid": tid},
+        success: function (msg) {
+            if (msg.status == 200) {
+                getTardyList(1);
+                alert("删除成功")
+            } else {
+                alert(msg.statusMsg)
+            }
+        }
+    });
+}
+
+/**
+ * 获取迟到列表
+ */
+function getTardyList(page) {
+    var tname = $("#tardyManageName").val();
+    var date = $("#tardyDate").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/tardy/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"date": date,"tname": tname, "page": page},
+        success: function (msg) {
+            if (msg.status == 200) {
+                // 添加列表
+                var tardyListStr = "";
+                for (var i = 0; i < msg.msg.length; i++) {
+                    tardyListStr += '<tr class="">' +
+                        '<td class="text-center">' + msg.msg[i].tname + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].tdate + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].date + '</td>' +
+                        '<td class="text-center">' +
+                        '<button type="button" class="btn btn-info delete" >删除</button>' +
+                        '<input type="hidden" class="' + msg.msg[i].tid + '" />' +
+                        '<button type="button" class="btn btn-warning manageEdit tardyManageUpdate">修改</button>' +
+                        '<input type="hidden" class="tardyManageEdit">' +
+                        '</td>' +
+                        '</tr>'
+                }
+                $("#tardyManageTable").empty();
+                $("#tardyManageTable").append(tardyListStr);
+                // 回显搜索名
+                $("#tardyManageName").val(tname);
+                // 是否显示分页
+                if (msg.totalSize <= 10) {
+                    $("#tardyManagePageDiv").addClass("hidden");
+                } else {
+                    $("#tardyManagePageDiv").removeClass("hidden");
+                }
+                // 分页具体信息
+                var pageSpanStr = "第 " + msg.pageStart + " 条 到 " + (msg.pageEnd < msg.totalSize ? msg.pageEnd : msg.totalSize) + " 条 ，共 " + msg.totalSize + " 条记录, 当前第 " + msg.currentPage + "页";
+                $("#tardyManagePageSpan").text(pageSpanStr);
+                var pageUlStr = "";
+                if (parseInt(msg.currentPage) - 2 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 2) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) - 1 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 1) + '</a></li>';
+                }
+                pageUlStr += '<li><a href="#">' + msg.currentPage + '</a></li>';
+                if (parseInt(msg.currentPage) + 1 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 1) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) + 2 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 2) + '</a></li>';
+                }
+                $("#tardyManagePageUl").empty();
+                $("#tardyManagePageUl").append(pageUlStr);
+            }
+        }
+    });
+}
+
+/**
+ * 迟到end
+ */
+
+/**
+ * 请假start
+ */
+var skaLeaveManageId = 0;
+$(function () {
+    /**
+     * 左侧显示隐藏并获取请假列表
+     */
+    $(".manageLeft").on("click", "#skaLeaveManage", function () {
+        $("#skaLeaveManageName").val("");
+        $(".manageRight .rightManageDiv").addClass("hidden");
+        $(".skaLeaveManage").removeClass("hidden");
+        getSkaLeaveList(1);
+    });
+
+    /**
+     * 点击分页
+     */
+    $("#skaLeaveManagePageDiv").on("click", "a", function () {
+        getSkaLeaveList($(this).text());
+    });
+
+    /**
+     * 清除
+     */
+    $(".skaLeaveManage").on("click", "#skaLeaveManageClean", function () {
+        $("#skaLeaveManageName").val("");
+        $("#skaLeaveDate").val("");
+    });
+
+    /**
+     * 查询
+     */
+    $(".skaLeaveManage").on("click", "#skaLeaveManageSearch", function () {
+        getSkaLeaveList(1)
+    });
+
+    /**
+     * 删除单个请假
+     */
+    $(".skaLeaveManage").on("click", ".delete", function () {
+        var r = confirm("是否删除!");
+        if (r == true) {
+            var did = $(this).next().attr("class");
+            removeSkaLeave(did);
+        }
+    });
+
+    /**
+     * 增加请假
+     */
+    $(".skaLeaveManageEdit").on("click", "#saveSkaLeave", function () {
+        saveSkaLeave();
+    });
+
+    /**
+     * 更改请假
+     */
+    $(".skaLeaveManageEdit").on("click", "#updateSkaLeave", function () {
+        updateSkaLeave();
+    });
+})
+
+/**
+ * 请假管理
+ */
+$(function () {
+    /**
+     * 点击添加
+     */
+    $(".manageRight").on("click", ".skaLeaveManageAdd", function () {
+        $(".manageRight .skaLeaveManage").addClass("hidden");
+        $(".manageRight").children(".skaLeaveManageEdit").removeClass("hidden");
+        $(".SkaLeave").attr("id", "saveSkaLeave");
+        $(".skaLeaveManageEdit #lname").val("");
+    });
+
+    /**
+     * 点击更新
+     */
+    $(".manageRight").on("click", ".skaLeaveManageUpdate", function () {
+        skaLeaveManageId = $(this).prev().attr("class");
+        getSkaLeave();
+        $(".manageRight .skaLeaveManage").addClass("hidden");
+        $(".manageRight").children(".skaLeaveManageEdit").removeClass("hidden");
+        $(".SkaLeave").attr("id", "updateSkaLeave");
+    });
+
+    /**
+     * 点击返回
+     */
+    $(".manageRight").on("click", ".skaLeaveManageBack", function () {
+        $(".manageRight .skaLeaveManage").removeClass("hidden");
+        $(".manageRight").children(".skaLeaveManageEdit").addClass("hidden");
+        getSkaLeaveList(1);
+    });
+})
+
+/**
+ * 获取单个请假
+ */
+function getSkaLeave() {
+    var lid = skaLeaveManageId;
+    $.ajax({
+        url: pageDesignControl_HOST + '/manage/askleave/getbyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"lid": lid},
+        async: false,
+        success: function (msg) {
+            if (msg.status == 200) {
+                $(".skaLeaveManageEdit #skaLeaveDateEdit").val(msg.msg.date);
+                $(".skaLeaveManageEdit #lname").val(msg.msg.lname);
+                $(".skaLeaveManageEdit #ltype").val(msg.msg.ltype);
+                $(".skaLeaveManageEdit #ldate").val(msg.msg.ldate);
+                $(".skaLeaveManageEdit #ltime").val(msg.msg.ltime);
+                $(".skaLeaveManageEdit #ltotal").val(msg.msg.ltotal);
+            }
+        }
+    });
+}
+
+/**
+ * 更改请假
+ */
+function updateSkaLeave() {
+    var lid = skaLeaveManageId;
+    var date = $(".skaLeaveManageEdit #skaLeaveDateEdit").val();
+    var lname = $(".skaLeaveManageEdit #lname").val();
+    var ltype = $(".skaLeaveManageEdit #ltype").val();
+    var ldate = $(".skaLeaveManageEdit #ldate").val();
+    var ltime = $(".skaLeaveManageEdit #ltime").val();
+    var ltotal = $(".skaLeaveManageEdit #ltotal").val();
+    if (!lname) {
+        alert("请假名称不能为空");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/askleave/updatebyid',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {
+                "date": date,
+                "lid": lid,
+                "lname": lname,
+                "ltype": ltype,
+                "ldate": ldate,
+                "ltime": ltime,
+                "ltotal": ltotal
+            },
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("更改成功")
+                } else {
+                    alert(msg.statusMsg)
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 添加请假
+ */
+function saveSkaLeave() {
+    var date = $(".skaLeaveManageEdit #skaLeaveDateEdit").val();
+    var lname = $(".skaLeaveManageEdit #lname").val();
+    var ltype = $(".skaLeaveManageEdit #ltype").val();
+    var ldate = $(".skaLeaveManageEdit #ldate").val();
+    var ltime = $(".skaLeaveManageEdit #ltime").val();
+    var ltotal = $(".skaLeaveManageEdit #ltotal").val();
+    if (!lname) {
+        alert("请假名称不能为空");
+    } else {
+        $.ajax({
+            url: pageDesignControl_HOST + 'manage/askleave/save',
+            type: 'Get',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: {
+                "date": date, "lname": lname, "ltype": ltype, "ldate": ldate, "ltime": ltime, "ltotal": ltotal
+            },
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert("添加成功")
+                } else {
+                    alert(msg.statusMsg)
+                }
+            }
+        });
+    }
+}
+
+/**
+ * 删除单个请假
+ */
+function removeSkaLeave(lid) {
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/askleave/removebyid',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"lid": lid},
+        success: function (msg) {
+            if (msg.status == 200) {
+                getSkaLeaveList(1);
+                alert("删除成功")
+            } else {
+                alert(msg.statusMsg)
+            }
+        }
+    });
+}
+
+/**
+ * 获取请假列表
+ */
+function getSkaLeaveList(page) {
+    var lname = $("#skaLeaveManageName").val();
+    var date = $("#skaLeaveDate").val();
+    $.ajax({
+        url: pageDesignControl_HOST + 'manage/askleave/selectbypageandcondition',
+        type: 'Get',
+        contentType: 'application/json',
+        dataType: 'json',
+        data: {"date": date,"lname": lname, "page": page},
+        success: function (msg) {
+            if (msg.status == 200) {
+                // 添加列表
+                var skaLeaveListStr = "";
+                for (var i = 0; i < msg.msg.length; i++) {
+                    skaLeaveListStr += '<tr class="">' +
+                        '<td class="text-center">' + msg.msg[i].lname + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].ltype + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].ldate + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].ltime + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].ltotal + '</td>' +
+                        '<td class="text-center">' + msg.msg[i].date + '</td>' +
+                        '<td class="text-center">' +
+                        '<button type="button" class="btn btn-info delete" >删除</button>' +
+                        '<input type="hidden" class="' + msg.msg[i].lid + '" />' +
+                        '<button type="button" class="btn btn-warning manageEdit skaLeaveManageUpdate">修改</button>' +
+                        '<input type="hidden" class="skaLeaveManageEdit">' +
+                        '</td>' +
+                        '</tr>'
+                }
+                $("#skaLeaveManageTable").empty();
+                $("#skaLeaveManageTable").append(skaLeaveListStr);
+                // 回显搜索名
+                $("#skaLeaveManageName").val(lname);
+                // 是否显示分页
+                if (msg.totalSize <= 10) {
+                    $("#skaLeaveManagePageDiv").addClass("hidden");
+                } else {
+                    $("#skaLeaveManagePageDiv").removeClass("hidden");
+                }
+                // 分页具体信息
+                var pageSpanStr = "第 " + msg.pageStart + " 条 到 " + (msg.pageEnd < msg.totalSize ? msg.pageEnd : msg.totalSize) + " 条 ，共 " + msg.totalSize + " 条记录, 当前第 " + msg.currentPage + "页";
+                $("#skaLeaveManagePageSpan").text(pageSpanStr);
+                var pageUlStr = "";
+                if (parseInt(msg.currentPage) - 2 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 2) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) - 1 > 0) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) - 1) + '</a></li>';
+                }
+                pageUlStr += '<li><a href="#">' + msg.currentPage + '</a></li>';
+                if (parseInt(msg.currentPage) + 1 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 1) + '</a></li>';
+                }
+                if (parseInt(msg.currentPage) + 2 <= parseInt(msg.totalPage)) {
+                    pageUlStr += '<li><a href="#">' + (parseInt(msg.currentPage) + 2) + '</a></li>';
+                }
+                $("#skaLeaveManagePageUl").empty();
+                $("#skaLeaveManagePageUl").append(pageUlStr);
+            }
+        }
+    });
+}
+
+/**
+ * 请假end
+ */
+
+/**
  * 考勤start
  */
 var attendanceManageId = 0;
@@ -2602,12 +3157,23 @@ $(function () {
 /**
  * 日期插件
  */
+$(function (){
+    jeDate("#skaLeaveDateEdit",{
+        format: "YYYY-MM"
+    });
+    jeDate("#skaLeaveDate",{
+        format: "YYYY-MM"
+    });
+    jeDate("#tardyDateEdit",{
+        format: "YYYY-MM"
+    });
+    jeDate("#tardyDate",{
+        format: "YYYY-MM"
+    });
+});
 $(document).ready(function () {
     $('#userManageDateBegin').bootstrapMaterialDatePicker({
-        time: false
-    });
-    $('#userManageDateEnd').bootstrapMaterialDatePicker({
-        time: false
+        time : false
     });
     $('#time').bootstrapMaterialDatePicker({
         date: false,
@@ -2642,3 +3208,4 @@ $(document).ready(function () {
 /**
  * 公共方法end
  */
+

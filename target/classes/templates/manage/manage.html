@@ -5,18 +5,23 @@
     <title>后台管理页面</title>
     <link rel="stylesheet" th:href="@{/bootstrop/css/bootstrap.css}">
     <link rel="stylesheet" th:href="@{/manage/css/manage.css}">
+    <link rel="stylesheet" th:href="@{/manage/css/jedate.css}">
     <!--日期控件-->
     <link rel="stylesheet" th:href="@{/use/css/bootstrap-material-datetimepicker.css}">
     <!--jq-->
     <script type="text/javascript" charset="utf-8" th:src="@{/jquery/jquery.js}"></script>
     <script type="text/javascript" charset="utf-8" th:src="@{/myjs/httpData.config.js}"></script>
     <script type="text/javascript" charset="utf-8" th:src="@{/manage/js/manage.js}"></script>
+    <script type="text/javascript" charset="utf-8" th:src="@{/manage/js/jedate.js}"></script>
     <!--bootstrap 样式-->
     <script type="text/javascript" charset="utf-8" th:src="@{/bootstrop/js/bootstrap.js}"></script>
     <!--日期控件-->
     <script type="text/javascript" charset="utf-8" th:src="@{/use/js/moment-with-locales.min.js}"></script>
     <script type="text/javascript" charset="utf-8" th:src="@{/use/js/bootstrap-material-datetimepicker.js}"></script>
     <!-- checkboxjs -->
+    <script type="text/javascript">
+
+    </script>
 </head>
 <body>
 <div class="row manage">
@@ -66,17 +71,31 @@
                         <span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>
                         人事部
                     </div>
+<!--                    <ul class="organizationHeaderOrganizationUl">-->
+<!--                        <li class="">-->
+<!--                            <div class="organizationHeaderOrganizationClick  manageClick" id="attendanceManage">-->
+<!--                                考勤管理-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                    </ul>-->
                     <ul class="organizationHeaderOrganizationUl">
                         <li class="">
-                            <div class="organizationHeaderOrganizationClick  manageClick" id="attendanceManage">
-                                考勤管理
+                            <div class="organizationHeaderOrganizationClick  manageClick" id="personInfomationManage">
+                                个人档案管理
                             </div>
                         </li>
                     </ul>
                     <ul class="organizationHeaderOrganizationUl">
                         <li class="">
-                            <div class="organizationHeaderOrganizationClick  manageClick" id="personInfomationManage">
-                                个人档案管理
+                            <div class="organizationHeaderOrganizationClick  manageClick" id="skaLeaveManage">
+                                请假管理
+                            </div>
+                        </li>
+                    </ul>
+                    <ul class="organizationHeaderOrganizationUl">
+                        <li class="">
+                            <div class="organizationHeaderOrganizationClick  manageClick" id="tardyManage">
+                                迟到管理
                             </div>
                         </li>
                     </ul>
@@ -1243,6 +1262,214 @@
             </div>
         </div>
         <!--复制结束-->
+        <div class="skaLeaveManage hidden rightManageDiv">
+            <div>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="skaLeaveManageName">请假名称：</label>
+                        <input type="text" class="form-control" id="skaLeaveManageName" placeholder="请输入请假名称：">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="skaLeaveManageName">请假年月：</label>
+                        <div class="jeinpbox"><input type="text" class="jeinput form-control" id="skaLeaveDate" placeholder="请输入请假年月"></div>
+                    </div>
+                    <button type="button" class="btn btn-default" id="skaLeaveManageSearch">搜索</button>
+                    <button type="button" class="btn btn-default" id="skaLeaveManageClean">重置</button>
+                </form>
+            </div>
+            <div>
+                <button type="button" class="btn btn-success manageEdit skaLeaveManageAdd">增加</button>
+                <input type="hidden" class="skaLeaveManageEdit">
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            姓名
+                        </th>
+                        <th class="text-center">
+                            休假类型
+                        </th>
+                        <th class="text-center organizationHeaderOrganizationClick">
+                            日期
+                        </th>
+                        <th class="text-center organizationHeaderOrganizationClick">
+                            时间
+                        </th>
+                        <th class="text-center organizationHeaderOrganizationClick">
+                            共计（天/时）
+                        </th>
+                        <th class="text-center organizationHeaderOrganizationClick">
+                            请假年月
+                        </th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <!-- 请假列表 -->
+                    <tbody id="skaLeaveManageTable">
+                    </tbody>
+                </table>
+            </div>
+            <div id="skaLeaveManagePageDiv">
+                <ul class="pagination" id="skaLeaveManagePageUl">
+                </ul>
+                <div>
+                    <span id="skaLeaveManagePageSpan"></span>
+                </div>
+            </div>
+        </div>
+        <div class="skaLeaveManageEdit hidden rightManageDiv">
+            <div class="container containerTop">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-info skaLeaveManageBack" value="true">返回</button>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        编辑请假
+                    </div>
+                </div>
+                <div class="row form-horizontal">
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <label for="lname" class="col-sm-2 control-label">*姓名：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="lname" placeholder="请输入姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ltype" class="col-sm-2 control-label">*休假类型：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ltype" placeholder="请输入休假类型">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ldate" class="col-sm-2 control-label">*日期：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ldate" placeholder="请输入请假日期">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ltime" class="col-sm-2 control-label">*时间：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ltime" placeholder="请输入请假时间">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="ltotal" class="col-sm-2 control-label">*共计（天/时）：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="ltotal" placeholder="请输入请假共计（天/时）">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="skaLeaveDateEdit" class="col-sm-2 control-label"> *请假年月：</label>
+                            <div class="col-sm-10">
+                                <div class="jeinpbox"><input type="text" class="jeinput form-control" id="skaLeaveDateEdit" placeholder="请输入请假年月"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default SkaLeave" id="saveSkaLeave">保存</button>
+                            <button type="button" class="btn btn-default skaLeaveManageBack">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tardyManage hidden rightManageDiv">
+            <div>
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <label class="sr-only" for="tardyManageName">迟到名称：</label>
+                        <input type="text" class="form-control" id="tardyManageName" placeholder="请输入迟到名称：">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="tardyDate">迟到年月：</label>
+                        <div class="jeinpbox"><input type="text" class="jeinput form-control" id="tardyDate" placeholder="请输入迟到年月"></div>
+                    </div>
+                    <button type="button" class="btn btn-default" id="tardyManageSearch">搜索</button>
+                    <button type="button" class="btn btn-default" id="tardyManageClean">重置</button>
+                </form>
+            </div>
+            <div>
+                <button type="button" class="btn btn-success manageEdit tardyManageAdd">增加</button>
+                <input type="hidden" class="tardyManageEdit">
+            </div>
+            <div>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th class="text-center">
+                            姓名
+                        </th>
+                        <th class="text-center organizationHeaderOrganizationClick">
+                            日期
+                        </th>
+                        <th class="text-center organizationHeaderOrganizationClick">
+                            迟到年月
+                        </th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <!-- 迟到列表 -->
+                    <tbody id="tardyManageTable">
+                    </tbody>
+                </table>
+            </div>
+            <div id="tardyManagePageDiv">
+                <ul class="pagination" id="tardyManagePageUl">
+                </ul>
+                <div>
+                    <span id="tardyManagePageSpan"></span>
+                </div>
+            </div>
+        </div>
+        <div class="tardyManageEdit hidden rightManageDiv">
+            <div class="container containerTop">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <button type="button" class="btn btn-info tardyManageBack" value="true">返回</button>
+                    </div>
+                    <div class="col-xs-6 text-center">
+                        编辑迟到
+                    </div>
+                </div>
+                <div class="row form-horizontal">
+                    <div class="col-xs-8">
+                        <div class="form-group">
+                            <label for="tname" class="col-sm-2 control-label">*姓名：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="tname" placeholder="请输入姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tdate" class="col-sm-2 control-label">*日期：</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="tdate" placeholder="请输入迟到日期">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tardyDateEdit" class="col-sm-2 control-label"> *迟到年月：</label>
+                            <div class="col-sm-10">
+                                <div class="jeinpbox"><input type="text" class="jeinput form-control" id="tardyDateEdit" placeholder="请输入迟到年月"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default Tardy" id="saveTardy">保存</button>
+                            <button type="button" class="btn btn-default tardyManageBack">返回</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
