@@ -91,11 +91,7 @@ function regist() {
             "did": $("#registUinvitationCode").val()
         }),
         success: function (msg) {
-            if (msg.status == "200") {
-                alert(msg.statusMsg)
-            } else {
-                alert(msg.statusMsg)
-            }
+            alert(msg)
         }
     });
 }
