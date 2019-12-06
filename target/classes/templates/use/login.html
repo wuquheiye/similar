@@ -13,90 +13,35 @@
     <script src="https://at.alicdn.com/t/font_1502544_j8yf3v34uai.js"></script>
 </head>
 <body>
-
-<div class="loginAndRegist">
-    <div class="container loginAndRegistContainer" id="login">
-        <div class="text-center loginAndRegistText">用户登录页面</div>
-        <div class="form-horizontal active">
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" name="loginUtelephonenumber" id="loginUtelephonenumber" placeholder="请输入用户名">
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="form-group loginAndRegistTextFrom">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <input type="password" class="form-control" name="upassword" id="loginUpassword" placeholder="请输入密码">
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-8 text-center">
-                    <button class="btn btn-primary login" onclick="login()">登录</button>
-                    <button class="btn btn-success regist">注册</button>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-        </div>
-    </div>
-    <div class="container hidden loginAndRegistContainer" id="regist">
-        <div class="text-center loginAndRegistText">用户登录页面</div>
-        <div class="form-horizontal active" id="">
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" name="" id="registUusername" placeholder="请输入用户名">
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <input type="password" class="form-control" name="" id="registUpassword" placeholder="请输入密码">
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <input type="password" class="form-control" name="" id="registUpasswordAgin" placeholder="请输入确定密码">
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <select class="form-control" id="registDid">
-                        <option selected = "selected">请选择部门</option>
-                        <option value="1">开发</option>
-                        <option value="2">地面</option>
-                        <option value="3">空中</option>
-                    </select>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
-                    <input type="text" class="form-control" name="" id="registUinvitationCode" placeholder="激活码" >
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-2">
-                </div>
-                <div class="col-sm-8 text-center">
-                    <button type="submit" class="btn btn-primary submit" onclick="regist()">提交</button>
-                    <button class="btn btn-success backLogin">返回</button>
-                </div>
-                <div class="col-sm-2"></div>
-            </div>
-        </div>
-    </div>
+<div class="main loginAndRegist loginAndRegistContainer" id="login">
+    <h1>
+        用户登录页面
+    </h1>
+    <form>
+        <input type="text" name="loginUtelephonenumber" id="loginUtelephonenumber" placeholder="请输入用户名">
+        <input type="password" name="upassword" id="loginUpassword" placeholder="请输入密码">
+        <input type="button" class="btn btn-primary login" onclick="login()" value="登录"></button>
+        <input type="button" class="btn btn-success regist" value="注册"></button>
+    </form>
+</div>
+<div class="main loginAndRegist hidden loginAndRegistContainer hidden" id="regist">
+    <h1>
+        用户注册页面
+    </h1>
+    <form>
+        <input type="text" id="registUusername" placeholder="请输入用户名">
+        <input type="password" id="registUpassword" placeholder="请输入密码">
+        <input type="password" id="registUpasswordAgin" placeholder="请输入确定密码">
+        <input type="text" id="registUinvitationCode" placeholder="激活码">
+        <select class="form-control" id="registDid">
+            <option selected="selected">请选择部门</option>
+            <option value="1">开发</option>
+            <option value="2">地面</option>
+            <option value="3">空中</option>
+        </select>
+        <input type="button" class="btn btn-primary submit" onclick="regist()" value="提交"></button>
+        <input type="button" class="btn btn-success backLogin" value="返回"></button>
+    </form>
 </div>
 </body>
 </html>
