@@ -15,6 +15,7 @@ import swtech.pageDesignControl.common.websocket.WebsocketServerTwo;
 import swtech.pageDesignControl.entity.Journal;
 import swtech.pageDesignControl.entity.Project;
 import swtech.pageDesignControl.entity.UpdateProject;
+import swtech.pageDesignControl.enums.Role;
 import swtech.pageDesignControl.mapper.JournalMapper;
 import swtech.pageDesignControl.mapper.ProjectMapper;
 import swtech.pageDesignControl.mapper.UpdateProjectMapper;
@@ -121,12 +122,22 @@ public class ProjectServiceImpl extends ServiceImpl<ProjectMapper, Project> impl
 
     @Override
     @Transactional
-    public ReturnMsg selectProjectJournal() {
+    public ReturnMsg selectProjectJournal(Integer uid ,Integer rtype) {
         ReturnMsg msg =new ReturnMsg();
         QueryWrapper qw = new QueryWrapper();
+        QueryWrapper qw2=new QueryWrapper();
+        List<Journal> list1Journal = new ArrayList<>();
 //        List<Project> listProject1 = projectMapper.selectList(qw);
+//        if(rtype== Role.EMPLOYEES.getCode()||rtype==Role.FINANCE.getCode()||rtype==Role.ADMINISTRATIVE.getCode()){//职工，人事，财务
+//        }
+        if(rtype==Role.GM.getCode()||rtype==Role.LJGM.getCode()||rtype==Role.MANAGE.getCode()){//总经理，利捷，经理
+            list1Journal= journalMapper.selectList(qw2);
+        }else if(rtype==Role.GOVERNOR.getCode()){
+            qw2.eq("fuid_Charge",uid);
+            list1Journal=journalMapper.selectList(qw2);
+        }
         List<UpdateProject> listProject = updateProjectMapper.selectList(qw);
-        List<Journal> list1Journal = journalMapper.selectList(qw);
+
         List list =new ArrayList();
         Iterator project1=listProject.iterator();
         while (project1.hasNext()){

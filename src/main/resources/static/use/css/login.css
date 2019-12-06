@@ -1,4 +1,3 @@
-
 /*显示隐藏*/
 .hidden {
     display: none;
@@ -55,12 +54,13 @@ body{
     -ms-border-radius: 5px;
     padding: 15px 10px;
     width: 96%;
-    font-size: 1.3em;
+    font-size: 2em;
     color: #7e8fad;
     text-align: center;
     font-family: 'Syncopate', sans-serif;
+    height: 80px;
 }
-.main input[type="password"],.main input[type="text"],.main select{
+.main input[type="password"],.main input[type="text"],.main select ,.main input[type="button"]{
     margin:1.5em 0 0 0;
 }
 .main select{
@@ -76,11 +76,12 @@ body{
     -o-border-radius:5px;
     -ms-border-radius:5px;
     padding:15px 10px;
-    width:46%;
+    width:48%;
     color:#fdbfe6;
-    font-size:1.5em;
+    font-size:2em;
     font-family: 'Syncopate', sans-serif;
     cursor:pointer;
+    height: 80px;
 }
 .main input[type="button"]:hover{
     background:#fed2ed;
@@ -92,7 +93,7 @@ body{
     padding:2em 0 0;
 }
 .footer p{
-    font-size:1em;
+    font-size:2em;
     color:#B47C9F;
     margin:0;
 }
@@ -105,7 +106,7 @@ body{
 /*-- start-responsive-design --*/
 @media (max-width:1440px){
     .main {
-        width: 37%;
+        width: 70%;
     }
     .main input[type="text"], .main input[type="password"] {
         width: 95.8%;
@@ -113,7 +114,7 @@ body{
 }
 @media (max-width: 1280px){
     .main {
-        width: 40%;
+        width: 80%;
     }
     .main input[type="text"], .main input[type="password"] {
         width: 95.6%;
@@ -121,17 +122,17 @@ body{
 }
 @media (max-width: 1024px){
     .main {
-        width: 50%;
+        width: 80%;
         margin: 5em auto 0;
     }
 }
 @media (max-width:768px){
     .main {
-        width: 60%;
+        width: 80%;
     }
     .main input[type="text"], .main input[type="password"] {
         width: 95.2%;
-        font-size: 1.1em;
+        font-size: 2em;
     }
 }
 @media (max-width:736px){
@@ -144,7 +145,7 @@ body{
 }
 @media (max-width:667px){
     .main {
-        width: 65%;
+        width: 75%;
         margin: 3em auto 0;
     }
     .main h1 {
@@ -157,7 +158,7 @@ body{
 }
 @media (max-width:640px){
     .main input[type="button"] {
-        font-size: 1.3em;
+        font-size: 2em;
     }
 }
 @media (max-width: 600px){
@@ -196,11 +197,11 @@ body{
     }
     .main input[type="text"], .main input[type="password"] {
         padding: 10px;
-        font-size: 13px;
+        font-size: 18px;
         width: 92.5%;
     }
     .main input[type="button"] {
-        font-size: 1em;
+        font-size: 2em;
         padding: 10px;
     }
     .footer p {

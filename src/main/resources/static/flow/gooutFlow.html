@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="../bootstrop/css/bootstrap.css">
     <link rel="stylesheet" href="../use/css/common.css">
+<!--    模态框样式-->
     <link rel="stylesheet" href="/use/css/index.css">
 
     <link rel="stylesheet" href="../use/css/bootstrap-material-datetimepicker.css" />
@@ -94,7 +95,9 @@
                 </button>
             </div>
             <div class="col-xs-12" id="personnel">
-
+            </div>
+            <div class="col-xs-12">
+                <input type="hidden" value="" id="fchange">
             </div>
         </div>
         <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
@@ -104,8 +107,8 @@
             <div class="col-xs-6">
                 总人数
             </div>
-            <div class="col-xs-6">
-               4人
+            <div class="col-xs-6" id="zongnum">
+
             </div>
         </div>
         <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">
@@ -221,18 +224,15 @@
                             <!-- 查看被选中对象end -->
 
                             <!-- 组织列表 -->
-                            <ul id="organizationHeaderOrganizationUiContain">
+                            <ul id="organizationHeaderOrganizationUiContain" style="padding-top: 20px;">
                             </ul>
 
-                            <!-- 查看被选中对象start -->
-                            <button type="button" class="btn btn-primary col-xs-12 navbar-fixed-bottom-button" onclick="affirm()">确认</button>
-                            <!-- 查看被选中对象end -->
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal" onclick="close()">关闭</button>
-                    <button type="button" class="btn btn-primary" onclick="tijiaomyModal()">提交更改</button>
+                    <button type="button" class="btn btn-primary" onclick="tijiaoModal()">提交更改</button>
                 </div>
             </div>
         </div>
@@ -263,6 +263,28 @@
     })
 
     /**
+     * 模态框选中
+     */
+    function tijiaoModal() {
+        let value=[];
+        let valuekey=[]
+        $(".getallname:checked").each(function (e) {
+            value.push(this.value);
+            valuekey.push($(this).attr('valuekey'));
+        })
+        // alert(value);
+        // alert(valuekey);
+        // alert(value.length);
+        let showdata = '<button type="button" class="btn btn-primary"  id="but_'+1+'">'+value+'</button>';
+        $("#personnel").html(showdata);
+        $("#fchange").val(value);
+        // alert($("#fchange").val());
+        $("#zongnum").text(value.length+"人");
+        $("#myModal").modal('hide');
+    }
+
+
+    /**
      * 录入请假申请
      */
     function commitflow() {
@@ -274,41 +296,45 @@
         let fapplyReason = $("#fapplyReason").val();
         let fchange = $("#fchange").val(); //通行人
         let fuidManager=$("#fuidManager").val();
-        let leaveflow={
-            "ftype" : ftype,
-            "uid" :loginObj.users.uid,
-            // "fleaveType":fleaveType,
-            "fapplyTime" : fapplyTime,
-            "fstartTime":fstartTime,
-            "fendTime" :　fendTime,
-            "fapplyReason":fapplyReason,
-            "uusername":loginObj.users.uusername,
-            "dname":loginObj.department.dname,
-            // "fuidCharge" :loginObj.users.fuidCharge,
-            "fuidManager":fuidManager,
-            // "artsVision":loginObj.department.ArtsVision
-        }
-
-        alert(JSON.stringify(leaveflow))
-        $.ajax({
-            url: pageDesignControl_HOST + "flow/leaveInsert",
-            type: "post",
-            dataType: "json",
-            data:JSON.stringify(leaveflow),
-            contentType: 'application/json; charset=UTF-8',
-            async: false,
-            success: function(res) {
-                if(res.msg==true){
-                    alert("申请已发出")
-                }else{
-                    alert("申请发出失败");
-                }
-            },
-            error: function(){
-                alert("网络信号不好，请重试");
+        if(fuidManager!=0) {
+            let leaveflow = {
+                "ftype": ftype,
+                "uid": loginObj.users.uid,
+                // "fleaveType":fleaveType,
+                "fapplyTime": fapplyTime,
+                "fstartTime": fstartTime,
+                "fendTime": fendTime,
+                "fapplyReason": fapplyReason,
+                "uusername": loginObj.users.uusername,
+                "dname": loginObj.department.dname,
+                "fchange": fchange,
+                "fuidManager": fuidManager,
+                // "artsVision":loginObj.department.ArtsVision
             }
 
-        })
+            alert(JSON.stringify(leaveflow))
+            $.ajax({
+                url: pageDesignControl_HOST + "flow/leaveInsert",
+                type: "post",
+                dataType: "json",
+                data: JSON.stringify(leaveflow),
+                contentType: 'application/json; charset=UTF-8',
+                async: false,
+                success: function (res) {
+                    if (res.msg == true) {
+                        alert("申请已发出")
+                    } else {
+                        alert("申请发出失败");
+                    }
+                },
+                error: function () {
+                    alert("网络信号不好，请重试");
+                }
+
+            })
+        }else {
+            alert("请选择推送")
+        }
 
     }
 

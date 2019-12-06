@@ -30,7 +30,7 @@ $(function () {
                 for (var i = 0; i < msg.msg.length; i++) {
                     str +=
                         '<li class="">' +
-                        '<div class="organizationHeaderOrganizationClick" >' +
+                        '<div class="organizationHeaderOrganizationClick" style="height: 40px;font-size: 16px;line-height: 40px;">' +
                         '<span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>' +
                         msg.msg[i].companyVOName +
                         '</div>' +
@@ -42,7 +42,7 @@ $(function () {
                     for (var j = 0; j < msg.msg[i].departmentVOList.length; j++) {
                         str +=
                             '<li class="">' +
-                            '<div class="organizationHeaderOrganizationClick" >' +
+                            '<div class="organizationHeaderOrganizationClick"  style="height: 40px;font-size: 16px;line-height: 40px;">' +
                             '<span class="glyphicon glyphicon-chevron-right organizationHeaderOrganizationSpan"></span>' +
                             msg.msg[i].departmentVOList[j].dname +
                             '</div>' +
@@ -54,14 +54,14 @@ $(function () {
                         for (var k = 0; k < msg.msg[i].departmentVOList[j].usersListVO.length; k++) {
                             str +=
                                 '<input type="hidden" value="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" />'+
-                                '<input type="checkbox" class="getallname" id="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" value="'+ msg.msg[i].departmentVOList[j].usersListVO[k].rname + '"> '+
                                 '<li class="organizationHeaderOrganizationLi clickToPersondetail">' +
-                               '<div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="../publicBottom/images/head.png" style="width: 50px; "/></div>' +
+                                '<input style="zoom:180%;float: left;margin-top: 12px;" type="checkbox" class="getallname" valuekey="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" id="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" value="'+ msg.msg[i].departmentVOList[j].usersListVO[k].rname + '"> '+
+                                '<div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="/publicBottom/images/head.png" style="width: 50px; "/></div>' +
                                 '<div class="" style="float:left;">' +
-                                '<div style="padding-top: 8px;font-size: 16px;">' +
+                                '<div style="padding-top: 8px;font-size: 14px;height: 40px;line-height: 40px;">' +
                                  msg.msg[i].departmentVOList[j].usersListVO[k].uusername +'&nbsp;&nbsp;['+ msg.msg[i].departmentVOList[j].usersListVO[k].rname + ']' +
                                 '</div>' +
-                                '<div style="font-size: 14px;color: #A9A9A9">' + msg.msg[i].departmentVOList[j].usersListVO[k].utelephonenumber + '</div>' +
+                                '<div style="font-size: 12px;color: #A9A9A9">' + msg.msg[i].departmentVOList[j].usersListVO[k].utelephonenumber + '</div>' +
                                 '</div>' +
                                 '</li>'
                             $("#companyVOIdUsers" + msg.msg[i].departmentVOList[j].did).append(str);
@@ -121,6 +121,7 @@ function affirm() {
  */
 function clean() {
     $("#getname .button").remove();
+    $("#organizationHeaderOrganizationUiContain input").attr("checked",false);
 }
 
 /**

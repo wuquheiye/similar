@@ -24,5 +24,5 @@ public interface IProjectService extends IService<Project> {
 
     Map<String,Object> selectProjectByid(Integer pid);
 
-    ReturnMsg selectProjectJournal();
+    ReturnMsg selectProjectJournal(Integer uid ,Integer rtype);
 }

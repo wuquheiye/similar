@@ -526,7 +526,7 @@
     function selectProjectJournal() {
         let showdata='';
         $.ajax({
-            url: pageDesignControl_HOST + "project/selectProjectJournal",
+            url: pageDesignControl_HOST + "project/selectProjectJournal?uid="+loginObj.users.uid+"&rtype="+loginObj.role.rtype,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',

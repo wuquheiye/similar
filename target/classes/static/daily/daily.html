@@ -324,7 +324,7 @@
     function selectByCharge(){
         let myTeamLogCli='';
         $.ajax({
-            url: "http://127.0.0.1:43008/journal/selectByCharge?uid="+34+"&rtype="+4,
+            url: "http://127.0.0.1:43008/journal/selectByCharge?uid="+loginObj.users.uid+"&rtype="+loginObj.role.rtype,
             type: "get",
             dataType: "json",
             contentType: 'application/json; charset=UTF-8',
