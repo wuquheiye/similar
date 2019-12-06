@@ -197,10 +197,10 @@ public class ProjectController {
      */
     @ResponseBody
     @GetMapping("selectProjectJournal")
-    public ReturnMsg  selectProjectJournal(){
+    public ReturnMsg  selectProjectJournal(@RequestParam("uid")Integer uid , @RequestParam("rtype")Integer rtype){
         ReturnMsg msg =new ReturnMsg();
             try {
-                msg = iProjectService.selectProjectJournal();
+                msg = iProjectService.selectProjectJournal(uid,rtype);
             }catch (Exception e){
                 e.printStackTrace();
                 log.info(e.getMessage());

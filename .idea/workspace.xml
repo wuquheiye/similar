@@ -3,16 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="12abe4f8-a401-45d5-93d9-92d43cc2691c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/ProjectController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/controller/ProjectController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IProjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/IProjectService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/ProjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/swtech/pageDesignControl/service/impl/ProjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/daily/daily.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/daily/daily.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/flow/gooutFlow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/myjs/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/myjs/organization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/organization.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/use/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/create/createProject.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/create/createProject.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/use/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/use/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/flow/gooutFlow.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/myjs/organization.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/myjs/organization.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/use/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/use/organization.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/use/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/use/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/controller/ProjectController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/ProjectServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/swtech/pageDesignControl/service/impl/ProjectServiceImpl.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,6 +85,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -241,6 +244,8 @@
       <workItem from="1575427543995" duration="17697000" />
       <workItem from="1575505746800" duration="82000" />
       <workItem from="1575506331001" duration="1166000" />
+      <workItem from="1575539848736" duration="1128000" />
+      <workItem from="1575592130449" duration="4034000" />
     </task>
     <task id="LOCAL-00004" summary="项目管理ok">
       <created>1574330254965</created>
@@ -417,7 +422,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575528828979</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="模态框">
+      <created>1575538163414</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1575538163414</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -593,7 +605,8 @@
     <MESSAGE value="修改动态，日期插件" />
     <MESSAGE value="错误" />
     <MESSAGE value="aa" />
-    <option name="LAST_COMMIT_MESSAGE" value="aa" />
+    <MESSAGE value="模态框" />
+    <option name="LAST_COMMIT_MESSAGE" value="模态框" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
