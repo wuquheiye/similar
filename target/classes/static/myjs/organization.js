@@ -55,7 +55,7 @@ $(function () {
                             str +=
                                 '<input type="hidden" value="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" />'+
                                 '<li class="organizationHeaderOrganizationLi clickToPersondetail">' +
-                                '<input style="zoom:180%;float: left;margin-top: 12px;" type="checkbox" class="getallname" valuekey="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" id="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" value="'+ msg.msg[i].departmentVOList[j].usersListVO[k].rname + '"> '+
+                                '<input style="zoom:180%;float: left;margin-top: 12px;" type="checkbox" class="getallname" valuekey="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" id="'+msg.msg[i].departmentVOList[j].usersListVO[k].uid+'" value="'+ msg.msg[i].departmentVOList[j].usersListVO[k].uusername + '"> '+
                                 '<div class="" style="float:left;padding-top:5px;padding-right:20px;"><img src="/publicBottom/images/head.png" style="width: 50px; "/></div>' +
                                 '<div class="" style="float:left;">' +
                                 '<div style="padding-top: 8px;font-size: 14px;height: 40px;line-height: 40px;">' +
@@ -66,7 +66,7 @@ $(function () {
                                 '</li>'
                             $("#companyVOIdUsers" + msg.msg[i].departmentVOList[j].did).append(str);
                             str = "";
-                        }
+                        }u
                     }
                 }
             } else {
