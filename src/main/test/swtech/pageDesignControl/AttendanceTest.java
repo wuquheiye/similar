@@ -4,15 +4,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
-import swtech.pageDesignControl.common.utils.DateUtil;
-import swtech.pageDesignControl.common.vo.DepartmentVO;
-import swtech.pageDesignControl.common.vo.UsersVO;
 import swtech.pageDesignControl.entity.Attendance;
-import swtech.pageDesignControl.entity.Permission;
-import swtech.pageDesignControl.entity.Users;
 import swtech.pageDesignControl.mapper.AttendanceMapper;
-import swtech.pageDesignControl.mapper.UsersMapper;
-import swtech.pageDesignControl.service.IUsersService;
 
 import javax.annotation.Resource;
 import java.util.List;

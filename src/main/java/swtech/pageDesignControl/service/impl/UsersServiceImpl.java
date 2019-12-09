@@ -69,18 +69,21 @@ public class UsersServiceImpl extends ServiceImpl<UsersMapper, Users> implements
         // 查询本部门经理
         List<Users> manageUser = usersMapper.findUsersByDepartmentAndRole(users.getDid(), 4);
         if (manageUser != null && manageUser.size() > 0 && manageUser.get(0) != null && manageUser.get(0).getUid() > 0) {
-            fuidCharge = manageUser.get(0).getUid();
+            fuidManager = chargeUser.get(0).getUid();
         }
         if (chargeUser != null && chargeUser.size() > 0 && chargeUser.get(0) != null && chargeUser.get(0).getUid() > 0) {
-            fuidManager = chargeUser.get(0).getUid();
+            fuidCharge = manageUser.get(0).getUid();
         }
         if (role.getRtype() == 1 || role.getRtype() == 2) {
             loginUsersVO.setFuidCharge(fuidCharge);
-            loginUsersVO.setFuidManager(fuidCharge);
+            loginUsersVO.setFuidManager(fuidManager);
         } else if (role.getRtype() == 3) {
             loginUsersVO.setFuidCharge(0);
             loginUsersVO.setFuidManager(fuidCharge);
         } else if (role.getRtype() == 4) {
+            loginUsersVO.setFuidCharge(0);
+            loginUsersVO.setFuidManager(0);
+        }else{
             loginUsersVO.setFuidCharge(0);
             loginUsersVO.setFuidManager(0);
         }

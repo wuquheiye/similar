@@ -127,7 +127,6 @@ public class RoleController {
             List<Role> roleList = iRoleService.selectByPageAndCondition(role, page, pageSize);
             int totalSize = iRoleService.selectCount();
             int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
-            int pageEnd = page * pageSize < pageSize ? page * pageSize :  pageSize;
             if (roleList != null ) {
                 msg.setStatus("200");
                 msg.setMsg(roleList);

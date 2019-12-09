@@ -129,7 +129,6 @@ public class AttendanceController {
             List<Attendance> attendanceList = iAttendanceService.selectByPageAndCondition(attendance, page, pageSize);
             int totalSize = iAttendanceService.selectCount();
             int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
-            int pageEnd = page * pageSize < pageSize ? page * pageSize :  pageSize;
             if (attendanceList != null ) {
                 msg.setStatus("200");
                 msg.setStatusMsg("获取考勤条件分页成功");

@@ -130,14 +130,13 @@ public class DepartmentController {
             List<Department> departmentList = iDepartmentService.selectByPageAndCondition(department, page, pageSize);
             int totalSize = iDepartmentService.selectCount();
             int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
-            int pageEnd = page * pageSize < pageSize ? page * pageSize :  pageSize;
             if (departmentList != null ) {
                 msg.setStatus("200");
                 msg.setStatusMsg("获取部门条件分页成功");
                 msg.setMsg(departmentList);
-                msg.setCurrentPage(page);
                 msg.setPageSize(pageSize);
                 msg.setTotalPage(totalPage);
+                msg.setCurrentPage(page);
                 msg.setTotalSize(totalSize);
                 msg.setPageStart((page - 1) * pageSize);
                 msg.setPageEnd(page * pageSize);

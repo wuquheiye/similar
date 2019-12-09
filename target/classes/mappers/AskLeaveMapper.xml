@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="swtech.pageDesignControl.mapper.AskLeaveMapper">
+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.AskLeave"
+            parameterType="swtech.pageDesignControl.entity.AskLeave">
+        SELECT * FROM ask_leave where 1=1
+        <if test="askLeave!=null and askLeave.lname!='' and askLeave.lname!='null'">
+            and lname like concat('%',#{askLeave.lname},'%')
+        </if>
+        <if test="askLeave!=null and askLeave.date!='' and askLeave.date!='null'">
+            and date like concat('%',#{askLeave.date},'%')
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        SELECT count(*) FROM ask_leave
+    </select>
+</mapper>
