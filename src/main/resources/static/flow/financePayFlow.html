@@ -189,6 +189,7 @@
         let fapplyReason = $("#fapplyReason").val();
         let fchange = $("#fchange").val();
         let fuidManager =$("#fuidManager").val();
+        let fuidManagerText =$("#fuidManager option:selected ").text();;//经理名
         if(fuidManager==0){
             alert("请选择将申请推送给哪位领导");
             return false;
@@ -205,7 +206,9 @@
             "dname":loginObj.department.dname,
             // "fuidCharge" :loginObj.users.fuidCharge,
             "fuidManager":fuidManager,
-            "fchange" : fchange
+            "fchange" : fchange,
+            "fuidFinance":roleType.FINANCE.code,
+            "managerName":fuidManagerText
             // "artsVision":loginObj.department.ArtsVision
         }
 

@@ -383,6 +383,14 @@ function flowType(e) {
 }
 
 /**
+ * 获取同行人总人数
+ */
+function headcount (e) {
+    let headcount=e.split(",");
+    return headcount.length+1;
+}
+
+/**
  *  获取历史申请记录
  */
 function selectLeaveAll(uid) {

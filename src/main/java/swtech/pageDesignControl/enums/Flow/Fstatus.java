@@ -16,8 +16,8 @@ public enum  Fstatus implements BaseEnum<Integer> {
     STAFFINGAFFIRM(5,"行政部门已确认"),
     STAFFINGAREFUSE(6,"行政部门拒绝"),
     FINANCE(7,"财务部门确认"),
-    FINANCEREFUSE(8,"财务部门复核"),
-    OVER(10,"结束");
+    FINANCEREFUSE(8,"财务部门复核");
+//    OVER(10,"结束");
 
     private Integer code;
     private String desc;

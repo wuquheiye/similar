@@ -227,7 +227,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:location.reload()"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -326,7 +326,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:location.reload()"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -373,7 +373,7 @@
             '                同行人\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '                <input type="text"  style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="请选择同行人">\n' +
+            e.fchange +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -384,7 +384,7 @@
             '                总人数\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '               4人\n' +
+            headcount(e.fchange)  +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -395,7 +395,7 @@
             '                申请日期\n' +
             '            </div>\n' +
             '            <div class="col-xs-6">\n' +
-            '                <span style="float: right;text-align: right" id="defuletTime"></span>\n' +
+            '                <span style="float: right;text-align: right" id="defuletTime">'+e.fapplyTime+'</span>\n' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4">\n' +
@@ -406,7 +406,7 @@
             '                申请开始\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
-            '                <input type="text" id="date-start" style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="Date">\n' +
+            e.fstartTime +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -415,7 +415,7 @@
             '                申请结束\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px">\n' +
-            '                <input type="text" id="date-end" style="width: 100%;direction: rtl;border: 0px;outline:medium;" class="form-control floating-label" placeholder="Date" >\n' +
+            e.fendTime +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -424,6 +424,7 @@
             '                申请时长\n' +
             '            </div>\n' +
             '            <div class="col-xs-6" style="line-height: 30px;padding-left: 0px;text-align: right" id="duration">\n' +
+            leadTimeTwo(e.fstartTime,e.fendTime)  +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
@@ -432,7 +433,7 @@
             '                外出事由\n' +
             '            </div>\n' +
             '            <div class="col-xs-12" style="height: 130px;padding: 0px">\n' +
-            '                <textarea class="form-control" style="height: 120px" id="fapplyReason"></textarea>\n' +
+            '<pre style="border: 1px solid black">'+e.fapplyReason+'</pre>' +
             '            </div>\n' +
             '        </div>\n' +
             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:10px;width: 100%;background: #F4F4F4;margin: auto">\n' +
@@ -450,7 +451,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:location.reload()"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -629,7 +630,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:location.reload()"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -743,7 +744,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:location.reload()"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -838,7 +839,7 @@
             '    <div class="container navbar-fixed-top" style="background: white">\n' +
             '        <div class="row">\n' +
             '            <div class="col-xs-2">\n' +
-            '                <a href="javascript:void(0)"><h4><span class="glyphicon glyphicon-menu-left"\n' +
+            '                <a href="javascript:location.reload()"><h4><span class="glyphicon glyphicon-menu-left"\n' +
             '                                                        aria-hidden="true"></span></h4></a>\n' +
             '            </div>\n' +
             '            <div class="col-xs-8" style="text-align: center">\n' +
@@ -1241,7 +1242,7 @@
     //审批显示信息
     function flowStatus(e) {
         let fstatusHtml = '';
-        if (e.artsVision == yesOrNo.YES.code) {
+        // if (e.artsVision == yesOrNo.YES.code) {
             if(e.fstatus==fstatusFlow.UNTREATED.code){ //待审批
                 fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
                     '        <div class="row">\n' +
@@ -1281,7 +1282,7 @@
                     '                <div class="row">\n' +
                     '                    <div class="col-xs-12">同意</div>\n' +
 
-                    '                    <div class="col-xs-12" style="text-align: right">'+e.chargeHand+' 主管名</div>'+
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' '+e.managerName+'</div>'+
                     '                </div>\n' +
                     '            </div>\n' +
                     '\n' +
@@ -1314,7 +1315,7 @@
                     '                       <div class="col-xs-12">\n' +
                     '<pre style="border: 1px solid black">'+e.fuidManagerRefuse+'</pre>'+
                     '                        </div>'+
-                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' 经理名</div>'+
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' '+e.managerName+'</div>'+
                     '                </div>\n' +
                     '            </div>\n' +
                     '\n' +
@@ -1331,7 +1332,7 @@
                     '            <div class="col-xs-12">\n' +
                     '                <div class="row">\n' +
                     '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' 主管名</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' '+e.managerName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '\n' +
@@ -1344,7 +1345,7 @@
                     '            <div class="col-xs-12">\n' +
                     '                <div class="row">\n' +
                     '                    <div class="col-xs-12">已确认</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidStaffingHand+' 人事名</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidStaffingHand+' '+e.staffingName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
@@ -1360,7 +1361,7 @@
                     '            <div class="col-xs-12">\n' +
                     '                <div class="row">\n' +
                     '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' 主管名</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' '+e.managerName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '\n' +
@@ -1376,48 +1377,23 @@
                     '                       <div class="col-xs-12">\n' +
                                                 '<pre style="border: 1px solid black">'+e.fuidStaffingRefuse+'</pre>'+
                     '                        </div>'+
-                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidStaffingHand+' 人事名</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidStaffingHand+' '+e.staffingName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
                     '    </div>';
             }
-        }
-        else if (e.artsVision == yesOrNo.NO.code) {
-            if (e.fstatus == fstatusFlow.UNTREATED.code) {
-                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
-                    '    <div class="row">\n' +
-                    '        <div class="col-xs-12" >\n' +
-                    '            部门主管审批\n' +
-                    '        </div>\n' +
-                    '        <div class="col-xs-12">\n' +
-                    '            <div class="row">\n' +
-                    '                <div class="col-xs-12 " >\n' +
-                    '                    <select class="form-control" id="idea" style="border: 0px">\n' +
-                    '                        <option value="0">同意</option>\n' +
-                    '                        <option value="1">拒绝</option>\n' +
-                    '                    </select>\n' +
-                    '                </div>\n' +
-                    '                <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                    '                    <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
-                    '                </div>\n' +
-                    '\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </div>\n' +
-                    '</div>';
-            }
-            else if (e.fstatus == fstatusFlow.CHARGEPASS.code) {
-                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+            else  if(e.fstatus==fstatusFlow.FINANCE.code){ //人事确认
+                fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-xs-12">\n' +
-                    '                部门主管审批\n' +
+                    '                领导审批\n' +
                     '            </div>\n' +
                     '            <div class="col-xs-12">\n' +
                     '                <div class="row">\n' +
                     '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">' + e.fuidChargeHand + ' 主管名' + '</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' '+e.managerName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '\n' +
@@ -1425,83 +1401,28 @@
                     '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-xs-12">\n' +
-                    '                总经理审批\n' +
+                    '                财务部门确认\n' +
                     '            </div>\n' +
                     '            <div class="col-xs-12">\n' +
                     '                <div class="row">\n' +
-                    '                    <div class="col-xs-12">\n' +
-                    '                        <select class="form-control" id="idea" style="border: 0px">\n' +
-                    '                            <option value="0">同意</option>\n' +
-                    '                            <option value="1">拒绝</option>\n' +
-                    '                        </select>\n' +
-                    '                    </div>\n' +
-                    '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                    '                        <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
-                    '                    </div>\n' +
-                    '\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '    </div>';
-            }
-            else if (e.fstatus == fstatusFlow.MANAGERPASS.code) {
-                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                部门主管审批\n' +
-                    '            </div>\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                <div class="row">\n' +
-                    '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '\n' +
-                    '        </div>\n' +
-                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                总经理审批\n' +
-                    '            </div>\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                <div class="row">\n' +
-                    '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                考勤员审批\n' +
-                    '            </div>\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                <div class="row">\n' +
-                    '                    <div class="col-xs-12">\n' +
-                    '                        <select class="form-control" id="idea" style="border: 0px">\n' +
-                    '                            <option value="0">确认</option>\n' +
-                    '                        </select>\n' +
-                    '                    </div>\n' +
-                    '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                    '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
-                    '                    </div>\n' +
-                    '\n' +
+                    '                    <div class="col-xs-12">已确认</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidFinanceHand+' '+e.financeName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
                     '    </div>';
             }
-            else if (e.fstatus == fstatusFlow.STAFFINGREFUSE.code) {
-                fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+            else  if(e.fstatus==fstatusFlow.FINANCEREFUSE.code){
+                fstatusHtml ='<div class="container" style="padding-bottom: 70px">\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-xs-12">\n' +
-                    '                部门主管审批\n' +
+                    '                领导审批\n' +
                     '            </div>\n' +
                     '            <div class="col-xs-12">\n' +
                     '                <div class="row">\n' +
                     '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidManagerHand+' '+e.managerName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '\n' +
@@ -1509,38 +1430,179 @@
                     '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
                     '        <div class="row">\n' +
                     '            <div class="col-xs-12">\n' +
-                    '                总经理审批\n' +
+                    '                财务部门建议\n' +
                     '            </div>\n' +
                     '            <div class="col-xs-12">\n' +
                     '                <div class="row">\n' +
-                    '                    <div class="col-xs-12">同意</div>\n' +
-                    '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
-                    '                </div>\n' +
-                    '            </div>\n' +
-                    '        </div>\n' +
-                    '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
-                    '        <div class="row">\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                考勤员审批\n' +
-                    '            </div>\n' +
-                    '            <div class="col-xs-12">\n' +
-                    '                <div class="row">\n' +
-                    '                    <div class="col-xs-12">\n' +
-                    '                        <select class="form-control" id="idea" style="border: 0px">\n' +
-                    '                            <option value="0">确认</option>\n' +
-                    '                        </select>\n' +
-                    '                    </div>\n' +
-                    '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
-                    '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
-                    '                    </div>\n' +
-                    '\n' +
+                    // '                    <div class="col-xs-12">财务部门建议</div>\n' +
+                    '                       <div class="col-xs-12">\n' +
+                    '<pre style="border: 1px solid black">'+e.fuidFinanceRefuse+'</pre>'+
+                    '                        </div>'+
+                    '                    <div class="col-xs-12" style="text-align: right">'+e.fuidFinanceHand+' '+e.financeName+'</div>\n' +
                     '                </div>\n' +
                     '            </div>\n' +
                     '        </div>\n' +
                     '\n' +
                     '    </div>';
             }
-        }
+        // }
+        // else if (e.artsVision == yesOrNo.NO.code) {
+        //     if (e.fstatus == fstatusFlow.UNTREATED.code) {
+        //         fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+        //             '    <div class="row">\n' +
+        //             '        <div class="col-xs-12" >\n' +
+        //             '            部门主管审批\n' +
+        //             '        </div>\n' +
+        //             '        <div class="col-xs-12">\n' +
+        //             '            <div class="row">\n' +
+        //             '                <div class="col-xs-12 " >\n' +
+        //             '                    <select class="form-control" id="idea" style="border: 0px">\n' +
+        //             '                        <option value="0">同意</option>\n' +
+        //             '                        <option value="1">拒绝</option>\n' +
+        //             '                    </select>\n' +
+        //             '                </div>\n' +
+        //             '                <div class="col-xs-12" id="opinion" style="display: none">\n' +
+        //             '                    <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
+        //             '                </div>\n' +
+        //             '\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '    </div>\n' +
+        //             '</div>';
+        //     }
+        //     else if (e.fstatus == fstatusFlow.CHARGEPASS.code) {
+        //         fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                部门主管审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">同意</div>\n' +
+        //             '                    <div class="col-xs-12" style="text-align: right">' + e.fuidChargeHand + ' 主管名' + '</div>\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '\n' +
+        //             '        </div>\n' +
+        //             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                总经理审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">\n' +
+        //             '                        <select class="form-control" id="idea" style="border: 0px">\n' +
+        //             '                            <option value="0">同意</option>\n' +
+        //             '                            <option value="1">拒绝</option>\n' +
+        //             '                        </select>\n' +
+        //             '                    </div>\n' +
+        //             '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
+        //             '                        <textarea class="form-control" style="height: 120px" id="hand" placeholder="请输入拒绝意见"></textarea>\n' +
+        //             '                    </div>\n' +
+        //             '\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '    </div>';
+        //     }
+        //     else if (e.fstatus == fstatusFlow.MANAGERPASS.code) {
+        //         fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                部门主管审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">同意</div>\n' +
+        //             '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '\n' +
+        //             '        </div>\n' +
+        //             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                总经理审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">同意</div>\n' +
+        //             '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                考勤员审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">\n' +
+        //             '                        <select class="form-control" id="idea" style="border: 0px">\n' +
+        //             '                            <option value="0">确认</option>\n' +
+        //             '                        </select>\n' +
+        //             '                    </div>\n' +
+        //             '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
+        //             '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
+        //             '                    </div>\n' +
+        //             '\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '\n' +
+        //             '    </div>';
+        //     }
+        //     else if (e.fstatus == fstatusFlow.STAFFINGREFUSE.code) {
+        //         fstatusHtml = '<div class="container" style="padding-bottom: 70px">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                部门主管审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">同意</div>\n' +
+        //             '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '\n' +
+        //             '        </div>\n' +
+        //             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                总经理审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">同意</div>\n' +
+        //             '                    <div class="col-xs-12" style="text-align: right">2019-10-02 20:12:46 主管名</div>\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '        <hr style="margin-top: 10px;margin-bottom: 10px;height:1px;width: 90%;background: #F4F4F4;margin: auto">\n' +
+        //             '        <div class="row">\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                考勤员审批\n' +
+        //             '            </div>\n' +
+        //             '            <div class="col-xs-12">\n' +
+        //             '                <div class="row">\n' +
+        //             '                    <div class="col-xs-12">\n' +
+        //             '                        <select class="form-control" id="idea" style="border: 0px">\n' +
+        //             '                            <option value="0">确认</option>\n' +
+        //             '                        </select>\n' +
+        //             '                    </div>\n' +
+        //             '                    <div class="col-xs-12" id="opinion" style="display: none">\n' +
+        //             '                        <textarea class="form-control" style="height: 120px" placeholder="请输入拒绝意见" id="hand"></textarea>\n' +
+        //             '                    </div>\n' +
+        //             '\n' +
+        //             '                </div>\n' +
+        //             '            </div>\n' +
+        //             '        </div>\n' +
+        //             '\n' +
+        //             '    </div>';
+        //     }
+        // }
         return fstatusHtml;
     }
 

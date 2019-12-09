@@ -116,6 +116,22 @@ public class FlowVO  implements Serializable {
 //    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
     private String fuidStaffingHand;
 
+
+    /**
+     * 获取确认财务id
+     */
+    private Integer fuidFinance;
+    /**
+     * 财务意见反馈
+     */
+    private String fuidFinanceRefuse;
+
+    /**
+     * 财务确认时间
+     */
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH:mm:ss")
+    private String fuidFinanceHand;
+
     /**
      * 申请人
      */
@@ -141,6 +157,20 @@ public class FlowVO  implements Serializable {
      */
     private Integer artsVision;
 
+    /**
+     * 主管名
+     */
+    private String managerName;
+
+    /**
+     * 人事名
+     */
+    private String staffingName;
+
+    /**
+     * 财务名
+     */
+    private String financeName;
 
     /**
      *
@@ -148,4 +178,6 @@ public class FlowVO  implements Serializable {
     private ServeFlow serveFlow;
 
     private OnbusInessFlow onbusInessFlow;
+
+
 }

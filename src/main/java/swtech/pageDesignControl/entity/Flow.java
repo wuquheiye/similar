@@ -151,6 +151,21 @@ public class Flow implements Serializable {
     private  String  dname;
 
     /**
+     * 主管名
+     */
+    private String managerName;
+
+    /**
+     * 人事名
+     */
+    private String staffingName;
+
+    /**
+     * 财务名
+     */
+    private String financeName;
+
+    /**
      * 变化字段
      */
     private String fchange;

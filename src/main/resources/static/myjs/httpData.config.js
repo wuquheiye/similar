@@ -13,6 +13,8 @@ var fstatusFlow = {
     MANAGERREFUSE:{code:4,desc:"经理审批拒绝"},
     STAFFINGAFFIRM:{code:5,desc:"人事确认"},
     STAFFINGREFUSE:{code:6,desc:"人事反馈"},
+    FINANCE:{code:7,desc:"财务部门确认"},
+    FINANCEREFUSE:{code:8,desc:"财务部门复核"},
 
 }
 

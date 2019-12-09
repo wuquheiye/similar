@@ -131,7 +131,7 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         }
 //        switch (Judge.getByCode(leave.getArtsVision())){
 //            case YES:  //利捷
-                leave.setFstatus(Fstatus.CHARGEPASS.getCode());
+//                leave.setFstatus(Fstatus.CHARGEPASS.getCode());
 //                break;
 //            case NO: //广空
 //                break;
@@ -265,16 +265,29 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         QueryWrapper qw=new QueryWrapper();
         if(rid!=Role.EMPLOYEES.getCode()){
             if(rid==Role.GOVERNOR.getCode()){
-                qw.eq("fuid_manager",uid);
+                qw.eq("fuid_charge",uid);
+                qw.eq("manager_read",Judge.YES.getCode());
             }else if(rid==Role.ADMINISTRATIVE.getCode()){
-                qw.eq("fuid_staffing",uid);
+                qw.eq("fuid_staffing",rid);
+                qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+                qw.or();
+                qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
+                qw.notIn("ftype",Ftype.SERVE.getCode(),Ftype.FINANCEPAY.getCode());
             }else if(rid==Role.FINANCE.getCode()){
-                qw.eq("fuid_finance",uid);
+                qw.eq("fuid_finance",rid);
+                qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+
+                qw.or();
+                qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
+                qw.in("ftype",Ftype.SERVE.getCode(),Ftype.FINANCEPAY.getCode());
             }else {
                 qw.eq("fuid_manager",uid);
+                qw.eq("fstatus",Fstatus.UNTREATED.getCode());
+                qw.or();
+                qw.eq("frid",uid);
+                qw.eq("manager_read",Judge.YES.getCode());
             }
         }
-        qw.ne("fstatus",Fstatus.OVER.getCode());
         Integer integer = flowMapper.selectCount(qw);
         msg.setStatus("200");
         msg.setMsg(integer);
@@ -333,35 +346,71 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
 //                break;
 //            case 1: //广空
                 if(flowApproval.getFstatus().equals(Fstatus.UNTREATED.getCode())){ //未处理
-                    flow.setFuidChargeHand(dateFormat.format(date));
-                    if(flowApproval.getStatus()== Judge.YES.getCode()){
-                        flow.setFstatus(Fstatus.CHARGEPASS.getCode());
-                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
-                        flow.setFstatus(Fstatus.CHARGEREFUSE.getCode());
-                        flow.setFuidChargeRefuse(flowApproval.getHand());
-                    }
-                }
-                else if(flowApproval.getFstatus().equals(Fstatus.CHARGEPASS.getCode())){//主管通过
                     flow.setFuidManagerHand(dateFormat.format(date));
                     if(flowApproval.getStatus()== Judge.YES.getCode()){
                         flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+
                     }else if(flowApproval.getStatus()== Judge.NO.getCode()){
                         flow.setFstatus(Fstatus.MANAGERREFUSE.getCode());
                         flow.setFuidManagerRefuse(flowApproval.getHand());
+                        flow.setManagerRead(Judge.NO.getCode()); //结束
                     }
                 }
-                else  if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
-                    flow.setFuidStaffingHand(dateFormat.format(date));
-                    if(flowApproval.getStatus()==Judge.YES.getCode()){
-                        flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
-                    }else if(flowApproval.getStatus()==Judge.NO.getCode()){
-                        flow.setFstatus(Fstatus.STAFFINGAREFUSE.getCode());
-                        flow.setFrid(flowApproval.getFuidManager());
+//                else if(flowApproval.getFstatus().equals(Fstatus.CHARGEPASS.getCode())){//主管通过
+//                    flow.setFuidManagerHand(dateFormat.format(date));
+//                    if(flowApproval.getStatus()== Judge.YES.getCode()){
+//                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+//                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+//                        flow.setFstatus(Fstatus.MANAGERREFUSE.getCode());
+//                        flow.setFuidManagerRefuse(flowApproval.getHand());
+//                    }
+//                }
+                else if(flowApproval.getRtype()==Role.FINANCE.getCode()){//财务
+                    if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
+                        flow.setFuidFinanceHand(dateFormat.format(date));
+                        if(flowApproval.getStatus()==Judge.YES.getCode()){
+                            flow.setFstatus(Fstatus.FINANCE.getCode());
+                            flow.setFuidFinance(flowApproval.getUid());//将角色id 转换为 用户id
+                            flow.setFinanceName(flowApproval.getUusername());//录入财务名字
+                            flow.setManagerRead(Judge.NO.getCode());//流程结束
+                        }else if(flowApproval.getStatus()==Judge.NO.getCode()){
+                            flow.setFstatus(Fstatus.FINANCEREFUSE.getCode());
+                            flow.setFrid(flowApproval.getFuidManager());
+                            flow.setFuidFinanceRefuse(flowApproval.getHand());//
+                            flow.setFuidFinance(flowApproval.getUid());
+                            flow.setFinanceName(flowApproval.getUusername());//录入财务名字
+                        }
+                    }
+                }else if(flowApproval.getRtype()==Role.ADMINISTRATIVE.getCode()){ //人事
+                    if(flowApproval.getFstatus().equals(Fstatus.MANAGERPASS.getCode())){//经理通过
+                        flow.setFuidStaffingHand(dateFormat.format(date));
+                        if(flowApproval.getStatus()==Judge.YES.getCode()){
+                            flow.setFstatus(Fstatus.STAFFINGAFFIRM.getCode());
+                            flow.setFuidStaffing(flowApproval.getUid());//将角色id 转换为 用户id
+                            flow.setStaffingName(flowApproval.getUusername());//录入人事名字
+                            flow.setManagerRead(Judge.NO.getCode());//流程结束
+                        }else if(flowApproval.getStatus()==Judge.NO.getCode()){
+                            flow.setFstatus(Fstatus.STAFFINGAREFUSE.getCode());
+                            flow.setFrid(flowApproval.getFuidManager());
+                            flow.setFuidStaffingRefuse(flowApproval.getHand());
+                            flow.setFuidStaffing(flowApproval.getUid());
+                            flow.setStaffingName(flowApproval.getUusername());//录入人事名字
+                        }
                     }
                 }else if(flowApproval.getFstatus().equals(Fstatus.STAFFINGAREFUSE.getCode())){//行政部门意见
 //                    flow.setFstatus(Fstatus.MANAGERREAD.getCode());
-                    flow.setManagerRead(Judge.NO.getCode()); //已读
+//                    if(flowApproval.getStatus()== Judge.YES.getCode()){
+//                        flow.setFstatus(Fstatus.MANAGERPASS.getCode());
+//                        flow.setManagerRead(Judge.NO.getCode()); //结束
+//                    }else if(flowApproval.getStatus()== Judge.NO.getCode()){
+//                        flow.setFstatus(Fstatus.MANAGERREFUSE.getCode());
+//                        flow.setFuidChargeRefuse(flowApproval.getHand());
+                    flow.setManagerRead(Judge.NO.getCode()); //结束
+//                    }
+                }else if(flowApproval.getFstatus().equals(Fstatus.FINANCEREFUSE.getCode())){//财务部门复核
+                    flow.setManagerRead(Judge.NO.getCode()); //结束
                 }
+
 //                break;
 //        }
 
@@ -414,43 +463,56 @@ public class FlowServiceImpl extends ServiceImpl<FlowMapper, Flow> implements IF
         if(rid == Role.GOVERNOR.getCode()){
             qw.eq("fuid_charge",uid);
             qw.eq("fstatus",Fstatus.UNTREATED.getCode());
+            qw.or();
+            qw.eq("frid",uid);//发送给处理人
+            qw.ne("manager_read",Judge.YES.getCode());
 //            qw.eq("frid",Role.GOVERNOR.getCode());
         }
         else if(rid == Role.MANAGE.getCode()){
             qw.eq("fuid_manager",uid);
-            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            qw.eq("fstatus",Fstatus.UNTREATED.getCode());
             qw.or();
             qw.eq("frid",uid);//发送给处理人
-            qw.eq("manager_read",Judge.YES.getCode());//未读
+            qw.eq("manager_read",Judge.YES.getCode());
 //            qw.eq("frid",Role.MANAGE.getCode());
         }
         else if(rid == Role.GM.getCode()){
             qw.eq("fuid_manager",uid);
-            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            qw.eq("fstatus",Fstatus.UNTREATED.getCode());
             qw.or();
             qw.eq("frid",uid);//发送给处理人
-            qw.eq("manager_read",Judge.YES.getCode());//未读
+            qw.eq("manager_read",Judge.YES.getCode());
         }
         else if(rid==Role.LJGM.getCode()){
             qw.eq("fuid_manager",uid);
-            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            qw.eq("fstatus",Fstatus.UNTREATED.getCode());
             qw.or();
             qw.eq("frid",uid);//发送给处理人
-            qw.eq("manager_read",Judge.YES.getCode());//未读
+            qw.eq("manager_read",Judge.YES.getCode());
+//            qw.eq("manager_read",Judge.YES.getCode());//未读
         }
         else if(rid == Role.ADMINISTRATIVE.getCode()){
 //            qw.eq("fuid_staffing",uid);
+            qw.eq("fuid_staffing",rid);
+            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+
+            qw.or();
             qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
+            qw.notIn("ftype",Ftype.SERVE.getCode(),Ftype.FINANCEPAY.getCode());
 //            qw.eq("frid",Role.ADMINISTRATIVE.getCode());
         }
-        else if(rid == Role.EMPLOYEES.getCode()){
-            qw.eq("uid",uid);
+        else if(rid == Role.FINANCE.getCode()){
+            qw.eq("fuid_finance",rid);
+            qw.eq("fstatus",Fstatus.CHARGEPASS.getCode());
+            qw.or();
+            qw.eq("fstatus",Fstatus.MANAGERPASS.getCode());
+            qw.in("ftype",Ftype.SERVE.getCode(),Ftype.FINANCEPAY.getCode());
         }
         List<Flow> list =flowMapper.selectList(qw);;
         List<FlowVO> listtwo = new ArrayList<FlowVO>();
         listtwo= list.stream().map(e ->convert(e)).collect(Collectors.toList());
-        System.out.println("list"+list);
-        System.out.println("listtwo"+listtwo);
+//        System.out.println("list"+list);
+//        System.out.println("listtwo"+listtwo);
         for (FlowVO flow:listtwo){
             QueryWrapper wq = new QueryWrapper();
             wq.eq("fid",flow.getFid());

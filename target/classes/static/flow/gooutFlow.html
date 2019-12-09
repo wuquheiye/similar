@@ -27,13 +27,13 @@
 <body>
 <div class="container-fluid">
     <!--头部-->
-    <div class="container navbar-fixed-top" style="background: white">
+    <div class="container navbar-fixed-top" style="background: white;padding-top: 15px">
         <div class="row">
             <div class="col-xs-2">
                 <a href="/use/index.html?publicBottomImages=publicBottomInformation"><h4><span class="glyphicon glyphicon-menu-left"
                                                         aria-hidden="true"></span></h4></a>
             </div>
-            <div class="col-xs-8" style="text-align: center">
+            <div class="col-xs-8" style="text-align: center;padding-top: 15px">
                 <h4><b id="title">外出申请</b></h4></div>
         </div>
     </div>
@@ -312,6 +312,7 @@
                 "dname": loginObj.department.dname,
                 "fchange": fchange,
                 "fuidManager": fuidManager,
+                "fuidStaffing":roleType.ADMINISTRATIVE.code,
                 // "artsVision":loginObj.department.ArtsVision
             }
 
