@@ -72,4 +72,10 @@ public class AskLeaveServiceImpl extends ServiceImpl<AskLeaveMapper, AskLeave> i
     public int selectCount() {
         return askLeaveMapper.selectCount();
     }
+
+    @Transactional
+    @Override
+    public int insertList(List<AskLeave> askLeaveList) {
+        return askLeaveMapper.insertList(askLeaveList);
+    }
 }

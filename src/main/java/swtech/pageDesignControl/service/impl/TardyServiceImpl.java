@@ -72,4 +72,10 @@ public class TardyServiceImpl extends ServiceImpl<TardyMapper, Tardy> implements
     public int selectCount() {
         return tardyMapper.selectCount();
     }
+
+    @Transactional
+    @Override
+    public int insertList(List<Tardy> tardyList) {
+        return tardyMapper.insertList(tardyList);
+    }
 }

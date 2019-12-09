@@ -16,4 +16,12 @@
     <select id="selectCount" resultType="java.lang.Integer">
         SELECT count(*) FROM ask_leave
     </select>
+
+    <insert id="insertList" parameterType="java.util.List">
+        insert into ask_leave (lname,ltype,ldate,ltime,ltotal,date)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            ( #{item.lname},#{item.ltype},#{item.ldate},#{item.ltime},#{item.ltotal},#{item.date})
+        </foreach>
+    </insert>
 </mapper>

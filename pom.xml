@@ -23,8 +23,6 @@
     </properties>
 
     <dependencies>
-
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -291,7 +289,6 @@
             <version>2.8.5</version>
         </dependency>
 
-
         <!-- <dependency>
             <groupId>com.swtech</groupId>
             <artifactId>swtech-common</artifactId>
@@ -302,7 +299,6 @@
             <artifactId>swtech-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency> -->
-
 
     </dependencies>
 

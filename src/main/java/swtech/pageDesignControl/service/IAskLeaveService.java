@@ -31,4 +31,12 @@ public interface IAskLeaveService extends IService<AskLeave> {
      * @return
      */
     int selectCount();
+
+    /**
+     * 插入多条数据
+     *
+     * @param askLeaveList
+     * @return
+     */
+    int insertList(List<AskLeave> askLeaveList);
 }

@@ -31,4 +31,12 @@ public interface TardyMapper extends BaseMapper<Tardy> {
      * @return
      */
     int selectCount();
+
+    /**
+     * 插入多条数据
+     *
+     * @param tardyList
+     * @return
+     */
+    int insertList(List<Tardy> tardyList);
 }

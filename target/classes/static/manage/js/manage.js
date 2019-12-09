@@ -3,6 +3,39 @@
  */
 var tardyManageId = 0;
 $(function () {
+
+    /**
+     * 导入excel表格
+     */
+    $(".tardyManage").on("click", "#importTardy", function () {
+        var formData = new FormData();
+        formData.append("file",$('#fileTardy')[0].files[0]);
+        $.ajax({
+            url:pageDesignControl_HOST + 'manage/tardy/fileUpload',
+            dataType:'json',
+            type:'POST',
+            async: false,
+            data: formData,
+            processData : false, // 使数据不做处理
+            contentType : false, // 不要设置Content-Type请求头
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert(msg.statusMsg);
+                    getTardyList(1);
+                }
+            },
+        });
+    })
+
+    /**
+     * 导出excel表格
+     */
+    $(".tardyManage").on("click", "#exportTardy", function () {
+        var tname = $("#tardyManageName").val();
+        var date = $("#tardyDate").val();
+        window.location.href=pageDesignControl_HOST + 'manage/tardy/outputexcel?tname='+tname+'&date='+date;
+    });
+
     /**
      * 左侧显示隐藏并获取迟到列表
      */
@@ -273,6 +306,39 @@ function getTardyList(page) {
  */
 var skaLeaveManageId = 0;
 $(function () {
+
+    /**
+     * 导入excel表格
+     */
+    $(".skaLeaveManage").on("click", "#importSkaLeave", function () {
+        var formData = new FormData();
+        formData.append("file",$('#fileSkaLeave')[0].files[0]);
+        $.ajax({
+            url:pageDesignControl_HOST + 'manage/askleave/fileUpload',
+            dataType:'json',
+            type:'POST',
+            async: false,
+            data: formData,
+            processData : false, // 使数据不做处理
+            contentType : false, // 不要设置Content-Type请求头
+            success: function (msg) {
+                if (msg.status == 200) {
+                    alert(msg.statusMsg);
+                    getSkaLeaveList(1);
+                }
+            },
+        });
+    })
+
+    /**
+     * 导出excel表格
+     */
+    $(".skaLeaveManage").on("click", "#exportSkaLeave", function () {
+        var lname = $("#skaLeaveManageName").val();
+        var date = $("#skaLeaveDate").val();
+        window.location.href=pageDesignControl_HOST + 'manage/askleave/outputexcel?lname='+lname+'&date='+date;
+    });
+
     /**
      * 左侧显示隐藏并获取请假列表
      */
