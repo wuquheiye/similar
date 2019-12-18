@@ -16,15 +16,9 @@
 	
 		<javaModelGenerator targetPackage="${modeltargetPackage}" targetProject="${targetProject_pojo}" />
 		<sqlMapGenerator targetPackage="${sqltargetPackage}" targetProject="${targetProject}" />	
-		<javaClientGenerator targetPackage="${clienttargetPackage}" targetProject="${targetProject}" type="XMLMAPPER" /> 
-
-		
-		<!-- <table  tableName="ht_cjdj_user_ex" domainObjectName="CjdjUserEx" enableCountByExample="false" enableUpdateByExample="false" 
-		enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/> -->
+		<javaClientGenerator targetPackage="${clienttargetPackage}" targetProject="${targetProject}" type="XMLMAPPER" />
 		
 		<table  tableName="ht_user" domainObjectName="User" enableCountByExample="false" enableUpdateByExample="false" 
 		enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"/>
-		
-		
 	</context>
 </generatorConfiguration>

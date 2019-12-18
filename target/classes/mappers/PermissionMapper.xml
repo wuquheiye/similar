@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="swtech.pageDesignControl.mapper.PermissionMapper">
-    <select id="getPermissionByRoleName" resultType="swtech.pageDesignControl.entity.Permission" parameterType="java.lang.String">
+<mapper namespace="job.mapper.PermissionMapper">
+    <select id="getPermissionByRoleName" resultType="job.entity.Permission" parameterType="java.lang.String">
         SELECT * from role r
-        join role_permission rp on rp.rid = r.rid
-        join permission p on rp.pid = p.pid
-        where r.rname =  #{roleName}
+        join role_permission rp on rp.rid = r.id
+        join permission p on rp.pid = p.id
+        where r.name =  #{roleName}
     </select>
 
-    <select id="selecGtrandfather" resultType="swtech.pageDesignControl.common.vo.PermissionVO">
-        SELECT * FROM permission where ppid = -1
+    <select id="selecGtrandfather" resultType="job.vo.PermissionVO">
+        SELECT * FROM permission where pid = -1
     </select>
 
-    <select id="selectChild" resultType="swtech.pageDesignControl.common.vo.PermissionVO"
+    <select id="selectChild" resultType="job.vo.PermissionVO"
             parameterType="java.lang.Integer">
-        SELECT * FROM permission where ppid = #{ppid}
+        SELECT * FROM permission where pid = #{pid}
     </select>
 </mapper>

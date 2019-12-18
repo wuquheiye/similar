@@ -6,10 +6,10 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 --- src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
 +++ src/main/java/swtech/pageDesignControl/mapper/PermissionMapper.java	(date 1574211565957)
 @@ -1,5 +1,6 @@
- package swtech.pageDesignControl.mapper;
+ package job.mapper;
  
 +import org.apache.ibatis.annotations.Param;
- import swtech.pageDesignControl.entity.Permission;
+ import job.entity.Permission;
  import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  
 @@ -14,5 +15,28 @@
@@ -53,8 +53,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
          where u.uusername =  #{username}
      </select>
 +
-+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Role"
-+            parameterType="swtech.pageDesignControl.entity.Role">
++    <select id="selectByPageAndCondition" resultType="job.entity.Role"
++            parameterType="job.entity.Role">
 +        SELECT * FROM role where 1=1
 +        <if test="role!=null and role.rname!=''">
 +            and rname like concat('%',#{role.rname},'%')
@@ -74,12 +74,12 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 --- src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java	(revision c548dd11a8d09722b82421aa14f93007519f03a1)
 +++ src/main/java/swtech/pageDesignControl/mapper/RoleMapper.java	(date 1574211401667)
 @@ -1,7 +1,8 @@
- package swtech.pageDesignControl.mapper;
+ package job.mapper;
  
--import swtech.pageDesignControl.entity.Role;
+-import job.entity.Role;
  import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 +import org.apache.ibatis.annotations.Param;
-+import swtech.pageDesignControl.entity.Role;
++import job.entity.Role;
  
  import java.util.List;
  
@@ -148,8 +148,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
          where u.uusername =  #{username}
      </select>
 +
-+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Role"
-+            parameterType="swtech.pageDesignControl.entity.Role">
++    <select id="selectByPageAndCondition" resultType="job.entity.Role"
++            parameterType="job.entity.Role">
 +        SELECT * FROM role where 1=1
 +        <if test="role!=null and role.rname!=''">
 +            and rname like concat('%',#{role.rname},'%')
@@ -173,8 +173,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
          where r.rrole_name =  #{roleName}
      </select>
 +
-+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Permission"
-+            parameterType="swtech.pageDesignControl.entity.Permission">
++    <select id="selectByPageAndCondition" resultType="job.entity.Permission"
++            parameterType="job.entity.Permission">
 +        SELECT * FROM permission where 1=1
 +        <if test="permission!=null and permission.pname!=''">
 +            and pname like concat('%',#{permission.pname},'%')
@@ -198,8 +198,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
          where r.rrole_name =  #{roleName}
      </select>
 +
-+    <select id="selectByPageAndCondition" resultType="swtech.pageDesignControl.entity.Permission"
-+            parameterType="swtech.pageDesignControl.entity.Permission">
++    <select id="selectByPageAndCondition" resultType="job.entity.Permission"
++            parameterType="job.entity.Permission">
 +        SELECT * FROM permission where 1=1
 +        <if test="permission!=null and permission.pname!=''">
 +            and pname like concat('%',#{permission.pname},'%')
@@ -561,25 +561,25 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 -  </component>
 -  <component name="RecentsManager">
 -    <key name="CreateTestDialog.RecentsKey">
--      <recent name="swtech.pageDesignControl.mapper" />
+-      <recent name="job.mapper" />
 -    </key>
 -    <key name="CreateTestDialog.Recents.Supers">
 -      <recent name="" />
 -    </key>
 -    <key name="CopyClassDialog.RECENTS_KEY">
 -<<<<<<< HEAD
--      <recent name="swtech.pageDesignControl.common.vo" />
--      <recent name="swtech.pageDesignControl" />
+-      <recent name="job.common.vo" />
+-      <recent name="job" />
 -=======
--      <recent name="swtech.pageDesignControl.test" />
+-      <recent name="job.test" />
 -    </key>
 -    <key name="CreateTestDialog.Recents.Supers">
 -      <recent name="" />
 -    </key>
 -    <key name="CopyClassDialog.RECENTS_KEY">
 ->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
--      <recent name="swtech.pageDesignControl.service.impl" />
--      <recent name="swtech.pageDesignControl.test" />
+-      <recent name="job.service.impl" />
+-      <recent name="job.test" />
 -    </key>
 -    <key name="CopyFile.RECENT_KEYS">
 -      <recent name="F:\java\git\li_jie\src\main\resources\templates\use" />
@@ -608,7 +608,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 -  <component name="RunManager" selected="Spring Boot.RunApplication (2)">
 -  <component name="RunManager" selected="Spring Boot.RunApplication (1)">
 -    <configuration name="CodeGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
--      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.common.utils.CodeGenerator" />
+-      <option name="MAIN_CLASS_NAME" value="job.common.utils.CodeGenerator" />
 ->>>>>>> cc38759f3c4672107f731e699f72575de335dcfd
 +  <component name="RunManager" selected="JUnit.PermissionTest.insert">
 +    <configuration name="DepartmentTest.insert" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -617,8 +617,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
          <pattern>
 @@ -542,28 +367,13 @@
        </extension>
-       <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
-       <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+       <option name="PACKAGE_NAME" value="job" />
+       <option name="MAIN_CLASS_NAME" value="job.DepartmentTest" />
 -      <option name="TEST_OBJECT" value="class" />
 -      <method v="2">
 -        <option name="Make" enabled="true" />
@@ -628,12 +628,12 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 -      <module name="li_jie" />
 -      <extension name="coverage">
 -        <pattern>
--          <option name="PATTERN" value="swtech.pageDesignControl.*" />
+-          <option name="PATTERN" value="job.*" />
 -          <option name="ENABLED" value="true" />
 -        </pattern>
 -      </extension>
--      <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
--      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+-      <option name="PACKAGE_NAME" value="job" />
+-      <option name="MAIN_CLASS_NAME" value="job.DepartmentTest" />
 -      <option name="METHOD_NAME" value="selectAll" />
 +      <option name="METHOD_NAME" value="insert" />
        <option name="TEST_OBJECT" value="method" />
@@ -649,8 +649,8 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 @@ -572,66 +382,17 @@
          </pattern>
        </extension>
-       <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
--      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+       <option name="PACKAGE_NAME" value="job" />
+-      <option name="MAIN_CLASS_NAME" value="job.DepartmentTest" />
 -      <option name="METHOD_NAME" value="selectByPageAndCondition" />
 -      <option name="TEST_OBJECT" value="method" />
 -      <method v="2">
@@ -661,14 +661,14 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 -      <module name="li_jie" />
 -      <extension name="coverage">
 -        <pattern>
--          <option name="PATTERN" value="swtech.pageDesignControl.*" />
+-          <option name="PATTERN" value="job.*" />
 -          <option name="ENABLED" value="true" />
 -        </pattern>
 -      </extension>
--      <option name="PACKAGE_NAME" value="swtech.pageDesignControl" />
--      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.DepartmentTest" />
+-      <option name="PACKAGE_NAME" value="job" />
+-      <option name="MAIN_CLASS_NAME" value="job.DepartmentTest" />
 -      <option name="METHOD_NAME" value="selectCount" />
-+      <option name="MAIN_CLASS_NAME" value="swtech.pageDesignControl.PermissionTest" />
++      <option name="MAIN_CLASS_NAME" value="job.PermissionTest" />
 +      <option name="METHOD_NAME" value="insert" />
        <option name="TEST_OBJECT" value="method" />
 -      <method v="2">
@@ -679,18 +679,18 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 -      <module name="li_jie" />
 -      <extension name="coverage">
 -        <pattern>
--          <option name="PATTERN" value="swtech.pageDesignControl.*" />
+-          <option name="PATTERN" value="job.*" />
 -          <option name="ENABLED" value="true" />
 -        </pattern>
 -      </extension>
--      <option name="SPRING_BOOT_MAIN_CLASS" value="swtech.pageDesignControl.RunApplication" />
+-      <option name="SPRING_BOOT_MAIN_CLASS" value="job.RunApplication" />
 -      <method v="2">
 -        <option name="Make" enabled="true" />
 -      </method>
 -    </configuration>
 -    <configuration name="RunApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
 -      <module name="swtech-service-pageDesign-control" />
--      <option name="SPRING_BOOT_MAIN_CLASS" value="swtech.pageDesignControl.RunApplication" />
+-      <option name="SPRING_BOOT_MAIN_CLASS" value="job.RunApplication" />
        <method v="2">
          <option name="Make" enabled="true" />
        </method>
