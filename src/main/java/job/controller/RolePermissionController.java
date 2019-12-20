@@ -17,6 +17,7 @@ import java.util.List;
  * @author 李鸿智
  * @since 2019-11-21
  */
+@CrossOrigin //跨域
 @Slf4j
 @RestController
 public class RolePermissionController {
@@ -25,7 +26,7 @@ public class RolePermissionController {
     private IRolePermissionService iRolePermissionService;
 
     @ResponseBody
-    @RequestMapping("/manage/rolepermission/insertlist")
+    @RequestMapping("/rolepermission/insertlist")
     public ReturnMsg save(@RequestBody List<RolePermission> rolePermissionList) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -48,7 +49,7 @@ public class RolePermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/rolepermission/deletebyroleid")
+    @GetMapping("/rolepermission/deletebyroleid")
     public ReturnMsg deleteByRoleId(@RequestParam("rid") int rid) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -71,7 +72,7 @@ public class RolePermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/rolepermission/deletebypermissionid")
+    @GetMapping("/rolepermission/deletebypermissionid")
     public ReturnMsg deleteByPermissionId(@RequestParam("pid") int pid) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -94,7 +95,7 @@ public class RolePermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/rolepermission/getpermissionbyroleid")
+    @GetMapping("/rolepermission/getpermissionbyroleid")
     public ReturnMsg getPermissionByRoleId(@RequestParam("rid") int rid) {
         ReturnMsg msg = new ReturnMsg();
         try {

@@ -18,6 +18,23 @@ import java.util.List;
 public interface IUserService extends IService<User> {
 
     /**
+     * 注册
+     *
+     * @param user
+     * @param roleId
+     * @return
+     */
+    boolean regist(User user,int roleId);
+
+    /**
+     * 修改密码
+     *
+     * @param user
+     * @return
+     */
+    int forgetpassword(User user);
+
+    /**
      * 通过邮箱获取信息
      *
      * @param email
@@ -67,4 +84,11 @@ public interface IUserService extends IService<User> {
      */
     List<Permission> getPermission(String email);
 
+    /**
+     * 发送邮箱验证码
+     *
+     * @param email
+     * @return
+     */
+    String sendEmail(String email);
 }

@@ -19,6 +19,7 @@ import java.util.List;
  * @author 李鸿智
  * @since 2019-11-20
  */
+@CrossOrigin //跨域
 @Slf4j
 @Controller
 public class RoleController {
@@ -26,7 +27,7 @@ public class RoleController {
     private IRoleService iRoleService;
 
     @ResponseBody
-    @GetMapping("/manage/role/save")
+    @GetMapping("/role/save")
     public ReturnMsg save(Role role) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -49,11 +50,11 @@ public class RoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/role/removebyid")
-    public ReturnMsg removeById(@RequestParam("rid") int rid) {
+    @GetMapping("/role/removebyid")
+    public ReturnMsg removeById(@RequestParam("id") int id) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iRoleService.removeById(rid);
+            boolean isTrue = iRoleService.removeById(id);
             if (isTrue) {
                 msg.setStatus("200");
                 msg.setStatusMsg("删除角色成功");
@@ -72,7 +73,7 @@ public class RoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/role/updatebyid")
+    @GetMapping("/role/updatebyid")
     public ReturnMsg updateById(Role role) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -95,11 +96,11 @@ public class RoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/role/getbyid")
-    public ReturnMsg getById(@RequestParam("rid") int rid) {
+    @GetMapping("/role/getbyid")
+    public ReturnMsg getById(@RequestParam("id") int id) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Role role = iRoleService.getById(rid);
+            Role role = iRoleService.getById(id);
             if (role != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询单个角色成功");
@@ -119,7 +120,7 @@ public class RoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/role/selectbypageandcondition")
+    @GetMapping("/role/selectbypageandcondition")
     public ReturnMsgPage selectByPageAndCondition(Role role, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         ReturnMsgPage msg = new ReturnMsgPage();
         try {

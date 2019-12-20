@@ -1,6 +1,7 @@
 package job.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author 李鸿智
  * @since 2019-11-19
  */
+@CrossOrigin //跨域
 @Controller
 public class AdminController {
 

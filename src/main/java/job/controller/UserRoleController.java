@@ -17,6 +17,7 @@ import java.util.List;
  * @author 李鸿智
  * @since 2019-11-21
  */
+@CrossOrigin //跨域
 @Slf4j
 @RestController
 public class UserRoleController {
@@ -25,7 +26,7 @@ public class UserRoleController {
     private IUserRoleService iUserRoleService;
 
     @ResponseBody
-    @RequestMapping("/manage/userrole/save")
+    @RequestMapping("/userrole/save")
     public ReturnMsg save(UserRole userRole) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -48,7 +49,7 @@ public class UserRoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/userrole/deletebyuserid")
+    @GetMapping("/userrole/deletebyuserid")
     public ReturnMsg deleteByUserId(@RequestParam("uid") int uid) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -71,7 +72,7 @@ public class UserRoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/userrole/deletebyroleid")
+    @GetMapping("/userrole/deletebyroleid")
     public ReturnMsg deleteByRoleId(@RequestParam("rid") int rid) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -94,7 +95,7 @@ public class UserRoleController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/userrole/getrolebyuserid")
+    @GetMapping("/userrole/getrolebyuserid")
     public ReturnMsg getRoleByUserId(@RequestParam("uid") int uid) {
         ReturnMsg msg = new ReturnMsg();
         try {

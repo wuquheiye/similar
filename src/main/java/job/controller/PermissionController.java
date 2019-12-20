@@ -7,6 +7,7 @@ import job.service.IPermissionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author 李鸿智
  * @since 2019-11-20
  */
+@CrossOrigin //跨域
 @Slf4j
 @Controller
 public class PermissionController {
@@ -30,7 +32,7 @@ public class PermissionController {
     private IPermissionService iPermissionService;
 
     @ResponseBody
-    @GetMapping("/manage/permission/save")
+    @GetMapping("/permission/save")
     public ReturnMsg save(Permission permission) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -53,11 +55,11 @@ public class PermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/permission/removebyid")
-    public ReturnMsg removeById(@RequestParam("pid") int pid) {
+    @GetMapping("/permission/removebyid")
+    public ReturnMsg removeById(@RequestParam("id") int id) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iPermissionService.removeById(pid);
+            boolean isTrue = iPermissionService.removeById(id);
             if (isTrue) {
                 msg.setStatus("200");
                 msg.setStatusMsg("删除权限成功");
@@ -76,7 +78,7 @@ public class PermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/permission/updatebyid")
+    @GetMapping("/permission/updatebyid")
     public ReturnMsg updateById(Permission permission) {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -99,11 +101,11 @@ public class PermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/permission/getbyid")
-    public ReturnMsg selectById(@RequestParam("pid") int pid) {
+    @GetMapping("/permission/getbyid")
+    public ReturnMsg selectById(@RequestParam("id") int id) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            Permission permission = iPermissionService.getById(pid);
+            Permission permission = iPermissionService.getById(id);
             if (permission != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("查询单个权限成功");
@@ -123,7 +125,7 @@ public class PermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/permission/selecttree")
+    @GetMapping("/permission/selecttree")
     public ReturnMsg selectTree() {
         ReturnMsg msg = new ReturnMsg();
         try {
@@ -148,7 +150,7 @@ public class PermissionController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/permission/list")
+    @GetMapping("/permission/list")
     public ReturnMsg list() {
         ReturnMsg msg = new ReturnMsg();
         try {

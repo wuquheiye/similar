@@ -46,7 +46,7 @@ public class MybatisPlusUtil {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("袁君选");
+        gc.setAuthor("李鸿智");
         gc.setOpen(false);
         // gc.setSwagger2(true); 实体属性 Swagger2 注解
         mpg.setGlobalConfig(gc);
@@ -54,7 +54,7 @@ public class MybatisPlusUtil {
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
 //        dsc.setUrl("jdbc:mysql://106.54.231.23:3306/similar_recruitment?serverTimezone=UTC");
-        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/similar_recruitment?serverTimezone=UTC");
+        dsc.setUrl("jdbc:mysql://127.0.0.1:3306/job?serverTimezone=UTC");
         // dsc.setSchemaName("public");
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
@@ -63,8 +63,8 @@ public class MybatisPlusUtil {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName(scanner("模块名"));
-        pc.setParent("swtech");
+//        pc.setModuleName(scanner("模块名"));
+        pc.setParent("job");
         mpg.setPackageInfo(pc);
 
         // 自定义配置
@@ -121,11 +121,11 @@ public class MybatisPlusUtil {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("job.BaseEntity");
+//        strategy.setSuperEntityClass("job.BaseEntity");
         strategy.setEntityLombokModel(true);
         strategy.setRestControllerStyle(true);
         // 公共父类
-        strategy.setSuperControllerClass("job.BaseController");
+//        strategy.setSuperControllerClass("job.BaseController");
         // 写于父类中的公共字段
         strategy.setSuperEntityColumns("id");
         strategy.setInclude(scanner("表名，多个英文逗号分割").split(","));

@@ -4,14 +4,23 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import job.entity.Permission;
 import job.entity.Role;
 import job.entity.User;
+import job.entity.UserRole;
 import job.mapper.PermissionMapper;
 import job.mapper.RoleMapper;
 import job.mapper.UserMapper;
+import job.mapper.UserRoleMapper;
 import job.service.IUserService;
+import job.utils.MailUTil;
+import job.utils.RandomUtil;
 import job.vo.LoginVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.thymeleaf.TemplateEngine;
+import org.thymeleaf.context.Context;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,7 +42,45 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private RoleMapper roleMapper;
 
     @Resource
+    private UserRoleMapper userRoleMapper;
+
+    @Resource
     private PermissionMapper permissionMapper;
+
+    @Autowired
+    private MailUTil mailUTil;
+
+    @Autowired
+    private TemplateEngine templateEngine;
+
+    @Override
+    @Transactional
+    public boolean regist(User user, int roleId) {
+        int num = userMapper.insert(user);
+        if(num <= 0){
+            return false;
+        }else {
+            UserRole userRole = new UserRole();
+            User userByEmail = userMapper.findUserByEmail(user.getEmail());
+            userRole.setUid(userByEmail.getId());
+            userRole.setRid(roleId);
+            int num1 = userRoleMapper.insert(userRole);
+            if (num1 > 0){
+                return true;
+            }else {
+                return false;
+            }
+        }
+    }
+
+    @Override
+    @Transactional
+    public int forgetpassword(User user) {
+        User userByEmail = userMapper.findUserByEmail(user.getEmail());
+        userByEmail.setPassword(user.getPassword());
+        int num = userMapper.updateById(userByEmail);
+        return num;
+    }
 
     @Override
     public User findUserByEmail(String email) {
@@ -89,5 +136,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             permissions.add(permission);
         }
         return permissions;
+    }
+
+    @Override
+    @Transactional
+    public String sendEmail(String email) {
+        String verificationCode = RandomUtil.getRandom(6);
+        Context context = new Context();
+        context.setVariable("verificationCode", verificationCode);
+        String emailContent = templateEngine.process("emailTemplate", context);
+        mailUTil.sendHtmlMail(email, "注册验证邮件", emailContent);
+        return verificationCode;
     }
 }

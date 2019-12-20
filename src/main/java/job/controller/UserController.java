@@ -8,7 +8,8 @@ import job.vo.ReturnMsg;
 import job.vo.ReturnMsgPage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,44 +24,53 @@ import java.util.List;
  * @author 李鸿智
  * @since 2019-11-19
  */
+@CrossOrigin //跨域
 @Slf4j
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
     @Resource
     private IUserService iUserService;
 
+
     @ResponseBody
-    @GetMapping("/manage/users/save")
-    public ReturnMsg save(User user) {
+    @RequestMapping("/save")
+    public ReturnMsg save(@RequestParam("roleId") String roleId, User user) {
+        ReturnMsg msg = new ReturnMsg();
         user.setCreationtime(DateUtil.getNewDate());
         user.setState("1");
-        ReturnMsg msg = new ReturnMsg();
-        try {
-            boolean isTrue = iUserService.save(user);
-            if (isTrue) {
-                msg.setStatus("200");
-                msg.setStatusMsg("新建用户成功");
-            } else {
-                msg.setStatus("202");
-                msg.setStatusMsg("新建用户失败");
+        if (user != null) {
+            try {
+                boolean isTrue = iUserService.save(user);
+                if (isTrue) {
+                    msg.setStatus("200");
+                    msg.setStatusMsg("新建用户成功");
+
+                } else {
+                    msg.setStatus("202");
+                    msg.setStatusMsg("新建用户失败");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                msg.setStatus("201");
+                msg.setStatusMsg("新建用户异常");
+                msg.setMsg(e.getMessage());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            msg.setStatus("201");
-            msg.setStatusMsg("新建用户异常");
-            msg.setMsg(e.getMessage());
+        } else {
+            msg.setStatus("220");
+            msg.setStatusMsg("验证码不匹配");
         }
         log.info(String.valueOf(msg));
         return msg;
     }
 
     @ResponseBody
-    @GetMapping("/manage/users/removebyid")
-    public ReturnMsg removeById(@RequestParam("uid") int uid) {
+    @RequestMapping("/removebyid")
+    public ReturnMsg removeById(@RequestParam("id") int id) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iUserService.removeById(uid);
+            boolean isTrue = iUserService.removeById(id);
             if (isTrue) {
                 msg.setStatus("200");
                 msg.setStatusMsg("删除用户成功");
@@ -79,7 +89,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/users/updatebyid")
+    @RequestMapping("/updatebyid")
     public ReturnMsg updateById(User user) {
         user.setState("1");
         ReturnMsg msg = new ReturnMsg();
@@ -103,11 +113,11 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/users/updateuustate")
-    public ReturnMsg updateUustate(@RequestParam("uid") int uid, @RequestParam("ustate") int ustate) {
+    @RequestMapping("/updatestate")
+    public ReturnMsg updateState(@RequestParam("id") int id, @RequestParam("state") int state) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            boolean isTrue = iUserService.updateState(uid, ustate);
+            boolean isTrue = iUserService.updateState(id, state);
             if (isTrue) {
                 msg.setStatus("200");
                 msg.setStatusMsg("修改用户状态成功");
@@ -126,23 +136,23 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/users/getbyid")
-    public ReturnMsg getById(@RequestParam("uid") int uid) {
+    @RequestMapping("/getbyid")
+    public ReturnMsg getById(@RequestParam("id") int id) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            User user = iUserService.getById(uid);
+            User user = iUserService.getById(id);
             if (user != null) {
                 msg.setStatus("200");
-                msg.setStatusMsg("查询单个用户成功");
+                msg.setStatusMsg("通过id查询单个用户成功");
                 msg.setMsg(user);
             } else {
                 msg.setStatus("202");
-                msg.setStatusMsg("查询单个用户失败");
+                msg.setStatusMsg("通过id查询单个用户失败");
             }
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("查询单个用户异常");
+            msg.setStatusMsg("通过id查询单个用户异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -150,7 +160,32 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/users/selectbypageandcondition")
+    @RequestMapping("/finduserbyemail")
+    public ReturnMsg findUserByEmail(@RequestParam("email") String email) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            User user = iUserService.findUserByEmail(email);
+            if (user != null) {
+                user.setPassword(null);
+                msg.setStatus("200");
+                msg.setStatusMsg("通过email查询单个用户成功");
+                msg.setMsg(user);
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("通过email查询单个用户失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("通过email查询单个用户异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/selectbypageandcondition")
     public ReturnMsgPage selectByPageAndCondition(User user, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
         ReturnMsgPage msg = new ReturnMsgPage();
         try {
@@ -184,11 +219,11 @@ public class UserController {
     }
 
     @ResponseBody
-    @GetMapping("/manage/users/getpermission")
-    public ReturnMsg getPermission(@RequestParam("utelephonenumber") String utelephonenumber) {
+    @RequestMapping("/getpermission")
+    public ReturnMsg getPermission(@RequestParam("telephonenumber") String telephonenumber) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            List<Permission> permissionList = iUserService.getPermission(utelephonenumber);
+            List<Permission> permissionList = iUserService.getPermission(telephonenumber);
             if (permissionList != null) {
                 msg.setStatus("200");
                 msg.setStatusMsg("获取用户权限成功");
@@ -206,5 +241,6 @@ public class UserController {
         log.info(String.valueOf(msg));
         return msg;
     }
+
 }
 

@@ -36,9 +36,9 @@ public class User {
     private String password;
 
     /**
-     * 邀请码
+     * 验证码
      */
-    private String invitationCode;
+    private String verificationCode;
 
     /**
      * 电话号码
