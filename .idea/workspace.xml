@@ -2,47 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="329367b9-61fe-4435-818f-e4741cfc449a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/li_jie_bg.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyInfoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/PersonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/mapper/CompanyInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/ICompanyInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/IPersionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/CompanyInfoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/job/vo/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/CompanyInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/job/controller/show/PersonController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/job/service/IPersionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/job/vo/Person.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/config/ShiroConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/config/ShiroConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/PermissionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/PermissionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/RoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/RoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/RolePermissionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/RolePermissionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/UserRoleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/UserRoleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/IUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/utils/MybatisPlusUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/utils/MybatisPlusUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/emailTemplate.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/emailTemplate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/job/MailTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/job/MailTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/job.kotlin_module" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/job.kotlin_module" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/config/ShiroConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/config/ShiroConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/AdminController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/AdminController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/PermissionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/PermissionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/RoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/RoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/RolePermissionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/RolePermissionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/UserRoleController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/UserRoleController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/service/IUserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/IUserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/emailTemplate.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/emailTemplate.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/job.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/job/MailTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/job/MailTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonEducationExperience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonEducationExperience.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonJobWanted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonJobWanted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonWorkExperience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonWorkExperience.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonEducationExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonEducationExperienceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonJobWantedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonJobWantedMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonWorkExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonWorkExperienceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/show/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonEducationExperience.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonEducationExperience.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonJobWanted.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonJobWanted.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonWorkExperience.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonWorkExperience.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -72,7 +73,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -86,6 +87,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="job.controller.show" />
+      <recent name="job.vo" />
       <recent name="job.utils" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -104,7 +107,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.RunApplication">
+  <component name="RunManager" selected="Application.MybatisPlusUtil">
     <configuration name="MybatisPlusUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="job.utils.MybatisPlusUtil" />
       <module name="job" />
@@ -174,8 +177,17 @@
       <updated>1576651099457</updated>
       <workItem from="1576651106982" duration="3917000" />
       <workItem from="1576715214276" duration="15693000" />
-      <workItem from="1576801481442" duration="2718000" />
+      <workItem from="1576801481442" duration="6506000" />
+      <workItem from="1577061038661" duration="6062000" />
     </task>
+    <task id="LOCAL-00001" summary="个人信息录入">
+      <created>1576826511055</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1576826511055</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,5 +205,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="个人信息录入" />
+    <option name="LAST_COMMIT_MESSAGE" value="个人信息录入" />
   </component>
 </project>

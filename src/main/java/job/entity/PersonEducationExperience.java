@@ -5,7 +5,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 个人教育经验
  * </p>
  *
  * @author 李鸿智
@@ -23,9 +23,14 @@ public class PersonEducationExperience  {
     private String school;
 
     /**
-     * 就读时间
+     * 就读开始时间
      */
-    private String studyingTime;
+    private String studyingTimeStart;
+
+    /**
+     * 就读结束时间
+     */
+    private String studyingTimeEnd;
 
     /**
      * 所学专业

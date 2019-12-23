@@ -1,4 +1,4 @@
-package job.controller;
+package job.controller.show;
 
 import job.utils.DateUtil;
 import job.vo.LoginVO;
@@ -204,6 +204,5 @@ public class LoginController {
         log.info(String.valueOf(msg));
         return msg;
     }
-
 }
 

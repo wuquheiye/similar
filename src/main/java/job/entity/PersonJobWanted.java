@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 个人期望工作
  * </p>
  *
  * @author 李鸿智
@@ -26,9 +26,19 @@ public class PersonJobWanted implements Serializable {
     private String nature;
 
     /**
-     * 期望地点
+     * 期望地点省
      */
-    private String place;
+    private String placeProvince;
+
+    /**
+     * 期望地点市
+     */
+    private String placeCity;
+
+    /**
+     * 期望地点县
+     */
+    private String placeCounty;
 
     /**
      * 期望行业
@@ -38,7 +48,7 @@ public class PersonJobWanted implements Serializable {
     /**
      * 期望月薪
      */
-    private String monthlySalary;
+    private String monthSalary;
 
     /**
      * 求职状态

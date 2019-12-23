@@ -7,7 +7,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 个人工作经验
  * </p>
  *
  * @author 李鸿智
@@ -56,9 +56,13 @@ public class PersonWorkExperience implements Serializable {
     private String userPhone;
 
     /**
-     * 在职时间
+     * 在职开始时间
      */
-    private String workTime;
+    private String workTimeStart;
 
+    /**
+     * 在职结束时间
+     */
+    private String workTimeEnd;
 
 }

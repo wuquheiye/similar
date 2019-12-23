@@ -5,7 +5,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ * 个人信息
  * </p>
  *
  * @author 李鸿智
