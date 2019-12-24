@@ -2,34 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="329367b9-61fe-4435-818f-e4741cfc449a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyInfoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/PersonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/mapper/CompanyInfoMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/ICompanyInfoService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/IPersionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/CompanyInfoServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/job/vo/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/mappers/CompanyInfoMapper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/job/controller/show/PersonController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/job/service/IPersionService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/job/vo/Person.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonEducationExperience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonEducationExperience.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonJobWanted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonJobWanted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonWorkExperience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonWorkExperience.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonEducationExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonEducationExperienceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonInfoMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonJobWantedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonJobWantedMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonWorkExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonWorkExperienceMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/show/LoginController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonEducationExperience.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonEducationExperience.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonJobWanted.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonJobWanted.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonWorkExperience.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonWorkExperience.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/show/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/PersonController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonEducationExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonEducationExperienceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonJobWantedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonJobWantedMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonWorkExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonWorkExperienceMapper.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -87,8 +69,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="job.controller.show" />
+      <recent name="job.service.impl" />
+      <recent name="job.service" />
       <recent name="job.vo" />
+      <recent name="job.controller.show" />
       <recent name="job.utils" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -107,7 +91,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.MybatisPlusUtil">
+  <component name="RunManager" selected="Spring Boot.RunApplication">
     <configuration name="MybatisPlusUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="job.utils.MybatisPlusUtil" />
       <module name="job" />
@@ -178,7 +162,8 @@
       <workItem from="1576651106982" duration="3917000" />
       <workItem from="1576715214276" duration="15693000" />
       <workItem from="1576801481442" duration="6506000" />
-      <workItem from="1577061038661" duration="6062000" />
+      <workItem from="1577061038661" duration="9650000" />
+      <workItem from="1577146677258" duration="642000" />
     </task>
     <task id="LOCAL-00001" summary="个人信息录入">
       <created>1576826511055</created>
@@ -187,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1576826511055</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="公司信息录入">
+      <created>1577083222044</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1577083222044</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -208,6 +200,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="个人信息录入" />
-    <option name="LAST_COMMIT_MESSAGE" value="个人信息录入" />
+    <MESSAGE value="公司信息录入" />
+    <option name="LAST_COMMIT_MESSAGE" value="公司信息录入" />
   </component>
 </project>

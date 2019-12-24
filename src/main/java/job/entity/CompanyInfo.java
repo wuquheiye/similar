@@ -1,6 +1,7 @@
 package job.entity;
 
 import java.io.Serializable;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,6 +20,16 @@ import lombok.experimental.Accessors;
 public class CompanyInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * 头像
+     */
+    private String portrait;
+
+    /**
+     * 公司logo
+     */
+    private String companyLogo;
 
     /**
      * 姓名

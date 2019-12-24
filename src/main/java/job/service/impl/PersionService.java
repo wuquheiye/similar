@@ -72,7 +72,7 @@ public class PersionService implements IPersionService {
             msg.setStatusMsg("录入个人信息失败，工作经验(personWorkExperience)不能为空");
             return msg;
         }
-        msg.setStatus("202");
+        msg.setStatus("200");
         msg.setStatusMsg("录入个人信息成功");
         return msg;
     }

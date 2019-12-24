@@ -1,7 +1,8 @@
 package job.controller.show;
 
-import job.service.IPersionService;
-import job.vo.Person;
+
+import job.service.ICompanyService;
+import job.vo.Company;
 import job.vo.ReturnMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -15,27 +16,27 @@ import javax.annotation.Resource;
  * </p>
  *
  * @author 李鸿智
- * @since 2019-11-19
+ * @since 2019-12-23
  */
 @CrossOrigin //跨域
 @Controller
 @Slf4j
-@RequestMapping("/person")
-public class PersonController {
+@RequestMapping("/company")
+public class CompanyController {
 
     @Resource
-    private IPersionService iPersionService;
+    private ICompanyService iCompanyService;
 
-    @RequestMapping("/svae")
     @ResponseBody
-    public ReturnMsg save(@RequestBody Person person) {
+    @RequestMapping("/save")
+    public ReturnMsg a(@RequestBody Company company) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            msg = iPersionService.save(person);
+            msg = iCompanyService.save(company);
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("新建个人信息异常");
+            msg.setStatusMsg("新建公司信息异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));
@@ -43,4 +44,3 @@ public class PersonController {
     }
 
 }
-
