@@ -1,7 +1,8 @@
 package job.controller.show;
 
+import job.entity.User;
 import job.service.IPersionService;
-import job.vo.Person;
+import job.vo.PersonVO;
 import job.vo.ReturnMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -26,12 +27,34 @@ public class PersonController {
     @Resource
     private IPersionService iPersionService;
 
-    @RequestMapping("/svae")
     @ResponseBody
-    public ReturnMsg save(@RequestBody Person person) {
+    @RequestMapping("/getperson")
+    public ReturnMsg getPerson(@RequestBody User user){
         ReturnMsg msg = new ReturnMsg();
         try {
-            msg = iPersionService.save(person);
+            msg = iPersionService.getPserson(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("获取个人信息异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    /**
+     * 注册开始新建个人信息（简历）
+     *
+     * @param personVO
+     * @return
+     */
+    @RequestMapping("/save")
+    @ResponseBody
+    public ReturnMsg save(@RequestBody PersonVO personVO) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            msg = iPersionService.save(personVO);
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");

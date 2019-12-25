@@ -1,6 +1,9 @@
 package job.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,6 +22,12 @@ import lombok.experimental.Accessors;
 public class PersonJobWanted implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 工作性质
@@ -56,19 +65,14 @@ public class PersonJobWanted implements Serializable {
     private String jobStatus;
 
     /**
-     * 关联用户ID
-     */
-    private Integer userId;
-
-    /**
-     * 关联用户phone
-     */
-    private String userPhone;
-
-    /**
      * 期望职业
      */
     private String profession;
+
+    /**
+     * 所属简历
+     */
+    private Integer personUserId;
 
 
 }

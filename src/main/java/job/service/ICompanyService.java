@@ -1,14 +1,14 @@
 package job.service;
 
-import job.vo.Company;
+import job.vo.CompanyVO;
 import job.vo.ReturnMsg;
 
 public interface ICompanyService {
     /**
      * 录入公司信息
      *
-     * @param company
+     * @param companyVO
      * @return
      */
-    ReturnMsg save(Company company);
+    ReturnMsg save(CompanyVO companyVO);
 }

@@ -1,5 +1,7 @@
 package job.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -16,6 +18,11 @@ import lombok.experimental.Accessors;
 public class PersonEducationExperience  {
 
     private static final long serialVersionUID = 1L;
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 学校名称
@@ -47,5 +54,8 @@ public class PersonEducationExperience  {
      */
     private Integer recruitment;
 
-
+    /**
+     * 所属简历
+     */
+    private Integer personUserId;
 }

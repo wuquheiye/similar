@@ -13,4 +13,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface PersonEducationExperienceMapper extends BaseMapper<PersonEducationExperience> {
 
+    /**
+     * 根据简历ID查询个人教育经验
+     *
+     * @param personUserId
+     * @return
+     */
+    PersonEducationExperience selectByPersonUserId(Integer personUserId);
+
 }

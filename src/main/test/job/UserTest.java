@@ -1,5 +1,6 @@
 package job;
 
+import job.entity.PersonUser;
 import job.entity.User;
 import job.mapper.UserMapper;
 import org.junit.Test;
@@ -20,6 +21,12 @@ public class UserTest {
     public void findUsersByEmail() {
         User user = userMapper.findUserByEmail("2325805994@qq.com");
         System.out.println(user);
+    }
+
+    @Test
+    public void getPersonUser() {
+        PersonUser personUser = userMapper.getPersonUser(1);
+        System.out.println(personUser);
     }
 
     @Test

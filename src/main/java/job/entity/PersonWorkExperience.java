@@ -1,6 +1,9 @@
 package job.entity;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -19,6 +22,12 @@ import lombok.experimental.Accessors;
 public class PersonWorkExperience implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    /**
+     * id
+     */
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
 
     /**
      * 公司名称
@@ -46,16 +55,6 @@ public class PersonWorkExperience implements Serializable {
     private String taskDescription;
 
     /**
-     * 关联用户id
-     */
-    private Integer userId;
-
-    /**
-     * 关联用户phone
-     */
-    private String userPhone;
-
-    /**
      * 在职开始时间
      */
     private String workTimeStart;
@@ -64,5 +63,11 @@ public class PersonWorkExperience implements Serializable {
      * 在职结束时间
      */
     private String workTimeEnd;
+
+    /**
+     * 所属简历
+     */
+    private Integer personUserId;
+
 
 }

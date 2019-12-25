@@ -2,7 +2,7 @@ package job.controller.show;
 
 
 import job.service.ICompanyService;
-import job.vo.Company;
+import job.vo.CompanyVO;
 import job.vo.ReturnMsg;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -29,10 +29,10 @@ public class CompanyController {
 
     @ResponseBody
     @RequestMapping("/save")
-    public ReturnMsg a(@RequestBody Company company) {
+    public ReturnMsg save(@RequestBody CompanyVO companyVO) {
         ReturnMsg msg = new ReturnMsg();
         try {
-            msg = iCompanyService.save(company);
+            msg = iCompanyService.save(companyVO);
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");

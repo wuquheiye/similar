@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Company {
+public class CompanyVO {
 
     private static final long serialVersionUID = 1L;
 

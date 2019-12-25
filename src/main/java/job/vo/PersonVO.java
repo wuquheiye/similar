@@ -14,7 +14,7 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class Person {
+public class PersonVO {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,6 +23,11 @@ public class Person {
      *
      */
     private User user;
+
+    /**
+     * 简历信息
+     */
+    private PersonUser personUser;
 
     /**
      * 个人教育信息

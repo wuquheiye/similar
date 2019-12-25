@@ -13,4 +13,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface PersonJobWantedMapper extends BaseMapper<PersonJobWanted> {
 
+    /**
+     * 根据简历ID查询个人工作期望
+     *
+     * @param personUserId
+     * @return
+     */
+    PersonJobWanted selectByPersonUserId(Integer personUserId);
+
 }

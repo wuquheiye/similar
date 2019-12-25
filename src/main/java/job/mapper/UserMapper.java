@@ -1,6 +1,7 @@
 package job.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import job.entity.PersonUser;
 import job.entity.User;
 import org.apache.ibatis.annotations.Param;
 
@@ -22,6 +23,14 @@ public interface UserMapper extends BaseMapper<User> {
      * @return
      */
     User findUserByEmail(String email);
+
+    /**
+     * 根据用户id查询对应的简历
+     *
+     * @param id
+     * @return
+     */
+    PersonUser getPersonUser(Integer id);
 
     /**
      * 分页查询

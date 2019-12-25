@@ -3,15 +3,60 @@
   <component name="ChangeListManager">
     <list default="true" id="329367b9-61fe-4435-818f-e4741cfc449a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/PersonEducationExperienceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/PersonEducationExperienceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/PersonJobWantedController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/PersonJobWantedController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/PersonWorkExperienceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/PersonWorkExperienceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/CompanyController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/show/PersonController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/show/PersonController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonEducationExperience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonEducationExperience.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonJobWanted.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonJobWanted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonWorkExperience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonWorkExperience.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/PersonEducationExperienceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/PersonEducationExperienceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/PersonInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/PersonInfoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/PersonJobWantedMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/PersonJobWantedMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/PersonWorkExperienceMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/PersonWorkExperienceMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/ICompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/ICompanyService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/IPersionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/IPersionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/CompanyService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/CompanyService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/vo/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/vo/CompanyVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/vo/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/vo/PersonVO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonEducationExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonEducationExperienceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonJobWantedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonJobWantedMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonWorkExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonWorkExperienceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/job/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/job/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/PersonEducationExperienceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/PersonEducationExperienceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/PersonJobWantedController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/PersonJobWantedController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/PersonWorkExperienceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/PersonWorkExperienceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/show/CompanyController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/show/CompanyController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/show/PersonController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/show/PersonController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/CompanyInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/CompanyInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonEducationExperience.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonEducationExperience.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonJobWanted.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonJobWanted.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/PersonWorkExperience.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/PersonWorkExperience.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/PersonEducationExperienceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/PersonEducationExperienceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/PersonInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/PersonInfoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/PersonJobWantedMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/PersonJobWantedMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/PersonWorkExperienceMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/PersonWorkExperienceMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/service/ICompanyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/ICompanyService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/service/IPersionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/IPersionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/CompanyService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/CompanyService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/vo/Company.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/vo/Person.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonEducationExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonEducationExperienceMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonInfoMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonJobWantedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonJobWantedMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonWorkExperienceMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonWorkExperienceMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/job/UserTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/job/UserTest.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -69,11 +114,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="job" />
       <recent name="job.service.impl" />
       <recent name="job.service" />
       <recent name="job.vo" />
       <recent name="job.controller.show" />
-      <recent name="job.utils" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\lhz\xm\job\src\main\java\com" />
@@ -92,33 +137,7 @@
     </option>
   </component>
   <component name="RunManager" selected="Spring Boot.RunApplication">
-    <configuration name="MybatisPlusUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="job.utils.MybatisPlusUtil" />
-      <module name="job" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="job.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="RandomUtil" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="job.utils.RandomUtil" />
-      <module name="job" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="job.utils.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MailTest.testTemplateMail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PersonEducationExperienceTest.selectByPersonUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="job" />
       <extension name="coverage">
         <pattern>
@@ -127,8 +146,72 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="job" />
-      <option name="MAIN_CLASS_NAME" value="job.MailTest" />
-      <option name="METHOD_NAME" value="testTemplateMail" />
+      <option name="MAIN_CLASS_NAME" value="job.PersonEducationExperienceTest" />
+      <option name="METHOD_NAME" value="selectByPersonUserId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonInfoTest.selectByPersonUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="job" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="job.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="job" />
+      <option name="MAIN_CLASS_NAME" value="job.PersonInfoTest" />
+      <option name="METHOD_NAME" value="selectByPersonUserId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonJobWantedTest.selectByPersonUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="job" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="job.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="job" />
+      <option name="MAIN_CLASS_NAME" value="job.PersonJobWantedTest" />
+      <option name="METHOD_NAME" value="selectByPersonUserId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PersonWorkExperienceTest.selectByPersonUserId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="job" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="job.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="job" />
+      <option name="MAIN_CLASS_NAME" value="job.PersonWorkExperienceTest" />
+      <option name="METHOD_NAME" value="selectByPersonUserId" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserTest.getPersonUser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="job" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="job.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="job" />
+      <option name="MAIN_CLASS_NAME" value="job.UserTest" />
+      <option name="METHOD_NAME" value="getPersonUser" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -143,9 +226,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.MybatisPlusUtil" />
-        <item itemvalue="Application.RandomUtil" />
-        <item itemvalue="JUnit.MailTest.testTemplateMail" />
+        <item itemvalue="JUnit.PersonWorkExperienceTest.selectByPersonUserId" />
+        <item itemvalue="JUnit.PersonJobWantedTest.selectByPersonUserId" />
+        <item itemvalue="JUnit.PersonInfoTest.selectByPersonUserId" />
+        <item itemvalue="JUnit.PersonEducationExperienceTest.selectByPersonUserId" />
+        <item itemvalue="JUnit.UserTest.getPersonUser" />
       </list>
     </recent_temporary>
   </component>
@@ -163,7 +248,7 @@
       <workItem from="1576715214276" duration="15693000" />
       <workItem from="1576801481442" duration="6506000" />
       <workItem from="1577061038661" duration="9650000" />
-      <workItem from="1577146677258" duration="642000" />
+      <workItem from="1577146677258" duration="15314000" />
     </task>
     <task id="LOCAL-00001" summary="个人信息录入">
       <created>1576826511055</created>
@@ -179,7 +264,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577083222044</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="个人主页面（简历的修改）">
+      <created>1577149013074</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1577149013074</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +293,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="个人信息录入" />
     <MESSAGE value="公司信息录入" />
-    <option name="LAST_COMMIT_MESSAGE" value="公司信息录入" />
+    <MESSAGE value="个人主页面（简历的修改）" />
+    <option name="LAST_COMMIT_MESSAGE" value="个人主页面（简历的修改）" />
   </component>
 </project>

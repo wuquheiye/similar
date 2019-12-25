@@ -13,4 +13,12 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface PersonInfoMapper extends BaseMapper<PersonInfo> {
 
+    /**
+     * 根据简历ID查询个人信息
+     *
+     * @param personUserId
+     * @return
+     */
+    PersonInfo selectByPersonUserId(Integer personUserId);
+
 }
