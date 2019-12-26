@@ -35,6 +35,29 @@ public class CompanyInfoController {
     public ReturnMsg save(@RequestBody CompanyInfo companyInfo) {
         ReturnMsg msg = new ReturnMsg();
         try {
+            boolean isTrue = iCompanyInfoService.save(companyInfo);
+            if(isTrue){
+                msg.setStatus("200");
+                msg.setStatusMsg("公司信息保存成功");
+            }else {
+                msg.setStatus("202");
+                msg.setStatusMsg("公司信息保存失败 ");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("公司信息保存异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    @ResponseBody
+    @RequestMapping("/update")
+    public ReturnMsg updateById(@RequestBody CompanyInfo companyInfo) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
             boolean isTrue = iCompanyInfoService.updateById(companyInfo);
             if(isTrue){
                 msg.setStatus("200");
@@ -46,7 +69,7 @@ public class CompanyInfoController {
         } catch (Exception e) {
             e.printStackTrace();
             msg.setStatus("201");
-            msg.setStatusMsg("新建公司信息异常");
+            msg.setStatusMsg("公司信息修改异常");
             msg.setMsg(e.getMessage());
         }
         log.info(String.valueOf(msg));

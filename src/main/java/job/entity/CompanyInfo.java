@@ -85,6 +85,11 @@ public class CompanyInfo implements Serializable {
     private String profile;
 
     /**
+     * 公司核心价值观
+     */
+    private String coreValue;
+
+    /**
      * 关联user_id
      */
     private Integer userId;

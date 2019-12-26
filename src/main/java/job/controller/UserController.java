@@ -201,7 +201,7 @@ public class UserController {
                 msg.setTotalPage(totalPage);
                 msg.setPageStart((page - 1) * pageSize);
                 msg.setTotalSize(totalSize);
-                msg.setPageEnd(page * pageSize);
+                msg.setPageEnd(pageEnd);
                 msg.setCurrentPage(page);
             } else {
                 msg.setStatus("202");
