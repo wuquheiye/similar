@@ -1,6 +1,7 @@
 package job.controller.show;
 
 
+import job.entity.User;
 import job.service.ICompanyService;
 import job.vo.CompanyVO;
 import job.vo.ReturnMsg;
@@ -26,6 +27,22 @@ public class CompanyController {
 
     @Resource
     private ICompanyService iCompanyService;
+
+    @ResponseBody
+    @RequestMapping("/getcompany")
+    public ReturnMsg getCompany(@RequestBody User user){
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            msg = iCompanyService.getCompany(user);
+        }catch (Exception e){
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("获取个人信息异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
 
     @ResponseBody
     @RequestMapping("/save")

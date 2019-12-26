@@ -1,5 +1,6 @@
 package job.service.impl;
 
+import job.entity.CompanyInfo;
 import job.entity.User;
 import job.mapper.*;
 import job.service.ICompanyService;
@@ -18,6 +19,43 @@ public class CompanyService implements ICompanyService {
 
     @Resource
     private CompanyInfoMapper companyInfoMapper;
+
+    @Transactional
+    @Override
+    public ReturnMsg getCompany(User user) {
+        ReturnMsg msg = new ReturnMsg();
+        if (user == null){
+            msg.setStatus("201");
+            msg.setStatusMsg("获取公司信息失败，用户信息(user)不能为空");
+            return msg;
+        }
+        if (user.getEmail() == null){
+            msg.setStatus("202");
+            msg.setStatusMsg("获取公司信息失败，用户信息邮箱(user.email)不能为null");
+            return msg;
+        }
+        User userByEmail = userMapper.findUserByEmail(user.getEmail());
+        if (userByEmail == null) {
+            msg.setStatus("202");
+            msg.setStatusMsg("录入公司信息失败，用户信息(user)不能为空");
+            return msg;
+        }
+        // 获取公司信息
+        CompanyInfo companyInfo = companyInfoMapper.findByUserId(userByEmail.getId());
+        if (companyInfo == null){
+            msg.setStatus("203");
+            msg.setStatusMsg("获取公司信息失败，用户简历(personUser)不能为null");
+            return msg;
+        }
+        CompanyVO companyVO = new CompanyVO();
+        userByEmail.setPassword("");
+        companyVO.setCompanyInfo(companyInfo);
+        companyVO.setUser(userByEmail);
+        msg.setStatus("200");
+        msg.setStatusMsg("获取公司信息成功");
+        msg.setMsg(companyVO);
+        return msg;
+    }
 
     @Transactional
     @Override
@@ -42,7 +80,7 @@ public class CompanyService implements ICompanyService {
         int num = companyInfoMapper.insert(companyVO.getCompanyInfo());
         if (num <= 0) {
             msg.setStatus("203");
-            msg.setStatusMsg("录入个人信息失败，公司信息(companyInfo)不能为空");
+            msg.setStatusMsg("录入公司信息失败，公司信息(companyInfo)不能为空");
             return msg;
         }
         msg.setStatus("200");

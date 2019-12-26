@@ -1,9 +1,14 @@
 package job.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import job.entity.PersonInfo;
+import job.service.IPersonInfoService;
+import job.vo.ReturnMsg;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RestController;
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -13,8 +18,34 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 李鸿智
  * @since 2019-12-20
  */
-@RestController
-@RequestMapping("/job/person-info")
+@RequestMapping("/personinfo")
+@CrossOrigin //跨域
+@Controller
+@Slf4j
 public class PersonInfoController  {
-
+    @Resource
+    private IPersonInfoService iPersonInfoService;
+    
+    @ResponseBody
+    @RequestMapping("/update")
+    public ReturnMsg updateById(@RequestBody PersonInfo personInfo) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            boolean isTrue = iPersonInfoService.updateById(personInfo);
+            if (isTrue) {
+                msg.setStatus("200");
+                msg.setStatusMsg("更新个人信息成功");
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("更新个人信息失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("更新个人信息异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
 }

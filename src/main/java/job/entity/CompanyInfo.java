@@ -80,6 +80,11 @@ public class CompanyInfo implements Serializable {
     private String stage;
 
     /**
+     * 公司简介
+     */
+    private String profile;
+
+    /**
      * 关联user_id
      */
     private Integer userId;
