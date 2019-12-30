@@ -31,4 +31,14 @@ public class CompanyPositionVO implements Serializable {
      */
     private CompanyPosition companyPosition;
 
+    /**
+     * 默认页码
+     */
+    private Integer page = 1;
+
+    /**
+     * 默认页数
+     */
+    private Integer pageSize = 10;
+
 }

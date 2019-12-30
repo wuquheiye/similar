@@ -37,19 +37,19 @@ public class LoginController {
     @RequestMapping("/doregist")
     public ReturnMsg save(@RequestParam("roleId") int roleId, User user) {
         ReturnMsg msg = new ReturnMsg();
-        // 判断邮箱
+        // 1.判断邮箱
         if(user.getEmail() == null || "".equals(user.getEmail())){
             msg.setStatus("203");
             msg.setStatusMsg("邮箱非法");
             return msg;
         }
-        // 判断角色
+        // 2.判断角色
         if(roleId != 1 && roleId != 2){
             roleId = 1;
         }
         user.setCreationtime(DateUtil.getNewDate());
-        user.setState("1");
-        user.setMoney("0");
+        // 3.将用户的钱设置为0
+        user.setMoney(0);
         if (user != null) {
             try {
                 boolean isTrue = iUserService.regist(user,roleId);

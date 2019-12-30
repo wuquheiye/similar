@@ -2,6 +2,7 @@ package job.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import job.utils.DateUtil;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -48,12 +49,12 @@ public class User {
     /**
      * 创建时间
      */
-    private String creationtime;
+    private String creationtime = DateUtil.getNewDate();
 
     /**
      * 用户状态
      */
-    private String state;
+    private int state = 1;
 
     /**
      * 用户邮箱
@@ -63,5 +64,5 @@ public class User {
     /**
      * 用户余额
      */
-    private String money;
+    private int money = 0;
 }

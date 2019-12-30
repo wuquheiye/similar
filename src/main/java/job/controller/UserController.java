@@ -3,7 +3,6 @@ package job.controller;
 import job.entity.Permission;
 import job.entity.User;
 import job.service.IUserService;
-import job.utils.DateUtil;
 import job.vo.ReturnMsg;
 import job.vo.ReturnMsgPage;
 import lombok.extern.slf4j.Slf4j;
@@ -38,8 +37,6 @@ public class UserController {
     @RequestMapping("/save")
     public ReturnMsg save(@RequestParam("roleId") String roleId, User user) {
         ReturnMsg msg = new ReturnMsg();
-        user.setCreationtime(DateUtil.getNewDate());
-        user.setState("1");
         if (user != null) {
             try {
                 boolean isTrue = iUserService.save(user);
@@ -91,7 +88,6 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/updatebyid")
     public ReturnMsg updateById(User user) {
-        user.setState("1");
         ReturnMsg msg = new ReturnMsg();
         try {
             boolean isTrue = iUserService.updateById(user);

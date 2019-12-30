@@ -31,5 +31,5 @@ public interface CompanyPositionMapper extends BaseMapper<CompanyPosition> {
      *
      * @return
      */
-    int selectCount(CompanyPositionVO companyPositionVO);
+    int selectCount(@Param("companyPositionVO")CompanyPositionVO companyPositionVO);
 }

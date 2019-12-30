@@ -1,10 +1,7 @@
 package job;
 
-import job.entity.Permission;
-import job.mapper.PermissionMapper;
+import job.entity.PersonUser;
 import job.mapper.PersonUserMapper;
-import job.vo.PermissionVO;
-import job.vo.PersonVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,4 +16,12 @@ public class PersonUserTest {
     @Resource
     private PersonUserMapper personUserMapper;
 
+    @Test
+    public void getRoleByEmail() {
+        PersonUser personUser = new PersonUser();
+        personUser.setName("1");
+        personUser.setUserId(1);
+        int num = personUserMapper.insert(personUser);
+        System.out.println(personUser.getId());
+    }
 }

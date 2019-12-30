@@ -6,7 +6,7 @@ import job.vo.PersonVO;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author 李鸿智
@@ -14,5 +14,11 @@ import job.vo.PersonVO;
  */
 public interface PersonUserMapper extends BaseMapper<PersonUser> {
 
-
+    /**
+     * 插入简历
+     *
+     * @param personUser
+     * @return
+     */
+    int insert(PersonUser personUser);
 }

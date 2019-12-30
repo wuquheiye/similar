@@ -56,18 +56,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     @Transactional
     public boolean regist(User user, int roleId) {
+        // 1.生成用户
         int num = userMapper.insert(user);
-        if(num <= 0){
+        if (num <= 0) {
             return false;
-        }else {
+        } else {
             UserRole userRole = new UserRole();
             User userByEmail = userMapper.findUserByEmail(user.getEmail());
             userRole.setUid(userByEmail.getId());
             userRole.setRid(roleId);
+            // 2.生成用户角色关系
             int num1 = userRoleMapper.insert(userRole);
-            if (num1 > 0){
+            if (num1 > 0) {
                 return true;
-            }else {
+            } else {
                 return false;
             }
         }
@@ -76,8 +78,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     @Transactional
     public int forgetpassword(User user) {
+        // 1.查询邮箱是否存在
         User userByEmail = userMapper.findUserByEmail(user.getEmail());
         userByEmail.setPassword(user.getPassword());
+        // 2.修改
         int num = userMapper.updateById(userByEmail);
         return num;
     }
@@ -93,12 +97,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             return null;
         }
         LoginVO loginVO = new LoginVO();
-        // 根据用户名查询实体类
+        // 1.根据邮箱名查询用户
         User user = userMapper.findUserByEmail(email);
+        // 2.根据邮箱查询角色
+        Role role = roleMapper.getRoleByEmail(email);
         if (user == null) {
             return null;
         }
+        if(role == null){
+            return null;
+        }
         loginVO.setUser(user);
+        loginVO.setRole(role);
         return loginVO;
     }
 
@@ -141,10 +151,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     @Transactional
     public String sendEmail(String email) {
+        // 1.生成随机数
         String verificationCode = RandomUtil.getRandom(6);
+        // 2.获取邮件模板
         Context context = new Context();
+        // 3.设置随机数
         context.setVariable("verificationCode", verificationCode);
+        // 4.设置模板文件
         String emailContent = templateEngine.process("emailTemplate", context);
+        // 5.发生模板邮件
         mailUTil.sendHtmlMail(email, "注册验证邮件", emailContent);
         return verificationCode;
     }

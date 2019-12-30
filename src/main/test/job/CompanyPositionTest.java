@@ -2,6 +2,7 @@ package job;
 
 import job.entity.CompanyPosition;
 import job.mapper.CompanyPositionMapper;
+import job.vo.CompanyPositionVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,8 +19,23 @@ public class CompanyPositionTest {
 
     @Test
     public void selectCompanyPositionByCondition() {
-        List<CompanyPosition> companyPositionList = companyPositionMapper.selectCompanyPositionByCondition(null,0,1);
+        CompanyPositionVO companyPositionVO = new CompanyPositionVO();
+        CompanyPosition companyPosition = new CompanyPosition();
+        companyPosition.setCompanyInfoId(1);
+        companyPositionVO.setCompanyPosition(companyPosition);
+        List<CompanyPosition> companyPositionList = companyPositionMapper.selectCompanyPositionByCondition(companyPositionVO,0,1);
         System.out.println(companyPositionList);
+    }
+
+    @Test
+    public void selectCount() {
+        CompanyPositionVO companyPositionVO = new CompanyPositionVO();
+        CompanyPosition companyPosition = new CompanyPosition();
+        companyPosition.setCompanyInfoId(1);
+        companyPositionVO.setCompanyPosition(companyPosition);
+        int num;
+        num = companyPositionMapper.selectCount(companyPositionVO);
+        System.out.println(num);
     }
 
 }

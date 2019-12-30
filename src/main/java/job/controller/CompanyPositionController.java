@@ -32,18 +32,17 @@ public class CompanyPositionController {
 
     @ResponseBody
     @RequestMapping("/selectcompanypositionbycondition")
-    public ReturnMsgPage selectCompanyPositionByCondition(@RequestBody(required = false) CompanyPositionVO companyPositionVO,
-                                                          @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+    public ReturnMsgPage selectCompanyPositionByCondition(@RequestBody CompanyPositionVO companyPositionVO) {
         ReturnMsgPage msg = new ReturnMsgPage();
         try {
-            List<CompanyPositionVO> companyPositionVOList = iCompanyPositionService.selectCompanyPositionByCondition(companyPositionVO, page, pageSize);
+            List<CompanyPositionVO> companyPositionVOList = iCompanyPositionService.selectCompanyPositionByCondition(companyPositionVO, companyPositionVO.getPage(), companyPositionVO.getPageSize());
             int totalSize = iCompanyPositionService.selectCount(companyPositionVO);
             msg.setStatus("200");
             msg.setStatusMsg("公司职位查询分页成功");
             if (companyPositionVOList != null) {
-                msg.setTotalPage((int) (Math.ceil(1.0 * totalSize / pageSize)));
+                msg.setTotalPage((int) (Math.ceil(1.0 * totalSize / companyPositionVO.getPageSize())));
             }
-            msg.setCurrentPage(page);
+            msg.setCurrentPage(companyPositionVO.getPage());
             msg.setMsg(companyPositionVOList);
         } catch (Exception e) {
             e.printStackTrace();

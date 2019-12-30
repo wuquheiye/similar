@@ -96,6 +96,11 @@ public class PersonInfo  {
     private String email;
 
     /**
+     * 头像
+     */
+    private String portrait;
+
+    /**
      * 所属简历
      */
     private Integer personUserId;

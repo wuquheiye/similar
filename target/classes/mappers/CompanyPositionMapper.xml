@@ -5,8 +5,11 @@
         select * from company_position cp
         join company_info ci on cp.company_info_id = ci.id
         where 1 = 1
-        <if test="companyPositionVO!=null and companyPositionVO.positionName!=null">
-            and position_name like concat('%',#{ucompanyPositionVO.positionName},'%')
+<!--        <if test="companyPositionVO!=null and companyPositionVO.positionName!=null">-->
+<!--            and position_name like concat('%',#{ucompanyPositionVO.positionName},'%')-->
+<!--        </if>-->
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.companyInfoId!=0">
+            and cp.company_info_id = #{companyPositionVO.companyPosition.companyInfoId}
         </if>
         LIMIT #{pageStart},#{pageSize}
     </select>
@@ -15,8 +18,11 @@
         select count(*) from company_position cp
         join company_info ci on cp.company_info_id = ci.id
         where 1 = 1
-        <if test="companyPositionVO!=null and companyPositionVO.positionName!=null">
-            and position_name like concat('%',#{ucompanyPositionVO.positionName},'%')
+<!--        <if test="companyPositionVO!=null and companyPositionVO.positionName!=null">-->
+<!--            and position_name like concat('%',#{ucompanyPositionVO.positionName},'%')-->
+<!--        </if>-->
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.companyInfoId!=0">
+            and cp.company_info_id = #{companyPositionVO.companyPosition.companyInfoId}
         </if>
     </select>
 

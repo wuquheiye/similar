@@ -28,16 +28,19 @@ public class PersionService implements IPersionService {
     @Resource
     private PersonWorkExperienceMapper personWorkExperienceMapper;
 
+    @Resource
+    private PersonUserMapper personUserMapper;
+
     @Transactional
     @Override
     public ReturnMsg getPserson(User user) {
         ReturnMsg msg = new ReturnMsg();
-        if (user == null){
+        if (user == null) {
             msg.setStatus("201");
             msg.setStatusMsg("获取个人信息失败，用户信息(user)不能为空");
             return msg;
         }
-        if (user.getEmail() == null){
+        if (user.getEmail() == null) {
             msg.setStatus("202");
             msg.setStatusMsg("获取个人信息失败，用户信息邮箱(user.email)不能为null");
             return msg;
@@ -45,11 +48,11 @@ public class PersionService implements IPersionService {
         User userByEmail = userMapper.findUserByEmail(user.getEmail());
         if (userByEmail == null) {
             msg.setStatus("202");
-            msg.setStatusMsg("录入个人信息失败，用户信息(user)不能为空");
+            msg.setStatusMsg("获取个人信息失败，用户信息(user)不能为空");
             return msg;
         }
         PersonUser personUser = userMapper.getPersonUser(user.getId());
-        if (personUser == null){
+        if (personUser == null) {
             msg.setStatus("203");
             msg.setStatusMsg("获取个人信息失败，用户简历(personUser)不能为null");
             return msg;
@@ -80,22 +83,41 @@ public class PersionService implements IPersionService {
     @Override
     public ReturnMsg save(PersonVO personVO) {
         ReturnMsg msg = new ReturnMsg();
+        // 1.判断个人信息是否为空
         if (personVO == null) {
             msg.setStatus("201");
             msg.setStatusMsg("录入个人信息失败，个人信息(person)不能为空");
             return msg;
         }
+        // 2.判断用户信息是否为空
         if (personVO.getUser() == null || personVO.getUser().getEmail() == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入个人信息失败，用户信息(user)不能为空");
             return msg;
         }
+        // 3.通过邮箱查找用户，判断用户是否为空
         User userByEmail = userMapper.findUserByEmail(personVO.getUser().getEmail());
         if (userByEmail == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入个人信息失败，用户信息(user)不能为空");
             return msg;
         }
+        // 4.生成简历，判断简历是否生成
+        PersonUser personUser = new PersonUser();
+        personUser.setName(userByEmail.getUsername() + "的简历");
+        personUser.setUserId(userByEmail.getId());
+        int num = personUserMapper.insert(personUser);
+        if (num <= 0 || personUser.getId() <= 0) {
+            msg.setStatus("207");
+            msg.setStatusMsg("录入个人信息失败，生成简历失败");
+            return msg;
+        }
+        // 5.添加简历id
+        personVO.getPersonEducationExperience().setPersonUserId(personUser.getId());
+        personVO.getPersonInfo().setPersonUserId(personUser.getId());
+        personVO.getPersonJobWanted().setPersonUserId(personUser.getId());
+        personVO.getPersonWorkExperience().setPersonUserId(personUser.getId());
+        // 6.插入简历列表所属项
         int num1 = personEducationExperienceMapper.insert(personVO.getPersonEducationExperience());
         if (num1 <= 0) {
             msg.setStatus("203");
