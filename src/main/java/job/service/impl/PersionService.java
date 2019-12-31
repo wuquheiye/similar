@@ -104,7 +104,7 @@ public class PersionService implements IPersionService {
         }
         // 4.生成简历，判断简历是否生成
         PersonUser personUser = new PersonUser();
-        personUser.setName(userByEmail.getUsername() + "的简历");
+        personUser.setName(personVO.getPersonInfo().getName() + "的简历");
         personUser.setUserId(userByEmail.getId());
         int num = personUserMapper.insert(personUser);
         if (num <= 0 || personUser.getId() <= 0) {

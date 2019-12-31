@@ -61,22 +61,28 @@ public class CompanyService implements ICompanyService {
     @Override
     public ReturnMsg save(CompanyVO companyVO) {
         ReturnMsg msg = new ReturnMsg();
+        // 1.判断公司信息是否为空
         if (companyVO == null) {
             msg.setStatus("201");
             msg.setStatusMsg("录入公司信息失败，公司信息(company)不能为空");
             return msg;
         }
+        // 2.判断用户信息是否为空
         if (companyVO.getUser() == null || companyVO.getUser().getEmail() == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入公司信息失败，用户信息(user)不能为空");
             return msg;
         }
+        // 3.判断通过emil查询的用户信息是否为空
         User userByEmail = userMapper.findUserByEmail(companyVO.getUser().getEmail());
         if (userByEmail == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入公司信息失败，用户信息(user)不能为空");
             return msg;
         }
+        // 4.设置公司信息所属用户
+        companyVO.getCompanyInfo().setUserId(userByEmail.getId());
+        // 5.判断是否插入
         int num = companyInfoMapper.insert(companyVO.getCompanyInfo());
         if (num <= 0) {
             msg.setStatus("203");

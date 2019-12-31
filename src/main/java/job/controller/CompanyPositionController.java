@@ -34,6 +34,7 @@ public class CompanyPositionController {
     @RequestMapping("/selectcompanypositionbycondition")
     public ReturnMsgPage selectCompanyPositionByCondition(@RequestBody CompanyPositionVO companyPositionVO) {
         ReturnMsgPage msg = new ReturnMsgPage();
+        companyPositionVO.setPageSize(5);
         try {
             List<CompanyPositionVO> companyPositionVOList = iCompanyPositionService.selectCompanyPositionByCondition(companyPositionVO, companyPositionVO.getPage(), companyPositionVO.getPageSize());
             int totalSize = iCompanyPositionService.selectCount(companyPositionVO);
