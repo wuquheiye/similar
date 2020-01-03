@@ -90,6 +90,11 @@ public class CompanyInfo implements Serializable {
     private String coreValue;
 
     /**
+     * 公司地址
+     */
+    private String area;
+
+    /**
      * 关联user_id
      */
     private Integer userId;

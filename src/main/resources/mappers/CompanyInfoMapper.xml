@@ -5,4 +5,39 @@
         SELECT * from company_info
         where user_id =  #{userId}
     </select>
+
+    <select id="selectCompanyInfoByCondition" resultType="job.entity.CompanyInfo" parameterType="job.entity.CompanyInfo">
+        select * from company_info ci
+        where 1 = 1
+        <if test="companyInfo!=null and companyInfo.area!=null">
+            and ci.area like concat('%',#{companyInfo.area},'%')
+        </if>
+        <if test="companyInfo!=null and companyInfo.stage!=null">
+            and ci.stage like concat('%',#{companyInfo.stage},'%')
+        </if>
+        <if test="companyInfo!=null and companyInfo.scale!=null">
+            and ci.scale like concat('%',#{companyInfo.scale},'%')
+        </if>
+        <if test="companyInfo!=null and companyInfo.industry!=null">
+            and ci.industry like concat('%',#{companyInfo.industry},'%')
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from company_info ci
+        where 1 = 1
+        <if test="companyInfo!=null and companyInfo.area!=null">
+            and ci.area like concat('%',#{companyInfo.area},'%')
+        </if>
+        <if test="companyInfo!=null and companyInfo.stage!=null">
+            and ci.stage like concat('%',#{companyInfo.stage},'%')
+        </if>
+        <if test="companyInfo!=null and companyInfo.scale!=null">
+            and ci.scale like concat('%',#{companyInfo.scale},'%')
+        </if>
+        <if test="companyInfo!=null and companyInfo.industry!=null">
+            and ci.industry like concat('%',#{companyInfo.industry},'%')
+        </if>
+    </select>
 </mapper>

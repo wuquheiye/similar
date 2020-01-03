@@ -2,6 +2,9 @@ package job.mapper;
 
 import job.entity.CompanyInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -20,4 +23,20 @@ public interface CompanyInfoMapper extends BaseMapper<CompanyInfo> {
      * @return
      */
     CompanyInfo findByUserId(Integer userId);
+
+    /**
+     * 根据条件查询公司
+     *
+     * @param companyInfo
+     * @return
+     */
+    List<CompanyInfo> selectCompanyInfoByCondition(
+            @Param("companyInfo")CompanyInfo companyInfo, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+
+    /**
+     * 根据条件查询公司
+     *
+     * @return
+     */
+    int selectCount(@Param("companyInfo")CompanyInfo companyInfo);
 }

@@ -1,5 +1,6 @@
 package job;
 
+import job.entity.CompanyInfo;
 import job.entity.CompanyPosition;
 import job.mapper.CompanyPositionMapper;
 import job.vo.CompanyPositionVO;
@@ -20,21 +21,22 @@ public class CompanyPositionTest {
     @Test
     public void selectCompanyPositionByCondition() {
         CompanyPositionVO companyPositionVO = new CompanyPositionVO();
-        CompanyPosition companyPosition = new CompanyPosition();
-        companyPosition.setCompanyInfoId(1);
-        companyPositionVO.setCompanyPosition(companyPosition);
-        List<CompanyPosition> companyPositionList = companyPositionMapper.selectCompanyPositionByCondition(companyPositionVO,0,1);
-        System.out.println(companyPositionList);
-    }
 
-    @Test
-    public void selectCount() {
-        CompanyPositionVO companyPositionVO = new CompanyPositionVO();
+        CompanyInfo companyInfo = new CompanyInfo();
+        companyInfo.setArea("广州");
+//        companyInfo.setIndustry("互联网");
+//        companyInfo.setStage("天使轮");
+//        companyInfo.setScale("50-150人");
+
         CompanyPosition companyPosition = new CompanyPosition();
-        companyPosition.setCompanyInfoId(1);
+//        companyPosition.setCompanyInfoId(1);
+
         companyPositionVO.setCompanyPosition(companyPosition);
-        int num;
-        num = companyPositionMapper.selectCount(companyPositionVO);
+        companyPositionVO.setCompanyInfo(companyInfo);
+
+        List<CompanyPosition> companyPositionList = companyPositionMapper.selectCompanyPositionByCondition(companyPositionVO,0,10);
+        System.out.println(companyPositionList);
+        int num = companyPositionMapper.selectCount(companyPositionVO);
         System.out.println(num);
     }
 
