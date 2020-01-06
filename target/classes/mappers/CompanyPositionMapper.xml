@@ -5,20 +5,23 @@
         select * from company_position cp
         join company_info ci on cp.company_info_id = ci.id
         where 1 = 1
-        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.companyInfoId!=null">
-            and cp.company_info_id = #{companyPositionVO.companyPosition.companyInfoId}
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.id!=null">
+            and cp.id = #{companyPositionVO.companyPosition.id}
         </if>
-        <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.area!=null">
-            and ci.area like concat('%',#{companyPositionVO.companyInfo.area},'%')
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.areaCity!=null">
+            and cp.area_city like concat('%',#{companyPositionVO.companyPosition.areaCity},'%')
+        </if>
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.education!=null">
+            and cp.education like concat('%',#{companyPositionVO.companyPosition.education},'%')
+        </if>
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.nature!=null">
+            and cp.nature like concat('%',#{companyPositionVO.companyPosition.nature},'%')
         </if>
         <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.stage!=null">
             and ci.stage like concat('%',#{companyPositionVO.companyInfo.stage},'%')
         </if>
         <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.scale!=null">
             and ci.scale like concat('%',#{companyPositionVO.companyInfo.scale},'%')
-        </if>
-        <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.industry!=null">
-            and ci.industry like concat('%',#{companyPositionVO.companyInfo.industry},'%')
         </if>
         LIMIT #{pageStart},#{pageSize}
     </select>
@@ -27,20 +30,23 @@
         select count(*) from company_position cp
         join company_info ci on cp.company_info_id = ci.id
         where 1 = 1
-        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.companyInfoId!=null">
-            and cp.company_info_id = #{companyPositionVO.companyPosition.companyInfoId}
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.id!=null">
+            and cp.id = #{companyPositionVO.companyPosition.id}
         </if>
-        <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.area!=null">
-            and ci.area like concat('%',#{companyPositionVO.companyInfo.area},'%')
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.areaCity!=null">
+            and cp.area_city like concat('%',#{companyPositionVO.companyPosition.areaCity},'%')
+        </if>
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.education!=null">
+            and cp.education like concat('%',#{companyPositionVO.companyPosition.education},'%')
+        </if>
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.nature!=null">
+            and cp.nature like concat('%',#{companyPositionVO.companyPosition.nature},'%')
         </if>
         <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.stage!=null">
             and ci.stage like concat('%',#{companyPositionVO.companyInfo.stage},'%')
         </if>
         <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.scale!=null">
             and ci.scale like concat('%',#{companyPositionVO.companyInfo.scale},'%')
-        </if>
-        <if test="companyPositionVO!=null and companyPositionVO.companyInfo!=null and companyPositionVO.companyInfo.industry!=null">
-            and ci.industry like concat('%',#{companyPositionVO.companyInfo.industry},'%')
         </if>
     </select>
 

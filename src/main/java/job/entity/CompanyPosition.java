@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import job.utils.DateUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author 李鸿智
@@ -78,6 +79,11 @@ public class CompanyPosition implements Serializable {
      * 工作地址详情
      */
     private String areaCityDetail;
+
+    /**
+     * 分布时间
+     */
+    private String createTime = DateUtil.getNewDate();
 
     /**
      * 企业id

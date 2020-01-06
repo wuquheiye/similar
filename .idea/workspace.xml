@@ -3,26 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="329367b9-61fe-4435-818f-e4741cfc449a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/CompanyInfoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/CompanyInfoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/CompanyPositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/CompanyPositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/CompanyInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/CompanyInfoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/CompanyInfoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/ICompanyInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/ICompanyInfoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/CompanyInfoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/CompanyInfoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/CompanyInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/CompanyInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/CompanyPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/CompanyPosition.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/CompanyPositionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/CompanyPositionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/job/CompanyInfoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/job/CompanyInfoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/test/job/CompanyPositionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/job/CompanyPositionTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/CompanyInfoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/CompanyInfoController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/CompanyPositionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/CompanyPositionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/CompanyInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/CompanyInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/CompanyInfoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/CompanyInfoMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/service/ICompanyInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/ICompanyInfoService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/CompanyInfoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/CompanyInfoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mappers/CompanyInfoMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/CompanyInfoMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/entity/CompanyPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/entity/CompanyPosition.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/mappers/CompanyPositionMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/CompanyPositionMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/job/CompanyInfoTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/job/CompanyInfoTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/job/CompanyPositionTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/job/CompanyPositionTest.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -219,7 +203,10 @@
       <workItem from="1577664641280" duration="14287000" />
       <workItem from="1577752192270" duration="8539000" />
       <workItem from="1577925665484" duration="5559000" />
-      <workItem from="1578010470829" duration="851000" />
+      <workItem from="1578010470829" duration="8021000" />
+      <workItem from="1578270239549" duration="1000" />
+      <workItem from="1578270290297" duration="3000" />
+      <workItem from="1578271466515" duration="833000" />
     </task>
     <task id="LOCAL-00001" summary="个人信息录入">
       <created>1576826511055</created>
@@ -284,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577925690707</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="整合">
+      <created>1578011338290</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1578011338290</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
