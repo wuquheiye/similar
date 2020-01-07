@@ -158,7 +158,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         // 3.设置随机数
         context.setVariable("verificationCode", verificationCode);
         // 4.设置模板文件
-        String emailContent = templateEngine.process("emailTemplate", context);
+        String emailContent = templateEngine.process("registerEmailTemplate", context);
         // 5.发生模板邮件
         mailUTil.sendHtmlMail(email, "注册验证邮件", emailContent);
         return verificationCode;

@@ -4,6 +4,7 @@ package job.controller;
 import job.entity.PersonUser;
 import job.service.IPersonUserService;
 import job.vo.ReturnMsg;
+import job.vo.ReturnMsgPage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -49,4 +50,26 @@ public class PersonUserController {
         return msg;
     }
 
+    @ResponseBody
+    @RequestMapping("/findall")
+    public ReturnMsgPage findAll(Integer page, Integer size) {
+        if (size == null || size <= 0) {
+            size = 10;
+        }
+        if (page == null || page <= 0) {
+            page = 1;
+        }
+        ReturnMsgPage msg = new ReturnMsgPage();
+        try {
+            msg = iPersonUserService.findAll(page, size);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("查询所有简历异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
 }

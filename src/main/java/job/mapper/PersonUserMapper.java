@@ -2,7 +2,9 @@ package job.mapper;
 
 import job.entity.PersonUser;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import job.vo.PersonVO;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,4 +23,18 @@ public interface PersonUserMapper extends BaseMapper<PersonUser> {
      * @return
      */
     int insert(PersonUser personUser);
+
+    /**
+     * 查询所有简历
+     *
+     * @return
+     */
+    List<PersonUser> findAll( @Param("pageStart") Integer pageStart, @Param("pageSize") Integer pageSize);
+
+    /**
+     * 查询所有简历个数
+     *
+     * @return
+     */
+    int selectCount();
 }

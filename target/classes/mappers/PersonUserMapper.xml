@@ -5,4 +5,13 @@
         insert into person_user(user_id, name)
         values(#{userId}, #{name})
     </insert>
+
+    <select id="findAll" resultType="job.entity.PersonUser">
+        SELECT * from person_user
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        SELECT count(*) from person_user
+    </select>
 </mapper>

@@ -24,4 +24,16 @@ public class PersonUserTest {
         int num = personUserMapper.insert(personUser);
         System.out.println(personUser.getId());
     }
+
+    @Test
+    public void findAll() {
+        List<PersonUser> personUserList = personUserMapper.findAll(1,10);
+        System.out.println(personUserList);
+    }
+
+    @Test
+    public void selectCount() {
+        int num = personUserMapper.selectCount();
+        System.out.println(num);
+    }
 }

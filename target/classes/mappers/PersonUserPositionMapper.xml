@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="job.mapper.PersonUserPositionMapper">
+    <select id="findByPersonUserIdAndCompanyPositionId" resultType="job.entity.PersonUserPosition">
+        SELECT * from person_user_position where person_user_id = #{personUserId} and company_position_id = #{companyPositionId}
+    </select>
+
+    <update id="updateState" parameterType="java.lang.Integer">
+        UPDATE person_user_position SET state = #{state}
+        WHERE id = #{id}
+    </update>
+
+    <select id="findByPersonUserIdAndState" resultType="job.entity.PersonUserPosition">
+        SELECT * from person_user_position where 1 =1
+        <if test="personUserId != null and personUserId > 0">
+            and person_user_id = #{personUserId}
+        </if>
+        <if test="companyPositionId != null and companyPositionId > 0">
+            and company_position_id = #{companyPositionId}
+        </if>
+        <if test="state!=0">
+            and state = #{state}
+        </if>
+        order by update_time desc
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer">
+        select count(*) from person_user_position where 1 =1
+        <if test="personUserId != null and personUserId > 0">
+            and person_user_id = #{personUserId}
+        </if>
+        <if test="companyPositionId != null and companyPositionId > 0">
+            and company_position_id = #{companyPositionId}
+        </if>
+        <if test="state!=0">
+            and state = #{state}
+        </if>
+    </select>
+</mapper>
