@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="job.mapper.CompanyInfoMapper">
+
     <select id="findByUserId" resultType="job.entity.CompanyInfo" parameterType="java.lang.Integer">
         SELECT * from company_info
         where user_id =  #{userId}
@@ -9,6 +10,9 @@
     <select id="selectCompanyInfoByCondition" resultType="job.entity.CompanyInfo" parameterType="job.entity.CompanyInfo">
         select * from company_info ci
         where 1 = 1
+        <if test="companyInfo!=null and companyInfo.companyFullName!=null">
+            and ci.company_full_name like concat('%',#{companyInfo.companyFullName},'%')
+        </if>
         <if test="companyInfo!=null and companyInfo.area!=null">
             and ci.area like concat('%',#{companyInfo.area},'%')
         </if>
@@ -27,6 +31,9 @@
     <select id="selectCount" resultType="java.lang.Integer">
         select count(*) from company_info ci
         where 1 = 1
+        <if test="companyInfo!=null and companyInfo.companyFullName!=null">
+            and ci.company_full_name like concat('%',#{companyInfo.companyFullName},'%')
+        </if>
         <if test="companyInfo!=null and companyInfo.area!=null">
             and ci.area like concat('%',#{companyInfo.area},'%')
         </if>

@@ -1352,24 +1352,3 @@ $(function () {
     });
 })
 
-/**
- * 日期插件
- */
-$(function (){
-    jeDate("#skaLeaveDateEdit",{
-        format: "YYYY-MM"
-    });
-    jeDate("#skaLeaveDate",{
-        format: "YYYY-MM"
-    });
-    jeDate("#tardyDateEdit",{
-        format: "YYYY-MM"
-    });
-    jeDate("#tardyDate",{
-        format: "YYYY-MM"
-    });
-});
-/**
- * 公共方法end
- */
-

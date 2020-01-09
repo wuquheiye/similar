@@ -19,6 +19,12 @@ public class CompanyPositionTest {
     private CompanyPositionMapper companyPositionMapper;
 
     @Test
+    public void findByCompanyInfoId(){
+        List<CompanyPosition> companyPosition = companyPositionMapper.findByCompanyInfoId(1);
+        System.out.println(companyPosition);
+    }
+
+    @Test
     public void selectCompanyPositionByCondition() {
         CompanyPositionVO companyPositionVO = new CompanyPositionVO();
 

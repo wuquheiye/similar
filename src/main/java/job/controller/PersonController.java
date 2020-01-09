@@ -1,4 +1,4 @@
-package job.controller.show;
+package job.controller;
 
 import job.entity.User;
 import job.service.IPersionService;

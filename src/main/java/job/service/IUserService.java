@@ -65,7 +65,7 @@ public interface IUserService extends IService<User> {
      *
      * @return
      */
-    int selectCount();
+    int selectCount(User user);
 
     /**
      * 更改用户状态

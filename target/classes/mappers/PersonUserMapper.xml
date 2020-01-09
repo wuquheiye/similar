@@ -14,4 +14,21 @@
     <select id="selectCount" resultType="java.lang.Integer">
         SELECT count(*) from person_user
     </select>
+
+    <select id="selectPersonUserByCondition" resultType="job.entity.PersonUser" parameterType="job.entity.PersonUser">
+        select * from person_user
+        where 1 = 1
+        <if test="personUser!=null and personUser.name!=null">
+            and person_user.name like concat('%',#{companyInfo.name},'%')
+        </if>
+        LIMIT #{pageStart},#{pageSize}
+    </select>
+
+    <select id="selectCount" resultType="java.lang.Integer" parameterType="job.entity.PersonUser">
+        select count(*) from person_user
+        where 1 = 1
+        <if test="personUser!=null and personUser.name!=null">
+            and person_user.name like concat('%',#{companyInfo.name},'%')
+        </if>
+    </select>
 </mapper>

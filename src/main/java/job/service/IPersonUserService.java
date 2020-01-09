@@ -22,4 +22,19 @@ public interface IPersonUserService extends IService<PersonUser> {
      * @return
      */
     ReturnMsgPage findAll(Integer page, Integer size);
+
+    /**
+     * 根据条件查询简历
+     *
+     * @param personUser
+     * @return
+     */
+    ReturnMsgPage selectPersonUserByCondition(PersonUser personUser, int page, int pageSize);
+
+    /**
+     * 根据条件查询简历
+     *
+     * @return
+     */
+    int selectCount(PersonUser personUser);
 }

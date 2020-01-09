@@ -18,6 +18,14 @@ import java.util.List;
 public interface CompanyPositionMapper extends BaseMapper<CompanyPosition> {
 
     /**
+     * 通过公司ID查询公司职位信息
+     *
+     * @param companyInfoId
+     * @return
+     */
+    List<CompanyPosition> findByCompanyInfoId(Integer companyInfoId);
+
+    /**
      * 查询职位
      *
      * @param companyPositionVO

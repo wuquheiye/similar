@@ -119,8 +119,8 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public int selectCount() {
-        return userMapper.selectCount();
+    public int selectCount(User user) {
+        return userMapper.selectCount(user);
     }
 
     @Override

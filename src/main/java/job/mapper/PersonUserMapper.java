@@ -37,4 +37,20 @@ public interface PersonUserMapper extends BaseMapper<PersonUser> {
      * @return
      */
     int selectCount();
+
+    /**
+     * 根据条件查询简历
+     *
+     * @param personUser
+     * @return
+     */
+    List<PersonUser> selectPersonUserByCondition(
+            @Param("personUser")PersonUser personUser, @Param("pageStart") int pageStart, @Param("pageSize") int pageSize);
+
+    /**
+     * 根据条件查询简历
+     *
+     * @return
+     */
+    int selectCount(@Param("personUser")PersonUser personUser);
 }

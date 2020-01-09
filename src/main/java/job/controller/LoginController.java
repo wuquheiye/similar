@@ -1,4 +1,4 @@
-package job.controller.show;
+package job.controller;
 
 import job.utils.DateUtil;
 import job.vo.LoginVO;

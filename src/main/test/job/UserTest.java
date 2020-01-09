@@ -39,7 +39,7 @@ public class UserTest {
 
     @Test
     public void selectCount() {
-        int num = userMapper.selectCount();
+        int num = userMapper.selectCount(new User());
         System.out.println(num);
     }
 

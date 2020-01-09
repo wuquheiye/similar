@@ -186,7 +186,7 @@ public class UserController {
         ReturnMsgPage msg = new ReturnMsgPage();
         try {
             List<User> roleList = iUserService.selectByPageAndCondition(user, page, pageSize);
-            int totalSize = iUserService.selectCount();
+            int totalSize = iUserService.selectCount(user);
             int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
             int pageEnd = page * pageSize < pageSize ? page * pageSize : pageSize;
             if (roleList != null) {

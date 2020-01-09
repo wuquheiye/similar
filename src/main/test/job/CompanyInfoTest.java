@@ -18,7 +18,7 @@ public class CompanyInfoTest {
 
     @Test
     public void findByUserId() {
-        CompanyInfo companyInfo = companyInfoMapper.findByUserId(1);
+        CompanyInfo companyInfo = companyInfoMapper.findByUserId(2);
         System.out.println(companyInfo);
     }
 

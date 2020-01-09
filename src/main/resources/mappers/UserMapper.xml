@@ -21,7 +21,10 @@
     </select>
 
     <select id="selectCount" resultType="java.lang.Integer">
-        SELECT count(*) FROM user
+        SELECT count(*) FROM user where 1=1
+        <if test="user!=null and user.email!=null">
+            and email like concat('%',#{user.email},'%')
+        </if>
     </select>
 
     <update id="updateState" parameterType="java.lang.Integer">

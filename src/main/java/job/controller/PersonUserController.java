@@ -72,4 +72,27 @@ public class PersonUserController {
         log.info(String.valueOf(msg));
         return msg;
     }
+
+    @ResponseBody
+    @RequestMapping("/selectpersonuserbycondition")
+    public ReturnMsgPage selectPersonUserByCondition(PersonUser personUser, Integer page, Integer size) {
+        if (size == null || size <= 0) {
+            size = 10;
+        }
+        if (page == null || page <= 0) {
+            page = 1;
+        }
+        ReturnMsgPage msg = new ReturnMsgPage();
+        try {
+            msg = iPersonUserService.selectPersonUserByCondition(personUser,page,size);
+            return msg;
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("查询所有简历异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
 }

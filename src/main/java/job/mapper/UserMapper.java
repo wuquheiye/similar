@@ -47,7 +47,7 @@ public interface UserMapper extends BaseMapper<User> {
      *
      * @return
      */
-    int selectCount();
+    int selectCount(@Param("user") User user);
 
     /**
      * 更改用户状态

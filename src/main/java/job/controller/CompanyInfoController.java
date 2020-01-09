@@ -44,6 +44,7 @@ public class CompanyInfoController {
             if (companyInfoList != null) {
                 msg.setTotalPage((int) (Math.ceil(1.0 * totalSize / companyPositionVO.getPageSize())));
             }
+            msg.setTotalSize(totalSize);
             msg.setCurrentPage(companyPositionVO.getPage());
             msg.setMsg(companyInfoList);
         } catch (Exception e) {

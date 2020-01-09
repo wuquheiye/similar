@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="job.mapper.CompanyPositionMapper">
+
+    <select id="findByCompanyInfoId" resultType="job.entity.CompanyPosition" parameterType="java.lang.Integer">
+        SELECT * from company_position
+        where company_info_id =  #{companyInfoId}
+    </select>
+
     <select id="selectCompanyPositionByCondition" resultType="job.entity.CompanyPosition" parameterType="job.vo.CompanyPositionVO">
         select * from company_position cp
         join company_info ci on cp.company_info_id = ci.id
         where 1 = 1
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.positionName!=null">
+            and cp.position_name like concat('%',#{companyPositionVO.companyPosition.positionName},'%')
+        </if>
         <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.id!=null">
             and cp.id = #{companyPositionVO.companyPosition.id}
         </if>
@@ -30,6 +39,9 @@
         select count(*) from company_position cp
         join company_info ci on cp.company_info_id = ci.id
         where 1 = 1
+        <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.positionName!=null">
+            and cp.position_name like concat('%',#{companyPositionVO.companyPosition.positionName},'%')
+        </if>
         <if test="companyPositionVO!=null and companyPositionVO.companyPosition!=null and companyPositionVO.companyPosition.id!=null">
             and cp.id = #{companyPositionVO.companyPosition.id}
         </if>
