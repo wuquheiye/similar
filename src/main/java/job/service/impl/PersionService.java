@@ -40,12 +40,12 @@ public class PersionService implements IPersionService {
             msg.setStatusMsg("获取个人信息失败，用户信息(user)不能为空");
             return msg;
         }
-        if (user.getEmail() == null) {
+        if (user.getTelephonenumber() == null) {
             msg.setStatus("202");
             msg.setStatusMsg("获取个人信息失败，用户信息邮箱(user.email)不能为null");
             return msg;
         }
-        User userByEmail = userMapper.findUserByEmail(user.getEmail());
+        User userByEmail = userMapper.findUserByTelephonenumber(user.getTelephonenumber());
         if (userByEmail == null) {
             msg.setStatus("202");
             msg.setStatusMsg("获取个人信息失败，用户信息(user)不能为空");
@@ -90,13 +90,13 @@ public class PersionService implements IPersionService {
             return msg;
         }
         // 2.判断用户信息是否为空
-        if (personVO.getUser() == null || personVO.getUser().getEmail() == null) {
+        if (personVO.getUser() == null || personVO.getUser().getTelephonenumber() == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入个人信息失败，用户信息(user)不能为空");
             return msg;
         }
         // 3.通过邮箱查找用户，判断用户是否为空
-        User userByEmail = userMapper.findUserByEmail(personVO.getUser().getEmail());
+        User userByEmail = userMapper.findUserByTelephonenumber(personVO.getUser().getTelephonenumber());
         if (userByEmail == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入个人信息失败，用户信息(user)不能为空");

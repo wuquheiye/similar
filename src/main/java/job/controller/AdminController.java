@@ -16,30 +16,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class AdminController {
 
-    /**
-     * 跳转登录页面
-     *
-     * @return
-     */
-    @RequestMapping("/login")
-    public String login() {
-        return "use/login";
-    }
-
-    @RequestMapping("/index")
-    public String index(){
-        return "use/index";
-    }
-
-    @RequestMapping("/manage")
-    public String manage(){
-        return "manage/manage";
-    }
-
-    @RequestMapping("/403")
-    public String index403(){
-        return "use/403";
-    }
+//    /**
+//     * 跳转登录页面
+//     *
+//     * @return
+//     */
+//    @RequestMapping("/login")
+//    public String login() {
+//        return "use/login";
+//    }
+//
+//    @RequestMapping("/index")
+//    public String index(){
+//        return "use/index";
+//    }
+//
+//    @RequestMapping("/manage")
+//    public String manage(){
+//        return "manage/manage";
+//    }
+//
+//    @RequestMapping("/403")
+//    public String index403(){
+//        return "use/403";
+//    }
 
 //
 //

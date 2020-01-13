@@ -19,7 +19,7 @@ public class UserTest {
 
     @Test
     public void findUsersByEmail() {
-        User user = userMapper.findUserByEmail("2325805994@qq.com");
+        User user = userMapper.findUserByTelephonenumber("2325805994@qq.com");
         System.out.println(user);
     }
 
@@ -32,7 +32,6 @@ public class UserTest {
     @Test
     public void selectByPageAndCondition() {
         User user = new User();
-        user.setEmail("@qq.com");
         List<User> userVOList = userMapper.selectByPageAndCondition(user, 1, 100);
         System.out.println(userVOList.get(0));
     }

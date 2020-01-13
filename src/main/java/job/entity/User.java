@@ -27,24 +27,14 @@ public class User {
     private Integer id;
 
     /**
-     * 用户名
+     * 电话号码
      */
-    private String username;
+    private String telephonenumber;
 
     /**
      * 密码
      */
     private String password;
-
-    /**
-     * 验证码
-     */
-    private String verificationCode;
-
-    /**
-     * 电话号码
-     */
-    private String telephonenumber;
 
     /**
      * 创建时间
@@ -55,11 +45,6 @@ public class User {
      * 用户状态
      */
     private int state = 1;
-
-    /**
-     * 用户邮箱
-     */
-    private String email;
 
     /**
      * 用户余额

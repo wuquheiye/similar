@@ -37,18 +37,18 @@ public interface IUserService extends IService<User> {
     /**
      * 通过邮箱获取信息
      *
-     * @param email
+     * @param telephonenumber
      * @return
      */
-    User findUserByEmail(String email);
+    User findUserByTelephonenumber(String telephonenumber);
 
     /**
      * 根据邮箱获取用户登录缓存信息
      *
-     * @param email
+     * @param telephonenumber
      * @return
      */
-    LoginVO getLoginVO(String email);
+    LoginVO getLoginVO(String telephonenumber);
 
     /**
      * 分页查询
@@ -79,16 +79,24 @@ public interface IUserService extends IService<User> {
     /**
      * 根据用邮箱获取所有的权限
      *
-     * @param email
+     * @param telephonenumber
      * @return
      */
-    List<Permission> getPermission(String email);
+    List<Permission> getPermission(String telephonenumber);
 
     /**
-     * 发送邮箱验证码
+     * 发送邮箱验证码(待用)
      *
      * @param email
      * @return
      */
     String sendEmail(String email);
+
+    /**
+     * 发送手机验证码
+     *
+     * @param telephonenumber
+     * @return
+     */
+    String sendTelephonenumberVerificationCode(String telephonenumber) throws Exception;
 }

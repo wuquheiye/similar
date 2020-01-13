@@ -11,6 +11,7 @@ import job.mapper.UserMapper;
 import job.mapper.UserRoleMapper;
 import job.service.IUserService;
 import job.utils.MailUTil;
+import job.utils.MessageUtil;
 import job.utils.RandomUtil;
 import job.vo.LoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +54,9 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Autowired
     private TemplateEngine templateEngine;
 
+    @Autowired
+    private MessageUtil messageUtil;
+
     @Override
     @Transactional
     public boolean regist(User user, int roleId) {
@@ -62,7 +66,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             return false;
         } else {
             UserRole userRole = new UserRole();
-            User userByEmail = userMapper.findUserByEmail(user.getEmail());
+            User userByEmail = userMapper.findUserByTelephonenumber(user.getTelephonenumber());
             userRole.setUid(userByEmail.getId());
             userRole.setRid(roleId);
             // 2.生成用户角色关系
@@ -79,7 +83,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional
     public int forgetpassword(User user) {
         // 1.查询邮箱是否存在
-        User userByEmail = userMapper.findUserByEmail(user.getEmail());
+        User userByEmail = userMapper.findUserByTelephonenumber(user.getTelephonenumber());
         userByEmail.setPassword(user.getPassword());
         // 2.修改
         int num = userMapper.updateById(userByEmail);
@@ -87,20 +91,20 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        return userMapper.findUserByEmail(email);
+    public User findUserByTelephonenumber(String telephonenumber) {
+        return userMapper.findUserByTelephonenumber(telephonenumber);
     }
 
     @Override
-    public LoginVO getLoginVO(String email) {
-        if ("".equals(email)) {
+    public LoginVO getLoginVO(String telephonenumber) {
+        if ("".equals(telephonenumber)) {
             return null;
         }
         LoginVO loginVO = new LoginVO();
         // 1.根据邮箱名查询用户
-        User user = userMapper.findUserByEmail(email);
+        User user = userMapper.findUserByTelephonenumber(telephonenumber);
         // 2.根据邮箱查询角色
-        Role role = roleMapper.getRoleByEmail(email);
+        Role role = roleMapper.getRoleByTelephonenumber(telephonenumber);
         if (user == null) {
             return null;
         }
@@ -133,10 +137,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     }
 
     @Override
-    public List<Permission> getPermission(String email) {
+    public List<Permission> getPermission(String telephonenumber) {
         List<Permission> permissions = new ArrayList<>();
         // 根据邮箱获取角色
-        Role role = roleMapper.getRoleByEmail(email);
+        Role role = roleMapper.getRoleByTelephonenumber(telephonenumber);
         if (role == null) {
             return null;
         }
@@ -159,8 +163,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         context.setVariable("verificationCode", verificationCode);
         // 4.设置模板文件
         String emailContent = templateEngine.process("registerEmailTemplate", context);
-        // 5.发生模板邮件
+        // 5.发送模板邮件
         mailUTil.sendHtmlMail(email, "注册验证邮件", emailContent);
+        return verificationCode;
+    }
+
+    @Override
+    @Transactional
+    public String sendTelephonenumberVerificationCode(String telephonenumber) throws Exception {
+        // 1.生成随机数
+        String verificationCode = RandomUtil.getRandom(6);
+        // 2.发送手机验证码
+        messageUtil.sendMessage(telephonenumber,verificationCode);
         return verificationCode;
     }
 }

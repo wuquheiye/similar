@@ -19,10 +19,10 @@ public interface UserMapper extends BaseMapper<User> {
     /**
      * 通过邮箱获取信息shiro
      *
-     * @param email
+     * @param telephonenumber
      * @return
      */
-    User findUserByEmail(String email);
+    User findUserByTelephonenumber(String telephonenumber);
 
     /**
      * 根据用户id查询对应的简历

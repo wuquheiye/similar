@@ -18,7 +18,7 @@ public class RoleTest {
 
     @Test
     public void getRoleByEmail() {
-        Role role = roleMapper.getRoleByEmail("2325805991@qq.com");
+        Role role = roleMapper.getRoleByTelephonenumber("2325805991@qq.com");
         System.out.println(role);
     }
 

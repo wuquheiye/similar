@@ -18,10 +18,10 @@ public interface RoleMapper extends BaseMapper<Role> {
     /**
      * 通过邮箱查询角色shiro
      *
-     * @param email
+     * @param telephonenumber
      * @return
      */
-    Role getRoleByEmail(String email);
+    Role getRoleByTelephonenumber(String telephonenumber);
 
     /**
      * 分页查询

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="job.mapper.RoleMapper">
-    <select id="getRoleByEmail" resultType="job.entity.Role" parameterType="java.lang.String">
+    <select id="getRoleByTelephonenumber" resultType="job.entity.Role" parameterType="java.lang.String">
         SELECT * from role r
         join user_role ur on ur.rid = r.id
         join user u on ur.uid = u.id
-        where u.email =  #{email}
+        where u.telephonenumber =  #{telephonenumber}
     </select>
 
     <select id="selectByPageAndCondition" resultType="job.entity.Role"

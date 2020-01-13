@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="job.mapper.UserMapper">
-    <select id="findUserByEmail" resultType="job.entity.User" parameterType="java.lang.String">
-        SELECT * from user where email = #{email}
+    <select id="findUserByTelephonenumber" resultType="job.entity.User" parameterType="java.lang.String">
+        SELECT * from user where telephonenumber = #{telephonenumber}
     </select>
 
     <select id="getPersonUser" resultType="job.entity.PersonUser" parameterType="java.lang.Integer">
@@ -14,16 +14,16 @@
     <select id="selectByPageAndCondition" resultType="job.entity.User"
             parameterType="job.entity.User">
         SELECT * FROM user where 1=1
-        <if test="user!=null and user.email!=null">
-            and email like concat('%',#{user.email},'%')
+        <if test="user!=null and user.telephonenumber!=null">
+            and telephonenumber like concat('%',#{user.telephonenumber},'%')
         </if>
         LIMIT #{pageStart},#{pageSize}
     </select>
 
     <select id="selectCount" resultType="java.lang.Integer">
         SELECT count(*) FROM user where 1=1
-        <if test="user!=null and user.email!=null">
-            and email like concat('%',#{user.email},'%')
+        <if test="user!=null and user.telephonenumber!=null">
+            and telephonenumber like concat('%',#{user.telephonenumber},'%')
         </if>
     </select>
 

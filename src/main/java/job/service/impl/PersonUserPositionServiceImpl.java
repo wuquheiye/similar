@@ -66,11 +66,11 @@ public class PersonUserPositionServiceImpl extends ServiceImpl<PersonUserPositio
 
     @Override
     @Transactional
-    public ReturnMsg save(String email, int companyPositionId) {
+    public ReturnMsg save(String telephonenumber, int companyPositionId) {
         ReturnMsg msg = new ReturnMsg();
         PersonUserPosition personUserPosition = new PersonUserPosition();
         // 1.根据传过来的简历查询用户
-        User userByEmail = userMapper.findUserByEmail(email);
+        User userByEmail = userMapper.findUserByTelephonenumber(telephonenumber);
         if (userByEmail == null) {
             msg.setStatus("201");
             msg.setStatusMsg("投递简历失败，用户信息(user)不能为空");

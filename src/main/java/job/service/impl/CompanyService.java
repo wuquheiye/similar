@@ -29,12 +29,12 @@ public class CompanyService implements ICompanyService {
             msg.setStatusMsg("获取公司信息失败，用户信息(user)不能为空");
             return msg;
         }
-        if (user.getEmail() == null){
+        if (user.getTelephonenumber() == null){
             msg.setStatus("202");
             msg.setStatusMsg("获取公司信息失败，用户信息邮箱(user.email)不能为null");
             return msg;
         }
-        User userByEmail = userMapper.findUserByEmail(user.getEmail());
+        User userByEmail = userMapper.findUserByTelephonenumber(user.getTelephonenumber());
         if (userByEmail == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入公司信息失败，用户信息(user)不能为空");
@@ -68,13 +68,13 @@ public class CompanyService implements ICompanyService {
             return msg;
         }
         // 2.判断用户信息是否为空
-        if (companyVO.getUser() == null || companyVO.getUser().getEmail() == null) {
+        if (companyVO.getUser() == null || companyVO.getUser().getTelephonenumber() == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入公司信息失败，用户信息(user)不能为空");
             return msg;
         }
         // 3.判断通过emil查询的用户信息是否为空
-        User userByEmail = userMapper.findUserByEmail(companyVO.getUser().getEmail());
+        User userByEmail = userMapper.findUserByTelephonenumber(companyVO.getUser().getTelephonenumber());
         if (userByEmail == null) {
             msg.setStatus("202");
             msg.setStatusMsg("录入公司信息失败，用户信息(user)不能为空");

@@ -37,7 +37,7 @@ public class ShiroRealm extends AuthorizingRealm {
         // 1.从主体传过来的认证信息中，获取用户名
         String username = (String) authenticationToken.getPrincipal();
         // 2.通过用户名去到数据库中获取凭证
-        String password = getPasswordByUtelephonenumber(username);
+        String password = getPasswordByTelephonenumber(username);
         if (password == null) {
             return null;
         }
@@ -50,7 +50,7 @@ public class ShiroRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         String utelephonenumber = (String) principalCollection.getPrimaryPrincipal();
         // 从数据库中根据用户名获取角色数据
-        Set<String> roles = getRolesByUtelephonenumber(utelephonenumber);
+        Set<String> roles = getRolesByTelephonenumber(utelephonenumber);
         // 从数据库中根据用户名获取权限数据
         Set<String> permissions = getPermissionbyUsername(roles);
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
@@ -62,11 +62,11 @@ public class ShiroRealm extends AuthorizingRealm {
     /**
      * 获取数据库查询凭证
      *
-     * @param email
+     * @param telephonenumber
      * @return
      */
-    private String getPasswordByUtelephonenumber(String email) {
-        User user = userMapper.findUserByEmail(email);
+    private String getPasswordByTelephonenumber(String telephonenumber) {
+        User user = userMapper.findUserByTelephonenumber(telephonenumber);
         if (user == null) {
             return null;
         }
@@ -76,11 +76,11 @@ public class ShiroRealm extends AuthorizingRealm {
     /**
      * 根据用户名获取数据库中的角色数据
      *
-     * @param email
+     * @param telephonenumber
      * @return
      */
-    private Set<String> getRolesByUtelephonenumber(String email) {
-        Role role = roleMapper.getRoleByEmail(email);
+    private Set<String> getRolesByTelephonenumber(String telephonenumber) {
+        Role role = roleMapper.getRoleByTelephonenumber(telephonenumber);
         Set<String> sets = new HashSet<>();
         if(role!=null){
             sets.add(role.getName());
