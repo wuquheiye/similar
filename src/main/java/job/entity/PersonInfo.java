@@ -31,29 +31,9 @@ public class PersonInfo  {
     private String name;
 
     /**
-     * 电话号码
-     */
-    private String phone;
-
-    /**
      * 0:男，1：女
      */
     private Integer sex;
-
-    /**
-     * 婚姻状态
-     */
-    private String maritalStatus;
-
-    /**
-     * 政治面貌
-     */
-    private String politicsStatus;
-
-    /**
-     * 海外经历
-     */
-    private Integer overseasExperience;
 
     /**
      * 出生日期
@@ -100,6 +80,10 @@ public class PersonInfo  {
      */
     private String portrait;
 
+    /**
+     * 是否应届生（0，否，1.，是）
+     */
+    private int freshGraduate;
     /**
      * 所属简历
      */

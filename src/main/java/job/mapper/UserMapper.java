@@ -24,13 +24,7 @@ public interface UserMapper extends BaseMapper<User> {
      */
     User findUserByTelephonenumber(String telephonenumber);
 
-    /**
-     * 根据用户id查询对应的简历
-     *
-     * @param id
-     * @return
-     */
-    PersonUser getPersonUser(Integer id);
+
 
     /**
      * 分页查询

@@ -24,12 +24,6 @@ public class UserTest {
     }
 
     @Test
-    public void getPersonUser() {
-        PersonUser personUser = userMapper.getPersonUser(1);
-        System.out.println(personUser);
-    }
-
-    @Test
     public void selectByPageAndCondition() {
         User user = new User();
         List<User> userVOList = userMapper.selectByPageAndCondition(user, 1, 100);

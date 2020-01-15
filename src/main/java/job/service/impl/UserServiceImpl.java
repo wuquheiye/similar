@@ -83,10 +83,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Transactional
     public int forgetpassword(User user) {
         // 1.查询邮箱是否存在
-        User userByEmail = userMapper.findUserByTelephonenumber(user.getTelephonenumber());
-        userByEmail.setPassword(user.getPassword());
+        User userByTelephonenumber = userMapper.findUserByTelephonenumber(user.getTelephonenumber());
+        userByTelephonenumber.setPassword(user.getPassword());
         // 2.修改
-        int num = userMapper.updateById(userByEmail);
+        int num = userMapper.updateById(userByTelephonenumber);
         return num;
     }
 
@@ -97,18 +97,12 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public LoginVO getLoginVO(String telephonenumber) {
-        if ("".equals(telephonenumber)) {
-            return null;
-        }
         LoginVO loginVO = new LoginVO();
         // 1.根据邮箱名查询用户
         User user = userMapper.findUserByTelephonenumber(telephonenumber);
         // 2.根据邮箱查询角色
         Role role = roleMapper.getRoleByTelephonenumber(telephonenumber);
-        if (user == null) {
-            return null;
-        }
-        if(role == null){
+        if (user == null || role == null) {
             return null;
         }
         loginVO.setUser(user);
@@ -174,7 +168,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         // 1.生成随机数
         String verificationCode = RandomUtil.getRandom(6);
         // 2.发送手机验证码
-        messageUtil.sendMessage(telephonenumber,verificationCode);
+        messageUtil.sendMessage(telephonenumber, verificationCode);
         return verificationCode;
     }
 }

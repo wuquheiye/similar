@@ -77,7 +77,7 @@ public class PersonUserPositionServiceImpl extends ServiceImpl<PersonUserPositio
             return msg;
         }
         // 2.根据用户查询简历
-        PersonUser personUser = userMapper.getPersonUser(userByEmail.getId());
+        PersonUser personUser = personUserMapper.getPersonUser(userByEmail.getId());
         if (userByEmail == null) {
             msg.setStatus("202");
             msg.setStatusMsg("投递简历失败，简历信息(personUser)不能为空");

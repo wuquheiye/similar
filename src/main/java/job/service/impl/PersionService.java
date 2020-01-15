@@ -51,7 +51,7 @@ public class PersionService implements IPersionService {
             msg.setStatusMsg("获取个人信息失败，用户信息(user)不能为空");
             return msg;
         }
-        PersonUser personUser = userMapper.getPersonUser(user.getId());
+        PersonUser personUser = personUserMapper.getPersonUser(user.getId());
         if (personUser == null) {
             msg.setStatus("203");
             msg.setStatusMsg("获取个人信息失败，用户简历(personUser)不能为null");

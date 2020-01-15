@@ -1,9 +1,7 @@
 package job.controller;
 
-import job.entity.Permission;
 import job.entity.User;
 import job.service.IUserService;
-import job.utils.DateUtil;
 import job.vo.LoginVO;
 import job.vo.ReturnMsg;
 import job.vo.ReturnMsgPage;
@@ -18,7 +16,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -51,18 +48,30 @@ public class UserController {
         UsernamePasswordToken token = new UsernamePasswordToken(user.getTelephonenumber(), user.getPassword());
         ReturnMsg msg = new ReturnMsg();
         try {
-            //主体提交登录请求到SecurityManager
+            // 主体提交登录请求到SecurityManager
             subject.login(token);
             // 缓存到shiro
             LoginVO loginUser = iUserService.getLoginVO(user.getTelephonenumber());
-            if (loginUser != null && loginUser.getUser() != null) {
+            if (loginUser != null && loginUser.getUser() != null && loginUser.getRole() != null) {
                 loginUser.getUser().setPassword(null);
+                if (loginUser.getUser().getState() == 0) {
+                    msg.setStatus("300");
+                    msg.setStatusMsg("由于违规操作，此账号已被禁用，请联系客服。");
+                    msg.setMsg(loginUser);
+                    return msg;
+                } else {
+                    subject.getSession().setAttribute("loginUser", loginUser);
+                    msg.setStatus("200");
+                    msg.setStatusMsg("登陆成功");
+                    msg.setMsg(loginUser);
+                    return msg;
+                }
+            }else{
+                msg.setStatus("202");
+                msg.setStatusMsg("账号异常，请联系客服。");
+                msg.setMsg(loginUser);
+                return msg;
             }
-            subject.getSession().setAttribute("loginUser", loginUser);
-            msg.setStatus("200");
-            msg.setStatusMsg("登陆成功");
-            msg.setMsg(loginUser);
-            return msg;
         } catch (IncorrectCredentialsException ice) {
             msg.setStatus("201");
             msg.setStatusMsg("密码不正确");
@@ -77,6 +86,147 @@ public class UserController {
             return msg;
         }
     }
+
+    /**
+     * 通过电话号码获取用户
+     *
+     * @param telephonenumber
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/finduserbytelephonenumber")
+    public ReturnMsg findUserByTelephonenumber(@RequestParam("telephonenumber") String telephonenumber) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            User user = iUserService.findUserByTelephonenumber(telephonenumber);
+            if (user != null) {
+                user.setPassword(null);
+                msg.setStatus("200");
+                msg.setStatusMsg("通过电话号码查询单个用户成功");
+                msg.setMsg(user);
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("通过电话号码查询单个用户失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("通过电话号码查询单个用户异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    /**
+     * 发送手机验证码
+     *
+     * @return
+     */
+    @RequestMapping("/sendtelephonenumberverificationcode")
+    @ResponseBody
+    public ReturnMsg sendTelephonenumberVerificationCode(@RequestParam("telephonenumber") String telephonenumber) {
+        ReturnMsg msg = new ReturnMsg();
+        try {
+            String verificationCode = iUserService.sendTelephonenumberVerificationCode(telephonenumber);
+            if (verificationCode != null && !"".equals(verificationCode)) {
+                msg.setStatus("200");
+                msg.setStatusMsg("发送验证码成功");
+                msg.setMsg(verificationCode);
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("发送验证码失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("发送验证码异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    /**
+     * 注册
+     *
+     * @param roleId
+     * @param user
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/doregist")
+    public ReturnMsg doRegist(@RequestParam("roleId") int roleId, User user) {
+        ReturnMsg msg = new ReturnMsg();
+        // 1.判断用户信息是否为空
+        if (user == null) {
+            msg.setStatus("201");
+            msg.setStatusMsg("用户信息不能为空");
+            return msg;
+        }
+        // 2.判断手机号码
+        if (user.getTelephonenumber() == null || "".equals(user.getTelephonenumber())) {
+            msg.setStatus("202");
+            msg.setStatusMsg("手机号码不能为空");
+            return msg;
+        }
+        // 3.判断角色
+        if (roleId != 2) {
+            roleId = 1;
+        }
+        try {
+            boolean isTrue = iUserService.regist(user, roleId);
+            if (isTrue) {
+                msg.setStatus("200");
+                msg.setStatusMsg("新建用户成功");
+            } else {
+                msg.setStatus("203");
+                msg.setStatusMsg("新建用户失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("204");
+            msg.setStatusMsg("新建用户异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param user
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/forgetpassword")
+    public ReturnMsg forgetPassword(User user) {
+        ReturnMsg msg = new ReturnMsg();
+        if (user.getTelephonenumber() == null) {
+            msg.setStatus("203");
+            msg.setStatusMsg("手机号码不能为空");
+            return msg;
+        }
+        try {
+            int isTrue = iUserService.forgetpassword(user);
+            if (isTrue > 0) {
+                msg.setStatus("200");
+                msg.setStatusMsg("修改用户成功");
+            } else {
+                msg.setStatus("202");
+                msg.setStatusMsg("修改用户失败");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            msg.setStatus("201");
+            msg.setStatusMsg("修改用户异常");
+            msg.setMsg(e.getMessage());
+        }
+        log.info(String.valueOf(msg));
+        return msg;
+    }
+
 //    /**
 //     * 发送手机号码验证码（待用）
 //     *
@@ -228,39 +378,6 @@ public class UserController {
 //    }
 //
 //
-//    @ResponseBody
-//    @RequestMapping("/selectbypageandcondition")
-//    public ReturnMsgPage selectByPageAndCondition(User user, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
-//        ReturnMsgPage msg = new ReturnMsgPage();
-//        try {
-//            List<User> roleList = iUserService.selectByPageAndCondition(user, page, pageSize);
-//            int totalSize = iUserService.selectCount(user);
-//            int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
-//            int pageEnd = page * pageSize < pageSize ? page * pageSize : pageSize;
-//            if (roleList != null) {
-//                msg.setStatus("200");
-//                msg.setMsg(roleList);
-//                msg.setPageSize(pageSize);
-//                msg.setStatusMsg("获取用户条件分页成功");
-//                msg.setTotalPage(totalPage);
-//                msg.setPageStart((page - 1) * pageSize);
-//                msg.setTotalSize(totalSize);
-//                msg.setPageEnd(pageEnd);
-//                msg.setCurrentPage(page);
-//            } else {
-//                msg.setStatus("202");
-//                msg.setStatusMsg("获取用户条件分页失败");
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            log.info(e.getMessage());
-//            msg.setStatus("201");
-//            msg.setStatusMsg("获取用户条件分页异常");
-//            msg.setMsg(e.getMessage());
-//        }
-//        log.info(String.valueOf(msg));
-//        return msg;
-//    }
 //
 //    @ResponseBody
 //    @RequestMapping("/getpermission")
@@ -315,147 +432,38 @@ public class UserController {
 //        return loginUser;
 //    }
 //
-    /**
-     * 修改密码
-     *
-     * @param user
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/forgetpassword")
-    public ReturnMsg updateById(User user) {
-        ReturnMsg msg = new ReturnMsg();
-        if(user.getTelephonenumber() == null){
-            msg.setStatus("203");
-            msg.setStatusMsg("手机号码不能为空");
-            return msg;
-        }
-        try {
-            int isTrue = iUserService.forgetpassword(user);
-            if (isTrue > 0) {
-                msg.setStatus("200");
-                msg.setStatusMsg("修改用户成功");
-            } else {
-                msg.setStatus("202");
-                msg.setStatusMsg("修改用户失败");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            msg.setStatus("201");
-            msg.setStatusMsg("修改用户异常");
-            msg.setMsg(e.getMessage());
-        }
-        log.info(String.valueOf(msg));
-        return msg;
-    }
-
-
-    /**
-     * 发送手机验证码
-     *
-     * @return
-     */
-    @RequestMapping("/sendtelephonenumberverificationcode")
-    @ResponseBody
-    public ReturnMsg sendTelephonenumberVerificationCode(@RequestParam("telephonenumber") String telephonenumber) {
-        ReturnMsg msg = new ReturnMsg();
-        try {
-            String verificationCode = iUserService.sendTelephonenumberVerificationCode(telephonenumber);
-            if (verificationCode != null && !"".equals(verificationCode)) {
-                msg.setStatus("200");
-                msg.setStatusMsg("发送验证码成功");
-                msg.setMsg(verificationCode);
-            } else {
-                msg.setStatus("202");
-                msg.setStatusMsg("发送验证码失败");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            msg.setStatus("201");
-            msg.setStatusMsg("发送验证码异常");
-            msg.setMsg(e.getMessage());
-        }
-        log.info(String.valueOf(msg));
-        return msg;
-    }
-
-
-
-    /**
-     * 通过电话号码获取用户
-     *
-     * @param telephonenumber
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/finduserbytelephonenumber")
-    public ReturnMsg findUserByTelephonenumber(@RequestParam("telephonenumber") String telephonenumber) {
-        ReturnMsg msg = new ReturnMsg();
-        try {
-            User user = iUserService.findUserByTelephonenumber(telephonenumber);
-            if (user != null) {
-                user.setPassword(null);
-                msg.setStatus("200");
-                msg.setStatusMsg("通过电话号码查询单个用户成功");
-                msg.setMsg(user);
-            } else {
-                msg.setStatus("202");
-                msg.setStatusMsg("通过电话号码查询单个用户失败");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            msg.setStatus("201");
-            msg.setStatusMsg("通过电话号码查询单个用户异常");
-            msg.setMsg(e.getMessage());
-        }
-        log.info(String.valueOf(msg));
-        return msg;
-    }
-
-    /**
-     * 注册
-     *
-     * @param roleId
-     * @param user
-     * @return
-     */
-    @ResponseBody
-    @RequestMapping("/doregist")
-    public ReturnMsg save(@RequestParam("roleId") int roleId, User user) {
-        ReturnMsg msg = new ReturnMsg();
-        // 1.判断用户信息是否为空
-        if (user == null) {
-            msg.setStatus("201");
-            msg.setStatusMsg("用户信息不能为空");
-            return msg;
-        }
-        // 2.判断手机号码
-        if (user.getTelephonenumber() == null || "".equals(user.getTelephonenumber())) {
-            msg.setStatus("204");
-            msg.setStatusMsg("手机号码不能为空");
-            return msg;
-        }
-        // 3.判断角色
-        if (roleId != 2) {
-            roleId = 1;
-        }
-        try {
-            boolean isTrue = iUserService.regist(user, roleId);
-            if (isTrue) {
-                msg.setStatus("200");
-                msg.setStatusMsg("新建用户成功");
-            } else {
-                msg.setStatus("205");
-                msg.setStatusMsg("新建用户失败");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            msg.setStatus("206");
-            msg.setStatusMsg("新建用户异常");
-            msg.setMsg(e.getMessage());
-        }
-        log.info(String.valueOf(msg));
-        return msg;
-    }
+//    @ResponseBody
+//    @RequestMapping("/selectbypageandcondition")
+//    public ReturnMsgPage selectByPageAndCondition(User user, @RequestParam(value = "page", defaultValue = "1") Integer page, @RequestParam(value = "pageSize", defaultValue = "10") Integer pageSize) {
+//        ReturnMsgPage msg = new ReturnMsgPage();
+//        try {
+//            List<User> roleList = iUserService.selectByPageAndCondition(user, page, pageSize);
+//            int totalSize = iUserService.selectCount(user);
+//            int totalPage = (int) Math.ceil(1.0 * totalSize / pageSize);
+//            int pageEnd = page * pageSize < pageSize ? page * pageSize : pageSize;
+//            if (roleList != null) {
+//                msg.setStatus("200");
+//                msg.setMsg(roleList);
+//                msg.setPageSize(pageSize);
+//                msg.setStatusMsg("获取用户条件分页成功");
+//                msg.setTotalPage(totalPage);
+//                msg.setPageStart((page - 1) * pageSize);
+//                msg.setTotalSize(totalSize);
+//                msg.setPageEnd(pageEnd);
+//                msg.setCurrentPage(page);
+//            } else {
+//                msg.setStatus("202");
+//                msg.setStatusMsg("获取用户条件分页失败");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            log.info(e.getMessage());
+//            msg.setStatus("201");
+//            msg.setStatusMsg("获取用户条件分页异常");
+//            msg.setMsg(e.getMessage());
+//        }
+//        log.info(String.valueOf(msg));
+//        return msg;
+//    }
 }
 

@@ -3,6 +3,26 @@
   <component name="ChangeListManager">
     <list default="true" id="329367b9-61fe-4435-818f-e4741cfc449a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/PersonInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/PersonUserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/PersonUserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/PersionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/PersonUserPositionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/PersonUserPositionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/job/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/job/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/PersonUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/PersonUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mappers/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/test/job/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/test/job/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/PersonUserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/PersonUserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/PersionService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/PersonUserPositionServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/PersonUserPositionServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/job/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/job/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/PersonUserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/PersonUserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/mappers/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mappers/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/job/UserTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/job/UserTest.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -206,7 +226,9 @@
       <workItem from="1578618154454" duration="71000" />
       <workItem from="1578619731733" duration="590000" />
       <workItem from="1578625405010" duration="2278000" />
-      <workItem from="1578875510371" duration="24992000" />
+      <workItem from="1578875510371" duration="25040000" />
+      <workItem from="1578961321603" duration="11352000" />
+      <workItem from="1579047597074" duration="639000" />
     </task>
     <task id="LOCAL-00001" summary="个人信息录入">
       <created>1576826511055</created>
@@ -299,7 +321,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578532027250</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="修改手机验证码">
+      <created>1578910113630</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1578910113630</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,14 +368,15 @@
     <MESSAGE value="职位列表" />
     <MESSAGE value="整合" />
     <MESSAGE value="前台基本弄完，开始后台" />
-    <option name="LAST_COMMIT_MESSAGE" value="前台基本弄完，开始后台" />
+    <MESSAGE value="修改手机验证码" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改手机验证码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/job/service/impl/UserServiceImpl.java</url>
-          <line>173</line>
+          <line>167</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

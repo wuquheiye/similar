@@ -42,7 +42,7 @@ public class User {
     private String creationtime = DateUtil.getNewDate();
 
     /**
-     * 用户状态
+     * 用户状态（0，被加入黑名单，1，未审核，2，审核通过）
      */
     private int state = 1;
 

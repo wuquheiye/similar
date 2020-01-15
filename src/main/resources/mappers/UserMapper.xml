@@ -5,12 +5,6 @@
         SELECT * from user where telephonenumber = #{telephonenumber}
     </select>
 
-    <select id="getPersonUser" resultType="job.entity.PersonUser" parameterType="java.lang.Integer">
-        select * from person_user pu
-        join user u on pu.user_id = u.id
-        where u.id = #{id}
-    </select>
-
     <select id="selectByPageAndCondition" resultType="job.entity.User"
             parameterType="job.entity.User">
         SELECT * FROM user where 1=1
