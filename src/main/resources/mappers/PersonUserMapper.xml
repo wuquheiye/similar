@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="job.mapper.PersonUserMapper">
+    <select id="getPersonUserByUserId" resultType="job.entity.PersonUser" parameterType="java.lang.Integer">
+        select * from person_user
+        where user_id = #{userId}
+    </select>
+
     <select id="getPersonUser" resultType="job.entity.PersonUser" parameterType="java.lang.Integer">
         select * from person_user pu
         join user u on pu.user_id = u.id

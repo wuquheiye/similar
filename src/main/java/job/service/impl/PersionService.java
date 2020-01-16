@@ -102,8 +102,15 @@ public class PersionService implements IPersionService {
             msg.setStatusMsg("录入个人信息失败，用户信息(user)不能为空");
             return msg;
         }
-        // 4.生成简历，判断简历是否生成
-        PersonUser personUser = new PersonUser();
+        // 4.判断是否拥有简历
+        PersonUser personUser = personUserMapper.getPersonUserByUserId(userByEmail.getId());
+        if (personUser != null ) {
+            msg.setStatus("208");
+            msg.setStatusMsg("此用户已经拥有简历。");
+            return msg;
+        }
+        // 5.生成简历，判断简历是否生成
+        personUser = new PersonUser();
         personUser.setName(personVO.getPersonInfo().getName() + "的简历");
         personUser.setUserId(userByEmail.getId());
         int num = personUserMapper.insert(personUser);
@@ -112,12 +119,12 @@ public class PersionService implements IPersionService {
             msg.setStatusMsg("录入个人信息失败，生成简历失败");
             return msg;
         }
-        // 5.添加简历id
+        // 6.添加简历id
         personVO.getPersonEducationExperience().setPersonUserId(personUser.getId());
         personVO.getPersonInfo().setPersonUserId(personUser.getId());
         personVO.getPersonJobWanted().setPersonUserId(personUser.getId());
         personVO.getPersonWorkExperience().setPersonUserId(personUser.getId());
-        // 6.插入简历列表所属项
+        // 7.插入简历列表所属项
         int num1 = personEducationExperienceMapper.insert(personVO.getPersonEducationExperience());
         if (num1 <= 0) {
             msg.setStatus("203");

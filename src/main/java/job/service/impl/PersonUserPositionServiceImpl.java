@@ -128,11 +128,14 @@ public class PersonUserPositionServiceImpl extends ServiceImpl<PersonUserPositio
                 PersonJobWanted personJobWanted = personJobWantedMapper.selectByPersonUserId(personUser.getId());
                 // 4.4.4获取工作经验
                 PersonWorkExperience personWorkExperience = personWorkExperienceMapper.selectByPersonUserId(personUser.getId());
+                // 4.4.5获取用户信息
+                User user = userMapper.selectById(personUser.getUserId());
                 PersonVO personVO = new PersonVO();
                 personVO.setPersonEducationExperience(personEducationExperience);
                 personVO.setPersonInfo(personInfo);
                 personVO.setPersonJobWanted(personJobWanted);
                 personVO.setPersonWorkExperience(personWorkExperience);
+                personVO.setUser(user);
                 personUserPositionVO.setPersonVO(personVO);
             }
             // 4.3 添加公司职位信息
@@ -176,17 +179,24 @@ public class PersonUserPositionServiceImpl extends ServiceImpl<PersonUserPositio
 
     @Override
     @Transactional
-    public ReturnMsg informInterview(int id, int state ,String email) {
+    public ReturnMsg informInterview(int id, int state ,String telephonenumber) {
         ReturnMsg msg = new ReturnMsg();
         boolean isTrue = personUserPositionMapper.updateState(id, state);
+        // 1.根据电话获取用户信息
+        User user = userMapper.findUserByTelephonenumber(telephonenumber);
+        // 2.根据用户信息获取简历信息
+        PersonUser personUser = personUserMapper.getPersonUser(user.getId());
+        // 3.根据简历信息查询用户email
+        PersonInfo personInfo = personInfoMapper.selectByPersonUserId(personUser.getId());
+        String email = personInfo.getEmail();
         if (isTrue) {
-            // 2.获取邮件模板
+            // 4.获取邮件模板
             Context context = new Context();
-            // 3.设置随机数
+            // 5.设置随机数
             context.setVariable("verificationCode", "123");
-            // 4.设置模板文件
+            // 6.设置模板文件
             String emailContent = templateEngine.process("interviewEmailTemplate", context);
-            // 5.发生模板邮件
+            // 7.发生模板邮件
             mailUTil.sendHtmlMail(email, "面试邀请", emailContent);
             msg.setStatus("200");
             msg.setStatusMsg("更改成功");

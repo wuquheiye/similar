@@ -17,6 +17,14 @@ import java.util.List;
 public interface PersonUserMapper extends BaseMapper<PersonUser> {
 
     /**
+     * 通过用户ID查询简历
+     *
+     * @param userId
+     * @return
+     */
+    PersonUser getPersonUserByUserId(Integer userId);
+
+    /**
      * 根据用户id查询对应的简历
      *
      * @param id

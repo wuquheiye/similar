@@ -17,6 +17,12 @@ public class PersonUserTest {
     private PersonUserMapper personUserMapper;
 
     @Test
+    public void getPersonUserByUserId() {
+        PersonUser personUser = personUserMapper.getPersonUserByUserId(61);
+        System.out.println(personUser);
+    }
+
+    @Test
     public void getRoleByEmail() {
         PersonUser personUser = new PersonUser();
         personUser.setName("1");

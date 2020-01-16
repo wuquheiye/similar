@@ -83,7 +83,8 @@ public class PersonInfo  {
     /**
      * 是否应届生（0，否，1.，是）
      */
-    private int freshGraduate;
+    private int fresh;
+
     /**
      * 所属简历
      */

@@ -50,5 +50,5 @@ public interface IPersonUserPositionService extends IService<PersonUserPosition>
      * @param state
      * @return
      */
-    ReturnMsg informInterview(int id, int state,String email);
+    ReturnMsg informInterview(int id, int state,String telephonenumber);
 }

@@ -23,4 +23,12 @@ public class PersonInfoTest {
         System.out.println(personInfo);
     }
 
+    @Test
+    public void insert() {
+        PersonInfo personInfo = new PersonInfo();
+        personInfo.setFresh(1);
+        personInfo.setPersonUserId(1);
+        int num = personInfoMapper.insert(personInfo);
+        System.out.println(num);
+    }
 }
